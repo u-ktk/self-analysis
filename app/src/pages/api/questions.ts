@@ -10,7 +10,7 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
         const data = await prisma.question.findMany({
             include: {
                 //多分userとcategoryも含めて情報を取得している
-                category : true,
+                category: true,
                 answers: true,
             },
         });
@@ -19,7 +19,7 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
     } catch (error) {
         console.error("Error fetching questions:", error);  // エラーをログ出力
         res.status(500).json({ error: "not found" });
-    }   
+    }
 };
 
 export default handle;

@@ -1,22 +1,37 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Question, Answer, Folder, QuestionCategory
+from .models import Question, Answer, Folder, QuestionCategory, User
 
 
 class UserSerializer(serializers.ModelSerializer):
-    questions = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Question.objects.all())
-    answers = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Answer.objects.all())
-    folders = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Folder.objects.all())
+    # questions = serializers.PrimaryKeyRelatedField(
+    #     many=True, queryset=Question.objects.all())
+    # answers = serializers.PrimaryKeyRelatedField(
+    #     many=True, queryset=Answer.objects.all())
+    # folders = serializers.PrimaryKeyRelatedField(
+    #     many=True, queryset=Folder.objects.all())
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'questions',
-                  'answers', 'folders', 'password']
+        fields = ['id', 'username', 'email', 'password']
         # パスワードが表示されないようにする
-        extra_kwargs = {'password': {'write_only': True}}
+        extra_kwargs = {
+            'password': {
+                'write_only': True,
+                'error_messages': {
+                    'blank': 'passwordは空にできません',
+                },
+            },
+            'username': {
+                'error_messages': {
+                    'blank': 'usernameは空にできません',
+                },
+            },
+            'email': {
+                'error_messages': {
+                    'blank': 'emailは空にできません',
+                },
+            }
+        }
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)

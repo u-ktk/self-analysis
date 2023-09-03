@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
+    def create_user(self, username, email, password=None, **extra_fields):
         if not username:
             raise ValueError('ユーザー名の登録が必要です。')
         if not email:
@@ -13,6 +13,7 @@ class UserManager(BaseUserManager):
         user = self.model(
             username=username,
             email=self.normalize_email(email),
+            **extra_fields
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -34,10 +35,11 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser,  PermissionsMixin):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(unique=True, blank=False, null=False)
-    password = models.CharField(max_length=255, blank=False, null=False)
+    # passwordはAbstractBaseUserに含まれているから不要
     is_admin = models.BooleanField(default=False)
     # 管理画面にアクセスする際必要
     is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     # emailを用いて一意に識別
     USERNAME_FIELD = 'email'

@@ -17,16 +17,11 @@
 }
 
 body {
-  background-color: #faf4f0;
+  /* background-color: #faf4f0; */
   color: #6B4423;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   box-sizing: border-box;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }

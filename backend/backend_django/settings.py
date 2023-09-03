@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'dj_rest_auth',
     'django_filters',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # オリジン間リソース共有
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4010",  # フロントエンドのURL
 ]
 
 ROOT_URLCONF = 'backend_django.urls'
@@ -96,7 +102,11 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',  # この行を修正
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DATE_FORMAT': "%Y-%m-%d",
+    'DATE_INPUT_FORMATS': ["%Y-%m-%d", "%Y/%m/%d"],
+    'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
+    'DATETIME_INPUT_FORMATS': ["%Y-%m-%d %H:%M:%S", "%Y/%m/%d %H:%M:%S"],
 }
 
 REST_USE_JWT = True
@@ -109,7 +119,10 @@ SIMPLE_JWT = {
     # 認証タイプ
     'AUTH_HEADER_TYPES': ('JWT', ),
     # 認証トークン
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken', )
+    'AUTH_TOKEN_CLASSES': (
+        'rest_framework_simplejwt.tokens.AccessToken',
+        'rest_framework_simplejwt.tokens.RefreshToken',
+    )
 }
 
 

@@ -3,4 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-module.exports = nextConfig
+module.exports = {
+  env: {
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    BACKEND_URL: process.env.BACKEND_URL,
+  },
+};
