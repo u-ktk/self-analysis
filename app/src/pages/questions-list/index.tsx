@@ -16,13 +16,14 @@ interface Props {
 const QuestionList: React.FC<Props> = ({ questions }) => {
     const router = useRouter();
     const { accessToken, setAccessToken } = useAuth();
-    useEffect(() => {
-        // const token = localStorage.getItem("accessToken")
-        if (!accessToken) {
-            router.push("/login")
-        }
 
-    }, []);
+    // ログインしていない場合はログインページにリダイレクトにしたいのに逆..
+    useEffect(() => {
+        console.log(accessToken)
+        if (!accessToken) {
+            router.push(`${NEXT_AUTH_URL}login`);
+        }
+    }, [router]);
     return (
 
         <div>

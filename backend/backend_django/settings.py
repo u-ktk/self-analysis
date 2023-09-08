@@ -59,7 +59,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4010",  # フロントエンドのURL
+    "http://localhost:3000",  # フロントエンドのURL
 ]
 
 ROOT_URLCONF = 'backend_django.urls'

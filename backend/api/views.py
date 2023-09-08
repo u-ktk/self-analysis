@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Question, User, Answer, Folder
-from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, FolderSerializer
+from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, FolderSerializer, CustomTokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from rest_framework_simplejwt import authentication
@@ -8,6 +9,15 @@ from rest_framework import permissions, generics, viewsets, exceptions
 from rest_framework.pagination import LimitOffsetPagination
 from django_filters import rest_framework as filters
 # from django.db.models import Q
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+
+    # エラーメッセージをカスタマイズ
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        return response
 
 
 class UserRegister(generics.CreateAPIView):

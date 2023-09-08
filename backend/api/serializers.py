@@ -1,5 +1,12 @@
 from rest_framework import serializers
 from .models import Question, Answer, Folder, QuestionCategory, User
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    default_error_messages = {
+        'no_active_account': 'emailもしくはpasswordが間違っています。',
+    }
 
 
 class UserSerializer(serializers.ModelSerializer):
