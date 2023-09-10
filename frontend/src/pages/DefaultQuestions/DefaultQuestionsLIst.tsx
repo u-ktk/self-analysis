@@ -5,7 +5,6 @@ import { useAuth } from '../../components/auth/Auth';
 import { Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import HeadTitle from '../../components/layouts/HeadTitle';
-import { set } from 'react-hook-form';
 
 const DefaultQuestionsList = () => {
     const { accessToken } = useAuth();
@@ -23,7 +22,7 @@ const DefaultQuestionsList = () => {
         if (!accessToken) {
             return;
         }
-        getDefaultQuestions(accessToken)
+        getDefaultQuestions(accessToken, '')
             .then((data) => {
                 setDefaultQuestions(data);
                 // カテゴリー名を取得

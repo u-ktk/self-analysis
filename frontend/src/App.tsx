@@ -12,6 +12,7 @@ import TopPage from './pages/TopPage';
 import Settings from './pages/Settings';
 import DefaultQuestionsList from './pages/DefaultQuestions/DefaultQuestionsLIst';
 import AnswerHistory from './pages/AnswerHistory';
+import Search from './pages/SearchResults';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 
           <Route path='/questions-list' element={<QuestionList />} />
           <Route path='/questions-list/default/:page' element={<DefaultQuestionsList />} />
+          <Route path='/search' element={<Search />} />
           <Route path='/questions/default/:id' element={<AnswerHistory />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/auth/Auth";
 import RegisterForm from "../components/RegisterForm";
 import HeadTitle from "../components/layouts/HeadTitle";
-import { set } from "react-hook-form";
 // import FetchToken from "../components/auth/FetchToken";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;

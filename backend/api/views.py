@@ -8,6 +8,7 @@ from rest_framework_simplejwt import authentication
 from rest_framework import permissions, generics, viewsets, exceptions, status
 from rest_framework.pagination import LimitOffsetPagination
 from django_filters import rest_framework as filters
+
 # from django.db.models import Q
 
 
@@ -50,7 +51,7 @@ class CustomQuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.filter(is_default=False)
     serializer_class = QuestionSerializer
     filter_backends = [filters.DjangoFilterBackend]
-    filterset_fields = '__all__'
+    filterset_fields = 'text'
     pagination_class = LimitOffsetPagination
 
     # カスタム質問とユーザー紐付け
@@ -87,6 +88,15 @@ class CustomQuestionViewSet(viewsets.ModelViewSet):
 # デフォルト質問は回答以外作成、更新、削除不可能
 
 
+class DefaultQuestionsFilter(filters.FilterSet):
+    class Meta:
+        model = Question
+        fields = {
+            'text': ['icontains'],
+            'subcategory': ['icontains'],
+        }
+
+
 class DefaultQuestionViewSet(viewsets.ModelViewSet):
     # is_default == Trueの時
     permission_classes = (permissions.IsAuthenticated,)
@@ -94,6 +104,7 @@ class DefaultQuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.filter(is_default=True)
     serializer_class = QuestionSerializer
     filter_backends = [filters.DjangoFilterBackend]
+    filterset_class = DefaultQuestionsFilter
     filterset_fields = '__all__'
     # limit, offsetはクライアントで設定
     pagination_class = LimitOffsetPagination

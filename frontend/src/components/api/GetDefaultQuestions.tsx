@@ -7,13 +7,17 @@ type DefaultQuestions = Question[]
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 
-const fetchDefaultQuestions = async (accessToken: string): Promise<DefaultQuestions | null> => {
+const fetchDefaultQuestions = async (accessToken: string, text: string): Promise<DefaultQuestions | null> => {
     try {
-        const res = await fetch(`${BACKEND_URL}defaultquestions/`, {
-            headers: {
-                'Authorization': `JWT ${accessToken}`
-            }
-        });
+        const searchParams = new URLSearchParams();
+        searchParams.set('text__icontains', text);
+
+        const res = await fetch(`${BACKEND_URL}defaultquestions/?${searchParams}`,
+            {
+                headers: {
+                    'Authorization': `JWT ${accessToken}`
+                }
+            });
         if (!res.ok) {
             throw new Error("Failed to fetch default questions");
         }
@@ -25,8 +29,8 @@ const fetchDefaultQuestions = async (accessToken: string): Promise<DefaultQuesti
 }
 
 
-const getDefaultQuestions = async (accessToken: string) => {
-    const defaultQuestions = await fetchDefaultQuestions(accessToken);
+const getDefaultQuestions = async (accessToken: string, text: string) => {
+    const defaultQuestions = await fetchDefaultQuestions(accessToken, text);
     if (!defaultQuestions) {
         throw new Error("Failed to get default questions");
     }
@@ -34,10 +38,20 @@ const getDefaultQuestions = async (accessToken: string) => {
 
 }
 
+// const FilterDefaultQuestions = async (accessToken: string, text: string) => {
+//     const defaultQuestions = await fetchDefaultQuestions(accessToken);
+//     if (!defaultQuestions) {
+//         throw new Error("Failed to get default questions");
+//     }
+//     const filteredDefaultQuestions = defaultQuestions.filter(question => question.text === text);
+//     return filteredDefaultQuestions;
+// }
+
+
 
 const getCategoryList = async (accessToken: string): Promise<string[] | null> => {
     try {
-        const defaultQuestions = await fetchDefaultQuestions(accessToken);
+        const defaultQuestions = await fetchDefaultQuestions(accessToken, '');
         if (!defaultQuestions) {
             throw new Error("Failed to get default questions");
         }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Question } from "../types";
 import { getCategoryList } from '../components/api/GetDefaultQuestions';
+import SearchQuestions from '../components/SearchQuestions';
 import { useAuth } from '../components/auth/Auth';
 import { Table, Pagination } from 'react-bootstrap';
 import HeadTitle from '../components/layouts/HeadTitle';
@@ -33,7 +34,7 @@ const QuestionList = () => {
                 <>
                     {/* <DefaultQuestionsList /> */}
                     <h3>質問を検索</h3>
-
+                    <SearchQuestions />
                     <h3>用意された質問から選ぶ</h3>
                     <Table striped bordered hover responsive className=" m-4">
                         <thead>
