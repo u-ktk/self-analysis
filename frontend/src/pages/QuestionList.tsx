@@ -1,59 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { Question } from "../types";
-import getDefaultQuestions from '../components/api/GetDefaultQuestions';
+import { getCategoryList } from '../components/api/GetDefaultQuestions';
 import { useAuth } from '../components/auth/Auth';
-import { Pagination } from 'react-bootstrap';
+import { Table, Pagination } from 'react-bootstrap';
+import DefaultQuestionsList from './DefaultQuestions/DefaultQuestionsLIst';
+import HeadTitle from '../components/layouts/HeadTitle';
 
 const QuestionList = () => {
-    const { accessToken } = useAuth();
-
-    const [defaultQuestions, setDefaultQuestions] = useState<Question[]>([]);
+    const [categoryList, setCategoryList] = useState<string[] | null>([]);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+    const { accessToken } = useAuth();
     useEffect(() => {
         if (!accessToken) {
             return;
         }
-        getDefaultQuestions(accessToken)
+        getCategoryList(accessToken)
             .then((data) => {
-                setDefaultQuestions(data);
+                setCategoryList(data);
             })
             .catch((err) => {
                 setErrorMessage(err.message);
             });
-    }, [accessToken]);
-
-    if (!defaultQuestions) {
-        return <div>loading...</div>;
     }
+        , [accessToken]);
 
 
 
-
-    //仮にDefaultQuestionsの一覧表示
     return (
         <>
+            <HeadTitle title='質問一覧' />
             {accessToken ? (
                 <>
-                    <table>
+                    {/* <DefaultQuestionsList /> */}
+                    <h3>質問を検索</h3>
+
+                    <h3>用意された質問から選ぶ</h3>
+                    <Table striped bordered hover responsive className=" m-4">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Category</th>
-                                <th>Text</th>
+                                <th>レベル</th>
+                                <th>カテゴリー</th>
+                                {/* <th>Category</th> */}
                             </tr>
                         </thead>
-                        <tbody>
-                            {defaultQuestions.map((question) => (
-                                <tr key={question.id}>
-                                    <td>{question.id}</td>
-                                    <td>{question.category}</td>
-                                    <td>{question.text}</td>
+                        <tbody >
+                            {categoryList?.map((category, index) => (
+                                <tr key={index} >
+                                    <td>{index + 1}</td>
+                                    <td><a href={`/questions/default/${index + 1}/`} className="text-dark">{category}</a></td>
+                                    {/* <td>{question.category_name}</td> */}
                                 </tr>
                             ))}
                         </tbody>
-                    </table>
-                    {errorMessage && <p>{errorMessage}</p>}
+                    </Table>
+
+                    <h3>作成した質問から選ぶ</h3>
+
+
+
                 </>
             ) : (
                 <>
@@ -61,11 +66,11 @@ const QuestionList = () => {
                     <a href="/register" className="m-5">登録</a>
                     <a href="/login" className="m-5">ログイン</a>
                 </>
-            )}
+            )
+            }
 
         </>
     )
 }
 
-
-export default QuestionList
+export default QuestionList;

@@ -1,9 +1,15 @@
 export type Question = {
     id: number;
-    category: string;
+    category: number;
+    category_name: string;
     text: string;
     answers?: Answer
 };
+
+export type Category = {
+    id: number;
+    name: string;
+}
 
 // 回答の型定義
 export type Answer = {

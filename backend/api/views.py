@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Question, User, Answer, Folder
-from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, FolderSerializer, CustomTokenObtainPairSerializer
+from .models import Question, User, Answer, Folder, QuestionCategory
+from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, FolderSerializer, CustomTokenObtainPairSerializer, QuestionCategorySerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
@@ -25,7 +25,6 @@ class UserRegister(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     success_url = '/'
-        
 
 
 class UserList(generics.ListAPIView):
@@ -67,23 +66,23 @@ class CustomQuestionViewSet(viewsets.ModelViewSet):
     #     return queryset
 
 
-class DefaultQuestionListView(generics.ListAPIView):
-    # is_default == Trueの時
-    permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (authentication.JWTAuthentication,)
-    queryset = Question.objects.filter(is_default=True)
-    serializer_class = QuestionSerializer
-    filter_backends = [filters.DjangoFilterBackend]
-    filterset_fields = '__all__'
-    # limit, offsetはクライアントで設定
-    pagination_class = LimitOffsetPagination
+# class DefaultQuestionListView(generics.ListAPIView):
+#     # is_default == Trueの時
+#     permission_classes = (permissions.IsAuthenticated,)
+#     authentication_classes = (authentication.JWTAuthentication,)
+#     queryset = Question.objects.filter(is_default=True)
+#     serializer_class = QuestionSerializer
+#     filter_backends = [filters.DjangoFilterBackend]
+#     filterset_fields = '__all__'
+#     # limit, offsetはクライアントで設定
+#     pagination_class = LimitOffsetPagination
 
 
-class DefaultQuestionDetailView(generics.RetrieveAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (authentication.JWTAuthentication,)
-    queryset = Question.objects.filter(is_default=True)
-    serializer_class = QuestionSerializer
+# class DefaultQuestionDetailView(generics.RetrieveAPIView):
+#     permission_classes = (permissions.IsAuthenticated,)
+#     authentication_classes = (authentication.JWTAuthentication,)
+#     queryset = Question.objects.filter(is_default=True)
+#     serializer_class = QuestionSerializer
 
 # デフォルト質問は回答以外作成、更新、削除不可能
 
@@ -153,3 +152,9 @@ class FolderView(generics.ListAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Folder.objects.all()
     serializer_class = FolderSerializer
+
+
+class QuestionCategoryListView(generics.ListAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = QuestionCategory.objects.all()
+    serializer_class = QuestionCategorySerializer

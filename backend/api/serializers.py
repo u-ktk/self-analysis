@@ -89,10 +89,11 @@ class AnswerListSerializer(serializers.ListSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     answers = AnswerListSerializer(required=False)
+    category_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Question
-        fields = ['id', 'text', 'user', 'category',
+        fields = ['id', 'text', 'user', 'category', 'category_name',
                   'subcategory', 'is_default', 'answers']
         # バリデーションメッセージの追加
         extra_kwargs = {
@@ -103,6 +104,9 @@ class QuestionSerializer(serializers.ModelSerializer):
                 }
             }
         }
+
+    def get_category_name(self, obj):
+        return obj.category.name
 
 
 class FolderSerializer(serializers.ModelSerializer):

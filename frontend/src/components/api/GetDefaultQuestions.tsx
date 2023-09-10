@@ -1,5 +1,5 @@
 import React from 'react'
-import { Question } from "../../types";
+import { Question, Category } from "../../types";
 
 type DefaultQuestionDetail = Question
 type DefaultQuestions = Question[]
@@ -24,6 +24,7 @@ const fetchDefaultQuestions = async (accessToken: string): Promise<DefaultQuesti
     }
 }
 
+
 const getDefaultQuestions = async (accessToken: string) => {
     const defaultQuestions = await fetchDefaultQuestions(accessToken);
     if (!defaultQuestions) {
@@ -33,19 +34,22 @@ const getDefaultQuestions = async (accessToken: string) => {
 
 }
 
-export default getDefaultQuestions;
+
+const getCategoryList = async (accessToken: string): Promise<string[] | null> => {
+    try {
+        const defaultQuestions = await fetchDefaultQuestions(accessToken);
+        if (!defaultQuestions) {
+            throw new Error("Failed to get default questions");
+        }
+
+        const categorySet = new Set(defaultQuestions.map(question => question.category_name));
+        return Array.from(categorySet);
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+export { getDefaultQuestions, getCategoryList };
 
 
-    // const userDetails = async (userId: string, accessToken: string) => {
-
-    //     if (!userId) {
-    //         throw new Error("Failed to get user id");
-    //     }
-    //     const userDetails = await fetchUserDetails(userId, accessToken);
-    //     if (!userDetails) {
-    //         throw new Error("Failed to get user details");
-    //     }
-    //     const userEmail = userDetails.email;
-    //     const userName = userDetails.username;
-    //     return { userEmail, userName };
-    // }
