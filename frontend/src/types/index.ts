@@ -2,6 +2,7 @@ export type Question = {
     id: number;
     category: number;
     category_name: string;
+    subcategory: string;
     text: string;
     answers?: Answer
 };

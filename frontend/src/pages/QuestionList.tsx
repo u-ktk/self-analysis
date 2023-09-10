@@ -3,7 +3,6 @@ import { Question } from "../types";
 import { getCategoryList } from '../components/api/GetDefaultQuestions';
 import { useAuth } from '../components/auth/Auth';
 import { Table, Pagination } from 'react-bootstrap';
-import DefaultQuestionsList from './DefaultQuestions/DefaultQuestionsLIst';
 import HeadTitle from '../components/layouts/HeadTitle';
 
 const QuestionList = () => {
@@ -48,7 +47,7 @@ const QuestionList = () => {
                             {categoryList?.map((category, index) => (
                                 <tr key={index} >
                                     <td>{index + 1}</td>
-                                    <td><a href={`/questions/default/${index + 1}/`} className="text-dark">{category}</a></td>
+                                    <td><a href={`/questions-list/default/${index + 1}/`} className="text-dark">{category}</a></td>
                                     {/* <td>{question.category_name}</td> */}
                                 </tr>
                             ))}

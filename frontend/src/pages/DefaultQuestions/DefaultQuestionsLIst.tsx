@@ -4,15 +4,20 @@ import { getDefaultQuestions } from '../../components/api/GetDefaultQuestions';
 import { useAuth } from '../../components/auth/Auth';
 import { Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import HeadTitle from '../../components/layouts/HeadTitle';
+import { set } from 'react-hook-form';
 
 const DefaultQuestionsList = () => {
     const { accessToken } = useAuth();
     const [defaultQuestions, setDefaultQuestions] = useState<Question[]>([]);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [currentCategory, setCurrentCategory] = useState<string>("");
     const tableRef = useRef<HTMLTableElement>(null);
     let { page } = useParams<string>();
 
+    const currentPage = parseInt(page ? page : "1");
+    console.log(currentPage)
     // アクセストークンを使って質問一覧を取得
     useEffect(() => {
         if (!accessToken) {
@@ -21,6 +26,12 @@ const DefaultQuestionsList = () => {
         getDefaultQuestions(accessToken)
             .then((data) => {
                 setDefaultQuestions(data);
+                // カテゴリー名を取得
+                if (data[0]) {
+                    setCurrentCategory(data[currentPage * 100 - 1].category_name);
+                } else {
+                    setCurrentCategory("No category");
+                }
             })
             .catch((err) => {
                 setErrorMessage(err.message);
@@ -43,7 +54,6 @@ const DefaultQuestionsList = () => {
         return <div>loading...</div>;
     }
 
-    const currentPage = parseInt(page ? page : "1");
     const questionsPerPage = 100;
     //無効なページ番号の場合はエラーを表示
     if (!currentPage || currentPage < 1 || currentPage > 10) {
@@ -58,46 +68,69 @@ const DefaultQuestionsList = () => {
 
 
 
-
-
     return (
         <>
+            <HeadTitle title={currentCategory} />
+
+            <p>{currentCategory}</p>
             {accessToken ? (
                 <>
                     <Table striped bordered hover responsive className=" m-4" ref={tableRef}>
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>質問</th>
-                                {/* 768px以上の画面サイズでのみ表示 */}
-                                {windowWidth >= 768 && (
-                                    <>
+                        {/* 768px以上なら１行に２列表示、それ以下なら1列表示 */}
+
+                        {windowWidth >= 768 ? (
+                            <>
+
+                                <thead>
+                                    <tr>
                                         <th>No.</th>
                                         <th>質問</th>
-                                    </>
-                                )}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {currentQuestions.map((question, index) => (
-                                <tr key={question.id}>
-                                    <td>{question.id}</td>
-                                    <td><a href="#">{question.text}</a></td>
-                                    {windowWidth >= 768 && (
-                                        <>
+                                        <th>No.</th>
+
+                                        <th>質問</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {currentQuestions.map((question, index) => (
+                                        //　下二桁が50以下の質問は左側の列、それ以上は右側の列
+                                        (question.id % 100 !== 0 && question.id % 100 <= 50) && (
+                                            <tr key={question.id}>
+                                                {/* <td>{question.subcategory}</td> */}
+                                                <td>{question.id}</td>
+                                                <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.subcategory})</a></td>
+                                                {/* <td>{currentQuestions[index + 50].subcategory}</td> */}
+                                                <td>{currentQuestions[index + 50].id}</td>
+                                                <td><a href={`/questions/default/${question.id + 50}/`}>{currentQuestions[index + 50].text}({currentQuestions[index + 50].subcategory})</a></td>
+                                            </tr>
+                                        )
+                                    ))}
+                                </tbody>
+                            </>
+                        ) : (
+                            <>
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>質問</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {currentQuestions.map((question, index) => (
+                                        <tr key={question.id}>
                                             <td>{question.id}</td>
-                                            <td>
-                                                {/* <a href="#">{currentQuestions[index + 1].text}</a> */}
-                                            </td>
-                                        </>
-                                    )}
-                                </tr>
-                            ))}
-                        </tbody>
+                                            <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.subcategory})</a></td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </>
+                        )}
+
+
                     </Table>
                     {errorMessage && <p>{errorMessage}</p>}
                 </>
             ) : (
+
                 <>
                     <p>自己分析サイトを利用するには、ログインする必要があります。</p>
                     <a href="/register" className="m-5">登録</a>
