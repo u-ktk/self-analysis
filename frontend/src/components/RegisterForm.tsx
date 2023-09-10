@@ -10,10 +10,10 @@ type FormData = {
 
 type Props = {
     onSubmit: SubmitHandler<FormData>;
-    errorMessage: string | null;
+    errorMessages: string[] | null;
 }
 
-const RegisterForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
+const RegisterForm: React.FC<Props> = ({ onSubmit, errorMessages }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
     return (
@@ -36,7 +36,7 @@ const RegisterForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Password(6文字以上):</label>
                     <input type="password" className="form-control border" placeholder="password" {...register("password", { required: "Password is required" })} />
                     {errors.password && <p className="text-danger">{errors.password.message}</p>}
                 </div>
@@ -46,7 +46,10 @@ const RegisterForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
                 </div>
             </Form>
 
-            {errorMessage && <p>{errorMessage}</p>}
+            {errorMessages &&
+                errorMessages.map((message, index) => (
+                    <p key={index} className="text-danger text-center">{message}</p>
+                ))}
         </div>
     );
 }

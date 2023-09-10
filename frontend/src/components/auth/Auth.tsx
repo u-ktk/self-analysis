@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         if (accessToken) {
             localStorage.setItem('accessToken', accessToken);
 
-            const decoded = jwtDecode<DecodedAccessToken>(accessToken); // <-- 変更
+            const decoded = jwtDecode<DecodedAccessToken>(accessToken);
             console.log({ decoded });
             setUserId(decoded.user_id);
 

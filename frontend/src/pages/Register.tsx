@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/auth/Auth";
-import RegisterForm from "../components/auth/RegisterForm";
+import RegisterForm from "../components/RegisterForm";
 import HeadTitle from "../components/layouts/HeadTitle";
+import { set } from "react-hook-form";
 // import FetchToken from "../components/auth/FetchToken";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -32,16 +33,18 @@ export default function Register() {
                 navigate('/');
             } else {
                 const errorData = await loginResponse.json();
-                setLoginErrorMessage(errorData.message);
+                setLoginErrorMessage(errorData.detail);
+                console.log(errorData);
             }
         } catch (error) {
             if (error instanceof Error) {
-                setLoginErrorMessage(error.message);
+                setLoginErrorMessage([error.message]);
+                console.log(error.message);
             }
         }
     }
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [loginErrorMessage, setLoginErrorMessage] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string[] | null>(null);
+    const [loginErrorMessage, setLoginErrorMessage] = useState<string[] | null>(null);
     const { accessToken, setAccessToken, userName } = useAuth();
     const navigate = useNavigate();
     const onSubmit = async (data: { username: string, email: string, password: string }) => {
@@ -63,13 +66,31 @@ export default function Register() {
             }
 
             else {
+                let errorMessages: string[] = [];
                 const error = await response.json();
-                setErrorMessage(error.message);
+                if (error.username) {
+                    // setErrorMessage(error.username);
+                    errorMessages.push(error.username);
+                }
+                if (error.email) {
+                    // setErrorMessage(error.email);
+                    errorMessages.push(error.email);
+                }
+                if (error.password) {
+                    // setErrorMessage(error.password);
+                    errorMessages.push(error.password);
+                }
+                if (errorMessages.length > 0) {
+                    setErrorMessage(errorMessages);
+                } else {
+                    setErrorMessage(null);
+                }
             }
 
         } catch (error) {
             if (error instanceof Error) {
-                setErrorMessage(error.message);
+
+                setErrorMessage([error.message]);
             }
         }
     }
@@ -85,7 +106,7 @@ export default function Register() {
                 </>
             ) : (
                 <div>
-                    <RegisterForm onSubmit={onSubmit} errorMessage={errorMessage || loginErrorMessage} />
+                    <RegisterForm onSubmit={onSubmit} errorMessages={errorMessage || loginErrorMessage} />
                 </div>
 
             )}

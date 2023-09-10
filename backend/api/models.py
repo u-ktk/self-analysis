@@ -4,11 +4,15 @@ from django.utils import timezone
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, email, password=None, **extra_fields):
+    def create_user(self, username, email, password, **extra_fields):
         if not username:
             raise ValueError('ユーザー名の登録が必要です。')
         if not email:
             raise ValueError('Eメールの登録が必要です。')
+        if not password:
+            raise ValueError('パスワードの登録が必要です。')
+        if len(password) < 6:
+            raise ValueError('パスワードは6文字以上にしてください。')
 
         user = self.model(
             username=username,
@@ -19,7 +23,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, email, password=None):
+    def create_superuser(self, username, email, password):
         user = self.create_user(
             username=username,
             email=self.normalize_email(email),
@@ -33,7 +37,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser,  PermissionsMixin):
-    username = models.CharField(max_length=255, unique=True)
+    username = models.CharField(max_length=255, unique=False)
     email = models.EmailField(unique=True, blank=False, null=False)
     # passwordはAbstractBaseUserに含まれているから不要
     is_admin = models.BooleanField(default=False)

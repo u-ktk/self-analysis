@@ -24,24 +24,43 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {
                 'write_only': True,
-                'error_messages': {
-                    'blank': 'passwordは空にできません',
-                },
+                "error_messages": {
+                    "required": "passwordは必須です",
+                    'blank': 'usernameは空にできません',
+                }
             },
             'username': {
                 'error_messages': {
+                    'required': 'usernameは必須です',
                     'blank': 'usernameは空にできません',
                 },
             },
             'email': {
                 'error_messages': {
+                    'required': 'emailは必須です',
                     'blank': 'emailは空にできません',
                 },
             }
         }
 
+    def validate_password(self, value):
+        if len(value) < 6:
+            raise serializers.ValidationError("パスワードは6文字以上にしてください。")
+        return value
+
+    # def validate_username(self, value):
+    #     if value == '':
+    #         raise serializers.ValidationError("usernameは空にできません")
+    #     return value
+
+    # def validate_email(self, value):
+    #     if value == '':
+    #         raise serializers.ValidationError("emailは空にできません")
+    #     return value
+
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
+
         return user
 
 

@@ -2,7 +2,7 @@ export type Question = {
     id: number;
     category: string;
     text: string;
-    answers: Answer
+    answers?: Answer
 };
 
 // 回答の型定義

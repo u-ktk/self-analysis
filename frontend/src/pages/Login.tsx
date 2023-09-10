@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/auth/Auth";
-import LoginForm from "../components/auth/LoginForm";
+import LoginForm from "../components/LoginForm";
 import HeadTitle from "../components/layouts/HeadTitle";
 import FetchToken from "../components/auth/FetchToken";
 

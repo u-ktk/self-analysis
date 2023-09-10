@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from rest_framework_simplejwt import authentication
-from rest_framework import permissions, generics, viewsets, exceptions
+from rest_framework import permissions, generics, viewsets, exceptions, status
 from rest_framework.pagination import LimitOffsetPagination
 from django_filters import rest_framework as filters
 # from django.db.models import Q
@@ -25,6 +25,7 @@ class UserRegister(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     success_url = '/'
+        
 
 
 class UserList(generics.ListAPIView):
