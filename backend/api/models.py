@@ -67,7 +67,7 @@ class Question(models.Model):
         User, on_delete=models.SET_NULL, null=True, related_name="questions")
     category = models.ForeignKey(
         QuestionCategory, on_delete=models.CASCADE, related_name="questions")
-    subcategory = models.CharField(max_length=255)
+    age = models.CharField(max_length=255)
     created_at = models.DateTimeField(default=timezone.now)
     is_default = models.BooleanField(default=False)
 

@@ -22,7 +22,6 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<TopPage />} />
-
           <Route path='/questions-list' element={<QuestionList />} />
           <Route path='/questions-list/default/:page' element={<DefaultQuestionsList />} />
           <Route path='/search' element={<Search />} />

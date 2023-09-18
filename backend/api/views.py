@@ -51,12 +51,22 @@ class CustomQuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.filter(is_default=False)
     serializer_class = QuestionSerializer
     filter_backends = [filters.DjangoFilterBackend]
-    filterset_fields = 'text'
+    filterset_fields = 'text', 'age'
     pagination_class = LimitOffsetPagination
 
     # カスタム質問とユーザー紐付け
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class DefaultQuestionsFilter(filters.FilterSet):
+
+    class Meta:
+        model = Question
+        fields = {
+            'text': ['icontains'],
+            'age': ['icontains']
+        }
 
     # いずれデータ検索高速化したい（DBにインデックスを追加？）
     # def get_queryset(self):
@@ -86,15 +96,6 @@ class CustomQuestionViewSet(viewsets.ModelViewSet):
 #     serializer_class = QuestionSerializer
 
 # デフォルト質問は回答以外作成、更新、削除不可能
-
-
-class DefaultQuestionsFilter(filters.FilterSet):
-    class Meta:
-        model = Question
-        fields = {
-            'text': ['icontains'],
-            'subcategory': ['icontains'],
-        }
 
 
 class DefaultQuestionViewSet(viewsets.ModelViewSet):

@@ -6,16 +6,25 @@ type DefaultQuestions = Question[]
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
+type DefaultQuestionDetailListProps = {
+    accessToken: string;
+    text?: string;
+    age?: string;
+}
 
-const fetchDefaultQuestions = async (accessToken: string, text: string): Promise<DefaultQuestions | null> => {
+
+// フリーワードもしくは年代を指定して、defaultquestionsを取得する
+const fetchDefaultQuestions = async (props: DefaultQuestionDetailListProps): Promise<DefaultQuestions | null> => {
     try {
         const searchParams = new URLSearchParams();
-        searchParams.set('text__icontains', text);
+        searchParams.set('text__icontains', props.text || '');
+        searchParams.set('age__icontains', props.age || '');
+
 
         const res = await fetch(`${BACKEND_URL}defaultquestions/?${searchParams}`,
             {
                 headers: {
-                    'Authorization': `JWT ${accessToken}`
+                    'Authorization': `JWT ${props.accessToken}`
                 }
             });
         if (!res.ok) {
@@ -29,8 +38,8 @@ const fetchDefaultQuestions = async (accessToken: string, text: string): Promise
 }
 
 
-const getDefaultQuestions = async (accessToken: string, text: string) => {
-    const defaultQuestions = await fetchDefaultQuestions(accessToken, text);
+const getDefaultQuestions = async (props: DefaultQuestionDetailListProps) => {
+    const defaultQuestions = await fetchDefaultQuestions(props);
     if (!defaultQuestions) {
         throw new Error("Failed to get default questions");
     }
@@ -51,7 +60,7 @@ const getDefaultQuestions = async (accessToken: string, text: string) => {
 
 const getCategoryList = async (accessToken: string): Promise<string[] | null> => {
     try {
-        const defaultQuestions = await fetchDefaultQuestions(accessToken, '');
+        const defaultQuestions = await fetchDefaultQuestions({ accessToken });
         if (!defaultQuestions) {
             throw new Error("Failed to get default questions");
         }

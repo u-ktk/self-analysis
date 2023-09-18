@@ -22,7 +22,7 @@ const DefaultQuestionsList = () => {
         if (!accessToken) {
             return;
         }
-        getDefaultQuestions(accessToken, '')
+        getDefaultQuestions({ accessToken })
             .then((data) => {
                 setDefaultQuestions(data);
                 // カテゴリー名を取得
@@ -90,19 +90,22 @@ const DefaultQuestionsList = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {currentQuestions.map((question, index) => (
-                                        //　下二桁が50以下の質問は左側の列、それ以上は右側の列
-                                        (question.id % 100 !== 0 && question.id % 100 <= 50) && (
-                                            <tr key={question.id}>
-                                                {/* <td>{question.subcategory}</td> */}
-                                                <td>{question.id}</td>
-                                                <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.subcategory})</a></td>
-                                                {/* <td>{currentQuestions[index + 50].subcategory}</td> */}
-                                                <td>{currentQuestions[index + 50].id}</td>
-                                                <td><a href={`/questions/default/${question.id + 50}/`}>{currentQuestions[index + 50].text}({currentQuestions[index + 50].subcategory})</a></td>
-                                            </tr>
-                                        )
-                                    ))}
+                                    {currentQuestions.map((question, index) => {
+                                        //　奇数の質問は左側の列、偶数の質問は右側の列
+                                        if (index % 2 === 0) {
+                                            return (
+                                                <tr key={question.id}>
+                                                    {/* <td>{question.subcategory}</td> */}
+                                                    <td>{question.id}</td>
+                                                    <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.age})</a></td>
+                                                    {/* <td>{currentQuestions[index + 50].subcategory}</td> */}
+                                                    <td>{currentQuestions[index + 1].id}</td>
+                                                    <td><a href={`/questions/default/${question.id + 1}/`}>{currentQuestions[index + 1].text}({currentQuestions[index + 1].age})</a></td>
+                                                </tr>
+                                            )
+                                        };
+                                        return null;
+                                    })}
                                 </tbody>
                             </>
                         ) : (
@@ -114,10 +117,10 @@ const DefaultQuestionsList = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {currentQuestions.map((question, index) => (
+                                    {currentQuestions.map((question) => (
                                         <tr key={question.id}>
                                             <td>{question.id}</td>
-                                            <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.subcategory})</a></td>
+                                            <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.age})</a></td>
                                         </tr>
                                     ))}
                                 </tbody>

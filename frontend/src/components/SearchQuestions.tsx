@@ -1,48 +1,99 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Question } from "../types";
 import { getDefaultQuestions } from './api/GetDefaultQuestions';
 import { useAuth } from './auth/Auth';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Dropdown } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
     text__icontains: string;
+    age__icontains: string;
 };
 
 const SearchQuestions = () => {
     const { accessToken } = useAuth();
     const { register, handleSubmit } = useForm<Inputs>();
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [questions, setQuestions] = useState<Question[]>([]);
-    const [searchParams, setSearchParams] = useState<string>("");
+    const [searchParamsByWord, setSearchParamsByWord] = useState<string>("");
+    const [searchParamsByAge, setSearchParamsByAge] = useState<string>("");
+
+
     const navigate = useNavigate();
 
     // textの部分一致で質問を取得
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        setSearchParams(data.text__icontains);
+    const onSubmitByWord: SubmitHandler<Inputs> = (data) => {
+        setSearchParamsByWord(data.text__icontains);
+
     };
 
+    // 年代で質問を取得
+    const onSubmitByAge: SubmitHandler<Inputs> = (data) => {
+        setSearchParamsByAge(data.age__icontains);
+    };
+
+
+    // 検索したら、別のページに遷移(SearchResults.tsx)
+
     useEffect(() => {
-        if (!accessToken || !searchParams) {
+        if (!accessToken) {
             return;
         }
-        navigate(`/search?text=${encodeURIComponent(searchParams)}`)
-    }, [accessToken, searchParams]);
+
+        if (searchParamsByWord) {
+            navigate(`/search?text=${encodeURIComponent(searchParamsByWord)}`);
+        } else if (searchParamsByAge) {
+            navigate(`/search?age=${encodeURIComponent(searchParamsByAge)}`);
+        }
+    }, [accessToken, searchParamsByWord, searchParamsByAge]);
 
     return (
-        <div>
-            <Form className="w-50 mx-auto" onSubmit={handleSubmit(onSubmit)}>
-                <Form.Control
+        <div className='d-flex justify-content-center'>
+            <div className=' p-2 '>
+                <div>フリーワードで選ぶ</div>
+                <div className='d-flex'>
+                    <Form className="w-150" onSubmit={handleSubmit(onSubmitByWord)}>
+                        <Form.Control
+                            style={{ borderColor: '#6B4423' }}
+                            type="text"
+                            placeholder='フリーワードを入力'
+                            {...register('text__icontains')}
+                        />
+                        <Button variant="primary" type="submit">
+                            検索
+                        </Button>
+                    </Form>
+                </div>
+            </div>
+
+            <div className='p-2 '>
+                <div>年代で選ぶ</div>
+                <Form className="w-150 " onSubmit={handleSubmit(onSubmitByAge)} ></Form>
+                {/* <Form.Control
                     type="text"
-                    placeholder='フリーワードを入力'
+                    placeholder='年代を選択'
                     {...register('text__icontains')}
                 />
+                 */}
+                <Dropdown>
+                    <Dropdown.Toggle style={{ backgroundColor: 'white', color: 'black' }} id="dropdown-basic">
+                        年代を選択
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item className='' onClick={() => setSearchParamsByAge('幼少期')}>幼少期</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setSearchParamsByAge('小学校')}>小学校</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setSearchParamsByAge('中学校')}>中学校</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setSearchParamsByAge('高校')}>高校</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setSearchParamsByAge('大学')}>大学</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setSearchParamsByAge('社会人（20代）')}>社会人（20代）</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setSearchParamsByAge('現在')}>現在</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setSearchParamsByAge('未来')}>未来</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
                 <Button variant="primary" type="submit">
                     検索
                 </Button>
-            </Form>
-            {errorMessage && <p className="text-danger">{errorMessage}</p>}
+
+            </div>
         </div>
     );
 };
