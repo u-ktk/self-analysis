@@ -74,7 +74,7 @@ const SearchResults = () => {
                         {ageContains && <div>年代：{ageContains}</div>}
 
                         <Table striped bordered hover responsive className="m-4" >
-                            {windowWidth > 768 ? (
+                            {windowWidth > 960 ? (
                                 <>
                                     <thead>
                                         <tr>

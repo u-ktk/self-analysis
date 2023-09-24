@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Question } from "../types";
 import { getCategoryList } from '../components/api/GetDefaultQuestions';
 import SearchQuestions from '../components/SearchQuestions';
 import { useAuth } from '../components/auth/Auth';
 import { Table, Pagination } from 'react-bootstrap';
 import HeadTitle from '../components/layouts/HeadTitle';
+import loadStyles from '../components/styles/Loading.module.css';
 
 const QuestionList = () => {
     const [categoryList, setCategoryList] = useState<string[] | null>([]);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const { accessToken } = useAuth();
+
+
+
+
     useEffect(() => {
         if (!accessToken) {
             return;
@@ -18,9 +23,12 @@ const QuestionList = () => {
         getCategoryList(accessToken)
             .then((data) => {
                 setCategoryList(data);
+                setLoading(false);
+
             })
             .catch((err) => {
                 setErrorMessage(err.message);
+                setLoading(false);
             });
     }
         , [accessToken]);
@@ -31,7 +39,12 @@ const QuestionList = () => {
         <>
             <HeadTitle title='質問一覧' />
             {accessToken ? (
-                <>
+                <div>
+                    {loading &&
+                        <div className={loadStyles.loading}>
+                            <span className={loadStyles.text}>Loading...</span>
+                        </div>
+                    }
                     {/* <DefaultQuestionsList /> */}
                     <h3>質問を検索</h3>
                     <SearchQuestions />
@@ -59,7 +72,7 @@ const QuestionList = () => {
 
 
 
-                </>
+                </div>
             ) : (
                 <>
                     <p>自己分析サイトを利用するには、ログインする必要があります。</p>

@@ -25,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w5r#^7($nr$kz&pyw0x*dtvrgb(#skfzs=cc$e$1)3p)e@r7^i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG") == "True"
+# DEBUG = os.environ.get("DEBUG") == "True"
+DEBUG = os.environ.get('DJANGO_PRODUCTION', 'false') != 'true'
 
 # 本番用のドメインが決まったら指定する
 ALLOWED_HOSTS = ['*']
@@ -61,6 +62,9 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # オリジン間リソース共有
 ]
 
+# 後で修正
+CORS_ALLOWED_ALL_ORIGINS = True
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # フロントエンドのURL
 ]
@@ -91,16 +95,20 @@ WSGI_APPLICATION = 'backend_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_NAME'),
-        'USER': 'os.environ.get("POSTGRES_USER")',
-        'PASSWORD': 'os.environ.get("POSTGRES_PASSWORD")',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',  # 本番以外の環境ではSQLiteを使用
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+if os.environ.get('DJANGO_PRODUCTION', False):
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+    }
 
 # APIリクエストを受け取る時、JWTトークンを必要とするようにする
 REST_FRAMEWORK = {

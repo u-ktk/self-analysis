@@ -5,6 +5,8 @@ import { useAuth } from '../../components/auth/Auth';
 import { Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import HeadTitle from '../../components/layouts/HeadTitle';
+import loadStyles from '../../components/styles/Loading.module.css';
+
 
 const DefaultQuestionsList = () => {
     const { accessToken } = useAuth();
@@ -13,10 +15,12 @@ const DefaultQuestionsList = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [currentCategory, setCurrentCategory] = useState<string>("");
     const tableRef = useRef<HTMLTableElement>(null);
+    const [loading, setLoading] = useState<boolean>(true);
     let { page } = useParams<string>();
 
     const currentPage = parseInt(page ? page : "1");
     console.log(currentPage)
+
     // アクセストークンを使って質問一覧を取得
     useEffect(() => {
         if (!accessToken) {
@@ -31,9 +35,11 @@ const DefaultQuestionsList = () => {
                 } else {
                     setCurrentCategory("No category");
                 }
+                setLoading(false);
             })
             .catch((err) => {
                 setErrorMessage(err.message);
+                setLoading(false);
             });
     }, [accessToken, page]);
 
@@ -74,61 +80,69 @@ const DefaultQuestionsList = () => {
             <p>{currentCategory}</p>
             {accessToken ? (
                 <>
-                    <Table striped bordered hover responsive className=" m-4" ref={tableRef}>
-                        {/* 768px以上なら１行に２列表示、それ以下なら1列表示 */}
+                    {loading ? (
+                        <div className={loadStyles.loading}>
+                            <div className={loadStyles.text}>loading...</div>
+                        </div>
 
-                        {windowWidth >= 768 ? (
-                            <>
+                    ) : (
 
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>質問</th>
-                                        <th>No.</th>
+                        <Table striped bordered hover responsive className=" m-4" ref={tableRef}>
+                            {/* 768px以上なら１行に２列表示、それ以下なら1列表示 */}
 
-                                        <th>質問</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {currentQuestions.map((question, index) => {
-                                        //　奇数の質問は左側の列、偶数の質問は右側の列
-                                        if (index % 2 === 0) {
-                                            return (
-                                                <tr key={question.id}>
-                                                    {/* <td>{question.subcategory}</td> */}
-                                                    <td>{question.id}</td>
-                                                    <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.age})</a></td>
-                                                    {/* <td>{currentQuestions[index + 50].subcategory}</td> */}
-                                                    <td>{currentQuestions[index + 1].id}</td>
-                                                    <td><a href={`/questions/default/${question.id + 1}/`}>{currentQuestions[index + 1].text}({currentQuestions[index + 1].age})</a></td>
-                                                </tr>
-                                            )
-                                        };
-                                        return null;
-                                    })}
-                                </tbody>
-                            </>
-                        ) : (
-                            <>
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>質問</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {currentQuestions.map((question) => (
-                                        <tr key={question.id}>
-                                            <td>{question.id}</td>
-                                            <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.age})</a></td>
+                            {windowWidth >= 768 ? (
+                                <>
+
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>質問</th>
+                                            <th>No.</th>
+
+                                            <th>質問</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </>
-                        )}
+                                    </thead>
+                                    <tbody>
+                                        {currentQuestions.map((question, index) => {
+                                            //　奇数の質問は左側の列、偶数の質問は右側の列
+                                            if (index % 2 === 0) {
+                                                return (
+                                                    <tr key={question.id}>
+                                                        {/* <td>{question.subcategory}</td> */}
+                                                        <td>{question.id}</td>
+                                                        <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.age})</a></td>
+                                                        {/* <td>{currentQuestions[index + 50].subcategory}</td> */}
+                                                        <td>{currentQuestions[index + 1].id}</td>
+                                                        <td><a href={`/questions/default/${question.id + 1}/`}>{currentQuestions[index + 1].text}({currentQuestions[index + 1].age})</a></td>
+                                                    </tr>
+                                                )
+                                            };
+                                            return null;
+                                        })}
+                                    </tbody>
+                                </>
+                            ) : (
+                                <>
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>質問</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {currentQuestions.map((question) => (
+                                            <tr key={question.id}>
+                                                <td>{question.id}</td>
+                                                <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.age})</a></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </>
+                            )}
 
 
-                    </Table>
+                        </Table>
+                    )}
                     {errorMessage && <p>{errorMessage}</p>}
                 </>
             ) : (
