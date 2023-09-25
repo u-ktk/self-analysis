@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../components/auth/Auth';
 import AnswerForm from '../components/AnswerForm';
@@ -7,7 +6,6 @@ import AnswerForm from '../components/AnswerForm';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const AnswerHistory = () => {
-    const navigate = useNavigate();
     let { id } = useParams<{ id: string }>();
     const { accessToken, userId } = useAuth();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -27,7 +25,7 @@ const AnswerHistory = () => {
         const url = `${BACKEND_URL}defaultquestions/${currentId}/answers/`;
         console.log(url);
         try {
-            const response = await fetch(`${BACKEND_URL}defaultquestions/${currentId}/answers/`, {
+            const response = await fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({ text, user: userId, question: currentId }),
                 headers: {
