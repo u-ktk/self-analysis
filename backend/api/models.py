@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class UserManager(BaseUserManager):
@@ -89,10 +91,19 @@ class Answer(models.Model):
 
 
 class Folder(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="folders")
-    answers = models.ManyToManyField(Answer, related_name="folders")
+    questions = models.ManyToManyField(Question, related_name="folders", blank=True)
 
     def __str__(self):
         return self.name
+    
+# 新規ユーザー作成時にデフォルトのフォルダーを２つ用意
+@receiver(post_save, sender=User)
+def create_default_folder(sender, instance, created, **kwargs):
+    if created:
+        Folder.objects.create(name="お気に入り", user=instance)
+        Folder.objects.create(name="あとで回答する", user=instance)
+        
+post_save.connect(create_default_folder, sender=User)

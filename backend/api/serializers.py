@@ -112,7 +112,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 class FolderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Folder
-        fields = ['id', 'name', 'user', 'answers']
+        fields = ['id', 'name', 'user', 'questions']
         extra_kwargs = {
             'name': {
                 'error_messages': {

@@ -29,7 +29,7 @@ class AnswerAdmin(admin.ModelAdmin):
 class FolderAdmin(admin.ModelAdmin):
     list_display = ('name', 'user')
     search_fields = ('name',)
-    filter_horizontal = ('answers',)
+    filter_horizontal = ('questions',)
 
 
 # 各モデルを管理サイトに登録

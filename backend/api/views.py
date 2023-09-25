@@ -160,10 +160,16 @@ class AnswerViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-class FolderView(generics.ListAPIView):
+class FolderViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (authentication.JWTAuthentication,)
     queryset = Folder.objects.all()
     serializer_class = FolderSerializer
+    
+    # フォルダーとユーザー紐付け
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    
 
 
 class QuestionCategoryListView(generics.ListAPIView):
