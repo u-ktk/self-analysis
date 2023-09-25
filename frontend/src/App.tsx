@@ -1,4 +1,6 @@
 import React from 'react';
+import Favicon from "react-favicon";
+import memo from './images/icon/memo.svg';
 import Header from './components/layouts/Header';
 import { AuthProvider } from './components/auth/Auth';
 import 'react-bootstrap';
@@ -21,10 +23,11 @@ import Help from './pages/Help';
 function App() {
   return (
     <>
+      <Favicon url={memo}></Favicon>
       <AuthProvider>
         <Header />
         <Routes>
-          <Route path='/' element={<TopPage />} />
+          <Route path='/' element={<QuestionList />} />
           <Route path='/questions-list' element={<QuestionList />} />
           <Route path='/create-question' element={<CreateCustomQuestions />} />
           <Route path='/questions-list/default/:page' element={<DefaultQuestionsList />} />

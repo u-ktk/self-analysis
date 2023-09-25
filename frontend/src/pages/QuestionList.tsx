@@ -5,6 +5,8 @@ import { useAuth } from '../components/auth/Auth';
 import { Table, Pagination } from 'react-bootstrap';
 import HeadTitle from '../components/layouts/HeadTitle';
 import loadStyles from '../components/styles/Loading.module.css';
+import NoLogin from '../components/NoLogin';
+import style from '../components/styles/Common.module.css';
 
 const QuestionList = () => {
     const [categoryList, setCategoryList] = useState<string[] | null>([]);
@@ -46,39 +48,43 @@ const QuestionList = () => {
                         </div>
                     }
                     {/* <DefaultQuestionsList /> */}
-                    <h3>質問を検索</h3>
-                    <SearchQuestions />
-                    <h3>用意された質問から選ぶ</h3>
-                    <Table striped bordered hover responsive className=" m-4">
-                        <thead>
-                            <tr>
-                                <th>レベル</th>
-                                <th>カテゴリー</th>
-                                {/* <th>Category</th> */}
-                            </tr>
-                        </thead>
-                        <tbody >
-                            {categoryList?.map((category, index) => (
-                                <tr key={index} >
-                                    <td>{index + 1}</td>
-                                    <td><a href={`/questions-list/default/${index + 1}/`} className="text-dark">{category}</a></td>
-                                    {/* <td>{question.category_name}</td> */}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
 
-                    <h3>作成した質問から選ぶ</h3>
+                    <div className={style.bg}>
+                        <h4 className={style.title}>質問を検索</h4>
+                        <SearchQuestions />
+                    </div>
+
+                    <div className={style.bg}>
+                        <h4 className={style.title}>用意された質問から選ぶ</h4>
+                        <Table striped bordered hover responsive className=" m-4">
+                            <thead>
+                                <tr>
+                                    <th>レベル</th>
+                                    <th>カテゴリー</th>
+                                    {/* <th>Category</th> */}
+                                </tr>
+                            </thead>
+                            <tbody >
+                                {categoryList?.map((category, index) => (
+                                    <tr key={index} >
+                                        <td>{index + 1}</td>
+                                        <td><a href={`/questions-list/default/${index + 1}/`} className="text-dark">{category}</a></td>
+                                        {/* <td>{question.category_name}</td> */}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </div>
+
+                    <div className={style.bg}>
+                        <h4 className={style.title}>作成した質問から選ぶ</h4>
+                    </div>
 
 
 
                 </div>
             ) : (
-                <>
-                    <p>自己分析サイトを利用するには、ログインする必要があります。</p>
-                    <a href="/register" className="m-5">登録</a>
-                    <a href="/login" className="m-5">ログイン</a>
-                </>
+                <NoLogin />
             )
             }
 

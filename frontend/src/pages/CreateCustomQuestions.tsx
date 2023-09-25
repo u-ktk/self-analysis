@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import { useAuth } from '../components/auth/Auth';
 import { Answer } from "../types";
 import CustomQuestionForm from '../components/CustomQuestionForm';
+import HeadTitle from '../components/layouts/HeadTitle';
+import NoLogin from '../components/NoLogin';
+
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 
 type FormData = {
     text: string
     age?: string
+    folder?: string | undefined;
     answers?: Answer | undefined;
-    category?: string | undefined;
-    // created_at: string;
-    created_at: Date;
 }
 
 
@@ -22,13 +23,13 @@ const CreateCustomQuestions = () => {
 
 
     const onSubmit = async (data: FormData) => {
-        const { text, age, answers, category, created_at } = data;
+        const { text, age, answers, folder } = data;
         // postするurl確認
         const url = `${BACKEND_URL}customquestions/`;
         try {
             const response = await fetch(url, {
                 method: 'POST',
-                body: JSON.stringify({ text, age, answers, category, created_at }),
+                body: JSON.stringify({ text, age, answers, folder }),
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `JWT ${accessToken}`
@@ -50,7 +51,17 @@ const CreateCustomQuestions = () => {
 
     return (
         <div>
-            <CustomQuestionForm onSubmit={onSubmit} errorMessage={errorMessage} />
+            {accessToken ? (
+                <>
+
+                    <HeadTitle title='質問を作る' />
+
+                    <CustomQuestionForm onSubmit={onSubmit} errorMessage={errorMessage} />
+                </>
+            ) : (
+                <NoLogin />
+            )
+            }
         </div>
     )
 

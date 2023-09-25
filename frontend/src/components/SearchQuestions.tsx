@@ -5,6 +5,7 @@ import { useAuth } from './auth/Auth';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Form, Dropdown } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import style from './styles/Common.module.css';
 
 type Inputs = {
     text__icontains: string;
@@ -53,12 +54,12 @@ const SearchQuestions = () => {
                 <div className='d-flex'>
                     <Form className="w-150" onSubmit={handleSubmit(onSubmitByWord)}>
                         <Form.Control
-                            style={{ borderColor: '#6B4423' }}
+                            style={{ borderColor: '#8F7A59' }}
                             type="text"
                             placeholder='フリーワードを入力'
                             {...register('text__icontains')}
                         />
-                        <Button variant="primary" type="submit">
+                        <Button className={style.button} type="submit">
                             検索
                         </Button>
                     </Form>
@@ -75,7 +76,7 @@ const SearchQuestions = () => {
                 />
                  */}
                 <Dropdown>
-                    <Dropdown.Toggle style={{ backgroundColor: 'white', color: 'black' }} id="dropdown-basic">
+                    <Dropdown.Toggle style={{ backgroundColor: '#FAFAFA', color: 'black', borderColor: '#8F7A59' }} id="dropdown-basic">
                         年代を選択
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -89,7 +90,7 @@ const SearchQuestions = () => {
                         <Dropdown.Item onClick={() => setSearchParamsByAge('未来')}>未来</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                <Button variant="primary" type="submit">
+                <Button className={style.button} type="submit">
                     検索
                 </Button>
 

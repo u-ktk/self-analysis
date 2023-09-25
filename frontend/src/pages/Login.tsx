@@ -30,7 +30,7 @@ export default function Login() {
                 //localStorageにアクセストークンを格納
                 localStorage.setItem('accessToken', newAccessToken);
                 setAccessToken(newAccessToken);
-                navigate('/');
+                navigate('/question-list');
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.detail);
@@ -49,7 +49,7 @@ export default function Login() {
             {accessToken ? (
                 <>
                     <div>{userName}さんとしてログイン中です</div>
-                    <a className="m-2" href="/">トップページへ</a>
+                    <a className="m-2" href="/question-list">トップページへ</a>
                     <a className="m-2" href="/logout">ログアウト</a>
                 </>
             ) : (

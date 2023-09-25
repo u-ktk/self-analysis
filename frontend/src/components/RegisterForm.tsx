@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
+import formStyle from '../components/styles/Form.module.css';
 
 type FormData = {
     username: string;
@@ -17,33 +18,31 @@ const RegisterForm: React.FC<Props> = ({ onSubmit, errorMessages }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
     return (
-        <div>
+        <div className={formStyle.bg}>
             <Form className="w-50 mx-auto " onSubmit={handleSubmit(onSubmit)}>
-                <div className="text-center text-2xl mb-5">
+                <h3 className={formStyle.title}>
                     新規登録
-                </div>
+                </h3>
 
-                <div className="form-group">
+                <div className={formStyle.formGroup}>
                     <label htmlFor="username">Username:</label>
                     <input type="text" className="form-control border" placeholder="username" {...register("username", { required: "Username is required" })} />
                     {errors.username && <p className="text-danger">{errors.username.message}</p>}
                 </div>
 
-                <div className="form-group">
+                <div className={formStyle.formGroup}>
                     <label htmlFor="email">Email:</label>
                     <input type="email" className="form-control border" placeholder="email" {...register("email", { required: "Email is required" })} />
                     {errors.email && <p className="text-danger">{errors.email.message}</p>}
                 </div>
 
-                <div className="form-group">
+                <div className={formStyle.formGroup}>
                     <label htmlFor="password">Password(6文字以上):</label>
                     <input type="password" className="form-control border" placeholder="password" {...register("password", { required: "Password is required" })} />
                     {errors.password && <p className="text-danger">{errors.password.message}</p>}
                 </div>
 
-                <div className="form-group">
-                    <Button variant="primary" type="submit" >Register</Button>
-                </div>
+                <Button className={formStyle.button} variant="primary" type="submit" >Register</Button>
             </Form>
 
             {errorMessages &&

@@ -43,17 +43,18 @@ const Header: React.FC = () => {
         iconInactive: searchInactive,
     });
 
+    const { icon: historyIcon, linkStyle: historyLinkStyle } = getIconAndLinkStyle({
+        path: '/review-questions',
+        iconActive: historyActive,
+        iconInactive: historyInactive,
+    });
 
     const { icon: createIcon, linkStyle: createLinkStyle } = getIconAndLinkStyle({
         path: currentPath.startsWith('/create-question') ? currentPath : '/create-question',
         iconActive: createActive,
         iconInactive: createInactive,
     });
-    const { icon: historyIcon, linkStyle: historyLinkStyle } = getIconAndLinkStyle({
-        path: '/answer-history',
-        iconActive: historyActive,
-        iconInactive: historyInactive,
-    });
+
     const { icon: helpIcon, linkStyle: helpLinkStyle } = getIconAndLinkStyle({
         path: '/help',
         iconActive: helpActive,
@@ -86,7 +87,7 @@ const Header: React.FC = () => {
                     </a>
                 </div>
                 <div>
-                    <a href="/answer-history"
+                    <a href="/review-questions"
                         className={`m-3 ${historyLinkStyle} ${styles.content} ${styles.container}`}>
                         <img alt="回答の履歴" src={historyIcon} width="32" height="32"></img>
                         <div>回答の履歴</div>
