@@ -61,6 +61,14 @@ class QuestionCategory(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Folder(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="folders")
+  
+    def __str__(self):
+        return self.name
 
 
 class Question(models.Model):
@@ -68,8 +76,11 @@ class Question(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, related_name="questions")
     category = models.ForeignKey(
-        QuestionCategory, on_delete=models.CASCADE, related_name="questions")
+        QuestionCategory, on_delete=models.CASCADE, related_name="questions", null=True)
     age = models.CharField(max_length=255)
+    folders = models.ManyToManyField(Folder, related_name="questions", blank=True)
+    
+
     created_at = models.DateTimeField(default=timezone.now)
     is_default = models.BooleanField(default=False)
 
@@ -90,14 +101,7 @@ class Answer(models.Model):
         return self.text
 
 
-class Folder(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="folders")
-    questions = models.ManyToManyField(Question, related_name="folders", blank=True)
 
-    def __str__(self):
-        return self.name
     
 # 新規ユーザー作成時にデフォルトのフォルダーを２つ用意
 @receiver(post_save, sender=User)
@@ -107,3 +111,4 @@ def create_default_folder(sender, instance, created, **kwargs):
         Folder.objects.create(name="あとで回答する", user=instance)
         
 post_save.connect(create_default_folder, sender=User)
+

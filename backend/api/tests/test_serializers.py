@@ -34,6 +34,7 @@ class TestQuestionSerializer(BaseTest):
         }
         serilizer = QuestionSerializer(data=input_data)
         self.assertEqual(serilizer.is_valid(), True)
+        self.assertEqual(serilizer.validated_data['user'], self.user)
 
     # textが空の場合、バリデーションエラー
     def test_input_empty_text(self):

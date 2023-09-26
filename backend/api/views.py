@@ -68,14 +68,6 @@ class DefaultQuestionsFilter(filters.FilterSet):
             'age': ['icontains']
         }
 
-    # いずれデータ検索高速化したい（DBにインデックスを追加？）
-    # def get_queryset(self):
-    #     queryset = Question.objects.all()
-    #     keyword = self.request.query_params.get('keyword', None)
-    #     if keyword:
-    #         queryset = queryset.filter(Q(text__icontains=keyword))
-    #     return queryset
-
 
 # class DefaultQuestionListView(generics.ListAPIView):
 #     # is_default == Trueの時

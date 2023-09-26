@@ -94,7 +94,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = ['id', 'text', 'user', 'category', 'category_name',
-                  'age', 'is_default', 'answers']
+                  'age', 'folders', 'is_default', 'answers']
         # バリデーションメッセージの追加
         extra_kwargs = {
             'text': {
@@ -102,10 +102,20 @@ class QuestionSerializer(serializers.ModelSerializer):
                     'blank': '質問は空にできません',
                     'max_length': '質問は255文字以下にしてください',
                 }
+            },
+            # フォルダーnull許可
+            'folder': {
+                'required': False 
+            },
+            # カスタム質問ではカテゴリーを選択しない
+            'category': {
+                'required': False 
             }
         }
 
     def get_category_name(self, obj):
+        if obj.category is None:
+            return None
         return obj.category.name
 
 
@@ -118,5 +128,8 @@ class FolderSerializer(serializers.ModelSerializer):
                 'error_messages': {
                     'blank': 'フォルダ名は空にできません',
                 }
+            },
+            'questions': {
+                'required': False
             }
         }

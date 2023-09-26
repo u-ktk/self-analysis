@@ -21,7 +21,11 @@ class BaseTest(APITestCase):
             text="question1", user=self.user, category=self.question_category, is_default=True)
         # ユーザーが作成したカスタム質問（更新、削除可）
         self.custom_question = Question.objects.create(
-            text="question2", user=self.user, category=self.question_category, is_default=False)
+            text="question2", user=self.user, category=self.question_category, age="20代", is_default=False,)
+        self.folder1 = Folder.objects.create(name = "就活", user = self.user)
+        self.folder2 = Folder.objects.create(name = "あとでみる", user = self.user)
+        self.custom_question.folders.set([self.folder1, self.folder2]) 
+        
 
 
 # カスタム質問の新規作成(question3)
@@ -220,3 +224,77 @@ class TestCreateAnswer(BaseTest):
             self.TARGET_CREATE_URL.format(self.default_question.id, self.answer.id), format="json")
         self.assertEqual(response.status_code, 204)
         self.assertEqual(self.default_question.answers.count(), 0)
+
+# 質問に新しくフォルダを追加
+class TestAddFolder(BaseTest):
+    TARGET_CREATE_URL = "/api/customquestions/{}/"
+    
+    def setUp(self):
+        super().setUp()
+        self.folder3 = Folder.objects.create(name = "面接", user = self.user)
+        
+    def test_add_folder(self):
+        existing_folders = self.custom_question.folders.all()
+        folder_ids = list(existing_folders.values_list('id', flat=True))
+
+        # 新しいフォルダを追加
+        folder_ids.append(self.folder3.id)
+        params = {"folders": folder_ids}
+        response = self.client.patch(
+            self.TARGET_CREATE_URL.format(self.custom_question.id), params, format="json")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.custom_question.folders.count(), 3)
+        self.assertEqual(self.custom_question.folders.all()[2].name, "面接")
+        
+# カスタム質問のフォルダを削除
+class TestRemoveFolder(BaseTest):
+    TARGET_URL = "/api/customquestions/{}/"
+    
+    def setUp(self):
+        super().setUp()
+    
+    def test_remove_folder(self):
+        existing_folders = self.custom_question.folders.all()
+        folder_ids = list(existing_folders.values_list('id', flat=True))
+        print(folder_ids)
+        folder_ids.remove(self.folder1.id)
+        folder_ids.remove(self.folder2.id)
+        
+        params = {"folders":folder_ids}
+        self.assertEqual(self.custom_question.folders.count(), 2)
+        print(self.custom_question.folders.all())
+        response = self.client.delete(
+            self.TARGET_URL.format(self.custom_question.id), params, format="json")
+        self.assertEqual(response.status_code, 204)
+        print(self.custom_question.folders.all())
+        self.assertEqual(self.custom_question.folders.count(), 0)
+        
+# フォルダを新規作成
+class TestCreateFolder(BaseTest):
+    
+    def setUp(self):
+        super().setUp()
+        
+    def test_create_folder(self):
+        params = {"name": "面接", "user": self.user.id}
+        response = self.client.post(
+            "/api/folders/", params, format="json")
+        print(response.data)
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(Folder.objects.count(), 5)
+        self.assertEqual(Folder.objects.get(id=5).name, "面接")
+        
+# フォルダの一覧取得
+class TestGetFolder(BaseTest):
+    
+    def setUp(self):
+        super().setUp()
+        
+    def test_get_folder(self):
+        response = self.client.get("/api/folders/")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.data), 4)
+        self.assertEqual(response.data[0]["name"], "お気に入り")
+        self.assertEqual(response.data[1]["name"], "あとで回答する")
+        self.assertEqual(response.data[2]["name"], "就活")
+        self.assertEqual(response.data[3]["name"], "あとでみる")

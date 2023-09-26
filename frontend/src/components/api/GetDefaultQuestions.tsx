@@ -1,5 +1,5 @@
 import React from 'react'
-import { Question, Category } from "../../types";
+import { Question } from "../../types";
 
 type DefaultQuestionDetail = Question
 type DefaultQuestions = Question[]
