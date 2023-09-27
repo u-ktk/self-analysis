@@ -5,15 +5,6 @@
 
 }
 
-.miniButton {
-    box-shadow: 0 1px 2px #6B4423;
-}
-
-.miniButton:hover {
-    transform: translateY(-1px);
-    opacity: 0.8;
-}
-
 .editButton {
     position: absolute;
     right: 400px;
@@ -55,9 +46,6 @@
         width: 100%;
     }
 
-    .title {
-        margin-left: 10px;
-    }
 
     .editButton {
         position: absolute;

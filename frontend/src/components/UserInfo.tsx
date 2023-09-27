@@ -90,8 +90,8 @@ const UserInfo = () => {
                             </div>
                         ) : (
                             <div className={userInfoStyle.editButton}>
-                                <Button className={userInfoStyle.miniButton} size="sm" onClick={() => nameSaveClick(changeName ?? "")}>保存</Button>
-                                <Button className={userInfoStyle.miniButton} size="sm" onClick={nameChangeClick} variant="warning">キャンセル</Button>
+                                <Button className={style.miniButton} size="sm" onClick={() => nameSaveClick(changeName ?? "")}>保存</Button>
+                                <Button className={style.miniButton} size="sm" onClick={nameChangeClick} variant="warning">キャンセル</Button>
                             </div>
                         )
                         }
