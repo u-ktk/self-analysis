@@ -8,8 +8,9 @@ from rest_framework import status
 # あらかじめカスタム質問、デフォルト質問を1問ずつ用意
 class BaseTest(APITestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create(
-            username="user1", email="sample1@example.com", password="password"
+        self.user = get_user_model().objects.create_user(
+            username="user1", email="sample1@example.com",
+            password="password"  
         )
         token = str(RefreshToken.for_user(self.user).access_token)
         self.client.credentials(HTTP_AUTHORIZATION=("JWT " + token))
@@ -256,17 +257,17 @@ class TestRemoveFolder(BaseTest):
     def test_remove_folder(self):
         existing_folders = self.custom_question.folders.all()
         folder_ids = list(existing_folders.values_list('id', flat=True))
-        print(folder_ids)
+        # print(folder_ids)
         folder_ids.remove(self.folder1.id)
         folder_ids.remove(self.folder2.id)
         
         params = {"folders":folder_ids}
         self.assertEqual(self.custom_question.folders.count(), 2)
-        print(self.custom_question.folders.all())
+        # print(self.custom_question.folders.all())
         response = self.client.delete(
             self.TARGET_URL.format(self.custom_question.id), params, format="json")
         self.assertEqual(response.status_code, 204)
-        print(self.custom_question.folders.all())
+        # print(self.custom_question.folders.all())
         self.assertEqual(self.custom_question.folders.count(), 0)
         
 # フォルダを新規作成
@@ -279,7 +280,7 @@ class TestCreateFolder(BaseTest):
         params = {"name": "面接", "user": self.user.id}
         response = self.client.post(
             "/api/folders/", params, format="json")
-        print(response.data)
+        # print(response.data)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(Folder.objects.count(), 5)
         self.assertEqual(Folder.objects.get(id=5).name, "面接")
@@ -298,3 +299,25 @@ class TestGetFolder(BaseTest):
         self.assertEqual(response.data[1]["name"], "あとで回答する")
         self.assertEqual(response.data[2]["name"], "就活")
         self.assertEqual(response.data[3]["name"], "あとでみる")
+        
+class TestUpdateUser(BaseTest):
+    TARGET_URL = "/api/users/{}/update/"
+    
+    def setUp(self):
+        super().setUp()
+        
+    def test_change_name(self):
+        params = {"username": "newname"}
+        response = self.client.patch(
+            self.TARGET_URL.format(self.user.id), params, format="json")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(User.objects.get(id=self.user.id).username, "newname")
+    
+    def test_change_email(self):
+        params = {"email": "new@example.com"}
+        response = self.client.patch(
+            self.TARGET_URL.format(self.user.id), params, format="json")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(User.objects.get(id=self.user.id).email, "new@example.com")
+                  
+        

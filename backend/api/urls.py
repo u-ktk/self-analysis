@@ -26,7 +26,9 @@ urlpatterns = [
     path('auth/', include('dj_rest_auth.urls')),
     path('register/', views.UserRegister.as_view(), name='register'),
     path('users/', views.UserList.as_view(), name='users'),
-    path('users/<int:pk>/', views.UserDetail.as_view(), name='user-detail'),
+    path('users/<uuid:pk>/', views.UserDetail.as_view(), name='user-detail'),
+    path('users/<uuid:pk>/update/', views.UserUpdate.as_view(), name='user-update'),
+    
     path('questioncategories/', views.QuestionCategoryListView.as_view(),
          name='questioncategories'),
     path('token/', views.CustomTokenObtainPairView.as_view(),

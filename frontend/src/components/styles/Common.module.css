@@ -3,6 +3,22 @@
     box-shadow: 0 2px 2px #E8DBD1;
 }
 
+.button:hover {
+    transform: translateY(-1px);
+    opacity: 0.8;
+}
+
+.miniButton {
+    /* width: 40px; */
+    height: auto;
+    box-shadow: 0 1px 2px #6B4423;
+}
+
+.miniButton:hover {
+    transform: translateY(-1px);
+    opacity: 0.8;
+}
+
 .title {
     margin-bottom: 30px;
     font-weight: bold;

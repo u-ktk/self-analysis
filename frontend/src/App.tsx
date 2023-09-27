@@ -7,7 +7,7 @@ import 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
 import './sass/custom.scss'
 import Login from './pages/Login'
-import Logout from './pages/Logout'
+import Logout from './components/Logout'
 import Register from './pages/Register';
 import QuestionList from './pages/QuestionList';
 import DefaultQuestionsList from './pages/DefaultQuestions/DefaultQuestionsLIst';

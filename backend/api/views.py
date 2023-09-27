@@ -34,15 +34,18 @@ class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-# 詳細取得はRetrieveAPIView
-
-
 class UserDetail(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     authentication_classes = (authentication.JWTAuthentication,)
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+# ユーザー情報更新も可能
+class UserUpdate(generics.UpdateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (authentication.JWTAuthentication,)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class CustomQuestionViewSet(viewsets.ModelViewSet):
     # is_default == Falseの時

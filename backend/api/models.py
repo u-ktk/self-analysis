@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import uuid
 
 
 class UserManager(BaseUserManager):
@@ -17,6 +18,7 @@ class UserManager(BaseUserManager):
             raise ValueError('パスワードは6文字以上にしてください。')
 
         user = self.model(
+            id=uuid.uuid4(),
             username=username,
             email=self.normalize_email(email),
             **extra_fields
@@ -27,6 +29,7 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, username, email, password):
         user = self.create_user(
+            id=uuid.uuid4(),
             username=username,
             email=self.normalize_email(email),
         )
@@ -41,6 +44,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser,  PermissionsMixin):
     username = models.CharField(max_length=255, unique=False)
     email = models.EmailField(unique=True, blank=False, null=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     # passwordはAbstractBaseUserに含まれているから不要
     is_admin = models.BooleanField(default=False)
     # 管理画面にアクセスする際必要

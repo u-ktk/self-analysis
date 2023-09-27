@@ -1,6 +1,10 @@
 import React from 'react'
 import HeadTitle from '../components/layouts/HeadTitle'
 import { useAuth } from '../components/auth/Auth';
+import UserInfo from '../components/UserInfo';
+import FolderList from '../components/FolderList';
+import Logout from '../components/Logout';
+
 import NoLogin from '../components/NoLogin';
 
 const MyPage = () => {
@@ -9,7 +13,15 @@ const MyPage = () => {
         <>
             <HeadTitle title='マイページ' />
             {accessToken ? (
-                <div>MyPage</div>
+                <>
+                    <UserInfo />
+                    <FolderList />
+                    <Logout />
+
+                </>
+
+
+
             ) : (
                 <NoLogin />
             )}

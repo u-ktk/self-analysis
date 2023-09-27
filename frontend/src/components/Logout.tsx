@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { useAuth } from '../components/auth/Auth';
+import { useAuth } from './auth/Auth';
 import { useNavigate } from 'react-router-dom';
-import HeadTitle from '../components/layouts/HeadTitle';
+import HeadTitle from './layouts/HeadTitle';
 
-const Logout: React.FC = () => {
+const Logout = () => {
     const [showModal, setShowModal] = useState(false);
     const { accessToken, setAccessToken, userName } = useAuth();
     const navigate = useNavigate();

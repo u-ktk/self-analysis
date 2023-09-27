@@ -30,7 +30,7 @@ export type Folder = {
 
 // ユーザーの型定義
 export type User = {
-    id: number;
+    id: string;
     username: string;
     email: string;
     password: string;
