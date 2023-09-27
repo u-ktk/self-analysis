@@ -24,6 +24,7 @@ export type Answer = {
 // フォルダの型定義
 export type Folder = {
     id: number;
+    userId: string;
     name: string;
     questions: Question[];
 };

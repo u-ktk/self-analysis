@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Question } from '../types';
 import { useLocation } from 'react-router-dom';
-import { getDefaultQuestions } from '../components/api/GetDefaultQuestions';
+import { getDefaultQuestions } from '../components/api/DefaultQuestions';
 import { useAuth } from '../components/auth/Auth';
 import { Table } from 'react-bootstrap';
 import HeadTitle from '../components/layouts/HeadTitle';
-
-type DefaultQuestionDetailListProps = {
-    accessToken: string;
-    text?: string;
-    age?: string;
-};
 
 const SearchResults = () => {
     const location = useLocation();
@@ -30,17 +24,17 @@ const SearchResults = () => {
         }
 
         try {
-            let response;
+            let res;
 
             if (textContains) {
-                response = await getDefaultQuestions({ accessToken, text: textContains });
+                res = await getDefaultQuestions({ accessToken, text: textContains });
             } else if (ageContains) {
-                response = await getDefaultQuestions({ accessToken, age: ageContains });
+                res = await getDefaultQuestions({ accessToken, age: ageContains });
             }
 
-            if (response) {
-                setQuestions(response);
-                console.log(response);
+            if (res) {
+                setQuestions(res);
+                console.log(res);
             }
         } catch (error: any) {
             setErrorMessage(error.message);

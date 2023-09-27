@@ -17,6 +17,7 @@ import ReviewQuestions from './pages/ReviewQuestions';
 import CreateCustomQuestions from './pages/CreateCustomQuestions';
 import MyPage from './pages/MyPage';
 import Help from './pages/Help';
+import FolderDetail from './components/FolderDetail';
 
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='/questions/default/:id' element={<AnswerHistory />} />
           <Route path='/review-questions' element={<ReviewQuestions />} />
           <Route path='/myPage' element={<MyPage />} />
+          <Route path='/folders/detail' element={<FolderDetail />} />
           <Route path='/help' element={<Help />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />

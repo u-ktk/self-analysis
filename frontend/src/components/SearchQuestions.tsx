@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Question } from "../types";
-import { getDefaultQuestions } from './api/GetDefaultQuestions';
+import { getDefaultQuestions } from './api/DefaultQuestions';
 import { useAuth } from './auth/Auth';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Form, Dropdown } from 'react-bootstrap';

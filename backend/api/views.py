@@ -154,12 +154,22 @@ class AnswerViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+class FolderFilter(filters.FilterSet):
+    class Meta:
+        model = Folder
+        fields = {
+            'user': ['exact'],
+            'name': ['exact']
+        }
 
 class FolderViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
     authentication_classes = (authentication.JWTAuthentication,)
     queryset = Folder.objects.all()
     serializer_class = FolderSerializer
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_fields = 'user', 'name'
+    filterset_class = FolderFilter
     
     # フォルダーとユーザー紐付け
     def perform_create(self, serializer):

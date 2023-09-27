@@ -9,6 +9,7 @@ router = routers.SimpleRouter()
 router.register('customquestions', views.CustomQuestionViewSet)
 router.register('defaultquestions', views.DefaultQuestionViewSet)
 router.register('folders', views.FolderViewSet)
+
 custom_questions_router = routers.NestedSimpleRouter(
     router, 'customquestions')
 custom_questions_router.register('answers', views.AnswerViewSet)

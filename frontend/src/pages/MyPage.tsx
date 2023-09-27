@@ -9,14 +9,25 @@ import style from '../components/styles/Common.module.css'
 import NoLogin from '../components/NoLogin';
 
 const MyPage = () => {
-    const { accessToken } = useAuth();
+
+    const { accessToken, userId, userName, userEmail } = useAuth()
+
+
     return (
         <>
             <HeadTitle title='マイページ' />
             {accessToken ? (
                 <div>
-                    <UserInfo />
-                    <FolderList />
+                    <UserInfo
+                        accessToken={accessToken}
+                        userId={userId}
+                        userName={userName}
+                        userEmail={userEmail}
+                    />
+                    <FolderList
+                        accessToken={accessToken}
+                        userId={userId}
+                    />
                     <Logout />
 
                 </div>

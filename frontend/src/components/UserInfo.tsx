@@ -2,11 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from './auth/Auth';
 import style from './styles/Common.module.css'
 import userInfoStyle from './styles/UserInfo.module.css'
-import { changeUserInfo } from './api/ChangeUserInfo';
+import { changeUserInfo } from './api/UserInfo';
 import { Button, Row, Col } from 'react-bootstrap';
 
-const UserInfo = () => {
-    const { accessToken, userId, userName, userEmail } = useAuth()
+type authInfo = {
+    accessToken: string | null;
+    userId: string | null;
+    userName: string | null;
+    userEmail: string | null;
+}
+
+const UserInfo = (props: authInfo) => {
+    // const { accessToken, userId, userName, userEmail } = useAuth()
+    const { accessToken, userId, userName, userEmail } = props
     const [isNameEditing, setIsNameEditing] = useState(false)
     const [isEmailEditing, setIsEmailEditing] = useState(false)
     const [changeName, setChangeName] = useState<string>("")
@@ -31,9 +39,9 @@ const UserInfo = () => {
         }
 
         try {
-            let response;
-            response = await changeUserInfo({ userId, newName: changeName, accessToken })
-            if (response) {
+            let res;
+            res = await changeUserInfo({ userId, newName: changeName, accessToken })
+            if (res) {
                 setChangeName("")
                 setShowName(changeName)
                 setIsNameEditing(false)

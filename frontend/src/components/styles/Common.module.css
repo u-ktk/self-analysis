@@ -49,6 +49,11 @@
     padding: 30px;
 }
 
+.contents {
+    padding-left: 60px;
+    line-height: 30px;
+}
+
 @media (max-width: 960px) {
     .bg {
         margin: 40px 40px;

@@ -67,7 +67,7 @@ class QuestionCategory(models.Model):
         return self.name
     
 class Folder(models.Model):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="folders")
   

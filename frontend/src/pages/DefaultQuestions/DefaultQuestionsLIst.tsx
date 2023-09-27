@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Question } from "../../types";
-import { getDefaultQuestions } from '../../components/api/GetDefaultQuestions';
+import { getDefaultQuestions } from '../../components/api/DefaultQuestions';
 import { useAuth } from '../../components/auth/Auth';
 import { Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';

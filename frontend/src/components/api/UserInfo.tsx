@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useAuth } from '../auth/Auth';
 import { User } from '../../types';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;

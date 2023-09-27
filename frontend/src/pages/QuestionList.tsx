@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getCategoryList } from '../components/api/GetDefaultQuestions';
+import { getCategoryList } from '../components/api/DefaultQuestions';
 import SearchQuestions from '../components/SearchQuestions';
 import { useAuth } from '../components/auth/Auth';
 import { Table, Pagination } from 'react-bootstrap';
@@ -14,6 +14,25 @@ const QuestionList = () => {
     const [loading, setLoading] = useState<boolean>(true);
 
     const { accessToken } = useAuth();
+
+    // const fetchData = async () => {
+    //     if (!accessToken) {
+    //         return;
+    //     }
+    //     try {
+    //         let response;
+    //         response = await getCategoryList(accessToken);
+    //         if (response) {
+    //             setCategoryList(response);
+    //             setLoading(false);
+    //         }
+    //     } catch (error: any) {
+    //         setErrorMessage(error.message);
+    //         setLoading(false);
+    //     }
+    // }
+
+    // fetchData();
 
 
 
