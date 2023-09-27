@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from './auth/Auth';
 import style from './styles/Common.module.css'
+import userInfoStyle from './styles/UserInfo.module.css'
 import { changeUserInfo } from './api/ChangeUserInfo';
-import { Button } from 'react-bootstrap';
-import { set } from 'react-hook-form';
+import { Button, Row, Col } from 'react-bootstrap';
 
 const UserInfo = () => {
     const { accessToken, userId, userName, userEmail } = useAuth()
     const [isNameEditing, setIsNameEditing] = useState(false)
     const [isEmailEditing, setIsEmailEditing] = useState(false)
     const [changeName, setChangeName] = useState<string>("")
-    const [showName, setShowName] = useState<string>(userName || "")
+    const [showName, setShowName] = useState<string>("")
     const [changeEmail, setChangeEmail] = useState<string>("")
-    const [showEmail, setShowEmail] = useState<string>(userEmail || "")
+    const [showEmail, setShowEmail] = useState<string>("")
 
 
 
@@ -63,86 +63,72 @@ const UserInfo = () => {
 
 
     return (
-        <>
+        <div className={style.bg}>
             <h4 className={style.title}>プロフィール編集</h4>
-            <div>
-                <div>
-                    <span>ユーザーネーム</span>
-                    <span>{showName}</span>
-                </div>
-                {/* 名前変更中の場合、フォームを表示！ */}
-                {isNameEditing ? (
-                    <>
-                        <input
-                            type="text"
-                            value={changeName || ""}
-                            onChange={(e) => setChangeName(e.target.value)}
-                        />
-                        {<Button className={style.miniButton} onClick={() =>
-                            nameSaveClick(changeName ?? "")
-                        }>保存</Button>}
-                    </>
-                )
-                    : (
-                        <></>
-                    )}
+            <div className={userInfoStyle.contents}>
+                <Row>
+                    <Col className={userInfoStyle.subContainer}>
+                        <span className={userInfoStyle.key}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ユーザー名：</span>
+                        {!isNameEditing ? (
+                            <span className={userInfoStyle.value}>{showName || userName}</span>
 
-                <div>
-                    {!isNameEditing ? (
-                        <>
-                            <Button onClick={nameChangeClick} className={style.miniButton} size="sm" variant="danger" >編集する</Button>
-                        </>
+                        ) : (
+                            <span className={userInfoStyle.form}>
+                                <input
+                                    type="text"
+                                    value={changeName || ""}
+                                    onChange={(e) => setChangeName(e.target.value)}
+                                />
 
-                    )
-                        : (
-                            <>
-                                <Button onClick={nameChangeClick} className={style.miniButton} size="sm" variant="warning">キャンセル</Button>
-                            </>
+                            </span>
+                        )}
+                    </Col>
+                    <Col xs={3}>
+                        {!isNameEditing ? (
+                            <div className={userInfoStyle.editButton}>
+                                <Button onClick={nameChangeClick} className={style.miniButton} size="sm" variant="danger">編集する</Button>
+                            </div>
+                        ) : (
+                            <div className={userInfoStyle.editButton}>
+                                <Button className={userInfoStyle.miniButton} size="sm" onClick={() => nameSaveClick(changeName ?? "")}>保存</Button>
+                                <Button className={userInfoStyle.miniButton} size="sm" onClick={nameChangeClick} variant="warning">キャンセル</Button>
+                            </div>
                         )
-                    }
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span>メールアドレス</span>
-                    <span>{showEmail}</span>
-                </div>
-                {/* email変更中の場合*/}
-                {isEmailEditing ? (
-                    <>
-                        <input
-                            type="text"
-                            value={changeEmail || ""}
-                            onChange={(e) => setChangeEmail(e.target.value)}
-                        />
-                        {<Button className={style.miniButton} onClick={() =>
-                            emailSaveClick(changeEmail ?? "")
-                        }>保存</Button>}
-                    </>
-                )
-                    : (
-                        <></>
-                    )}
-                <div>
-                    {!isEmailEditing ? (
-                        <>
-                            <Button onClick={emailChangeClick} className={style.miniButton} size="sm" variant="danger" >編集する</Button>
-                        </>
+                        }
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className={userInfoStyle.subContainer}>
+                        <span className={userInfoStyle.key}>メールアドレス：</span>
+                        {!isEmailEditing ? (
+                            <span className={userInfoStyle.value} > {showEmail || userEmail}</span>
+                        ) : (
+                            <span className={userInfoStyle.form}>
+                                <input
+                                    type="text"
+                                    value={changeEmail || ""}
+                                    onChange={(e) => setChangeEmail(e.target.value)}
+                                />
+                            </span>
+                        )}
 
-                    )
-                        : (
-                            <>
-                                <Button onClick={emailChangeClick} className={style.miniButton} size="sm" variant="warning">キャンセル</Button>
-                            </>
+                        {!isEmailEditing ? (
+                            <div className={userInfoStyle.editButton}>
+                                <Button onClick={emailChangeClick} className={style.miniButton} size="sm" variant="danger">編集する</Button>
+                            </div>
                         )
-                    }
-                </div>
+                            : (
+                                <div className={userInfoStyle.editButton}>
+                                    <Button className={style.miniButton} size="sm" onClick={() => emailSaveClick(changeEmail ?? "")}>保存</Button>
+                                    <Button className={style.miniButton} size="sm" onClick={emailChangeClick} variant="warning">キャンセル</Button>
+                                </div>
+                            )}
+                    </Col>
+                </Row>
             </div>
+        </div >
+    );
 
-
-            <div>UserInfo</div>
-        </>
-    )
 }
 
 export default UserInfo

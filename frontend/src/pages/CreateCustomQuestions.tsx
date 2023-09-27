@@ -27,7 +27,7 @@ const CreateCustomQuestions = () => {
         // postするurl確認
         const url = `${BACKEND_URL}customquestions/`;
         try {
-            const response = await fetch(url, {
+            const res = await fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({ text, age, answers, folder }),
                 headers: {
@@ -35,8 +35,8 @@ const CreateCustomQuestions = () => {
                     'Authorization': `JWT ${accessToken}`
                 }
             });
-            if (response.ok) {
-                const responseData = await response.json();
+            if (res.ok) {
+                const responseData = await res.json();
                 console.log(responseData)
             }
 

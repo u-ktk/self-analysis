@@ -1,0 +1,66 @@
+.contents {
+    width: 80%;
+    margin: 30px;
+    padding-left: 60px;
+
+}
+
+.miniButton {
+    box-shadow: 0 1px 2px #6B4423;
+}
+
+.miniButton:hover {
+    transform: translateY(-1px);
+    opacity: 0.8;
+}
+
+.editButton {
+    position: absolute;
+    right: 400px;
+}
+
+.subContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.key {
+    color: #333;
+    margin-right: 2rem;
+    font-size: 1.25rem;
+}
+
+.value {
+    margin-right: 3rem;
+    color: #6B4423;
+    left: 600px;
+    font-size: 1.25rem;
+}
+
+
+.form {
+    margin-right: 2rem;
+
+}
+
+
+
+@media (max-width: 960px) {
+    .bg {
+        margin: 40px 40px;
+    }
+
+    .contents {
+        width: 100%;
+    }
+
+    .title {
+        margin-left: 10px;
+    }
+
+    .editButton {
+        position: absolute;
+        right: 150px;
+    }
+}

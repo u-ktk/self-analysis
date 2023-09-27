@@ -21,7 +21,6 @@ const Logout = () => {
 
     return (
         <>
-            <HeadTitle title='ログアウト' />
 
             <div className="w-50 mx-auto ">
 
