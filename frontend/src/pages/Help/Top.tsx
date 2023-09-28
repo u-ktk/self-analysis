@@ -1,7 +1,7 @@
 import React from 'react'
-import HeadTitle from '../components/layouts/HeadTitle'
-import { useAuth } from '../components/auth/Auth';
-import NoLogin from '../components/NoLogin';
+import HeadTitle from '../../components/layouts/HeadTitle'
+import { useAuth } from '../../components/auth/Auth';
+import NoLogin from '../../components/auth/NoLogin';
 
 
 const Help = () => {

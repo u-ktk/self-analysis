@@ -47,11 +47,16 @@
 
     .contents {
         width: 100%;
+        margin-left: 0px;
     }
 
 
     .editButton {
         position: absolute;
-        right: 150px;
+        right: 100px;
     }
+
+    .form {}
+
+
 }

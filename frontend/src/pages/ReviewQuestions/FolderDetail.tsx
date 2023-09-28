@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import HeadTitle from './layouts/HeadTitle'
-import { Folder, Question } from '../types'
+import HeadTitle from '../../components/layouts/HeadTitle'
+import { Folder, Question } from '../../types'
 import { useLocation } from 'react-router-dom'
-import { useAuth } from './auth/Auth'
-import { getFolderDetail } from './api/Folder'
-import styles from './styles/Common.module.css'
-import loadStyles from './styles/Loading.module.css'
+import { useAuth } from '../../components/auth/Auth'
+import { getFolderDetail } from '../../components/api/Folder'
+import styles from '../../components/styles/Common.module.css'
+import loadStyles from '../../components/styles/Loading.module.css'
 
 
 const FolderDetail = () => {
@@ -48,27 +48,34 @@ const FolderDetail = () => {
                         <span className={loadStyles.text}>Loading...</span>
                     </div>
                 )}
-                <h4 className={styles.title}>{nameParams}</h4>
 
-                {folderDetail?.questions ? (
-                    <>
-                        <p>フォルダに含まれる質問</p>
-                        <div>
-                            {folderDetail.questions.map((question: Question) => (
-                                <div key={question.id}>
-                                    <a href={`/questions/detail/?id=${question.id}`}>{question.text}</a>
-                                </div>
-                            ))}
-                        </div>
-                    </>
-                ) : (
-                    <div>まだ質問がありません。</div>
-                )}
+                <div className={`${styles.menu} mb-3 `} >
+                    <a href='/mypage'>フォルダ一覧 </a>
+                    <span >  &#62; </span>
+                    <span style={{ fontWeight: 'bold' }}>{nameParams}</span>
+                </div>
+
+                <div className={styles.contents}>
+                    {folderDetail?.questions ? (
+                        <>
+                            <p>フォルダに含まれる質問</p>
+                            <div>
+                                {folderDetail.questions.map((question: Question) => (
+                                    <div key={question.id}>
+                                        <a href={`/questions/detail/?id=${question.id}`}>{question.text}</a>
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                    ) : (
+                        <div className={styles.description}>まだ質問がありません。</div>
+                    )}
+                </div>
 
 
 
 
-            </div>
+            </div >
         </>
     )
 }

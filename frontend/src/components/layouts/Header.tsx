@@ -44,7 +44,7 @@ const Header: React.FC = () => {
     });
 
     const { icon: historyIcon, linkStyle: historyLinkStyle } = getIconAndLinkStyle({
-        path: '/review-questions',
+        path: currentPath.startsWith('/review-questions') || currentPath.startsWith('/folders') ? currentPath : '',
         iconActive: historyActive,
         iconInactive: historyInactive,
     });
@@ -61,7 +61,7 @@ const Header: React.FC = () => {
         iconInactive: helpInactive,
     });
     const { icon: myPageIcon, linkStyle: myPageLinkStyle } = getIconAndLinkStyle({
-        path: '/myPage',
+        path: '/myPage ',
         iconActive: myPageActive,
         iconInactive: myPageInactive,
     });

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useAuth } from './auth/Auth';
-import style from './styles/Common.module.css'
-import userInfoStyle from './styles/UserInfo.module.css'
-import { changeUserInfo } from './api/UserInfo';
+import { useAuth } from '../auth/Auth';
+import style from '../styles/Common.module.css'
+import userInfoStyle from '../styles/UserInfo.module.css'
+import { changeUserInfo } from '../api/UserInfo';
 import { Button, Row, Col } from 'react-bootstrap';
 
 type authInfo = {
@@ -21,6 +21,7 @@ const UserInfo = (props: authInfo) => {
     const [showName, setShowName] = useState<string>("")
     const [changeEmail, setChangeEmail] = useState<string>("")
     const [showEmail, setShowEmail] = useState<string>("")
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
 
 
@@ -69,28 +70,66 @@ const UserInfo = (props: authInfo) => {
         }
     }
 
+    //画面サイズが変更されたら再描画
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, []);
+
+
 
     return (
         <div className={style.bg}>
             <h4 className={style.title}>プロフィール編集</h4>
             <div className={userInfoStyle.contents}>
                 <Row>
-                    <Col className={userInfoStyle.subContainer}>
-                        <span className={userInfoStyle.key}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ユーザー名：</span>
-                        {!isNameEditing ? (
-                            <span className={userInfoStyle.value}>{showName || userName}</span>
 
-                        ) : (
-                            <span className={userInfoStyle.form}>
-                                <input
-                                    type="text"
-                                    value={changeName || ""}
-                                    onChange={(e) => setChangeName(e.target.value)}
-                                />
+                    {windowWidth < 600 ? (
+                        <>
+                            <div className={userInfoStyle.key}>ユーザー名：</div>
 
-                            </span>
-                        )}
-                    </Col>
+                            {!isNameEditing ? (
+                                <div className={userInfoStyle.value}>{showName || userName}</div>
+
+                            ) : (
+                                <div className={userInfoStyle.form}>
+                                    <input
+                                        type="text"
+                                        value={changeName || ""}
+                                        onChange={(e) => setChangeName(e.target.value)}
+                                    />
+
+                                </div>
+                            )}
+                        </>
+                    ) : (
+                        <>
+                            <Col className={userInfoStyle.subContainer}>
+                                <span className={userInfoStyle.key}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ユーザー名：</span>
+                                {!isNameEditing ? (
+                                    <span className={userInfoStyle.value}>{showName || userName}</span>
+
+                                ) : (
+                                    <span className={userInfoStyle.form}>
+                                        <input
+                                            type="text"
+                                            value={changeName || ""}
+                                            onChange={(e) => setChangeName(e.target.value)}
+                                        />
+
+                                    </span>
+                                )}
+                            </Col>
+
+                        </>
+                    )
+                    }
+
                     <Col xs={3}>
                         {!isNameEditing ? (
                             <div className={userInfoStyle.editButton}>

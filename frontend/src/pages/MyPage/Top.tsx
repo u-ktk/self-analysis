@@ -1,12 +1,11 @@
 import React from 'react'
-import HeadTitle from '../components/layouts/HeadTitle'
-import { useAuth } from '../components/auth/Auth';
-import UserInfo from '../components/UserInfo';
-import FolderList from '../components/FolderList';
-import Logout from '../components/Logout';
-import style from '../components/styles/Common.module.css'
+import HeadTitle from '../../components/layouts/HeadTitle'
+import { useAuth } from '../../components/auth/Auth';
+import UserInfo from '../../components/MyPage/EditUserInfo';
+import FolderList from '../../components/ReviewQuestions/FolderList';
+import Logout from '../../components/auth/LogoutModal';
 
-import NoLogin from '../components/NoLogin';
+import NoLogin from '../../components/auth/NoLogin';
 
 const MyPage = () => {
 
@@ -24,10 +23,7 @@ const MyPage = () => {
                         userName={userName}
                         userEmail={userEmail}
                     />
-                    <FolderList
-                        accessToken={accessToken}
-                        userId={userId}
-                    />
+
                     <Logout />
 
                 </div>

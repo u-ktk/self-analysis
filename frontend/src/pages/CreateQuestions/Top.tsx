@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useAuth } from '../components/auth/Auth';
-import { Answer } from "../types";
-import CustomQuestionForm from '../components/CustomQuestionForm';
-import HeadTitle from '../components/layouts/HeadTitle';
-import NoLogin from '../components/NoLogin';
+import { useAuth } from '../../components/auth/Auth';
+import { Answer } from "../../types";
+import CustomQuestionForm from '../../components/CreateQuestions/CustomQuestionForm';
+import HeadTitle from '../../components/layouts/HeadTitle';
+import NoLogin from '../../components/auth/NoLogin';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 

@@ -73,6 +73,10 @@ class Folder(models.Model):
   
     def __str__(self):
         return self.name
+    
+    # ユーザーとフォルダー名の組み合わせは一意
+    class Meta:
+        unique_together = ('name', 'user')
 
 
 class Question(models.Model):
@@ -90,6 +94,7 @@ class Question(models.Model):
 
     def __str__(self):
         return self.text
+    
 
 
 class Answer(models.Model):

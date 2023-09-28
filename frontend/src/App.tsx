@@ -6,18 +6,18 @@ import { AuthProvider } from './components/auth/Auth';
 import 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
 import './sass/custom.scss'
-import Login from './pages/Login'
-import Logout from './components/Logout'
-import Register from './pages/Register';
-import QuestionList from './pages/QuestionList';
-import DefaultQuestionsList from './pages/DefaultQuestions/DefaultQuestionsLIst';
-import AnswerHistory from './pages/AnswerHistory';
-import Search from './pages/SearchResults';
-import ReviewQuestions from './pages/ReviewQuestions';
-import CreateCustomQuestions from './pages/CreateCustomQuestions';
-import MyPage from './pages/MyPage';
-import Help from './pages/Help';
-import FolderDetail from './components/FolderDetail';
+import Login from './pages/MyPage/Login'
+import Logout from './components/auth/LogoutModal'
+import Register from './pages/MyPage/Register';
+import QuestionList from './pages/SearchQuestions/Top';
+import DefaultQuestionsList from './pages/SearchQuestions/DefaultQuestionsLIst';
+import AnswerHistory from './pages/ReviewQuestions/AnswerHistory';
+import Search from './pages/SearchQuestions/SearchResults';
+import ReviewQuestions from './pages/ReviewQuestions/Top';
+import CreateCustomQuestions from './pages/CreateQuestions/Top';
+import MyPage from './pages/MyPage/Top';
+import Help from './pages/Help/Top';
+import FolderDetail from './pages/ReviewQuestions/FolderDetail';
 
 
 

@@ -1,7 +1,8 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
-import formStyle from '../components/styles/Form.module.css';
+import formStyle from '../styles/Form.module.css';
+import style from '../styles/Common.module.css';
 
 type FormData = {
     username: string;
@@ -44,11 +45,12 @@ const RegisterForm: React.FC<Props> = ({ onSubmit, errorMessages }) => {
 
                 <Button className={formStyle.button} variant="primary" type="submit" >Register</Button>
             </Form>
-
-            {errorMessages &&
-                errorMessages.map((message, index) => (
-                    <p key={index} className="text-danger text-center">{message}</p>
-                ))}
+            <div className={style.errorMsg}>
+                {errorMessages &&
+                    errorMessages.map((message, index) => (
+                        <p key={index} >{message}</p>
+                    ))}
+            </div>
         </div>
     );
 }

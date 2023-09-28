@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Question, Answer } from '../types';
+import { Question, Answer } from '../../types';
 import { Button, Form, Dropdown } from 'react-bootstrap';
-import open from '../images/icon/open.svg';
-import formStyle from '../components/styles/Form.module.css';
-import { useAuth } from './auth/Auth';
+import open from '../../images/icon/open.svg';
+import formStyle from '../styles/Form.module.css';
+import { useAuth } from '../auth/Auth';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 

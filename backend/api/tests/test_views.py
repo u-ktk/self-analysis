@@ -226,7 +226,7 @@ class TestCreateAnswer(BaseTest):
         self.assertEqual(response.status_code, 204)
         self.assertEqual(self.default_question.answers.count(), 0)
 
-# 質問に新しくフォルダを追加
+# カスタム質問に新しくフォルダを追加
 class TestAddFolder(BaseTest):
     TARGET_CREATE_URL = "/api/customquestions/{}/"
     
@@ -246,6 +246,9 @@ class TestAddFolder(BaseTest):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(self.custom_question.folders.count(), 3)
         self.assertEqual(self.custom_question.folders.all()[2].name, "面接")
+        
+
+    
         
 # カスタム質問のフォルダを削除
 class TestRemoveFolder(BaseTest):
@@ -299,7 +302,8 @@ class TestGetFolder(BaseTest):
         self.assertEqual(response.data[1]["name"], "あとで回答する")
         self.assertEqual(response.data[2]["name"], "就活")
         self.assertEqual(response.data[3]["name"], "あとでみる")
-        
+      
+
 class TestUpdateUser(BaseTest):
     TARGET_URL = "/api/users/{}/update/"
     

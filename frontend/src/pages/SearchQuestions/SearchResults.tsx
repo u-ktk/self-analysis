@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Question } from '../types';
+import { Question } from '../../types';
 import { useLocation } from 'react-router-dom';
-import { getDefaultQuestions } from '../components/api/DefaultQuestions';
-import { useAuth } from '../components/auth/Auth';
+import { getDefaultQuestions } from '../../components/api/DefaultQuestions';
+import { useAuth } from '../../components/auth/Auth';
 import { Table } from 'react-bootstrap';
-import HeadTitle from '../components/layouts/HeadTitle';
+import HeadTitle from '../../components/layouts/HeadTitle';
 
 const SearchResults = () => {
     const location = useLocation();

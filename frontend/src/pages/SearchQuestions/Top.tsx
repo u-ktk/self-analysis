@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getCategoryList } from '../components/api/DefaultQuestions';
-import SearchQuestions from '../components/SearchQuestions';
-import { useAuth } from '../components/auth/Auth';
+import { getCategoryList } from '../../components/api/DefaultQuestions';
+import SearchQuestions from '../../components/SearchQuestions/SearchQuestions';
+import { useAuth } from '../../components/auth/Auth';
 import { Table, Pagination } from 'react-bootstrap';
-import HeadTitle from '../components/layouts/HeadTitle';
-import loadStyles from '../components/styles/Loading.module.css';
-import NoLogin from '../components/NoLogin';
-import style from '../components/styles/Common.module.css';
+import HeadTitle from '../../components/layouts/HeadTitle';
+import loadStyles from '../../components/styles/Loading.module.css';
+import NoLogin from '../../components/auth/NoLogin';
+import style from '../../components/styles/Common.module.css';
 
 const QuestionList = () => {
     const [categoryList, setCategoryList] = useState<string[] | null>([]);

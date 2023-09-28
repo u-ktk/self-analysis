@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../components/auth/Auth";
-import LoginForm from "../components/LoginForm";
-import HeadTitle from "../components/layouts/HeadTitle";
-import FetchToken from "../components/auth/FetchToken";
+import { useAuth } from "../../components/auth/Auth";
+import LoginForm from "../../components/auth/LoginForm";
+import HeadTitle from "../../components/layouts/HeadTitle";
+import FetchToken from "../../components/auth/FetchToken";
+import formStyle from "../../components/styles/Form.module.css";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL;
@@ -48,9 +49,18 @@ export default function Login() {
             <HeadTitle title='ログイン' />
             {accessToken ? (
                 <>
-                    <div>{userName}さんとしてログイン中です</div>
-                    <a className="m-2" href="/questions-list">トップページへ</a>
-                    <a className="m-2" href="/logout">ログアウト</a>
+                    <div className={formStyle.bg}>
+                        <div className={formStyle.title}>
+                            {userName}さんとしてログイン中です
+                        </div>
+                        <div className={formStyle.formGroup}>
+                            <a className={formStyle.link} href="/questions-list">トップページへ</a>
+                        </div>
+                        <div className={formStyle.formGroup}>
+                            <a className={formStyle.link} href="/logout">ログアウト</a>
+                        </div>
+                    </div>
+
                 </>
             ) : (
                 <div>

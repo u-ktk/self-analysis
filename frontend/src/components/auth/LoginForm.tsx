@@ -1,7 +1,8 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
-import formStyle from '../components/styles/Form.module.css';
+import formStyle from '../styles/Form.module.css';
+import style from '../styles/Common.module.css';
 
 type FormData = {
     email: string;
@@ -38,7 +39,7 @@ const LoginForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
                 <Button className={formStyle.button} variant="primary" type="submit">ログイン</Button>
             </Form>
 
-            {errorMessage && <p>{errorMessage}</p>}
+            {errorMessage && <p className={style.errorMsg}>{errorMessage}</p>}
         </div>
     );
 }

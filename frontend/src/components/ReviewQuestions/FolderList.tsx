@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { getFolderList } from './api/Folder';
-import { Folder } from '../types';
-import loadStyles from './styles/Loading.module.css';
-import styles from './styles/Common.module.css';
+import { getFolderList } from '../api/Folder';
+import { Folder } from '../../types';
+import loadStyles from '../styles/Loading.module.css';
+import styles from '../styles/Common.module.css';
 
 
 type authInfo = {
