@@ -38,7 +38,7 @@ const getFolderList = async (props: ApiProps): Promise<Folders | null> => {
     return fetchData(endpoint, props);
 };
 
-const getFolderDetail = async (props: ApiProps, name: string): Promise<Folder | null> => {
+const getFolderDetail = async (props: ApiProps, name: string): Promise<Folders | null> => {
     const endpoint = `folders/?user=${props.userId}&name=${name}`;
     return fetchData(endpoint, props);
 };

@@ -174,7 +174,7 @@ class FolderViewSet(viewsets.ModelViewSet):
     # フォルダーとユーザー紐付け
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-    
+
 
 
 class QuestionCategoryListView(generics.ListAPIView):

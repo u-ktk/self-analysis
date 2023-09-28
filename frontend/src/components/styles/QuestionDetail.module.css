@@ -1,0 +1,61 @@
+.category {
+    border-left: 3px solid #d88948a0;
+    padding-left: 10px;
+    margin: 30px 0 5px 0;
+
+}
+
+.icon {
+    margin-top: -2px;
+    width: 40px;
+    text-align: center;
+}
+
+.check {
+    margin-top: -3px;
+    width: 60px;
+    text-align: center;
+}
+
+.id {
+    color: #6f6e6e;
+    width: 40px;
+    text-align: center;
+}
+
+.link {
+    color: #AC8D73;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+    margin-left: 10px;
+}
+
+.link:hover {
+    color: #AC8D73;
+    transform: translateY(-2px);
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.text {
+    width: 600px;
+
+}
+
+.questionGroup {
+    margin-left: 20px;
+    text-align: left;
+    /* background-color: #FAFAFA; */
+}
+
+.contents {
+    padding-left: 100px;
+    line-height: 30px;
+}
+
+@media (max-width: 960px) {
+    .contents {
+        padding-left: 20px;
+    }
+
+}

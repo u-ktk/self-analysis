@@ -77,6 +77,11 @@ class Folder(models.Model):
     # ユーザーとフォルダー名の組み合わせは一意
     class Meta:
         unique_together = ('name', 'user')
+    
+    # フォルダ内の質問をid順に並び替え
+    def get_ordered_questions(self):
+        return self.questions.order_by('id')
+
 
 
 class Question(models.Model):

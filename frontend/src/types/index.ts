@@ -5,7 +5,7 @@ export type Question = {
     age: string;
     folders?: Folder[]
     text: string;
-    answers?: Answer
+    answers: Answer[]
 };
 
 export type Category = {

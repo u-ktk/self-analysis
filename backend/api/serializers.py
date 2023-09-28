@@ -85,6 +85,10 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 class AnswerListSerializer(serializers.ListSerializer):
     child = AnswerSerializer()
+    
+class QuestionCategoryListSerializer(serializers.ModelSerializer):
+    child  = QuestionCategorySerializer()
+
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -95,7 +99,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = ['id', 'text', 'user', 'category', 'category_name',
-                  'age', 'folders','folders_name' 'is_default', 'answers']
+                  'age', 'folders','folders_name', 'is_default', 'answers']
         # バリデーションメッセージの追加
         extra_kwargs = {
             'text': {
@@ -105,7 +109,7 @@ class QuestionSerializer(serializers.ModelSerializer):
                 }
             },
             # フォルダーnull許可
-            'folder': {
+            'folders': {
                 'required': False 
             },
             # カスタム質問ではカテゴリーを選択しない
@@ -118,14 +122,19 @@ class QuestionSerializer(serializers.ModelSerializer):
         if obj.category is None:
             return None
         return obj.category.name
-    
+
     def get_folders_name(self, obj):
         if obj.folders is None:
             return None
         return obj.folders.name
 
 
+class QuestionListSerializer(serializers.ListSerializer):
+    child = QuestionSerializer()
+
 class FolderSerializer(serializers.ModelSerializer):
+    
+    questions = QuestionListSerializer(required=False,  source='get_ordered_questions')
     class Meta:
         model = Folder
         fields = ['id', 'name', 'user', 'questions']
@@ -139,3 +148,4 @@ class FolderSerializer(serializers.ModelSerializer):
                 'required': False
             }
         }
+        
