@@ -24,7 +24,8 @@
 }
 
 .link {
-    color: #AC8D73;
+    /* color: #AC8D73; */
+    color: #947861;
     text-decoration: none;
     transition: color 0.3s, transform 0.3s;
     margin-left: 10px;

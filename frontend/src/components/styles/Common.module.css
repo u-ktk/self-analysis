@@ -12,8 +12,9 @@
 .miniButton {
     /* width: 40px; */
     height: auto;
-    box-shadow: 0 1px 2px #6B4423;
+    box-shadow: 0 1px 2px #6b43237b;
     padding: 5px 10px;
+    margin: 0 5px;
 }
 
 .miniButton:hover {
@@ -68,6 +69,19 @@
 .description {
     width: 80%;
     line-height: 30px;
+}
+
+.onClickText {
+    color: #656565;
+    text-decoration: underline;
+    text-decoration-color: #2c2b2b;
+}
+
+.onClickText:hover {
+    color: #363636;
+    transform: translateY(-1px);
+    opacity: 0.8;
+    text-decoration: underline;
 }
 
 @media (max-width: 960px) {

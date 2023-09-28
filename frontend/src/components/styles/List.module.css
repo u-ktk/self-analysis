@@ -1,0 +1,45 @@
+.link {
+    color: #947861;
+    /* color: #AC8D73; */
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+    margin-left: 10px;
+}
+
+.link:hover {
+    color: #AC8D73;
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.trashIcon {
+    width: 17px;
+    margin-top: -2px;
+    margin-left: 5px
+}
+
+.trashIcon:hover {
+    transform: translateY(-1px);
+    opacity: 0.8;
+}
+
+.folderIcon {
+    margin-right: 5px;
+    width: 20px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.contents {
+    padding-left: 60px;
+    line-height: 35px;
+
+}
+
+.form {
+    height: 80%;
+    margin-right: 20px;
+}

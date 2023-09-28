@@ -137,7 +137,7 @@ const UserInfo = (props: authInfo) => {
                             </div>
                         ) : (
                             <div className={userInfoStyle.editButton}>
-                                <Button className={style.miniButton} size="sm" onClick={() => nameSaveClick(changeName ?? "")}>保存</Button>
+                                <Button className={style.miniButton} size="sm" onClick={() => nameSaveClick(changeName ?? "")} variant="danger">保存</Button>
                                 <Button className={style.miniButton} size="sm" onClick={nameChangeClick} variant="warning">キャンセル</Button>
                             </div>
                         )

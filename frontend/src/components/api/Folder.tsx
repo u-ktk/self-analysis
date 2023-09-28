@@ -12,15 +12,19 @@ type ApiProps = {
 
 };
 
-const fetchData = async (endpoint: string, props: ApiProps) => {
+const fetchData = async (method: string, endpoint: string, props: ApiProps, body?: any) => {
     try {
         const res = await fetch(`${BACKEND_URL}${endpoint}`, {
-            method: 'GET',
+            method: method,
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `JWT ${props.accessToken}`,
             },
+            body: body,
         });
+        if (res.status === 204) {
+            return null;
+        }
         if (res.ok) {
             const responseData = await res.json();
             console.log(responseData);
@@ -35,39 +39,29 @@ const fetchData = async (endpoint: string, props: ApiProps) => {
 
 const getFolderList = async (props: ApiProps): Promise<Folders | null> => {
     const endpoint = `folders/?user=${props.userId}`;
-    return fetchData(endpoint, props);
+    return fetchData('GET', endpoint, props);
 };
 
 const getFolderDetail = async (props: ApiProps, name: string): Promise<Folders | null> => {
     const endpoint = `folders/?user=${props.userId}&name=${name}`;
-    return fetchData(endpoint, props);
+    return fetchData('GET', endpoint, props);
 };
 
 const createFolder = async (props: ApiProps, newFolderName: string): Promise<Folder | null> => {
     const endpoint = `folders/`;
+    return fetchData('POST', endpoint, props, JSON.stringify({ name: newFolderName, user: props.userId, }));
+}
+
+const deleteFolder = async (props: ApiProps, folderId: string) => {
+    const endpoint = `folders/${folderId}/`;
     try {
-        const res = await fetch(`${BACKEND_URL}${endpoint}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `JWT ${props.accessToken}`,
-            },
-            body: JSON.stringify({ name: newFolderName, user: props.userId, }),
-        });
-        if (res.ok) {
-            const responseData = await res.json();
-            console.log(responseData);
-            return responseData;
-        } else {
-            throw new Error('Failed to create folder');
-        }
+        const res = await fetchData('DELETE', endpoint, props);
+        return res;
     } catch (error) {
         throw error;
     }
-};
-
-// const deleteFolder = async (props: ApiProps, folderId: string): Promise<null> => {
+}
 
 
 
-export { getFolderList, getFolderDetail, createFolder };
+export { getFolderList, getFolderDetail, createFolder, deleteFolder };
