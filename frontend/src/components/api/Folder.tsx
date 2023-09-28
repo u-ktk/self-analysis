@@ -43,8 +43,8 @@ const getFolderDetail = async (props: ApiProps, name: string): Promise<Folders |
     return fetchData(endpoint, props);
 };
 
-const createFolder = async (props: ApiProps, newFolderName: string): Promise<Folders | null> => {
-    const endpoint = `folders/?user=${props.userId}`;
+const createFolder = async (props: ApiProps, newFolderName: string): Promise<Folder | null> => {
+    const endpoint = `folders/`;
     try {
         const res = await fetch(`${BACKEND_URL}${endpoint}`, {
             method: 'POST',
@@ -52,7 +52,7 @@ const createFolder = async (props: ApiProps, newFolderName: string): Promise<Fol
                 'Content-Type': 'application/json',
                 Authorization: `JWT ${props.accessToken}`,
             },
-            body: JSON.stringify({ name: newFolderName }),
+            body: JSON.stringify({ name: newFolderName, user: props.userId, }),
         });
         if (res.ok) {
             const responseData = await res.json();
@@ -65,5 +65,9 @@ const createFolder = async (props: ApiProps, newFolderName: string): Promise<Fol
         throw error;
     }
 };
+
+// const deleteFolder = async (props: ApiProps, folderId: string): Promise<null> => {
+
+
 
 export { getFolderList, getFolderDetail, createFolder };

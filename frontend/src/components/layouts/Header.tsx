@@ -61,7 +61,7 @@ const Header: React.FC = () => {
         iconInactive: helpInactive,
     });
     const { icon: myPageIcon, linkStyle: myPageLinkStyle } = getIconAndLinkStyle({
-        path: '/myPage ',
+        path: '/myPage',
         iconActive: myPageActive,
         iconInactive: myPageInactive,
     });
