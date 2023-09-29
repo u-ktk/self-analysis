@@ -77,7 +77,7 @@ class CustomQuestionViewSet(viewsets.ModelViewSet):
 
 # 質問に複数のフォルダ追加(ただのPATCHだと１つずつしかできない？)
 @api_view(['PATCH'])
-def update_folders_for_custom_questions(request, question_id):
+def update_folders_for_custom_question(request, question_id):
     folders = request.data.get('folders')
     # JSON文字列のリストをPythonのリストに変換
     if isinstance(folders, str):
@@ -96,8 +96,25 @@ def update_folders_for_custom_questions(request, question_id):
     except Question.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
     return HttpResponse(status=status.HTTP_200_OK)
-    
 
+# 質問からフォルダを１つずつ削除
+@api_view(['POST'])
+def remove_folder_from_custom_question(request, question_id):
+    folder = request.data.get('folder')
+    if not folder:
+        return HttpResponse({"error": "folder_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        question = Question.objects.get(pk=question_id)
+        folder = Folder.objects.get(pk=folder)
+        question.folders.remove(folder)
+    except (Question.DoesNotExist, Folder.DoesNotExist):
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+    return HttpResponse(status=status.HTTP_200_OK)
+
+
+"""
+デフォルト質問も同じように実装（重複コードが多いので後でリファクタリング）
+"""
 
 class DefaultQuestionsFilter(filters.FilterSet):
 
@@ -108,28 +125,7 @@ class DefaultQuestionsFilter(filters.FilterSet):
             'age': ['icontains']
         }
 
-
-# class DefaultQuestionListView(generics.ListAPIView):
-#     # is_default == Trueの時
-#     permission_classes = (permissions.IsAuthenticated,)
-#     authentication_classes = (authentication.JWTAuthentication,)
-#     queryset = Question.objects.filter(is_default=True)
-#     serializer_class = QuestionSerializer
-#     filter_backends = [filters.DjangoFilterBackend]
-#     filterset_fields = '__all__'
-#     # limit, offsetはクライアントで設定
-#     pagination_class = LimitOffsetPagination
-
-
-# class DefaultQuestionDetailView(generics.RetrieveAPIView):
-#     permission_classes = (permissions.IsAuthenticated,)
-#     authentication_classes = (authentication.JWTAuthentication,)
-#     queryset = Question.objects.filter(is_default=True)
-#     serializer_class = QuestionSerializer
-
 # デフォルト質問は回答以外作成、更新、削除不可能
-
-
 class DefaultQuestionViewSet(viewsets.ModelViewSet):
     # is_default == Trueの時
     permission_classes = (permissions.IsAuthenticated,)
@@ -148,6 +144,42 @@ class DefaultQuestionViewSet(viewsets.ModelViewSet):
             raise exceptions.MethodNotAllowed(
                 "PATCH", detail="あらかじめ用意された質問は更新できません")
         return super().update(request, *args, **kwargs)
+
+# 質問に複数のフォルダ追加
+@api_view(['PATCH'])
+def update_folders_for_default_question(request, question_id):
+    folders = request.data.get('folders')
+    # JSON文字列のリストをPythonのリストに変換
+    if isinstance(folders, str):
+        try:
+            import json
+            folders = json.loads(folders)
+        except json.JSONDecodeError:
+            return HttpResponse({"error": "Invalid format for folders"}, status=status.HTTP_400_BAD_REQUEST)
+    if not folders:
+      return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        question = Question.objects.get(pk=question_id)
+        current_folders = list(question.folders.values_list('id', flat=True))
+        combined_folders = list(set(current_folders + folders))
+        question.folders.set(combined_folders)
+    except Question.DoesNotExist:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+    return HttpResponse(status=status.HTTP_200_OK)
+
+# 質問からフォルダを１つずつ削除
+@api_view(['POST'])
+def remove_folder_from_default_question(request, question_id):
+    folder = request.data.get('folder')
+    if not folder:
+        return HttpResponse({"error": "folder_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        question = Question.objects.get(pk=question_id)
+        folder = Folder.objects.get(pk=folder)
+        question.folders.remove(folder)
+    except (Question.DoesNotExist, Folder.DoesNotExist):
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+    return HttpResponse(status=status.HTTP_200_OK)
 
     # 質問自体の削除不可能にしたい。回答の削除は可能
     # def destroy(self, request, *args, **kwargs):

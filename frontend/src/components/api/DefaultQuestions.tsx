@@ -12,60 +12,101 @@ type DefaultQuestionDetailListProps = {
     age?: string;
 }
 
+type addFolderProps = {
+    accessToken: string;
+    folder: number;
+    questionId: number;
+}
+
+type removeFolderProps = {
+    accessToken: string;
+    folder: number;
+    questionId: number;
+}
+
+
+type fetchProps = DefaultQuestionDetailListProps | addFolderProps | removeFolderProps;
+
 
 // フリーワードもしくは年代を指定して、defaultquestionsを取得する
-const fetchDefaultQuestions = async (props: DefaultQuestionDetailListProps): Promise<DefaultQuestions | null> => {
+const fetchDefaultQuestions = async (method: string, endpoint: string, props: fetchProps, body?: any) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}${endpoint}`, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `JWT ${props.accessToken}`,
+            },
+            body: body,
+        });
+        if (res.headers.get("content-length") === "0" || res.status === 204) {
+            return null;
+        }
+        if (res.ok) {
+            const responseData = await res.json();
+            console.log(responseData);
+            return responseData;
+        } else {
+            const errorData = await res.json();
+            console.error("Server Response:", errorData);
+            // エラーハンドリング後で詳しく
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+const getDefaultQuestions = async (props: DefaultQuestionDetailListProps): Promise<DefaultQuestions | null> => {
     try {
         const searchParams = new URLSearchParams();
         searchParams.set('text__icontains', props.text || '');
         searchParams.set('age__icontains', props.age || '');
-
-
-        const res = await fetch(`${BACKEND_URL}defaultquestions/?${searchParams}`,
-            {
-                headers: {
-                    'Authorization': `JWT ${props.accessToken}`
-                }
-            });
-        if (!res.ok) {
-            throw new Error("Failed to fetch default questions");
-        }
-        return res.json();
+        const endpoint = `defaultquestions/?${searchParams}`;
+        const res = await fetchDefaultQuestions('GET', endpoint, props);
+        return res;
     } catch (error) {
         console.log(error);
-        return [];
+        throw error;
     }
 }
 
 
-const getDefaultQuestions = async (props: DefaultQuestionDetailListProps) => {
-    const defaultQuestions = await fetchDefaultQuestions(props);
-    if (!defaultQuestions) {
-        throw new Error("Failed to get default questions");
-    }
-    return defaultQuestions;
 
-}
 
-// const FilterDefaultQuestions = async (accessToken: string, text: string) => {
-//     const defaultQuestions = await fetchDefaultQuestions(accessToken);
-//     if (!defaultQuestions) {
-//         throw new Error("Failed to get default questions");
+
+//         const searchParams = new URLSearchParams();
+//         searchParams.set('text__icontains', props.text || '');
+//         searchParams.set('age__icontains', props.age || '');
+
+
+//         const res = await fetch(`${BACKEND_URL}defaultquestions/?${searchParams}`,
+//             {
+//                 headers: {
+//                     'Authorization': `JWT ${props.accessToken}`
+//                 }
+//             });
+//         if (!res.ok) {
+//             throw new Error("Failed to fetch default questions");
+//         }
+//         return res.json();
+//     } catch (error) {
+//         console.log(error);
+//         return [];
 //     }
-//     const filteredDefaultQuestions = defaultQuestions.filter(question => question.text === text);
-//     return filteredDefaultQuestions;
 // }
+
 
 
 
 const getCategoryList = async (accessToken: string): Promise<string[] | null> => {
     try {
-        const defaultQuestions = await fetchDefaultQuestions({ accessToken });
+        const endopoint = `defaultquestions/`;
+        const defaultQuestions: DefaultQuestions = await fetchDefaultQuestions('GET', endopoint, { accessToken });
         if (!defaultQuestions) {
             throw new Error("Failed to get default questions");
         }
-
-        const categorySet = new Set(defaultQuestions.map(question => question.category_name));
+        const categorySet = new Set(defaultQuestions.map((question: Question) => question.category_name));
         return Array.from(categorySet);
     } catch (error) {
         console.error(error);
@@ -73,6 +114,17 @@ const getCategoryList = async (accessToken: string): Promise<string[] | null> =>
     }
 }
 
-export { getDefaultQuestions, getCategoryList };
+const addDefaultQToFolder = async (props: addFolderProps) => {
+    const endpoint = `customquestions/${props.questionId}/add_folder/`;
+    return fetchDefaultQuestions('PATCH', endpoint, props, JSON.stringify({ folder: props.folder }));
+}
+
+const removeDefaultQFromFolder = async (props: removeFolderProps) => {
+    const endpoint = `customquestions/${props.questionId}/remove_folder/`;
+    return fetchDefaultQuestions('POST', endpoint, props, JSON.stringify({ folder: props.folder }));
+}
+
+
+export { getDefaultQuestions, getCategoryList, addDefaultQToFolder, removeDefaultQFromFolder };
 
 

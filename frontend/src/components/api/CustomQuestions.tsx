@@ -22,7 +22,16 @@ type addFolderProps = {
     questionId: number;
 }
 
-const fetchCustomQuestions = async (method: string, endpoint: string, props: CustomQuestionDetailProps | addFolderProps, body?: any) => {
+type removeFolderProps = {
+    accessToken: string;
+    userId: string;
+    folder: number;
+    questionId: number;
+}
+
+type fetchProps = CustomQuestionDetailProps | addFolderProps | removeFolderProps;
+
+const fetchCustomQuestions = async (method: string, endpoint: string, props: fetchProps, body?: any) => {
     try {
         const res = await fetch(`${BACKEND_URL}${endpoint}`, {
             method: method,
@@ -49,9 +58,6 @@ const fetchCustomQuestions = async (method: string, endpoint: string, props: Cus
             // if (errorData.text) errorMsg.push(errorData.text);
             // if (errorData.age) errorMsg.push(errorData.age);
             // throw errorMsg;
-
-
-
         }
 
     } catch (error) {
@@ -85,43 +91,12 @@ const addFolderToCustomQuestion = async (props: addFolderProps) => {
     return fetchCustomQuestions('PATCH', endpoint, props, JSON.stringify({ folders: props.folders }));
 }
 
+const removeCustomQFromFolder = async (props: removeFolderProps) => {
+    const endpoint = `customquestions/${props.questionId}/remove_folder/`;
+    return fetchCustomQuestions('POST', endpoint, props, JSON.stringify({ folder: props.folder }));
+}
 
 
-// // フリーワードもしくは年代を指定して、questionsを取得する
-// const fetchCustomQuestions = async (method: string, props: CustomQuestionDetailListProps, body?: any): Promise<CustomQuestions | null> => {
-//     try {
-//         const searchParams = new URLSearchParams();
-//         searchParams.set('user', props.userId);
-//         searchParams.set('text__icontains', props.text || '');
-//         searchParams.set('age__icontains', props.age || '');
-
-//         const res = await fetch(`${BACKEND_URL}customquestions/?${searchParams}`,
-//             {
-//                 headers: {
-//                     'Authorization': `JWT ${props.accessToken}`
-//                 }
-//             });
-//         if (!res.ok) {
-//             throw new Error("Failed to fetch default questions");
-//         }
-//         return res.json();
-//     } catch (error) {
-//         console.log(error);
-//         return [];
-//     }
-// }
-
-
-// const getCustomQuestions = async (props: CustomQuestionDetailListProps) => {
-//     const customQuestions = await fetchCustomQuestions(props);
-//     if (!customQuestions) {
-//         throw new Error("Failed to get default questions");
-//     }
-//     return customQuestions;
-
-// }
-
-
-export { getCustomQuestions, createCustomQuestions, addFolderToCustomQuestion };
+export { getCustomQuestions, createCustomQuestions, addFolderToCustomQuestion, removeCustomQFromFolder };
 
 

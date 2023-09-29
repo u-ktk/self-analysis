@@ -23,24 +23,45 @@ const DefaultQuestionsList = () => {
 
     // アクセストークンを使って質問一覧を取得
     useEffect(() => {
-        if (!accessToken) {
-            return;
-        }
-        getDefaultQuestions({ accessToken })
-            .then((data) => {
-                setDefaultQuestions(data);
-                // カテゴリー名を取得
-                if (data[0]) {
-                    setCurrentCategory(data[currentPage * 100 - 1].category_name);
-                } else {
-                    setCurrentCategory("No category");
+        const fetchData = async () => {
+            if (!accessToken) {
+                return;
+            }
+            try {
+                const res = await getDefaultQuestions({ accessToken });
+                if (res) {
+                    setDefaultQuestions(res);
+                    // カテゴリー名を取得
+                    if (res[0])
+                        setCurrentCategory(res[currentPage * 100 - 1].category_name);
+                    else {
+                        setCurrentCategory("No category");
+                    }
+                    setLoading(false);
                 }
-                setLoading(false);
-            })
-            .catch((err) => {
-                setErrorMessage(err.message);
-                setLoading(false);
-            });
+            } catch (err: any) {
+                console.log(err.message)
+                setErrorMessage(err.message)
+                setLoading(false)
+            }
+        }
+        fetchData();
+        // getDefaultQuestions({ accessToken })
+        //     .then((data) => {
+        //         setDefaultQuestions(data);
+        //         // カテゴリー名を取得
+        //         if (data[0]) {
+        //             setCurrentCategory(data[currentPage * 100 - 1].category_name);
+        //         } else {
+        //             setCurrentCategory("No category");
+        //         }
+        //         setLoading(false);
+        //     })
+        //     .catch((err) => {
+        //         setErrorMessage(err.message);
+        //         setLoading(false);
+        //     });
+
     }, [accessToken, page]);
 
     //画面サイズが変更されたら再描画

@@ -4,12 +4,16 @@ import { Folder, Question, Answer } from '../../types'
 import { useLocation } from 'react-router-dom'
 import { useAuth } from '../../components/auth/Auth'
 import { getFolderDetail } from '../../components/api/Folder'
+import { removeCustomQFromFolder } from '../../components/api/CustomQuestions'
+import { removeDefaultQFromFolder } from '../../components/api/DefaultQuestions'
 import styles from '../../components/styles/Common.module.css'
 import loadStyles from '../../components/styles/Loading.module.css'
 import detailStyles from '../../components/styles/QuestionDetail.module.css'
 import noteIcon from '../../images/icon/note.svg'
 import { Table } from 'react-bootstrap'
 import checkMark from '../../images/checked.png'
+import listStyles from '../../components/styles/List.module.css'
+import trashIcon from '../../images/icon/trash.svg'
 
 
 
@@ -19,6 +23,7 @@ const FolderDetail = () => {
     const userParams = searchParams.get('user')
     const nameParams = searchParams.get('name')
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+    const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
     const [folderDetail, setFolderDetail] = useState<Folder | null>(null)
 
@@ -40,6 +45,54 @@ const FolderDetail = () => {
             console.log(err.message)
         }
     }
+
+    // const removeDefaultQClick = async (folderDetail: number, questionId: number) => {
+    //     if (!accessToken || !userParams) {
+    //         console.log('質問を削除できませんでした')
+    //         return
+    //     }
+    //     try {
+    //         const res =  await removeDefaultQFromFolder({ accessToken, userId: userParams }, questionId)
+    //         if (res) {
+    //             fetchData()
+    //         }
+    //     } catch (err: any) {
+    //         console.log(err.message)
+    //         setErrorMessage(err.message)
+    //     }
+    // }
+
+    const removeQuestionClick = async (removalFunction: Function, folder: number, questionId: number) => {
+        if (!accessToken || !userParams) {
+            console.log('質問を削除できませんでした');
+            return;
+        }
+        try {
+            if (removalFunction === removeCustomQFromFolder) {
+
+                const res = await removeCustomQFromFolder({ accessToken, userId: userParams, folder, questionId });
+                // 質問を削除した後、フォルダーの詳細を再取得
+                if (res === null) {
+                    fetchData();
+                }
+            } else {
+                const res = await removeDefaultQFromFolder({ accessToken, folder, questionId });
+                if (res === null) {
+                    fetchData();
+                }
+            }
+
+
+
+        } catch (err: any) {
+            console.log(err.message);
+            setErrorMessage(err.message);
+        }
+    }
+
+
+
+
 
     useEffect(() => {
         fetchData()
@@ -84,8 +137,9 @@ const FolderDetail = () => {
                                                     {question.category_name ? (
                                                         <td className={detailStyles.id}>{question.id}.</td>
                                                     ) : (
-                                                        <td >
-                                                            <img src={noteIcon} alt='memo' className={detailStyles.icon} width="20" height="20" />
+                                                        <td className={detailStyles.id}>
+                                                            {/* <img src={noteIcon} alt='memo' className={detailStyles.icon} width="20" height="20" /> */}
+                                                            ・
                                                         </td>
                                                     )}
                                                     <td className={detailStyles.text}>
@@ -93,11 +147,24 @@ const FolderDetail = () => {
                                                             ({question.age})
                                                         </a>
 
+
+                                                        {question.category_name ? (
+                                                            <span >
+                                                                <img src={trashIcon} className={listStyles.trashIcon} alt='削除' onClick={() => { removeQuestionClick(removeDefaultQFromFolder, folderDetail.id, question.id) }} />
+                                                            </span>
+                                                        ) : (
+                                                            <span>
+                                                                <img src={trashIcon} className={listStyles.trashIcon} alt='削除' onClick={() => { removeQuestionClick(removeCustomQFromFolder, folderDetail.id, question.id) }} />
+
+                                                            </span>
+                                                        )}
+
+
                                                     </td>
                                                     {(question.answers[0]) && (
                                                         <td>
 
-                                                            <img src={checkMark} alt='check' className={detailStyles.check} />
+                                                            <img src={checkMark} alt='回答済' className={detailStyles.check} />
                                                         </td>
 
                                                     )}

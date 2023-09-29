@@ -3,7 +3,10 @@ import { useAuth } from '../auth/Auth';
 import style from '../styles/Common.module.css'
 import userInfoStyle from '../styles/UserInfo.module.css'
 import { changeUserInfo } from '../api/UserInfo';
-import { Button, Row, Col, Form } from 'react-bootstrap';
+import { Button, Row, Col, Form, Alert } from 'react-bootstrap';
+import formStyle from '../styles/Form.module.css';
+import error from '../../images/icon/error.svg'
+import check from '../../images/icon/check.svg'
 
 type authInfo = {
     accessToken: string | null;
@@ -22,7 +25,8 @@ const UserInfo = (props: authInfo) => {
     const [changeEmail, setChangeEmail] = useState<string>("")
     const [showEmail, setShowEmail] = useState<string>("")
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
 
     const nameChangeClick = () => {
@@ -46,9 +50,19 @@ const UserInfo = (props: authInfo) => {
                 setChangeName("")
                 setShowName(changeName)
                 setIsNameEditing(false)
+                setSuccessMessage("ユーザー名")
+                if (errorMessage) {
+                    setErrorMessage(null);
+                }
+                // setTimeout(() => {
+                //     setSuccessMessage(null);
+                // }, 5000);
             }
         } catch (error: any) {
-            console.log(error.message)
+            // console.log(error.message)
+            if (error instanceof Error) {
+                setErrorMessage(error.message);
+            }
         }
     }
 
@@ -64,9 +78,19 @@ const UserInfo = (props: authInfo) => {
                 setChangeEmail("")
                 setShowEmail(changeName)
                 setIsEmailEditing(false)
+                setSuccessMessage("メールアドレス")
+                if (errorMessage) {
+                    setErrorMessage(null);
+                }
             }
         } catch (error: any) {
-            console.log(error.message)
+            // console.log(error.message)
+            if (error instanceof Error) {
+                setErrorMessage(error.message);
+                if (successMessage) {
+                    setSuccessMessage(null);
+                }
+            }
         }
     }
 
@@ -86,7 +110,35 @@ const UserInfo = (props: authInfo) => {
     return (
         <div className={style.bg}>
             <h4 className={style.title}>プロフィール編集</h4>
+
+            {/* エラーメッセージ */}
             <div className={userInfoStyle.contents}>
+                {errorMessage &&
+                    <Alert className={formStyle.alert}>
+                        <span>
+                            <img alt="エラー" src={error} width="40" height="40"></img>
+                        </span>
+                        <div className={formStyle.msg}>
+
+                            {errorMessage}
+                        </div>
+                    </Alert>}
+
+                {/* 編集成功 */}
+                {successMessage &&
+                    <Alert variant='primary' className={formStyle.alert}>
+                        <span>
+                            <img alt="編集成功" src={check} width="40" height="40"></img>
+                        </span>
+                        <div className={formStyle.msg}>
+                            <span style={{ fontWeight: 'bold' }}>
+                                {successMessage}
+                            </span>
+                            を編集しました
+                        </div>
+                    </Alert>
+                }
+
                 <Row>
 
                     {windowWidth < 600 ? (

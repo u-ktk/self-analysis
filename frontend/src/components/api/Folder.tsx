@@ -64,4 +64,5 @@ const deleteFolder = async (props: ApiProps, folderId: string) => {
 
 
 
+
 export { getFolderList, getFolderDetail, createFolder, deleteFolder };

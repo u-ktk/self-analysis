@@ -11,7 +11,7 @@ const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL;
 
 export default function Login() {
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string[] | null>(null);
     const { accessToken, setAccessToken, userName } = useAuth();
     const onSubmit = async (data: { email: string, password: string }) => {
         const { email, password } = data;
@@ -34,12 +34,14 @@ export default function Login() {
                 navigate('/questions-list');
             } else {
                 const errorData = await response.json();
-                setErrorMessage(errorData.detail);
-                console.log(errorData.detail);
+                if (errorData.email) setErrorMessage(errorData.email);
+                if (errorData.password) setErrorMessage(errorData.password);
+                if (errorData.detail) setErrorMessage(errorData.detail);
+                console.log(errorData);
             }
         } catch (error) {
             if (error instanceof Error) {
-                setErrorMessage(error.message);
+                setErrorMessage([error.message]);
             }
         }
     }

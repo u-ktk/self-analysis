@@ -66,25 +66,17 @@ export default function Register() {
             }
 
             else {
-                let errorMessages: string[] = [];
-                const error = await response.json();
-                if (error.username) {
-                    // setErrorMessage(error.username);
-                    errorMessages.push(error.username);
+                const errorData = await response.json();
+                if (errorData.username) {
+                    setErrorMessage(errorData.username);
                 }
-                if (error.email) {
-                    // setErrorMessage(error.email);
-                    errorMessages.push(error.email);
+                if (errorData.email) {
+                    setErrorMessage(errorData.email);
                 }
-                if (error.password) {
-                    // setErrorMessage(error.password);
-                    errorMessages.push(error.password);
+                if (errorData.password) {
+                    setErrorMessage(errorData.password);
                 }
-                if (errorMessages.length > 0) {
-                    setErrorMessage(errorMessages);
-                } else {
-                    setErrorMessage(null);
-                }
+                console.log(errorData)
             }
 
         } catch (error) {

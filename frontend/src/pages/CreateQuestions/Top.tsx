@@ -36,6 +36,11 @@ const CreateCustomQuestions = () => {
                 // console.log(res);
                 setCustomQuestions(res);
                 setSuccessMessage(`${text}(${age})`);
+                if (errorMessage) {
+                    setErrorMessage(null);
+                }
+
+
             }
             if (folders && res?.id) {
                 addFolder((folders?.map((folder) => parseInt(folder))), res.id);
@@ -44,6 +49,9 @@ const CreateCustomQuestions = () => {
         } catch (error) {
             if (error instanceof Error) {
                 setErrorMessage(error.message);
+                if (successMessage) {
+                    setSuccessMessage(null);
+                }
             }
         }
     }

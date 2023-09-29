@@ -29,7 +29,14 @@ const changeUserInfo = async (props: ChangeUserInfoProps): Promise<User | null> 
             console.log(responseData);
             return responseData;
         } else {
-            throw new Error("Failed to fetch user info");
+            const errorData = await res.json();
+            if (errorData.username) {
+                throw new Error(errorData.username);
+            }
+            if (errorData.email) {
+                throw new Error(errorData.email);
+            }
+            throw new Error("サーバーとの通信に失敗しました");
         }
     } catch (error) {
         throw error;

@@ -5,7 +5,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     default_error_messages = {
-        'no_active_account': 'emailもしくはpasswordが間違っています。',
+        'no_active_account': 'emailもしくはパスワードが間違っています。',
     }
 
 
@@ -25,20 +25,23 @@ class UserSerializer(serializers.ModelSerializer):
             'password': {
                 'write_only': True,
                 "error_messages": {
-                    "required": "passwordは必須です",
-                    'blank': 'usernameは空にできません',
+                    "required": "パスワードは必須です",
+                    'blank': 'パスワードは空にできません',
                 }
             },
             'username': {
                 'error_messages': {
-                    'required': 'usernameは必須です',
-                    'blank': 'usernameは空にできません',
+                    'required': 'ユーザー名は必須です',
+                    'blank': 'ユーザー名は空にできません',
+                    'max_length': 'ユーザー名は255文字以下にしてください',
                 },
             },
             'email': {
                 'error_messages': {
                     'required': 'emailは必須です',
                     'blank': 'emailは空にできません',
+                    'invalid': 'emailの形式が正しくありません',
+                    'unique': 'このemailはすでに登録されています',
                 },
             }
         }

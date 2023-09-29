@@ -57,6 +57,7 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
         data.age = selectAge;
         data.folders = selectFolders;
         onSubmitHandler(data);
+
     };
 
     // 年代の選択肢

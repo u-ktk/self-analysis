@@ -122,7 +122,7 @@ const FolderList = (props: authInfo) => {
                                     folder.questions.length !== 0 ?
                                         handleDeleteClick(folder.id) : folderDeleteClick(folder.id)
                                 }
-                                } src={trashIcon} className={listStyles.trashIcon} alt='check' />
+                                } src={trashIcon} className={listStyles.trashIcon} alt='削除' />
                             </span>
                         </div>
                     ))}
