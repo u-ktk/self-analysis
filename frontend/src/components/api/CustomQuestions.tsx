@@ -42,7 +42,14 @@ const fetchCustomQuestions = async (method: string, endpoint: string, props: Cus
         } else {
             const errorData = await res.json();
             console.error("Server Response:", errorData);
-            throw new Error(`Failed to fetch data from customquestions`);
+            if (errorData.text && errorData.age) throw new Error(`${errorData.text}, ${errorData.age}`)
+            if (errorData.text) throw new Error(errorData.text);
+            if (errorData.age) throw new Error(errorData.age);
+            // let errorMsg = [];
+            // if (errorData.text) errorMsg.push(errorData.text);
+            // if (errorData.age) errorMsg.push(errorData.age);
+            // throw errorMsg;
+
 
 
         }

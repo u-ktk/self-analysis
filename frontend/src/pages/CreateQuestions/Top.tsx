@@ -29,11 +29,11 @@ const CreateCustomQuestions = () => {
     const onSubmit = async (data: FormData) => {
         const { text, age, answers, folders } = data;
         if (!accessToken || !userId) return;
-        console.log(folders)
+        // console.log(folders)
         try {
             const res = await createCustomQuestions({ accessToken, userId, text, age, answers });
             if (res) {
-                console.log(res);
+                // console.log(res);
                 setCustomQuestions(res);
                 setSuccessMessage(`${text}(${age})`);
             }
@@ -44,7 +44,6 @@ const CreateCustomQuestions = () => {
         } catch (error) {
             if (error instanceof Error) {
                 setErrorMessage(error.message);
-                console.log(errorMessage);
             }
         }
     }
@@ -55,13 +54,13 @@ const CreateCustomQuestions = () => {
         try {
             const res = await addFolderToCustomQuestion({ accessToken, userId, folders: folders, questionId });
             if (res) {
-                console.log(res);
+                // console.log(res);
                 setCustomQuestions(res);
             }
         } catch (error) {
             if (error instanceof Error) {
                 setErrorMessage(error.message);
-                console.log(errorMessage);
+                // console.log(errorMessage);
             }
         }
     }

@@ -8,6 +8,7 @@ import Select from 'react-select';
 import { getFolderList } from '../api/Folder';
 import style from '../styles/Common.module.css';
 import check from '../../images/icon/check.svg';
+import error from '../../images/icon/error.svg';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -47,7 +48,7 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
         }
         const selectedFolderValues = selectedOption.map((option: any) => option.value.toString());
         setSelectFolders(selectedFolderValues);
-        console.log(selectedFolderValues)
+        // console.log(selectedFolderValues)
     };
 
     // フォームの送信時の処理
@@ -111,13 +112,23 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
 
                 <div className={formStyle.description}>
                     <h4 className={formStyle.title}>質問を作る</h4>
+                    {/* エラーメッセージ表示 */}
+                    {errorMessage &&
+                        <Alert className={formStyle.alert}>
+                            <span>
+                                <img alt="エラー" src={error} width="40" height="40"></img>
+                            </span>
+                            <div className={formStyle.msg}>
 
+                                {errorMessage}
+                            </div>
+                        </Alert>}
                     {successMessage &&
                         <Alert variant='primary' className={formStyle.alert}>
                             <span>
                                 <img alt="作成成功" src={check} width="40" height="40"></img>
                             </span>
-                            <div className={formStyle.successMsg}>
+                            <div className={formStyle.msg}>
                                 <span style={{ fontWeight: 'bold' }}>
                                     {successMessage}
                                 </span>
@@ -143,7 +154,7 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
 
                 <Form className={formStyle.form} onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
-                        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+
 
                         <div className={`form-group ${formStyle.formGroup}`}>
                             <label htmlFor="text">質問<span style={{ color: '#AC8D73' }}>*</span></label>

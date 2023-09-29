@@ -108,6 +108,11 @@ class QuestionSerializer(serializers.ModelSerializer):
                     'max_length': '質問は255文字以下にしてください',
                 }
             },
+            'age': {
+                'error_messages': {
+                    'blank': '年代は空にできません',
+                }
+            },
             # フォルダーnull許可
             'folders': {
                 'required': False 

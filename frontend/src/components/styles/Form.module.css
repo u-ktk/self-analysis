@@ -52,7 +52,7 @@
 
 }
 
-.successMsg {
+.msg {
     flex: 1;
     white-space: normal;
     overflow-wrap: break-word;
