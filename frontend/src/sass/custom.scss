@@ -19,7 +19,7 @@ $table-bg-variant: (
     "success": #F29950,
     "info": #8F7A59,
     "warning": #E8DBD1,
-    "danger": #6b432394,
+    "danger": #8F7A59,
     "light": #E8DBD1,
     "dark": #AC8D73,
 );
@@ -29,6 +29,17 @@ $link-color: #F29950;
 
 $pagination-color: #6B4423;
 $pagination-active-bg: #6B4423;
+
+
+$input-focus-border-color: #DEE2E6;
+$input-focus-bg: #FAFAFA;
+$input-border-color: #DEE2E6;
+// 入力中の枠線の色を変更（大事）
+$input-btn-focus-box-shadow: #DEE2E6;
+$input-btn-focus-color: #6B4423;
+// $input-btn-focus-bg: #E8DBD1;
+// $input-btn-focus-border-color: #E8DBD1;
+
 
 
 // @import '~bootstrap/scss/bootstrap';

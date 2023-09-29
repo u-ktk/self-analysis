@@ -31,12 +31,12 @@ const LoginForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
                 </div>
 
                 <div className={formStyle.formGroup}>
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">パスワード:</label>
                     <input type="password" className="form-control border" placeholder="******" {...register("password", { required: "Password is required" })} />
                     {errors.password && <p className="text-danger">{errors.password.message}</p>}
                 </div>
 
-                <Button className={formStyle.button} variant="primary" type="submit">ログイン</Button>
+                <Button className={formStyle.button} variant="outline-primary" type="submit">ログイン</Button>
             </Form>
 
             {errorMessage && <p className={style.errorMsg}>{errorMessage}</p>}

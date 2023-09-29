@@ -34,7 +34,6 @@ const FolderDetail = () => {
             }
             if (res) {
                 setFolderDetail(res[0])
-                console.log(folderDetail)
 
             }
         } catch (err: any) {
@@ -66,18 +65,16 @@ const FolderDetail = () => {
                     {folderDetail?.questions ? (
                         <>
                             <div>
-                                {folderDetail.questions.map((question: Question, index: number) => (
+                                {folderDetail.questions && folderDetail.questions.map((question: Question, index: number) => (
                                     <div key={question.id}>
                                         {/* 最初の質問 or カテゴリー名が前回と異なるときに表示 */}
-                                        {index === 0 || question.category_name !== folderDetail.questions[index - 1].category_name ? (
+                                        {(question.category_name && index === 0) || (index > 0 && folderDetail.questions[index - 1] && question.category_name !== folderDetail.questions[index - 1].category_name) ? (
                                             <div className={detailStyles.category}>{question.category_name}</div>
-
                                         ) : null}
 
                                         {/* [自分で作成した質問]も初回のみ表示 */}
-                                        {folderDetail.questions[index].category_name == null && folderDetail.questions[index - 1].category_name !== null ? (
+                                        {index > 0 && folderDetail.questions[index].category_name == null && folderDetail.questions[index - 1].category_name !== null ? (
                                             <div className={detailStyles.category}>自分で作成した質問</div>
-
                                         ) : null}
 
                                         {/* デフォルト質問なら質問の番号表示、カスタム質問ならメモアイコン追加 */}

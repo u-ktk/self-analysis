@@ -3,7 +3,7 @@ import { useAuth } from '../auth/Auth';
 import style from '../styles/Common.module.css'
 import userInfoStyle from '../styles/UserInfo.module.css'
 import { changeUserInfo } from '../api/UserInfo';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button, Row, Col, Form } from 'react-bootstrap';
 
 type authInfo = {
     accessToken: string | null;
@@ -97,14 +97,17 @@ const UserInfo = (props: authInfo) => {
                                 <div className={userInfoStyle.value}>{showName || userName}</div>
 
                             ) : (
-                                <div className={userInfoStyle.form}>
+                                <Form
+                                    className={userInfoStyle.form}
+                                >
                                     <input
                                         type="text"
                                         value={changeName || ""}
                                         onChange={(e) => setChangeName(e.target.value)}
                                     />
+                                </Form>
 
-                                </div>
+                                // </div>
                             )}
                         </>
                     ) : (
@@ -133,12 +136,12 @@ const UserInfo = (props: authInfo) => {
                     <Col xs={3}>
                         {!isNameEditing ? (
                             <div className={userInfoStyle.editButton}>
-                                <Button onClick={nameChangeClick} className={style.miniButton} size="sm" variant="danger">編集する</Button>
+                                <Button onClick={nameChangeClick} className={style.lightButton} size="sm" variant="outline-primary">編集する</Button>
                             </div>
                         ) : (
                             <div className={userInfoStyle.editButton}>
-                                <Button className={style.miniButton} size="sm" onClick={() => nameSaveClick(changeName ?? "")} variant="danger">保存</Button>
-                                <Button className={style.miniButton} size="sm" onClick={nameChangeClick} variant="warning">キャンセル</Button>
+                                <Button className={style.darkButton} size="sm" onClick={() => nameSaveClick(changeName ?? "")} variant="primary" >保存</Button>
+                                <Button className={style.lightButton} size="sm" onClick={nameChangeClick} variant="outline-primary">キャンセル</Button>
                             </div>
                         )
                         }
@@ -161,13 +164,13 @@ const UserInfo = (props: authInfo) => {
 
                         {!isEmailEditing ? (
                             <div className={userInfoStyle.editButton}>
-                                <Button onClick={emailChangeClick} className={style.miniButton} size="sm" variant="danger">編集する</Button>
+                                <Button onClick={emailChangeClick} className={style.lightButton} size="sm" variant="outline-primary">編集する</Button>
                             </div>
                         )
                             : (
                                 <div className={userInfoStyle.editButton}>
-                                    <Button className={style.miniButton} size="sm" onClick={() => emailSaveClick(changeEmail ?? "")}>保存</Button>
-                                    <Button className={style.miniButton} size="sm" onClick={emailChangeClick} variant="warning">キャンセル</Button>
+                                    <Button className={style.darkButton} size="sm" variant="primary" onClick={() => emailSaveClick(changeEmail ?? "")}>保存</Button>
+                                    <Button className={style.lightButton} size="sm" onClick={emailChangeClick} variant="outline-primary">キャンセル</Button>
                                 </div>
                             )}
                     </Col>

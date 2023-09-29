@@ -36,21 +36,35 @@
 .form {
     width: 80%;
 
+
 }
+
+
 
 .formGroup {
     padding: 10px 0;
 }
 
 .button {
-    margin-top: 30px;
+    margin-top: 20px;
     box-shadow: 0 2px 2px #E8DBD1;
 }
 
 .button:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     opacity: 0.8;
+    background-color: white;
+    color: #6B4423;
 }
+
+.button:active:focus {
+    transform: translateY(-1px);
+    opacity: 0.8;
+    background-color: white;
+    color: #6B4423;
+}
+
+
 
 @media (max-width: 960px) {
     .bg {

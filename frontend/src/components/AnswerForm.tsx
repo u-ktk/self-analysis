@@ -19,6 +19,8 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
 
     return (
         <div>
+            <h3>このページは未実装</h3>
+
             <Form className='w-100 mx-auto' onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label htmlFor="">回答</label>

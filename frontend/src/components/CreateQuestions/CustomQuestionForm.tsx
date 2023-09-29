@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Question, Answer } from '../../types';
-import { Button, Form, Dropdown } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import open from '../../images/icon/open.svg';
 import formStyle from '../styles/Form.module.css';
 import { useAuth } from '../auth/Auth';
+import Select from 'react-select';
+import { getFolderList } from '../api/Folder';
+import style from '../styles/Common.module.css';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 type Props = {
+    accessToken: string | null;
+    userId: string | null;
     onSubmit: SubmitHandler<FormData>;
     errorMessage: string | null;
 };
@@ -15,34 +20,88 @@ type Props = {
 type FormData = {
     text: string;
     age?: string;
-    folder?: string | undefined;
+    folders?: string[] | undefined;
     answer?: Answer | undefined;
 };
 
-const CustomQuestionForm: React.FC<Props> = ({ onSubmit: onSubmitHandler, errorMessage }) => {
+const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: onSubmitHandler, errorMessage }) => {
     const { register, handleSubmit, formState: { errors }, control } = useForm<FormData>();
 
     const [selectAge, setSelectAge] = useState<string>("");
-    const [selectFolder, setSelectFolder] = useState<string>("");
-    const { accessToken } = useAuth();
+    const [selectFolders, setSelectFolders] = useState<string[] | undefined>(undefined);
+    // const { accessToken, userId } = useAuth();
+    const [folderOptions, setFolderOptions] = useState<any[]>([]);
 
     // 年代の設定
-    const handleAgeSelection = (selectedAge: string) => {
-        setSelectAge(selectedAge);
+    const handleAgeSelection = (selectedAge: any) => {
+        setSelectAge(selectedAge.value);
     };
 
     // フォルダの設定
-    const handleFolderSelection = (selectedFolder: string) => {
-        setSelectFolder(selectedFolder);
+    const handleFolderSelection = (selectedOption: any) => {
+        if (!selectedOption) {
+            setSelectFolders([]);
+            return;
+        }
+        const selectedFolderValues = selectedOption.map((option: any) => option.value.toString());
+        setSelectFolders(selectedFolderValues);
+        console.log(selectedFolderValues)
     };
 
     // フォームの送信時の処理
     const onSubmit = (data: FormData) => {
         // 選択された年代とフォルダをフォームデータに追加
         data.age = selectAge;
-        data.folder = selectFolder;
+        data.folders = selectFolders;
         onSubmitHandler(data);
     };
+
+    // 年代の選択肢
+    const ageOptions = [
+        "幼少期",
+        "小学校",
+        "中学校",
+        "高校",
+        "大学",
+        "社会人（20代）",
+        "現在",
+        "未来",
+    ].map((age) => {
+        return { value: age, label: age };
+    }
+    );
+
+
+    // フォルダ一覧を取得
+    useEffect(() => {
+        if (!accessToken || !userId) {
+            return;
+        }
+        const fetchData = async () => {
+            if (!accessToken) {
+                return;
+            }
+            try {
+                const res = await getFolderList({ accessToken, userId });
+                if (res) {
+                    const folderOptions = res.map((folder) => {
+
+                        return { value: folder.id, label: folder.name };
+                    });
+                    setFolderOptions(folderOptions);
+                }
+            } catch (err: any) {
+                console.log(err.message);
+            }
+        };
+        fetchData();
+    },
+        [accessToken, userId]
+    );
+
+
+
+
 
     return (
         <>
@@ -68,53 +127,123 @@ const CustomQuestionForm: React.FC<Props> = ({ onSubmit: onSubmitHandler, errorM
                     <div className="form-group">
                         {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
-                        <div className={formStyle.formGroup}>
-                            <label htmlFor="">質問<span style={{ color: '#AC8D73' }}>*</span></label>
-                            <input type="textarea" className="form-control border" {...register("text")} />
+                        <div className={`form-group ${formStyle.formGroup}`}>
+                            <label htmlFor="text">質問<span style={{ color: '#AC8D73' }}>*</span></label>
+                            <div className={`wideForm ${formStyle.wideForm}`}>
+                                <input
+                                    type="text"
+                                    className='form-control'
+                                    {...register("text")}
+                                />
+                            </div>
                         </div>
+
                         <div className={formStyle.formGroup}>
                             <label htmlFor="">年代<span style={{ color: '#AC8D73' }}>*</span></label>
-                            <Dropdown>
-                                <Dropdown.Toggle
-                                    style={{ backgroundColor: '#FAFAFA', color: 'black', borderColor: '#dddddd' }}
-                                    id="dropdown-basic"
-                                >
-                                    {selectAge ? selectAge : <span style={{ color: '#555555' }}>年代を選択</span>}
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item onClick={() => handleAgeSelection('幼少期')}>幼少期</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => handleAgeSelection('小学校')}>小学校</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => handleAgeSelection('中学校')}>中学校</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => handleAgeSelection('高校')}>高校</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => handleAgeSelection('大学')}>大学</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => handleAgeSelection('社会人（20代）')}>社会人（20代）</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => handleAgeSelection('現在')}>現在</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => handleAgeSelection('未来')}>未来</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            <Select
+                                value={ageOptions.find(option => option.value === selectAge)}
+                                onChange={handleAgeSelection}
+                                options={ageOptions}
+                                placeholder="年代を選択"
+                                theme={(theme) => ({
+                                    ...theme,
+                                    borderRadius: 5,
+                                    colors: {
+                                        // ホバーしたときの色変更
+                                        ...theme.colors,
+                                        primary25: '#DEE2E6',
+                                        primary: '#DEE2E6',
+                                    },
+                                })
+                                }
+                                styles={{
+                                    // 枠線の背景色変更
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: '#FAFAFA',
+                                        borderColor: '#DEE2E6',
+                                        '&hover': {
+                                            borderColor: '#DEE2E6',
+                                        }
+                                    }),
+                                    option: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: '#FAFAFA',
+                                        '&:hover': {
+                                            backgroundColor: 'white',
+                                        },
+                                    }),
+                                }}
+
+
+                            />
                         </div>
                         <div className={formStyle.formGroup}>
                             <label htmlFor="">フォルダ</label>
-                            <Dropdown>
-                                <Dropdown.Toggle
-                                    style={{ backgroundColor: '#FAFAFA', color: 'black', borderColor: '#dddddd' }}
-                                    id="dropdown-basic-folder"
-                                >
-                                    {selectFolder ? selectFolder : <span style={{ color: '#555555' }}>フォルダを選択</span>}
+                            <Select
+                                isMulti
+                                options={folderOptions}
+                                onChange={handleFolderSelection}
+                                placeholder="フォルダを選択もしくは検索"
+                                noOptionsMessage={() => "選択肢がありません"}
+                                theme={(theme) => ({
+                                    ...theme,
+                                    borderRadius: 5,
+                                    colors: {
+                                        // ホバーしたときの色変更
+                                        ...theme.colors,
+                                        primary25: '#DEE2E6',
+                                        primary: '#DEE2E6',
+                                    },
 
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item onClick={() => handleFolderSelection('お気に入り')}>お気に入り</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => handleFolderSelection('あとで回答する')}>あとで回答する</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                                })
+                                }
+
+                                styles={{
+                                    // 枠線の背景色変更
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: '#FAFAFA',
+                                        borderColor: '#DEE2E6',
+                                        '&hover': {
+                                            borderColor: '#DEE2E6',
+                                        }
+
+                                    }),
+                                    // 選択肢の背景色変更
+                                    option: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        backgroundColor: '#FAFAFA',
+                                        '&:hover': {
+                                            backgroundColor: 'white',
+                                        },
+                                    }),
+                                    // 削除ボタンの色変更
+                                    multiValueRemove: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        color: '#AC8D73',
+                                        '&:hover': {
+                                            color: '#AC8D73',
+                                            backgroundColor: '#E8DBD1',
+
+                                        },
+                                    }),
+                                    multiValue: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        // backgroundColor: '#e8dbd195',
+                                    }),
+
+
+                                }}
+                            />
                         </div>
+
                         <div className={formStyle.formGroup}>
                             <label htmlFor="">回答</label>
                             <textarea className="form-control border" {...register("answer")} rows={4} />
                         </div>
 
-                        <Button type="submit" className={formStyle.button}>作成</Button>
+                        <Button type="submit" className={`mt-2 ${style.darkButton}`} variant="primary">作成</Button>
                     </div>
                 </Form>
             </div>

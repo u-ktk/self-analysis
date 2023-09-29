@@ -32,6 +32,8 @@ urlpatterns = [
     
     path('questioncategories/', views.QuestionCategoryListView.as_view(),
          name='questioncategories'),
+    path('customquestions/<int:question_id>/add_folder/', views.update_folders_for_custom_questions,
+         name='add_folder'),
     path('token/', views.CustomTokenObtainPairView.as_view(),
          name='token_obtain_pair'),
 

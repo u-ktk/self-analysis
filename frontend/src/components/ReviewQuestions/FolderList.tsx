@@ -104,10 +104,11 @@ const FolderList = (props: authInfo) => {
                 </div>
             }
 
-
             <div className={styles.bg}>
                 <h4 className={styles.title}>フォルダ一覧</h4>
                 <div className={listStyles.contents}>
+
+                    {/* フォルダを表示 */}
                     {folders.map((folder) => (
                         <div key={folder.id} className={listStyles.row} >
                             <a href={`/folders/detail/?user=${userId}&name=${folder.name}`}
@@ -115,13 +116,18 @@ const FolderList = (props: authInfo) => {
                                 {folder.name}
                                 ({folder.questions.length})
                             </a>
+                            {/* フォルダの削除アイコン　　質問が入っていなかったらそのまま削除、入っていたらModalを出す*/}
                             <span >
-                                <img onClick={() => { folder.questions.length !== 0 ? handleDeleteClick(folder.id) : folderDeleteClick(folder.id) }
+                                <img onClick={() => {
+                                    folder.questions.length !== 0 ?
+                                        handleDeleteClick(folder.id) : folderDeleteClick(folder.id)
+                                }
                                 } src={trashIcon} className={listStyles.trashIcon} alt='check' />
                             </span>
                         </div>
                     ))}
 
+                    {/* フォルダ追加 */}
                     <div>
                         {!isFolderAdding ? (
                             <div className={`mt-3 ${listStyles.row}`}>
@@ -131,22 +137,23 @@ const FolderList = (props: authInfo) => {
                                 </span>
                             </div>
                         ) : (
-                            <>
+                            <div className={`mt-3 ${listStyles.row}`}>
                                 <input
                                     type="text"
                                     value={newFolder || ""}
                                     onChange={(e) => setNewFolder(e.target.value)}
                                     placeholder="フォルダ名を入力"
-                                    className={`mt-3 ${listStyles.form}`}
+                                    className={`form-control border ${listStyles.form}`}
                                 />
                                 <Button onClick={() => addFolderAndUpdateList(newFolder)} className={styles.miniButton} size="sm" variant="danger">追加</Button>
                                 <Button onClick={folderAddClick} className={styles.miniButton} size="sm" variant="warning">キャンセル</Button>
 
-                            </>
+                            </div>
 
                         )}
                     </div>
 
+                    {/* フォルダ削除確認のモーダル */}
                     <Modal show={showModal} onHide={() => setShowModal(false)}>
                         <Modal.Header closeButton>
                             <Modal.Title>フォルダ削除の確認</Modal.Title>

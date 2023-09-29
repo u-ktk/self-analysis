@@ -8,6 +8,7 @@ from rest_framework_simplejwt import authentication
 from rest_framework import permissions, generics, viewsets, exceptions, status
 from rest_framework.pagination import LimitOffsetPagination
 from django_filters import rest_framework as filters
+from rest_framework.decorators import api_view
 
 # from django.db.models import Q
 
@@ -46,6 +47,16 @@ class UserUpdate(generics.UpdateAPIView):
     authentication_classes = (authentication.JWTAuthentication,)
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    
+class CustomQuestionsFilter(filters.FilterSet):
+    
+        class Meta:
+            model = Question
+            fields = {
+                'text': ['icontains'],
+                'age': ['icontains'],
+                'user': ['exact'],
+            }
 
 class CustomQuestionViewSet(viewsets.ModelViewSet):
     # is_default == Falseの時
@@ -54,12 +65,38 @@ class CustomQuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.filter(is_default=False)
     serializer_class = QuestionSerializer
     filter_backends = [filters.DjangoFilterBackend]
-    filterset_fields = 'text', 'age'
+    filterset_fields = 'text', 'age', 'user'
+    filterset_class = CustomQuestionsFilter
     pagination_class = LimitOffsetPagination
 
     # カスタム質問とユーザー紐付け
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+    
+        
+
+# 質問に複数のフォルダ追加(ただのPATCHだと１つずつしかできない？)
+@api_view(['PATCH'])
+def update_folders_for_custom_questions(request, question_id):
+    folders = request.data.get('folders')
+    # JSON文字列のリストをPythonのリストに変換
+    if isinstance(folders, str):
+        try:
+            import json
+            folders = json.loads(folders)
+        except json.JSONDecodeError:
+            return HttpResponse({"error": "Invalid format for folders"}, status=status.HTTP_400_BAD_REQUEST)
+    if not folders:
+      return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        question = Question.objects.get(pk=question_id)
+        current_folders = list(question.folders.values_list('id', flat=True))
+        combined_folders = list(set(current_folders + folders))
+        question.folders.set(combined_folders)
+    except Question.DoesNotExist:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+    return HttpResponse(status=status.HTTP_200_OK)
+    
 
 
 class DefaultQuestionsFilter(filters.FilterSet):

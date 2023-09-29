@@ -24,7 +24,7 @@ const Logout = () => {
             <div className={style.bg}>
                 <h4 className={style.title}>ログアウト</h4>
                 <div style={{ "marginLeft": "100px" }}>
-                    <Button className={style.button} variant='danger' onClick={() => setShowModal(true)}>ログアウトする</Button>
+                    <Button className={style.lightButton} variant='outline-primary' onClick={() => setShowModal(true)}>ログアウトする</Button>
                 </div>
                 <Modal show={showModal} onHide={() => setShowModal(false)}>
                     <Modal.Header closeButton>
@@ -34,10 +34,10 @@ const Logout = () => {
                         ログアウトしますか？
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button className={style.button} variant="warning" onClick={() => setShowModal(false)}>
+                        <Button className={style.lightButton} variant="outline-primary" onClick={() => setShowModal(false)}>
                             キャンセル
                         </Button>
-                        <Button className={style.button} variant="danger" onClick={handleLogout}>
+                        <Button className={style.darkButton} variant="primary" onClick={handleLogout}>
                             ログアウト
                         </Button>
                     </Modal.Footer>

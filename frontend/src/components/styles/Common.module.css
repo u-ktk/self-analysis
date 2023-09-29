@@ -1,26 +1,42 @@
-.button {
-    margin-top: 20px;
+.lightButton {
     box-shadow: 0 2px 2px #E8DBD1;
 }
 
 
-.button:hover {
+.lightButton:hover {
     transform: translateY(-1px);
     opacity: 0.8;
+    background-color: white;
+    color: #6B4423;
 }
 
-.miniButton {
-    /* width: 40px; */
-    height: auto;
-    box-shadow: 0 1px 2px #6b43237b;
-    padding: 5px 10px;
-    margin: 0 5px;
-}
-
-.miniButton:hover {
+.lightButton:active:focus {
     transform: translateY(-1px);
     opacity: 0.8;
+    background-color: white;
+    color: #6B4423;
 }
+
+
+.darkButton {
+    box-shadow: 0 2px 2px #E8DBD1;
+}
+
+.darkButton:hover {
+    transform: translateY(-1px);
+    opacity: 0.8;
+    background-color: #6B4423;
+    color: white;
+}
+
+.darkButton:active:focus {
+    transform: translateY(-1px);
+    opacity: 0.8;
+    background-color: #6B4423;
+    color: white;
+}
+
+
 
 .title {
     margin-bottom: 30px;

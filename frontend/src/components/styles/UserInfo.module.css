@@ -38,6 +38,20 @@
 
 }
 
+.form input[type="text"] {
+    background-color: #FAFAFA;
+    border: 1px solid #DEE2E6;
+}
+
+.form input[type="text"]:focus {
+    outline: #DEE2E6;
+}
+
+.form input[type="text"]:hover {
+    border: 1px solid #cccccc;
+
+}
+
 
 
 @media (max-width: 960px) {

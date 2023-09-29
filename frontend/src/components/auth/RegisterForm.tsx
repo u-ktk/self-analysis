@@ -26,24 +26,24 @@ const RegisterForm: React.FC<Props> = ({ onSubmit, errorMessages }) => {
                 </h3>
 
                 <div className={formStyle.formGroup}>
-                    <label htmlFor="username">Username:</label>
-                    <input type="text" className="form-control border" placeholder="username" {...register("username", { required: "Username is required" })} />
+                    <label htmlFor="username">ユーザー名:</label>
+                    <input type="text" className="form-control border" placeholder="ユーザー名を入力" {...register("username", { required: "Username is required" })} />
                     {errors.username && <p className="text-danger">{errors.username.message}</p>}
                 </div>
 
                 <div className={formStyle.formGroup}>
                     <label htmlFor="email">Email:</label>
-                    <input type="email" className="form-control border" placeholder="email" {...register("email", { required: "Email is required" })} />
+                    <input type="email" className="form-control border" placeholder="xxx@example.com" {...register("email", { required: "Email is required" })} />
                     {errors.email && <p className="text-danger">{errors.email.message}</p>}
                 </div>
 
                 <div className={formStyle.formGroup}>
-                    <label htmlFor="password">Password(6文字以上):</label>
-                    <input type="password" className="form-control border" placeholder="password" {...register("password", { required: "Password is required" })} />
+                    <label htmlFor="password">パスワード(6文字以上):</label>
+                    <input type="password" className="form-control border" placeholder="******" {...register("password", { required: "Password is required" })} />
                     {errors.password && <p className="text-danger">{errors.password.message}</p>}
                 </div>
 
-                <Button className={formStyle.button} variant="primary" type="submit" >Register</Button>
+                <Button className={formStyle.button} variant="outline-primary" type="submit" >登録</Button>
             </Form>
             <div className={style.errorMsg}>
                 {errorMessages &&

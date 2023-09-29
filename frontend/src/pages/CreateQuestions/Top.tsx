@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../components/auth/Auth';
-import { Answer } from "../../types";
+import { Answer, Question } from "../../types";
 import CustomQuestionForm from '../../components/CreateQuestions/CustomQuestionForm';
 import HeadTitle from '../../components/layouts/HeadTitle';
 import NoLogin from '../../components/auth/NoLogin';
+import CustomQuestionList from '../../components/CreateQuestions/CustomQuestionList';
+import { addFolderToCustomQuestion, createCustomQuestions } from '../../components/api/CustomQuestions';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -11,43 +13,55 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 type FormData = {
     text: string
     age?: string
-    folder?: string | undefined;
-    answers?: Answer | undefined;
+    folders?: string[] | undefined;
+    answers?: string[] | undefined;
 }
 
 
 const CreateCustomQuestions = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const { accessToken, userId } = useAuth();
+    const [customQuestions, setCustomQuestions] = useState<Question[] | null>(null);
 
 
 
     const onSubmit = async (data: FormData) => {
-        const { text, age, answers, folder } = data;
-        // postするurl確認
-        const url = `${BACKEND_URL}customquestions/`;
+        const { text, age, answers, folders } = data;
+        if (!accessToken || !userId) return;
+        console.log(folders)
         try {
-            const res = await fetch(url, {
-                method: 'POST',
-                body: JSON.stringify({ text, age, answers, folder }),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `JWT ${accessToken}`
-                }
-            });
-            if (res.ok) {
-                const responseData = await res.json();
-                console.log(responseData)
+            const res = await createCustomQuestions({ accessToken, userId, text, age, answers });
+            if (folders && res?.id) {
+                addFolder((folders?.map((folder) => parseInt(folder))), res.id);
+
             }
+
 
         } catch (error) {
             if (error instanceof Error) {
                 setErrorMessage(error.message);
                 console.log(errorMessage);
             }
-
         }
     }
+
+    const addFolder = async (folders: number[], questionId: number) => {
+
+        if (!accessToken || !userId) return;
+        try {
+            const res = await addFolderToCustomQuestion({ accessToken, userId, folders: folders, questionId });
+            if (res) {
+                console.log(res);
+                setCustomQuestions(res);
+            }
+        } catch (error) {
+            if (error instanceof Error) {
+                setErrorMessage(error.message);
+                console.log(errorMessage);
+            }
+        }
+    }
+
 
     return (
         <div>
@@ -56,7 +70,11 @@ const CreateCustomQuestions = () => {
 
                     <HeadTitle title='質問を作る' />
 
-                    <CustomQuestionForm onSubmit={onSubmit} errorMessage={errorMessage} />
+                    <CustomQuestionForm accessToken={accessToken} userId={userId} onSubmit={onSubmit} errorMessage={errorMessage} />
+                    <CustomQuestionList accessToken={accessToken} userId={userId} />
+                    {/* {responseData ? (
+                        
+                    ) : ( */}
                 </>
             ) : (
                 <NoLogin />
