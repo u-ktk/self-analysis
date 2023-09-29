@@ -32,3 +32,20 @@ def create_json():
 
 
 create_json()
+
+
+# 以下、jsonファイルのインポート方法
+# for item in data['questions']:
+#     question = Question(
+#         category = QuestionCategory.objects.get(pk=item['categoryId']),
+#         text=item['text'],
+#         age=item['subcategory'],
+#         is_default=item['isDefault']
+#     )
+#     question.save()
+    
+# with open('path', 'r') as file:
+#     categories = json.load(file)
+    
+# with open('path', 'r') as file:
+#     data = json.load(file)
