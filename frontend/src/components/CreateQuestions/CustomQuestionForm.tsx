@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Question, Answer } from '../../types';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 import open from '../../images/icon/open.svg';
 import formStyle from '../styles/Form.module.css';
 import { useAuth } from '../auth/Auth';
 import Select from 'react-select';
 import { getFolderList } from '../api/Folder';
 import style from '../styles/Common.module.css';
+import check from '../../images/icon/check.svg';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -15,6 +16,7 @@ type Props = {
     userId: string | null;
     onSubmit: SubmitHandler<FormData>;
     errorMessage: string | null;
+    successMessage: string | null;
 };
 
 type FormData = {
@@ -24,7 +26,7 @@ type FormData = {
     answer?: Answer | undefined;
 };
 
-const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: onSubmitHandler, errorMessage }) => {
+const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: onSubmitHandler, successMessage, errorMessage }) => {
     const { register, handleSubmit, formState: { errors }, control } = useForm<FormData>();
 
     const [selectAge, setSelectAge] = useState<string>("");
@@ -106,8 +108,24 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
     return (
         <>
             <div className={formStyle.bg}>
+
                 <div className={formStyle.description}>
                     <h4 className={formStyle.title}>質問を作る</h4>
+
+                    {successMessage &&
+                        <Alert variant='primary' className={formStyle.alert}>
+                            <span>
+                                <img alt="作成成功" src={check} width="40" height="40"></img>
+                            </span>
+                            <div className={formStyle.successMsg}>
+                                <span style={{ fontWeight: 'bold' }}>
+                                    {successMessage}
+                                </span>
+                                を作成しました
+                            </div>
+                        </Alert>
+                    }
+
                     <div>「メモの魔力」で用意されていないオリジナル質問を作成することができます。</div>
                     <div>
                         &nbsp;使い方の例は

@@ -33,13 +33,35 @@
     line-height: 30px;
 }
 
+.alert {
+    background-color: #FAFAFA;
+    border: none;
+    box-shadow: #E8DBD1 0 2px 2px;
+    color: #6B4423;
+    margin: 30px 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+
 .form {
     width: 80%;
 
 
 }
 
+.successMsg {
+    flex: 1;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin: 0 10px;
+    /* alertの枠からはみ出るのを防ぐ */
+    max-width: 100%;
 
+}
 
 .formGroup {
     padding: 10px 0;
@@ -74,4 +96,7 @@
     .contents {
         width: 100%;
     }
+
+
+
 }

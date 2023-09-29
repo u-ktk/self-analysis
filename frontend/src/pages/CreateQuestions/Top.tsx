@@ -21,7 +21,8 @@ type FormData = {
 const CreateCustomQuestions = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const { accessToken, userId } = useAuth();
-    const [customQuestions, setCustomQuestions] = useState<Question[] | null>(null);
+    const [customQuestions, setCustomQuestions] = useState<Question | null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
 
 
@@ -31,12 +32,15 @@ const CreateCustomQuestions = () => {
         console.log(folders)
         try {
             const res = await createCustomQuestions({ accessToken, userId, text, age, answers });
+            if (res) {
+                console.log(res);
+                setCustomQuestions(res);
+                setSuccessMessage(`${text}(${age})`);
+            }
             if (folders && res?.id) {
                 addFolder((folders?.map((folder) => parseInt(folder))), res.id);
 
             }
-
-
         } catch (error) {
             if (error instanceof Error) {
                 setErrorMessage(error.message);
@@ -70,7 +74,7 @@ const CreateCustomQuestions = () => {
 
                     <HeadTitle title='質問を作る' />
 
-                    <CustomQuestionForm accessToken={accessToken} userId={userId} onSubmit={onSubmit} errorMessage={errorMessage} />
+                    <CustomQuestionForm accessToken={accessToken} userId={userId} onSubmit={onSubmit} successMessage={successMessage} errorMessage={errorMessage} />
                     <CustomQuestionList accessToken={accessToken} userId={userId} />
                     {/* {responseData ? (
                         
