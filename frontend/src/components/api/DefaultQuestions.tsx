@@ -14,7 +14,7 @@ type DefaultQuestionDetailListProps = {
 
 type addFolderProps = {
     accessToken: string;
-    folder: number;
+    folders: number[];
     questionId: number;
 }
 
@@ -39,12 +39,14 @@ const fetchDefaultQuestions = async (method: string, endpoint: string, props: fe
             },
             body: body,
         });
+        // console.log(body)
+        // console.log("res:" + res.status, res.headers.get("content-length"))
         if (res.headers.get("content-length") === "0" || res.status === 204) {
             return null;
         }
         if (res.ok) {
             const responseData = await res.json();
-            console.log(responseData);
+            // console.log(responseData);
             return responseData;
         } else {
             const errorData = await res.json();
@@ -71,32 +73,16 @@ const getDefaultQuestions = async (props: DefaultQuestionDetailListProps): Promi
     }
 }
 
-
-
-
-
-//         const searchParams = new URLSearchParams();
-//         searchParams.set('text__icontains', props.text || '');
-//         searchParams.set('age__icontains', props.age || '');
-
-
-//         const res = await fetch(`${BACKEND_URL}defaultquestions/?${searchParams}`,
-//             {
-//                 headers: {
-//                     'Authorization': `JWT ${props.accessToken}`
-//                 }
-//             });
-//         if (!res.ok) {
-//             throw new Error("Failed to fetch default questions");
-//         }
-//         return res.json();
-//     } catch (error) {
-//         console.log(error);
-//         return [];
-//     }
-// }
-
-
+const getDefaultQuestionDetail = async (props: DefaultQuestionDetailListProps, questionId: string): Promise<Question | null> => {
+    try {
+        const endpoint = `defaultquestions/${questionId}/`;
+        const res = await fetchDefaultQuestions('GET', endpoint, props);
+        return res;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
 
 
 const getCategoryList = async (accessToken: string): Promise<string[] | null> => {
@@ -115,16 +101,22 @@ const getCategoryList = async (accessToken: string): Promise<string[] | null> =>
 }
 
 const addDefaultQToFolder = async (props: addFolderProps) => {
-    const endpoint = `customquestions/${props.questionId}/add_folder/`;
-    return fetchDefaultQuestions('PATCH', endpoint, props, JSON.stringify({ folder: props.folder }));
+    const endpoint = `defaultquestions/${props.questionId}/add_folder/`;
+    return fetchDefaultQuestions('PATCH', endpoint, props, JSON.stringify({ folders: props.folders }));
 }
 
 const removeDefaultQFromFolder = async (props: removeFolderProps) => {
-    const endpoint = `customquestions/${props.questionId}/remove_folder/`;
+    const endpoint = `defaultquestions/${props.questionId}/remove_folder/`;
     return fetchDefaultQuestions('POST', endpoint, props, JSON.stringify({ folder: props.folder }));
 }
 
 
-export { getDefaultQuestions, getCategoryList, addDefaultQToFolder, removeDefaultQFromFolder };
+export {
+    getDefaultQuestions,
+    getCategoryList,
+    getDefaultQuestionDetail,
+    addDefaultQToFolder,
+    removeDefaultQFromFolder
+};
 
 

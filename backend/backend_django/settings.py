@@ -97,6 +97,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # 本番以外の環境ではSQLiteを使用
         'NAME': BASE_DIR / 'db.sqlite3',
+        'CONN_MAX_AGE': 300, 
     }
 }
 

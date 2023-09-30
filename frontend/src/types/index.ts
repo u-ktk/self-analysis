@@ -3,7 +3,7 @@ export type Question = {
     category: number;
     category_name: string;
     age: string;
-    folders?: Folder[]
+    folders?: number[]
     text: string;
     answers: Answer[]
 };
