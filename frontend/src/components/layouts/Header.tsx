@@ -5,8 +5,10 @@ import searchActive from '../../images/icon/searchActive.svg';
 import searchInactive from '../../images/icon/searchInactive.svg';
 import createActive from '../../images/icon/createActive.svg';
 import createInactive from '../../images/icon/createInactive.svg';
-import historyActive from '../../images/icon/historyActive.svg';
-import historyInactive from '../../images/icon/historyInactive.svg';
+// import historyActive from '../../images/icon/historyActive.svg';
+// import historyInactive from '../../images/icon/historyInactive.svg';
+import folderActive from '../../images/icon/folderActive.svg';
+import folderInactive from '../../images/icon/folderInactive.svg';
 import helpActive from '../../images/icon/helpActive.svg';
 import helpInactive from '../../images/icon/helpInactive.svg';
 import myPageActive from '../../images/icon/myPageActive.svg';
@@ -43,10 +45,10 @@ const Header: React.FC = () => {
         iconInactive: searchInactive,
     });
 
-    const { icon: historyIcon, linkStyle: historyLinkStyle } = getIconAndLinkStyle({
+    const { icon: folderIcon, linkStyle: folderLinkStyle } = getIconAndLinkStyle({
         path: currentPath.startsWith('/review-questions') || currentPath.startsWith('/folders') ? currentPath : '',
-        iconActive: historyActive,
-        iconInactive: historyInactive,
+        iconActive: folderActive,
+        iconInactive: folderInactive,
     });
 
     const { icon: createIcon, linkStyle: createLinkStyle } = getIconAndLinkStyle({
@@ -88,9 +90,9 @@ const Header: React.FC = () => {
                 </div>
                 <div>
                     <a href="/review-questions"
-                        className={`m-3 ${historyLinkStyle} ${styles.content} ${styles.container}`}>
-                        <img alt="回答の履歴" src={historyIcon} width="32" height="32"></img>
-                        <div>回答の履歴</div>
+                        className={`m-3 ${folderLinkStyle} ${styles.content} ${styles.container}`}>
+                        <img alt="フォルダ一覧" src={folderIcon} width="32" height="32"></img>
+                        <div>フォルダ一覧</div>
                     </a>
                 </div>
                 <div>

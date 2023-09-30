@@ -90,9 +90,9 @@ def update_folders_for_custom_question(request, question_id):
       return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
     try:
         question = Question.objects.get(pk=question_id)
-        current_folders = list(question.folders.values_list('id', flat=True))
-        combined_folders = list(set(current_folders + folders))
-        question.folders.set(combined_folders)
+        # current_folders = list(question.folders.values_list('id', flat=True))
+        # combined_folders = list(set(current_folders + folders))
+        question.folders.set(folders)
     except Question.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
     return HttpResponse(status=status.HTTP_200_OK)
@@ -160,10 +160,24 @@ def update_folders_for_default_question(request, question_id):
       return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
     try:
         question = Question.objects.get(pk=question_id)
-        current_folders = list(question.folders.values_list('id', flat=True))
-        combined_folders = list(set(current_folders + folders))
-        question.folders.set(combined_folders)
+        # current_folders = list(question.folders.values_list('id', flat=True))
+        # combined_folders = list(set(current_folders + folders))
+        question.folders.set(folders)
     except Question.DoesNotExist:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+    return HttpResponse(status=status.HTTP_200_OK)
+
+# 質問にフォルダを１つずつ追加
+@api_view(['POST'])
+def add_folder_to_default_question(request, question_id):
+    folder = request.data.get('folder')
+    if not folder:
+        return HttpResponse({"error": "folder_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        question = Question.objects.get(pk=question_id)
+        folder = Folder.objects.get(pk=folder)
+        question.folders.add(folder)
+    except (Question.DoesNotExist, Folder.DoesNotExist):
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
     return HttpResponse(status=status.HTTP_200_OK)
 

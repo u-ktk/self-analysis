@@ -34,6 +34,7 @@ const CustomQuestionList = () => {
     const [folderList, setFolderList] = useState<Folder[]>([]);
 
 
+
     // トーストメニューを開く (以降の処理はDefaultQuestionList.tsxと同じだからコンポーネントにまとめたい...)
     const toggleToast = (e: React.MouseEvent, questionId: number) => {
         const x = e.clientX;
@@ -81,7 +82,7 @@ const CustomQuestionList = () => {
 
     // チェックボックスの状態を返す
     const isFolderIncluded = (folderId: number): boolean => {
-        // 普通順の質問リストから質問を取得　でいいよね？？
+        // 普通順の質問リストから質問を取得　
         const currentQuestion = questions[selectQuestionRef.current - 1];
         const isOriginallyIncluded = currentQuestion?.folders?.includes(folderId) ?? false;
         const isNowSelected = selectAddFolders.includes(folderId);
@@ -100,6 +101,7 @@ const CustomQuestionList = () => {
             // console.log('selectFolders:' + selectFolders)
             await addQuestionToFolder({ questions, selectQuestion, selectFolders, accessToken, userId, Addfunction: addCustomQToFolder });
             setSelectAddFolders([]);
+            setShowToast(false);
         }
     };
 
@@ -159,7 +161,16 @@ const CustomQuestionList = () => {
     }, [showToast, accessToken, selectAddFolders]);
 
 
-
+    // 画面サイズが変更されたら再レンダリング
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     // カスタム質問を取得
     useEffect(() => {
@@ -184,16 +195,10 @@ const CustomQuestionList = () => {
         fetchData();
     }, [accessToken, userId])
 
-    // 画面サイズが変更されたら再レンダリング
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+
+
+
+
 
 
 
@@ -211,8 +216,9 @@ const CustomQuestionList = () => {
                         <>
                             {/* 見出し */}
                             <div className={`${styles.menu} mb-4 `}>
-                                <a href='/review-questions' className={styles.link}>作成した質問から探す </a>
+                                <a href='/questions-list' className={styles.link}>作成した質問から探す </a>
                                 <span> &#62; </span>
+                                <span style={{ fontWeight: 'bold' }}>作成した質問一覧</span>
                             </div>
 
                             {/* トーストメニュー */}

@@ -32,7 +32,6 @@ const DefaultQuestionsList = () => {
 
     const [selectAddFolders, setSelectAddFolders] = useState<number[]>([]);
     const [folderList, setFolderList] = useState<Folder[]>([]);
-    const [selectRemoveFolder, setSelectRemoveFolder] = useState<number>(0);
 
     const selectQuestionRef = useRef<number>(0);
 
@@ -59,7 +58,15 @@ const DefaultQuestionsList = () => {
         const y = e.clientY;
         setToastPosition({ x, y });
         selectQuestionRef.current = questionId;
+        const currentQuestion = defaultQuestions[questionId - 1];
+        console.log(currentQuestion)
+        if (currentQuestions && currentQuestion.folders) {
+            setSelectAddFolders(currentQuestion.folders);
+        } else {
+            setSelectAddFolders([]);
+        }
         setShowToast(true);
+
     }
 
     // トーストメニュー閉じる
@@ -87,34 +94,49 @@ const DefaultQuestionsList = () => {
 
     // チェックボックスをクリック
     const handleCheckboxChange = (folderId: number) => {
-        // チェックされていない部分をクリックしたら
+
+        const currentQuestion = defaultQuestions[selectQuestionRef.current - 1];
+        const isOriginallyIncluded = currentQuestion?.folders?.includes(folderId) ?? false;
+
         setSelectAddFolders(prevFolders => {
-            if (prevFolders.includes(folderId)) {
-                return prevFolders.filter(id => id !== folderId);
+            // もともと含まれているフォルダをクリックした場合
+            if (isOriginallyIncluded) {
+                // もし現在選択されているフォルダに含まれていれば削除、そうでなければ追加
+                if (prevFolders.includes(folderId)) {
+                    return prevFolders.filter(id => id !== folderId);
+                } else {
+                    return [...prevFolders, folderId];
+                }
             } else {
-                return [...prevFolders, folderId];
+                // もともと含まれていないフォルダをクリックした場合
+                if (prevFolders.includes(folderId)) {
+                    return prevFolders.filter(id => id !== folderId);
+                } else {
+                    return [...prevFolders, folderId];
+                }
             }
         });
-    };
+        console.log("Updated selectAddFolders:", selectAddFolders);
 
+    };
 
     // チェックボックスの状態を返す
     const isFolderIncluded = (folderId: number): boolean => {
-        const currentQuestion = defaultQuestions[selectQuestionRef.current - 1];
-        const isOriginallyIncluded = currentQuestion?.folders?.includes(folderId) ?? false;
-        const isNowSelected = selectAddFolders.includes(folderId);
-
-        // もともと含まれていて、現在選択されていない場合、または、もともと含まれていなくて現在選択されている場合は、trueを返す
-        return (isOriginallyIncluded && !isNowSelected) || (!isOriginallyIncluded && isNowSelected);
+        const included = selectAddFolders.includes(folderId);
+        return included;
     };
+
 
     // 完了ボタンをクリック後、選択したフォルダに質問を追加
     const handleAddQuestionToFolder = async () => {
+        console.log(selectAddFolders)
+
         if (selectQuestionRef.current) {
             let selectQuestion = selectQuestionRef.current;
             let selectFolders = selectAddFolders;
             await addQuestionToFolder({ questions: defaultQuestions, selectQuestion, selectFolders, accessToken, userId, Addfunction: addDefaultQToFolder });
-            setSelectAddFolders([]);
+            setShowToast(false);
+
         }
     };
 
@@ -148,6 +170,7 @@ const DefaultQuestionsList = () => {
     // アクセストークンを使って質問一覧を取得
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             if (!accessToken) {
                 return;
             }
@@ -193,9 +216,8 @@ const DefaultQuestionsList = () => {
                 setErrorMessage(err.message);
             }
         };
-        if (showToast) {
-            fetchData();
-        }
+        fetchData();
+
     }, [showToast, accessToken, selectAddFolders]);
 
     // 幼少期３件などの表示
@@ -286,6 +308,7 @@ const DefaultQuestionsList = () => {
                                                 <div key={folder.name}>
                                                     <input
                                                         type="checkbox"
+                                                        key={`${folder.id}-${isFolderIncluded(folder.id)}`}
                                                         style={{ accentColor: '#AC8D73' }}
                                                         checked={isFolderIncluded(folder.id)}
                                                         // {defaultQuestions[selectQuestionRef.current - 1].folders?.includes(folder.id)}

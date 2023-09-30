@@ -52,6 +52,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 const details = await userDetails(userId, accessToken);
                 setUserName(details.userName);
                 setUserEmail(details.userEmail);
+                // console.log(userId, accessToken)
             }
         }
         fetchUserDetails();

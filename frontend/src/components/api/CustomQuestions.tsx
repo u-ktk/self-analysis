@@ -46,7 +46,7 @@ const fetchCustomQuestions = async (method: string, endpoint: string, props: fet
         }
         if (res.ok) {
             const responseData = await res.json();
-            console.log(responseData);
+            // console.log(responseData);
             return responseData;
         } else {
             const errorData = await res.json();
@@ -86,6 +86,7 @@ const getCustomQuestionDetail = async (props: CustomQuestionDetailProps, questio
     try {
         const endpoint = `customquestions/${questionId}/`;
         const res = await fetchCustomQuestions('GET', endpoint, props);
+        console.log(res)
         return res;
     } catch (error) {
         console.log(error);
@@ -99,6 +100,16 @@ const createCustomQuestions = async (props: CustomQuestionDetailProps): Promise<
     return fetchCustomQuestions('POST', endpoint, props, JSON.stringify({ text: props.text, age: props.age, answers: props.answers }));
 }
 
+const deleteCustomQuestion = async (props: CustomQuestionDetailProps, questionId: string) => {
+    const endpoint = `customquestions/${questionId}/`;
+    try {
+        const res = await fetchCustomQuestions('DELETE', endpoint, props);
+        return res;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const addCustomQToFolder = async (props: addFolderProps) => {
     const endpoint = `customquestions/${props.questionId}/add_folder/`;
     return fetchCustomQuestions('PATCH', endpoint, props, JSON.stringify({ folders: props.folders }));
@@ -110,6 +121,13 @@ const removeCustomQFromFolder = async (props: removeFolderProps) => {
 }
 
 
-export { getCustomQuestions, createCustomQuestions, addCustomQToFolder, getCustomQuestionDetail, removeCustomQFromFolder };
+export {
+    getCustomQuestions,
+    createCustomQuestions,
+    deleteCustomQuestion,
+    addCustomQToFolder,
+    getCustomQuestionDetail,
+    removeCustomQFromFolder
+};
 
 
