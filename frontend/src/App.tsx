@@ -15,6 +15,7 @@ import AnswerHistory from './pages/ReviewQuestions/AnswerHistory';
 import Search from './pages/SearchQuestions/SearchResults';
 import ReviewQuestions from './pages/ReviewQuestions/Top';
 import CreateCustomQuestions from './pages/CreateQuestions/Top';
+import CustomQuestionList from './pages/SearchQuestions/CustomQuestionList';
 import MyPage from './pages/MyPage/Top';
 import Help from './pages/Help/Top';
 import FolderDetail from './pages/ReviewQuestions/FolderDetail';
@@ -32,6 +33,7 @@ function App() {
           <Route path='/questions-list' element={<QuestionList />} />
           <Route path='/create-question' element={<CreateCustomQuestions />} />
           <Route path='/questions-list/default/:page' element={<DefaultQuestionsList />} />
+          <Route path='/questions-list/custom' element={<CustomQuestionList />} />
           <Route path='/search' element={<Search />} />
           <Route path='/questions/default/:id' element={<AnswerHistory />} />
           <Route path='/review-questions' element={<ReviewQuestions />} />

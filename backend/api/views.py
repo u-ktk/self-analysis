@@ -219,6 +219,12 @@ class AnswerViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.DjangoFilterBackend]
     filterset_fields = '__all__'
 
+    def get_queryset(self):
+        # URLからQuestionのIDを取得
+        question_id = self.kwargs.get('customquestions_pk') or self.kwargs.get('defaultquestions_pk')
+        return Answer.objects.filter(question_id=question_id)
+
+
     # 回答とユーザー紐付け
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

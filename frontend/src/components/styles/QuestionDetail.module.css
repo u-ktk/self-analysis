@@ -26,6 +26,7 @@
     color: #4b4b4b;
     width: 40px;
     text-align: center;
+    vertical-align: top;
 }
 
 .link {
@@ -46,6 +47,8 @@
 
 .text {
     width: 600px;
+    vertical-align: top;
+
 
 }
 
@@ -93,6 +96,7 @@
     border: 1px solid #AC8D73;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 
 
 

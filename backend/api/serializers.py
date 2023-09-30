@@ -101,7 +101,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['id', 'text', 'user', 'category', 'category_name',
+        fields = ['id', 'text', 'user', 'category', 'category_name','created_at',
                   'age', 'folders','folders_name', 'is_default', 'answers']
         # バリデーションメッセージの追加
         extra_kwargs = {

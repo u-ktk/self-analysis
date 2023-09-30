@@ -4,8 +4,8 @@ import { Answer, Question } from "../../types";
 import CustomQuestionForm from '../../components/CreateQuestions/CustomQuestionForm';
 import HeadTitle from '../../components/layouts/HeadTitle';
 import NoLogin from '../../components/auth/NoLogin';
-import CustomQuestionList from '../../components/CreateQuestions/CustomQuestionList';
-import { addFolderToCustomQuestion, createCustomQuestions } from '../../components/api/CustomQuestions';
+import CustomQuestionList from '../SearchQuestions/CustomQuestionList';
+import { addCustomQToFolder, createCustomQuestions } from '../../components/api/CustomQuestions';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -60,7 +60,7 @@ const CreateCustomQuestions = () => {
 
         if (!accessToken || !userId) return;
         try {
-            const res = await addFolderToCustomQuestion({ accessToken, userId, folders: folders, questionId });
+            const res = await addCustomQToFolder({ accessToken, userId, folders: folders, questionId });
             if (res) {
                 // console.log(res);
                 setCustomQuestions(res);
@@ -82,7 +82,7 @@ const CreateCustomQuestions = () => {
                     <HeadTitle title='質問を作る' />
 
                     <CustomQuestionForm accessToken={accessToken} userId={userId} onSubmit={onSubmit} successMessage={successMessage} errorMessage={errorMessage} />
-                    <CustomQuestionList accessToken={accessToken} userId={userId} />
+                    {/* <CustomQuestionList  /> */}
                     {/* {responseData ? (
                         
                     ) : ( */}

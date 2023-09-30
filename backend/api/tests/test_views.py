@@ -120,6 +120,8 @@ class TestQuestionOperations(BaseTest):
         self.assertEqual(response.status_code, 204)
         self.assertFalse(Question.objects.filter(
             id=self.question.id).exists())
+    
+    
 
 
 # カスタム質問のフィルタリング

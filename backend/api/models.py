@@ -29,9 +29,9 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, username, email, password):
         user = self.create_user(
-            id=uuid.uuid4(),
             username=username,
             email=self.normalize_email(email),
+            password=password,
         )
         user.set_password(password)
         user.is_superuser = True
@@ -89,7 +89,7 @@ class Question(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, related_name="questions")
     category = models.ForeignKey(
-        QuestionCategory, on_delete=models.CASCADE, related_name="questions", null=True)
+        QuestionCategory, on_delete=models.CASCADE, related_name="questions", null=True, blank=True)
     age = models.CharField(max_length=255)
     folders = models.ManyToManyField(Folder, related_name="questions", blank=True)
     

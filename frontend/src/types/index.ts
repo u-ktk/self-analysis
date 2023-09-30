@@ -6,6 +6,7 @@ export type Question = {
     folders?: number[]
     text: string;
     answers: Answer[]
+    created_at: Date
 };
 
 export type Category = {

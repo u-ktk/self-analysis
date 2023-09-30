@@ -81,12 +81,25 @@ const getCustomQuestions = async (props: CustomQuestionDetailProps): Promise<Cus
 
 };
 
+
+const getCustomQuestionDetail = async (props: CustomQuestionDetailProps, questionId: string): Promise<Question | null> => {
+    try {
+        const endpoint = `customquestions/${questionId}/`;
+        const res = await fetchCustomQuestions('GET', endpoint, props);
+        return res;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+
 const createCustomQuestions = async (props: CustomQuestionDetailProps): Promise<Question | null> => {
     const endpoint = `customquestions/`;
     return fetchCustomQuestions('POST', endpoint, props, JSON.stringify({ text: props.text, age: props.age, answers: props.answers }));
 }
 
-const addFolderToCustomQuestion = async (props: addFolderProps) => {
+const addCustomQToFolder = async (props: addFolderProps) => {
     const endpoint = `customquestions/${props.questionId}/add_folder/`;
     return fetchCustomQuestions('PATCH', endpoint, props, JSON.stringify({ folders: props.folders }));
 }
@@ -97,6 +110,6 @@ const removeCustomQFromFolder = async (props: removeFolderProps) => {
 }
 
 
-export { getCustomQuestions, createCustomQuestions, addFolderToCustomQuestion, removeCustomQFromFolder };
+export { getCustomQuestions, createCustomQuestions, addCustomQToFolder, getCustomQuestionDetail, removeCustomQFromFolder };
 
 
