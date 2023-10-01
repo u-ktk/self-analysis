@@ -21,8 +21,8 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('text', 'question', 'user', 'created_at')
-    search_fields = ('text',)
+    list_display = ('title', 'text1','text2','text3', 'question', 'user', 'created_at')
+    search_fields = ('title',)
     list_filter = ('created_at',)
 
 

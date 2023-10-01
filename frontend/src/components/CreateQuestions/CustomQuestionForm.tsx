@@ -109,11 +109,12 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
 
     return (
         <>
-            <div className={formStyle.bg}>
+            <div className={style.bg}>
+                <div className={formStyle.contents}>
 
-                <div className={formStyle.description}>
                     <h4 className={formStyle.title}>質問を作る</h4>
                     {/* エラーメッセージ表示 */}
+
                     {errorMessage &&
                         <Alert className={formStyle.alert}>
                             <span>
@@ -137,146 +138,150 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
                             </div>
                         </Alert>
                     }
+                    <div className={formStyle.description}>
 
-                    <div>「メモの魔力」で用意されていないオリジナル質問を作成することができます。</div>
-                    <div>
-                        &nbsp;使い方の例は
-                        <a href='/help' className={formStyle.link}>
-                            こちら
-                            <span>
-                                <img alt="質問を探す" src={open} width="20" height="20"></img>
-                            </span>
-                        </a>
+
+                        <div>「メモの魔力」で用意されていないオリジナル質問を作成することができます。</div>
+                        <div>
+                            &nbsp;使い方の例は
+                            <a href='/help' className={formStyle.link}>
+                                こちら
+                                <span>
+                                    <img alt="質問を探す" src={open} width="20" height="20"></img>
+                                </span>
+                            </a>
+                        </div>
+                        <p style={{ fontSize: '14px' }}>
+                            <span style={{ color: '#AC8D73' }}>*</span>必須
+                        </p>
                     </div>
-                    <p style={{ fontSize: '14px' }}>
-                        <span style={{ color: '#AC8D73' }}>*</span>必須
-                    </p>
-                </div>
 
-                <Form className={formStyle.form} onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form-group">
+                    <Form className={formStyle.form} onSubmit={handleSubmit(onSubmit)}>
+                        <div className="form-group">
 
 
-                        <div className={`form-group ${formStyle.formGroup}`}>
-                            <label htmlFor="text">質問<span style={{ color: '#AC8D73' }}>*</span></label>
-                            <div className={`wideForm ${formStyle.wideForm}`}>
-                                <input
-                                    type="text"
-                                    className='form-control'
-                                    {...register("text")}
+                            <div className={`form-group ${formStyle.formGroup}`}>
+                                <label htmlFor="text">質問<span style={{ color: '#AC8D73' }}>*</span></label>
+                                <div className={`wideForm ${formStyle.wideForm}`}>
+                                    <input
+                                        type="text"
+                                        className='form-control'
+                                        {...register("text")}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className={formStyle.formGroup}>
+                                <label htmlFor="">年代<span style={{ color: '#AC8D73' }}>*</span></label>
+                                <Select
+                                    value={ageOptions.find(option => option.value === selectAge)}
+                                    onChange={handleAgeSelection}
+                                    options={ageOptions}
+                                    placeholder="年代を選択"
+                                    theme={(theme) => ({
+                                        ...theme,
+                                        borderRadius: 5,
+                                        colors: {
+                                            // ホバーしたときの色変更
+                                            ...theme.colors,
+                                            primary25: '#DEE2E6',
+                                            primary: '#DEE2E6',
+                                        },
+                                    })
+                                    }
+                                    styles={{
+                                        // 枠線の背景色変更
+                                        control: (baseStyles, state) => ({
+                                            ...baseStyles,
+                                            backgroundColor: '#FAFAFA',
+                                            borderColor: '#DEE2E6',
+                                            '&hover': {
+                                                borderColor: '#DEE2E6',
+                                            }
+                                        }),
+                                        option: (baseStyles, state) => ({
+                                            ...baseStyles,
+                                            backgroundColor: '#FAFAFA',
+                                            '&:hover': {
+                                                backgroundColor: 'white',
+                                            },
+                                        }),
+                                    }}
+
+
                                 />
                             </div>
-                        </div>
-
-                        <div className={formStyle.formGroup}>
-                            <label htmlFor="">年代<span style={{ color: '#AC8D73' }}>*</span></label>
-                            <Select
-                                value={ageOptions.find(option => option.value === selectAge)}
-                                onChange={handleAgeSelection}
-                                options={ageOptions}
-                                placeholder="年代を選択"
-                                theme={(theme) => ({
-                                    ...theme,
-                                    borderRadius: 5,
-                                    colors: {
-                                        // ホバーしたときの色変更
-                                        ...theme.colors,
-                                        primary25: '#DEE2E6',
-                                        primary: '#DEE2E6',
-                                    },
-                                })
-                                }
-                                styles={{
-                                    // 枠線の背景色変更
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: '#FAFAFA',
-                                        borderColor: '#DEE2E6',
-                                        '&hover': {
-                                            borderColor: '#DEE2E6',
-                                        }
-                                    }),
-                                    option: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: '#FAFAFA',
-                                        '&:hover': {
-                                            backgroundColor: 'white',
+                            <div className={formStyle.formGroup}>
+                                <label htmlFor="">フォルダ</label>
+                                <Select
+                                    isMulti
+                                    options={folderOptions}
+                                    onChange={handleFolderSelection}
+                                    placeholder="フォルダを選択もしくは検索"
+                                    noOptionsMessage={() => "選択肢がありません"}
+                                    theme={(theme) => ({
+                                        ...theme,
+                                        borderRadius: 5,
+                                        colors: {
+                                            // ホバーしたときの色変更
+                                            ...theme.colors,
+                                            primary25: '#DEE2E6',
+                                            primary: '#DEE2E6',
                                         },
-                                    }),
-                                }}
 
+                                    })
+                                    }
 
-                            />
-                        </div>
-                        <div className={formStyle.formGroup}>
-                            <label htmlFor="">フォルダ</label>
-                            <Select
-                                isMulti
-                                options={folderOptions}
-                                onChange={handleFolderSelection}
-                                placeholder="フォルダを選択もしくは検索"
-                                noOptionsMessage={() => "選択肢がありません"}
-                                theme={(theme) => ({
-                                    ...theme,
-                                    borderRadius: 5,
-                                    colors: {
-                                        // ホバーしたときの色変更
-                                        ...theme.colors,
-                                        primary25: '#DEE2E6',
-                                        primary: '#DEE2E6',
-                                    },
-
-                                })
-                                }
-
-                                styles={{
-                                    // 枠線の背景色変更
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: '#FAFAFA',
-                                        borderColor: '#DEE2E6',
-                                        '&hover': {
+                                    styles={{
+                                        // 枠線の背景色変更
+                                        control: (baseStyles, state) => ({
+                                            ...baseStyles,
+                                            backgroundColor: '#FAFAFA',
                                             borderColor: '#DEE2E6',
-                                        }
+                                            '&hover': {
+                                                borderColor: '#DEE2E6',
+                                            }
 
-                                    }),
-                                    // 選択肢の背景色変更
-                                    option: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        backgroundColor: '#FAFAFA',
-                                        '&:hover': {
-                                            backgroundColor: 'white',
-                                        },
-                                    }),
-                                    // 削除ボタンの色変更
-                                    multiValueRemove: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        color: '#AC8D73',
-                                        '&:hover': {
+                                        }),
+                                        // 選択肢の背景色変更
+                                        option: (baseStyles, state) => ({
+                                            ...baseStyles,
+                                            backgroundColor: '#FAFAFA',
+                                            '&:hover': {
+                                                backgroundColor: 'white',
+                                            },
+                                        }),
+                                        // 削除ボタンの色変更
+                                        multiValueRemove: (baseStyles, state) => ({
+                                            ...baseStyles,
                                             color: '#AC8D73',
-                                            backgroundColor: '#E8DBD1',
+                                            '&:hover': {
+                                                color: '#AC8D73',
+                                                backgroundColor: '#E8DBD1',
 
-                                        },
-                                    }),
-                                    multiValue: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        // backgroundColor: '#e8dbd195',
-                                    }),
+                                            },
+                                        }),
+                                        multiValue: (baseStyles, state) => ({
+                                            ...baseStyles,
+                                            // backgroundColor: '#e8dbd195',
+                                        }),
 
 
-                                }}
-                            />
+                                    }}
+                                />
+                            </div>
+
+                            <div className={formStyle.formGroup}>
+                                <label htmlFor="">回答</label>
+                                <textarea className="form-control border" {...register("answer")} rows={4} />
+                            </div>
+
+                            <Button type="submit" className={`mt-2 ${style.darkButton}`} variant="primary">作成</Button>
                         </div>
-
-                        <div className={formStyle.formGroup}>
-                            <label htmlFor="">回答</label>
-                            <textarea className="form-control border" {...register("answer")} rows={4} />
-                        </div>
-
-                        <Button type="submit" className={`mt-2 ${style.darkButton}`} variant="primary">作成</Button>
-                    </div>
-                </Form>
+                    </Form>
+                </div>
             </div>
+
         </>
     );
 };

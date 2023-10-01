@@ -5,18 +5,22 @@ import { useAuth } from '../components/auth/Auth'
 import { getCustomQuestionDetail, addCustomQToFolder, deleteCustomQuestion } from '../components/api/CustomQuestions'
 import { addQuestionToFolder } from '../components/SearchQuestions/AddQustionToFolder'
 import { getFolderList } from '../components/api/Folder';
+import AnswerForm from '../components/AnswerForm';
 import { Question, Answer, Folder } from '../types'
 
 import detailStyles from '../components/styles/QuestionDetail.module.css'
 import styles from '../components/styles/Common.module.css'
 import listStyles from '../components/styles/List.module.css'
 import loadStyles from '../components/styles/Loading.module.css'
-import { Button, Modal } from 'react-bootstrap';
+import formStyles from '../components/styles/Form.module.css'
+import { Button, Modal, Alert } from 'react-bootstrap';
 
 
 import newFolder from '../images/icon/newFolder.svg';
 import trashIcon from '../images/icon/trash.svg'
 import checkMark from '../images/checked.png'
+import checkIcon from '../images/icon/check.svg'
+import errorIcon from '../images/icon/error.svg'
 
 
 
@@ -32,10 +36,13 @@ const CustomQuestionDetail = () => {
     const [selectAddFolders, setSelectAddFolders] = useState<number[]>([]);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [loading, setLoding] = useState(true);
     const [toastPosition, setToastPosition] = useState({ x: 0, y: 0 });
 
     // console.log(accessToken, userId, questionId)
+
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 
 
@@ -180,6 +187,62 @@ const CustomQuestionDetail = () => {
 
     }
 
+    // 回答の送信
+    const onSubmit = async (data: {
+        title: string,
+        text1: string,
+        text2: string,
+        text3: string,
+        user: number,
+        question: number,
+    }) => {
+
+        // <p>を取り除いた後、空白のみの文字列かどうかを判定
+        const stripHtmlTags = (str: string) => {
+            return str.replace(/<\/?[^>]+(>|$)/g, "");
+        };
+
+        if (!data.title.trim() || /^\s*$/.test(stripHtmlTags(data.title)) || !data.text1.trim() || /^\s*$/.test(stripHtmlTags(data.text1))) {
+            setErrorMessage('標語、ファクトは必須です');
+            return;
+        }
+
+
+
+
+        const url = `${BACKEND_URL}defaultquestions/${customQuestion?.id}/answers/`;
+        console.log('data:', data)
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({ ...data, user: userId, question: customQuestion?.id }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `JWT ${accessToken}`
+                }
+            });
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log(responseData)
+                if (errorMessage) setErrorMessage(null);
+                setSuccessMessage('回答を作成しました');
+                // データを更新して再レンダリング
+                if (!accessToken || !userId || !questionId) return;
+                const res = await getCustomQuestionDetail({ accessToken, userId }, questionId);
+                if (res) {
+                    setCustomQuestion(res);
+                }
+
+            }
+
+        } catch (error) {
+            if (error instanceof Error) {
+                if (successMessage) setSuccessMessage(null);
+                setErrorMessage(error.message);
+                console.log(errorMessage);
+            }
+        }
+    }
 
 
 
@@ -298,6 +361,35 @@ const CustomQuestionDetail = () => {
                                                 <img src={checkMark} alt='回答済' className={detailStyles.check} />
                                             )}
                                         </div>
+
+                                        {/* 回答作成成功 */}
+                                        {successMessage &&
+                                            <Alert variant='primary' className={formStyles.alert}>
+                                                <span>
+                                                    <img alt="作成成功" src={checkIcon} width="40" height="40"></img>
+                                                </span>
+                                                <div className={formStyles.msg}>
+                                                    <span style={{ fontWeight: 'bold' }}>
+                                                        {successMessage}
+                                                    </span>
+                                                </div>
+                                            </Alert>
+                                        }
+
+                                        {/* エラーメッセージ */}
+                                        {errorMessage &&
+                                            <Alert className={formStyles.alert}>
+                                                <span>
+                                                    <img alt="エラー" src={errorIcon} width="40" height="40"></img>
+                                                </span>
+                                                <div className={formStyles.msg}>
+
+                                                    {errorMessage}
+                                                </div>
+                                            </Alert>}
+
+                                        {/* 回答フォーム */}
+                                        <AnswerForm onSubmit={onSubmit} errorMessage={errorMessage} />
 
                                     </>
                                 )}

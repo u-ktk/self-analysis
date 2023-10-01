@@ -17,17 +17,20 @@ const AnswerHistory = () => {
 
 
     const onSubmit = async (data: {
-        text: string,
+        title: string,
+        text1: string | null,
+        text2: string | null,
+        text3: string | null,
         user: number,
         question: number,
     }) => {
-        const { text } = data;
         const url = `${BACKEND_URL}defaultquestions/${currentId}/answers/`;
         console.log(url);
+        console.log(data)
         try {
             const response = await fetch(url, {
                 method: 'POST',
-                body: JSON.stringify({ text, user: userId, question: currentId }),
+                body: JSON.stringify({ ...data, user: userId, question: currentId }),
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `JWT ${accessToken}`

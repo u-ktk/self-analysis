@@ -5,7 +5,10 @@ const DefaultQuestionDetail = () => {
     return (
         <>
             <HeadTitle title="質問の詳細" />
-            <div>DefaultQuestionDetail</div>
+            <div>
+
+
+            </div>
         </>
     )
 }

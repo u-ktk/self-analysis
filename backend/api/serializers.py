@@ -76,11 +76,11 @@ class QuestionCategorySerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ['id', 'text', 'created_at', 'question', 'user']
+        fields = ['id', 'title','text1','text2', 'text3','created_at', 'question', 'user']
         extra_kwargs = {
-            'text': {
+            'title': {
                 'error_messages': {
-                    'blank': '回答は空にできません',
+                    'blank': 'タイトルは空にできません',
                 }
             }
         }

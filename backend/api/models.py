@@ -103,7 +103,10 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    text = models.TextField()
+    title = models.TextField(max_length=255, blank=True, null=True)
+    text1 = models.TextField(blank=True, null=True)
+    text2 = models.TextField(blank=True, null=True)
+    text3 = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
     # QuestionとAnswerは1対多の関係
     question = models.ForeignKey(
@@ -112,7 +115,7 @@ class Answer(models.Model):
         User, on_delete=models.CASCADE, related_name="answers")
 
     def __str__(self):
-        return self.text
+        return self.title
 
 
 

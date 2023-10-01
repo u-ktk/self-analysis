@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.editor .ql-toolbar .ql-button:hover {
+  background-color: #AC8D73 !important;
+}

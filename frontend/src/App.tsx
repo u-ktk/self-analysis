@@ -21,7 +21,7 @@ import CustomQuestionList from './pages/SearchQuestions/CustomQuestionList';
 import MyPage from './pages/MyPage/Top';
 import Help from './pages/Help/Top';
 import FolderDetail from './pages/Folder/FolderDetail';
-
+import 'react-quill/dist/quill.snow.css';
 
 
 function App() {
@@ -52,6 +52,7 @@ function App() {
           <Route path='/logout' element={<Logout />} />
         </Routes>
       </AuthProvider>
+
 
     </>
   );

@@ -9,6 +9,8 @@ from rest_framework import permissions, generics, viewsets, exceptions, status
 from rest_framework.pagination import LimitOffsetPagination
 from django_filters import rest_framework as filters
 from rest_framework.decorators import api_view
+# エディターで入力されたHTMLをサニタイズする
+from .utils import sanitize_html
 
 # from django.db.models import Q
 
@@ -243,6 +245,15 @@ class AnswerViewSet(viewsets.ModelViewSet):
 
     # 回答とユーザー紐付け
     def perform_create(self, serializer):
+        
+        validated_data = serializer.validated_data
+        if 'text1' in validated_data:
+            validated_data['text1'] = sanitize_html(validated_data['text1'])
+        if 'text2' in validated_data:
+            validated_data['text2'] = sanitize_html(validated_data['text2'])
+        if 'text3' in validated_data:
+            validated_data['text3'] = sanitize_html(validated_data['text3'])
+
         serializer.save(user=self.request.user)
 
 class FolderFilter(filters.FilterSet):

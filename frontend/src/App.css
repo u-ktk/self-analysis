@@ -37,3 +37,7 @@
     transform: rotate(360deg);
   }
 }
+
+.editor .ql-toolbar .ql-button:hover {
+  background-color: #ac8d73;
+}

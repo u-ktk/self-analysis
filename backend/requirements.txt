@@ -12,3 +12,4 @@ pip==23.2.1
 PyJWT==2.8.0
 rest-framework-simplejwt==0.0.2
 psycopg2-binary==2.9.1
+bleach==4.1.0
