@@ -86,8 +86,10 @@ def update_folders_for_custom_question(request, question_id):
             folders = json.loads(folders)
         except json.JSONDecodeError:
             return HttpResponse({"error": "Invalid format for folders"}, status=status.HTTP_400_BAD_REQUEST)
-    if not folders:
-      return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
+    # if not folders:
+    #   return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
+    if folders is None:
+        return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
     try:
         question = Question.objects.get(pk=question_id)
         # current_folders = list(question.folders.values_list('id', flat=True))

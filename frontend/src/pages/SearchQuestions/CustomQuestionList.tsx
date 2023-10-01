@@ -14,6 +14,7 @@ import { Button } from 'react-bootstrap';
 import trashIcon from '../../images/icon/trash.svg'
 import newFolder from '../../images/icon/newFolder.svg'
 import checkMark from '../../images/checked.png'
+import { set } from 'react-hook-form';
 
 
 type CustomQuestions = Question[]
@@ -41,6 +42,16 @@ const CustomQuestionList = () => {
         const y = e.clientY;
         setToastPosition({ x, y });
         selectQuestionRef.current = questionId;
+        // const currentQuestion = questions[questionId - 1];
+        const currentQuestion = questions.find(q => q.id === questionId);
+
+        if (currentQuestion && currentQuestion.folders) {
+            setSelectAddFolders(currentQuestion.folders);
+        } else {
+            setSelectAddFolders([]);
+        }
+        // console.log(currentQuestion.folders)
+        console.log(selectAddFolders)
         setShowToast(true);
     }
 
@@ -70,26 +81,39 @@ const CustomQuestionList = () => {
 
     // チェックボックスをクリック
     const handleCheckboxChange = (folderId: number) => {
-        // チェックされていない部分をクリックしたら
+
+        const currentQuestion = questions[selectQuestionRef.current - 1];
+        const isOriginallyIncluded = currentQuestion?.folders?.includes(folderId) ?? false;
+
         setSelectAddFolders(prevFolders => {
-            if (prevFolders.includes(folderId)) {
-                return prevFolders.filter(id => id !== folderId);
+            // もともと含まれているフォルダをクリックした場合
+            if (isOriginallyIncluded) {
+                // もし現在選択されているフォルダに含まれていれば削除、そうでなければ追加
+                if (prevFolders.includes(folderId)) {
+                    return prevFolders.filter(id => id !== folderId);
+                } else {
+                    return [...prevFolders, folderId];
+                }
             } else {
-                return [...prevFolders, folderId];
+                // もともと含まれていないフォルダをクリックした場合
+                if (prevFolders.includes(folderId)) {
+                    return prevFolders.filter(id => id !== folderId);
+                } else {
+                    return [...prevFolders, folderId];
+                }
             }
         });
+
     };
+
 
     // チェックボックスの状態を返す
     const isFolderIncluded = (folderId: number): boolean => {
-        // 普通順の質問リストから質問を取得　
-        const currentQuestion = questions[selectQuestionRef.current - 1];
-        const isOriginallyIncluded = currentQuestion?.folders?.includes(folderId) ?? false;
-        const isNowSelected = selectAddFolders.includes(folderId);
-
-        // もともと含まれていて、現在選択されていない場合、または、もともと含まれていなくて現在選択されている場合は、trueを返す
-        return (isOriginallyIncluded && !isNowSelected) || (!isOriginallyIncluded && isNowSelected);
+        const included = selectAddFolders.includes(folderId);
+        console.log(included)
+        return included;
     };
+
 
 
     // 完了ボタンをクリック後、選択したフォルダに質問を追加
@@ -97,12 +121,23 @@ const CustomQuestionList = () => {
         if (selectQuestionRef.current) {
             let selectQuestion = selectQuestionRef.current;
             let selectFolders = selectAddFolders;
-            // console.log('selectQuestion:' + selectQuestion)
-            // console.log('selectFolders:' + selectFolders)
-            await addQuestionToFolder({ questions, selectQuestion, selectFolders, accessToken, userId, Addfunction: addCustomQToFolder });
-            setSelectAddFolders([]);
-            setShowToast(false);
+            await addQuestionToFolder({ selectQuestion, selectFolders, accessToken, userId, Addfunction: addCustomQToFolder });
+            // const result = await addQuestionToFolder({ selectQuestion, selectFolders, accessToken, userId, Addfunction: addCustomQToFolder });
+
+            setQuestions(prevQuestions => {
+                const updatedQuestions = [...prevQuestions];
+                const questionIndex = updatedQuestions.findIndex(q => q.id === selectQuestion);
+                if (questionIndex !== -1) {
+                    updatedQuestions[questionIndex].folders = selectFolders;
+                }
+                return updatedQuestions;
+            });
+
+
         }
+        setShowToast(false);
+
+
     };
 
 
@@ -128,6 +163,32 @@ const CustomQuestionList = () => {
         fetchData();
     }
         , [accessToken, userId]);
+
+    // カスタム質問を取得
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            if (!accessToken || !userId) {
+                return;
+            }
+            try {
+                const res = await getCustomQuestions({ accessToken, userId });
+                if (res) {
+                    console.log(res)
+                    setQuestions(res);
+                    setReverseQuestions(res.slice().reverse());
+                    setLoading(false);
+                }
+            } catch (err: any) {
+                console.log(err.message);
+                setErrorMessage(err.message);
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, [accessToken, userId])
+
+
 
     // トーストメニューを開いた時、特定の質問だけを取得（フォルダ更新時に際レンダリングするため）
     useEffect(() => {
@@ -155,9 +216,7 @@ const CustomQuestionList = () => {
                 setErrorMessage(err.message);
             }
         };
-        if (showToast) {
-            fetchData();
-        }
+        fetchData();
     }, [showToast, accessToken, selectAddFolders]);
 
 
@@ -171,30 +230,6 @@ const CustomQuestionList = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
-    // カスタム質問を取得
-    useEffect(() => {
-        const fetchData = async () => {
-            if (!accessToken || !userId) {
-                return;
-            }
-            try {
-                const res = await getCustomQuestions({ accessToken, userId });
-                if (res) {
-                    console.log(res)
-                    setQuestions(res);
-                    setReverseQuestions(res.slice().reverse());
-                    setLoading(false);
-                }
-            } catch (err: any) {
-                console.log(err.message);
-                setErrorMessage(err.message);
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, [accessToken, userId])
-
 
 
 

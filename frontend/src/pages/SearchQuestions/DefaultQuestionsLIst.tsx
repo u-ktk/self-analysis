@@ -59,12 +59,13 @@ const DefaultQuestionsList = () => {
         setToastPosition({ x, y });
         selectQuestionRef.current = questionId;
         const currentQuestion = defaultQuestions[questionId - 1];
-        console.log(currentQuestion)
+        // console.log(currentQuestion)
         if (currentQuestions && currentQuestion.folders) {
             setSelectAddFolders(currentQuestion.folders);
         } else {
             setSelectAddFolders([]);
         }
+        console.log(selectAddFolders)
         setShowToast(true);
 
     }
@@ -116,25 +117,25 @@ const DefaultQuestionsList = () => {
                 }
             }
         });
-        console.log("Updated selectAddFolders:", selectAddFolders);
 
     };
 
     // チェックボックスの状態を返す
     const isFolderIncluded = (folderId: number): boolean => {
         const included = selectAddFolders.includes(folderId);
+        console.log(included)
         return included;
     };
 
 
     // 完了ボタンをクリック後、選択したフォルダに質問を追加
     const handleAddQuestionToFolder = async () => {
-        console.log(selectAddFolders)
+        // console.log(selectAddFolders)
 
         if (selectQuestionRef.current) {
             let selectQuestion = selectQuestionRef.current;
             let selectFolders = selectAddFolders;
-            await addQuestionToFolder({ questions: defaultQuestions, selectQuestion, selectFolders, accessToken, userId, Addfunction: addDefaultQToFolder });
+            await addQuestionToFolder({ selectQuestion, selectFolders, accessToken, userId, Addfunction: addDefaultQToFolder });
             setShowToast(false);
 
         }

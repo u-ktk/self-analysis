@@ -25,7 +25,7 @@ const CustomQuestionDetail = () => {
     const { questionId } = useParams<{ questionId: string }>();
     // const { user } = useParams<{ user: string }>();
     const { accessToken, userId } = useAuth();
-    const [customQuestion, setCustomQuestion] = useState<any>(null);
+    const [customQuestion, setCustomQuestion] = useState<Question>();
     const [folderList, setFolderList] = useState<Folder[]>([]);
     const [showToast, setShowToast] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -44,6 +44,15 @@ const CustomQuestionDetail = () => {
         const x = e.clientX;
         const y = e.clientY;
         setToastPosition({ x, y });
+        // const currentQuestion = questions.find(q => q.id === questionId);
+
+        if (customQuestion && customQuestion.folders) {
+            setSelectAddFolders(customQuestion.folders);
+        } else {
+            setSelectAddFolders([]);
+        }
+        // console.log(currentQuestion.folders)
+        console.log(selectAddFolders)
         setShowToast(true);
     }
 
@@ -72,24 +81,36 @@ const CustomQuestionDetail = () => {
 
     // チェックボックスをクリック
     const handleCheckboxChange = (folderId: number) => {
+
+        const isOriginallyIncluded = customQuestion?.folders?.includes(folderId) ?? false;
+
         // チェックされていない部分をクリックしたら
         setSelectAddFolders(prevFolders => {
-            if (prevFolders.includes(folderId)) {
-                return prevFolders.filter(id => id !== folderId);
+            // もともと含まれているフォルダをクリックした場合
+            if (isOriginallyIncluded) {
+                // もし現在選択されているフォルダに含まれていれば削除、そうでなければ追加
+                if (prevFolders.includes(folderId)) {
+                    return prevFolders.filter(id => id !== folderId);
+                } else {
+                    return [...prevFolders, folderId];
+                }
             } else {
-                return [...prevFolders, folderId];
+                // もともと含まれていないフォルダをクリックした場合
+                if (prevFolders.includes(folderId)) {
+                    return prevFolders.filter(id => id !== folderId);
+                } else {
+                    return [...prevFolders, folderId];
+                }
             }
         });
+
     };
 
 
     // チェックボックスの状態を返す
     const isFolderIncluded = (folderId: number): boolean => {
-        const isOriginallyIncluded = customQuestion.folders?.includes(folderId) ?? false;
-        const isNowSelected = selectAddFolders.includes(folderId);
-
-        // もともと含まれていて、現在選択されていない場合、または、もともと含まれていなくて現在選択されている場合は、trueを返す
-        return (isOriginallyIncluded && !isNowSelected) || (!isOriginallyIncluded && isNowSelected);
+        const included = selectAddFolders.includes(folderId);
+        return included;
     };
 
     // 完了ボタンをクリック後、選択したフォルダに質問を追加
@@ -97,8 +118,8 @@ const CustomQuestionDetail = () => {
         if (!accessToken || !userId || !customQuestion) return;
         let selectQuestion = customQuestion.id;
         let selectFolders = selectAddFolders;
-        await addQuestionToFolder({ questions: customQuestion, selectQuestion, selectFolders, accessToken, userId, Addfunction: addCustomQToFolder });
-        setSelectAddFolders([]);
+        await addQuestionToFolder({ selectQuestion, selectFolders, accessToken, userId, Addfunction: addCustomQToFolder });
+
         setShowToast(false);
     };
 

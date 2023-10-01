@@ -4,7 +4,6 @@ import { addDefaultQToFolder } from '../../components/api/DefaultQuestions';
 import { addCustomQToFolder } from '../../components/api/CustomQuestions';
 
 type addFolderProps = {
-    questions: Question[]
     selectQuestion: number
     selectFolders: number[]
     accessToken: string | null
