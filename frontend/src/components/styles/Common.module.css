@@ -20,6 +20,7 @@
 
 .darkButton {
     box-shadow: 0 2px 2px #E8DBD1;
+    flex-shrink: 0;
 }
 
 .darkButton:hover {
@@ -70,6 +71,7 @@
     padding-left: 60px;
     line-height: 30px;
 }
+
 
 .menu {
     margin-top: 15px;

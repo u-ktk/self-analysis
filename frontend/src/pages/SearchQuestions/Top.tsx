@@ -16,10 +16,7 @@ const QuestionList = () => {
                 <div>
                     {/* <DefaultQuestionsList /> */}
 
-                    <div className={style.bg}>
-                        <h4 className={style.title}>質問を検索</h4>
-                        <SearchQuestions />
-                    </div>
+                    <SearchQuestions />
 
                     <div className={style.bg}>
                         <h4 className={style.title}>用意された質問から選ぶ</h4>
