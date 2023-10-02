@@ -35,11 +35,6 @@ const SearchQuestions = () => {
 
     };
 
-    // 年代で質問を取得
-    const onSubmitByAge: SubmitHandler<Inputs> = (data) => {
-        setSearchParamsByAge(data.age__icontains);
-    };
-
     // 年代の選択肢
     const ageOptions = [
         "幼少期",
@@ -130,34 +125,6 @@ const SearchQuestions = () => {
                         }}
                     />
                 </div>
-
-                {/* <form onSubmit={handleSubmit(onSubmitByAge)} > */}
-                {/* <Form.Control
-                    type="text"
-                    placeholder='年代を選択'
-                    {...register('text__icontains')}
-                />
-                 */}
-                {/* <Dropdown>
-                    <Dropdown.Toggle style={{ backgroundColor: '#FAFAFA', color: 'black', borderColor: '#8F7A59' }} id="dropdown-basic">
-                        年代を選択
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item className='' onClick={() => setSearchParamsByAge('幼少期')}>幼少期</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setSearchParamsByAge('小学校')}>小学校</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setSearchParamsByAge('中学校')}>中学校</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setSearchParamsByAge('高校')}>高校</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setSearchParamsByAge('大学')}>大学</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setSearchParamsByAge('社会人（20代）')}>社会人（20代）</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setSearchParamsByAge('現在')}>現在</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setSearchParamsByAge('未来')}>未来</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown> */}
-
-                {/* <Button className={style.button} type="submit">
-                    検索
-                </Button> */}
-                {/* </form> */}
             </div >
         </div>
     );

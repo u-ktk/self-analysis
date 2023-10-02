@@ -45,6 +45,13 @@
     margin-left: 30px;
 }
 
+.id {
+    color: #4b4b4b;
+    width: 80px;
+    vertical-align: top;
+
+}
+
 .link {
     color: #E6914C;
     text-decoration: none;

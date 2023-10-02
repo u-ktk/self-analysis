@@ -9,12 +9,13 @@ import loadStyles from '../../components/styles/Loading.module.css'
 import listStyles from '../../components/styles/List.module.css'
 import detailStyles from '../../components/styles/QuestionDetail.module.css'
 import HeadTitle from '../../components/layouts/HeadTitle';
-import { Button } from 'react-bootstrap';
+import formStyles from '../../components/styles/Form.module.css';
+import { Button, Alert } from 'react-bootstrap';
 
 import trashIcon from '../../images/icon/trash.svg'
 import newFolder from '../../images/icon/newFolder.svg'
 import checkMark from '../../images/checked.png'
-import { set } from 'react-hook-form';
+import errorIcon from '../../images/icon/error.svg'
 
 
 type CustomQuestions = Question[]
@@ -251,7 +252,7 @@ const CustomQuestionList = () => {
                         <>
                             {/* 見出し */}
                             <div className={`${styles.menu} mb-4 `}>
-                                <a href='/questions-list' className={styles.link}>作成した質問から探す </a>
+                                <a href='/questions-list' className={styles.link}>作成した質問から選ぶ </a>
                                 <span> &#62; </span>
                                 <span style={{ fontWeight: 'bold' }}>作成した質問一覧</span>
                             </div>
@@ -306,10 +307,15 @@ const CustomQuestionList = () => {
 
                             <div className={detailStyles.contents}>
                                 {(!questions || questions.length === 0) ? (
-                                    <div className={styles.errorMsg}>
-                                        <strong className="m-2">質問がありません</strong>
+                                    <Alert className={formStyles.alert}>
+                                        <span>
+                                            <img alt="エラー" src={errorIcon} width="40" height="40"></img>
+                                        </span>
+                                        <div>
+                                            <strong className="m-2">質問がありません</strong>
+                                        </div>
                                         <div className={detailStyles.noQuestion}>「質問を作る」メニューから作成できます。</div>
-                                    </div>
+                                    </Alert>
                                 ) : (
                                     reverseQuestions.map((question, index) => (
                                         <div key={question.id}>

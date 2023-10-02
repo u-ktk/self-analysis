@@ -222,18 +222,26 @@ const DefaultQuestionsList = () => {
 
     }, [showToast, accessToken, selectAddFolders]);
 
-    // 幼少期３件などの表示
-    const countQuestionsByAge = (questions: Question[]) => {
-        return questions.reduce((accum, question) => {
+    type AgeCount = { [key: string]: number };
+
+    const countAnsweredQuestions = (questions: Question[]): number =>
+        questions.filter(question => question.answers[0]).length;
+
+    // 年代ごとのカウント
+    const groupQuestionsByAge = (questions: Question[]): AgeCount =>
+        questions.reduce((accum, question) => {
             accum[question.age] = (accum[question.age] || 0) + 1;
             return accum;
-        }, {} as { [key: string]: number });
-    };
+        }, {} as AgeCount);
 
-    const ageCounts: { [key: string]: number } = countQuestionsByAge(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99));
+
+    console.log(countAnsweredQuestions(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99)))
+
+
+    const ageCounts: { [key: string]: number } = groupQuestionsByAge(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99));
 
     // 回答済みの質問数を取得
-    const answerdCounts: { [key: string]: number } = countQuestionsByAge(
+    const answerdAgeCounts: { [key: string]: number } = groupQuestionsByAge(
         defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99).filter((question) => question.answers[0]));
 
 
@@ -274,10 +282,11 @@ const DefaultQuestionsList = () => {
                         <>
                             {/* 見出し */}
                             <div className={`${styles.menu} mb-4 `}>
-                                <a href='/review-questions' className={styles.link}>カテゴリーから探す </a>
+                                <a href='/questions-list' className={styles.link}>用意された質問から選ぶ </a>
                                 <span> &#62; </span>
                                 <span style={{ fontSize: '120%' }}>レベル{currentPage}&nbsp;&nbsp;</span>
-                                <span style={{ fontWeight: 'bold', fontSize: '120%' }}>{currentCategory}</span>
+                                <span style={{ fontWeight: 'bold', fontSize: '120%' }}>{currentCategory}
+                                    ({countAnsweredQuestions(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99))}/100問回答済)</span>
                             </div>
 
                             {/* トーストメニュー */}
@@ -348,8 +357,8 @@ const DefaultQuestionsList = () => {
                                                         // style={{ fontWeight: 'bold' }}
                                                         >{question.age}&nbsp;&nbsp;</span>
                                                         <span>
-                                                            {answerdCounts[question.age] ? (
-                                                                answerdCounts[question.age]) : 0}
+                                                            {answerdAgeCounts[question.age] ? (
+                                                                answerdAgeCounts[question.age]) : 0}
                                                             &nbsp;/&nbsp;
                                                             {ageCounts[question.age]}問回答済</span>
                                                     </div>

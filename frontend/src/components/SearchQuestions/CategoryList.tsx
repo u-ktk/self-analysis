@@ -3,6 +3,8 @@ import { Table } from 'react-bootstrap'
 import { useAuth } from '../auth/Auth';
 import { getCategoryList } from '../api/DefaultQuestions';
 import loadStyles from '../styles/Loading.module.css';
+import styles from '../styles/Common.module.css';
+import detailStyles from '../styles/QuestionDetail.module.css';
 
 const CategoryList = () => {
     const [categoryList, setCategoryList] = useState<string[] | null>([]);
@@ -30,33 +32,34 @@ const CategoryList = () => {
         , [accessToken]);
 
 
-
-
     return (
         <>
-            {loading &&
-                <div className={loadStyles.loading}>
-                    <span className={loadStyles.text}>Loading...</span>
-                </div>
-            }
-            <Table striped bordered hover responsive className=" m-4">
-                <thead>
-                    <tr>
-                        <th>レベル</th>
-                        <th>カテゴリー</th>
-                        {/* <th>Category</th> */}
-                    </tr>
-                </thead>
-                <tbody >
+
+
+            <div className={styles.bg}>
+                {loading &&
+                    <div className={loadStyles.loading}>
+                        <span className={loadStyles.text}>Loading...</span>
+                    </div>
+                }
+                <h4 className={styles.title}>用意された質問から選ぶ</h4>
+
+                <div className={styles.contents}>
                     {categoryList?.map((category, index) => (
-                        <tr key={index} >
-                            <td>{index + 1}</td>
-                            <td><a href={`/questions-list/default/${index + 1}/`} className="text-dark">{category}</a></td>
-                            {/* <td>{question.category_name}</td> */}
-                        </tr>
+                        <table>
+                            <tbody>
+                                <tr key={index} >
+                                    <td className={styles.id}>レベル{index + 1}. </td>
+                                    <td><a href={`/questions-list/default/${index + 1}/`} className="text-dark">{category}</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     ))}
-                </tbody>
-            </Table>
+
+                </div>
+
+            </div>
+
         </>
     )
 }
