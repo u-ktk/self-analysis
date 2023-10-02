@@ -41,7 +41,7 @@ function App() {
           <Route path='/questions/default/:id' element={<DefaultQuestionDetail />} />
           <Route path='/questions/custom/:user/:questionId' element={<CustomQuestionDetail />} />
 
-
+          z
           <Route path='/review-questions' element={<ReviewQuestions />} />
           <Route path='/myPage' element={<MyPage />} />
 

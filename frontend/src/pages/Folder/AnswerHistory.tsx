@@ -21,7 +21,7 @@ const AnswerHistory = () => {
         text1: string | null,
         text2: string | null,
         text3: string | null,
-        user: number,
+        user: string,
         question: number,
     }) => {
         const url = `${BACKEND_URL}defaultquestions/${currentId}/answers/`;
@@ -53,7 +53,7 @@ const AnswerHistory = () => {
 
     return (
         <div>
-            <AnswerForm onSubmit={onSubmit} errorMessage={errorMessage} />
+            {/* <AnswerForm onSubmit={onSubmit} errorMessage={errorMessage} /> */}
         </div>
     )
 }

@@ -239,7 +239,8 @@ class AnswerViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         # URLからQuestionのIDを取得
-        question_id = self.kwargs.get('customquestions_pk') or self.kwargs.get('defaultquestions_pk')
+        # print("Kwargs:", self.kwargs) 
+        question_id = self.kwargs.get('nested_1_pk')
         return Answer.objects.filter(question_id=question_id)
 
 

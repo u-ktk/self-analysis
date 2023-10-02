@@ -18,7 +18,10 @@ export type Category = {
 export type Answer = {
     id: number;
     questionId: number;
-    content: string;
+    title: string;
+    text1: string;
+    text2: string;
+    text3: string;
     createdAt: Date;
 };
 

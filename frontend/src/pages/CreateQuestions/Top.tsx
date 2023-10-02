@@ -5,7 +5,6 @@ import CustomQuestionForm from '../../components/CreateQuestions/CustomQuestionF
 import HeadTitle from '../../components/layouts/HeadTitle';
 import NoLogin from '../../components/auth/NoLogin';
 import { addCustomQToFolder, createCustomQuestions } from '../../components/api/CustomQuestions';
-import Editor from '../../components/layouts/Editor';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 

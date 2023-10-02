@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
 import { Question } from "../types";
-import Editor from './layouts/Editor';
+import { Editor, SimpleEditor } from './layouts/Editor';
 import styles from './styles/Common.module.css';
 import formStyles from './styles/Form.module.css';
 import openIcon from '../images/icon/open.svg';
@@ -10,53 +10,39 @@ import openIcon from '../images/icon/open.svg';
 type Props = {
     onSubmit: SubmitHandler<FormData>;
     errorMessage: string | null;
+    isEditing: boolean;
+    isDefault: boolean;
+    initialData?: { title: string, text1: string, text2: string, text3: string };
 }
 
 type FormData = {
+    isDefault: boolean;
     title: string;
     text1: string;
     text2: string
     text3: string
-    user: number;
-    question: number;
+    user: string;
 }
 
-const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormData>();
+const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage, isEditing, isDefault, initialData }) => {
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormData>({
 
-    const [titleValue, setTitleValue] = useState<string>('');
-    const [text1Value, setText1Value] = useState<string>('');
-    const [text2Value, setText2Value] = useState<string>('');
-    const [text3Value, setText3Value] = useState<string>('');
+        defaultValues: {
+            title: initialData?.title || '',
+            text1: initialData?.text1 || '',
+            text2: initialData?.text2 || '',
+            text3: initialData?.text3 || '',
+            isDefault: isDefault,
+        },
+    });
 
+    const [titleValue, setTitleValue] = useState<string>(initialData?.title || '');
+    const [text1Value, setText1Value] = useState<string>(initialData?.text1 || '');
+    const [text2Value, setText2Value] = useState<string>(initialData?.text2 || '');
+    const [text3Value, setText3Value] = useState<string>(initialData?.text3 || '');
 
     return (
         <div>
-            <div className={formStyles.descriptionBox} style={{ color: '#4b4b4b' }}>
-                <ul>
-                    <li>
-                        「メモの魔力」p.136~p139を参考に
-                        <br />
-                        <span className={formStyles.highlighted}>「標語（ファクトをまとめたもの）」「ファクト」「抽象」「転用」</span>
-                        <br />
-                        を意識して回答してみましょう。
-                    </li>
-                    <li>
-                        １つの質問に対して複数回答することもできます。
-                    </li>
-                </ul>
-                <div style={{ color: '#AC8D73' }}>
-                    &nbsp;使い方の例は
-                    <a href='/help' className={formStyles.link}>
-                        こちら
-                        <span>
-                            <img alt="質問を探す" src={openIcon} width="20" height="20"></img>
-                        </span>
-                    </a>
-
-                </div>
-            </div>
-
 
 
 
@@ -64,12 +50,12 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
                 <div className={formStyles.formGroup}>
                     <label htmlFor="">標語（ファクトをまとめたもの）</label>
                     {/* <Editor value={titleValue} onChange={setTitleValue} /> */}
-                    <Editor value={titleValue} onChange={(value) => {
+                    <SimpleEditor value={titleValue} onChange={(value) => {
                         setTitleValue(value);
                         setValue('title', value);
                     }} />
 
-                    <input type="hidden"  {...register("title")} value={titleValue} />
+                    <input type="hidden"  {...register("title")} />
                 </div>
 
                 <div className="form-group">
@@ -78,7 +64,7 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
                         setText1Value(value);
                         setValue('text1', value);
                     }} />
-                    <input type="hidden" {...register("text1")} value={text1Value} />
+                    <input type="hidden" {...register("text1")} />
                 </div>
 
                 <div className="form-group">
@@ -87,7 +73,7 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
                         setText2Value(value);
                         setValue('text2', value);
                     }} />
-                    <input type="hidden"   {...register("text2")} value={text2Value} />
+                    <input type="hidden"   {...register("text2")} />
                 </div>
 
                 <div className="form-group">
@@ -99,7 +85,18 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage }) => {
                     <input type="hidden"   {...register("text3")} />
                 </div>
 
-                <Button type="submit" className={styles.darkButton}>回答する</Button>
+                <input type="hidden" {...register("isDefault")} />
+
+
+                <Button type="submit" className={styles.darkButton}>
+                    {(isEditing) ? (
+                        <span>編集する</span>
+                    ) : (
+                        <span>回答する</span>
+                    )}
+
+                </Button>
+
 
             </Form>
         </div>

@@ -16,7 +16,14 @@
     text-decoration: underline;
 }
 
-
+.bg {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 200px;
+    padding: 30px;
+}
 
 
 .contents {
@@ -34,18 +41,21 @@
 
 .descriptionBox {
     display: flex;
+    background-color: #FAFAFA;
     flex-direction: column;
     justify-content: center;
     text-align: left;
     line-height: 30px;
     padding-left: 5px;
-    margin: 30px 0;
-    border: 1px solid #cbcbcb;
+    margin: 30px 10px;
+    border: none;
     border-radius: 5px;
     padding: 20px 40px;
     white-space: pre-wrap;
     word-wrap: break-word;
     box-shadow: #E8DBD1 0 2px 2px;
+    color: #6B4423;
+
 }
 
 .descriptionBox ul {
@@ -55,12 +65,11 @@
 
 .descriptionBox li {
     margin-bottom: 10px;
-    color: #AC8D73;
+    color: #6B4423;
 }
 
 .highlighted {
     font-weight: bold;
-    color: #8F7A59;
 }
 
 .alert {
@@ -86,6 +95,10 @@
     /* alertの枠からはみ出るのを防ぐ */
     max-width: 100%;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
 .formGroup {
@@ -109,6 +122,30 @@
     opacity: 0.8;
     background-color: white;
     color: #6B4423;
+}
+
+
+.accordion {
+    /* border: 1px solid #AC8D73; */
+    border: 1px solid #cecece;
+    background-color: #fafafa;
+    cursor: pointer;
+    padding: 10px 20px;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+    /* border-left: 3px solid #AC8D73; */
+    border-left: 3px solid #d88948a0;
+    margin: 30px 0 10px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion:hover {
+    /* background-color: #AC8D73; */
+    background-color: #eeeeee;
 }
 
 

@@ -7,7 +7,10 @@ type editorProps = {
     onChange: (value: string) => void;
 }
 
-function Editor({ value, onChange }: editorProps) {
+
+
+
+const Editor = ({ value, onChange }: editorProps) => {
 
     const toolbarOptions = [
         ['bold', 'italic', 'underline'],
@@ -15,7 +18,8 @@ function Editor({ value, onChange }: editorProps) {
         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
 
         [{ 'header': [1, 2, 3, false] }],
-        [{ 'color': [] }, { 'background': [] }],
+        // 背景に薄い色だけを選択できるようにする
+        [{ 'background': ['#ffffff', '#FACBCB', '#FEEACC', '#FFFECC', '#CBE7CB', '#CCE0F6', '#EAD7FF'] }],
 
         ['link'],
 
@@ -24,7 +28,7 @@ function Editor({ value, onChange }: editorProps) {
 
 
     return <ReactQuill
-        style={{ height: '150px', marginBottom: '50px' }}
+        style={{ height: '120px', marginBottom: '70px' }}
         className={editorStyles.editor}
         theme="snow"
         value={value}
@@ -33,4 +37,17 @@ function Editor({ value, onChange }: editorProps) {
     />;
 }
 
-export default Editor;
+const SimpleEditor = ({ value, onChange }: editorProps) => {
+
+    return <ReactQuill
+        style={{ height: '50px', marginBottom: '10px' }}
+        theme="snow"
+        value={value}
+        onChange={(content) => onChange(content)}
+        modules={{ toolbar: false }}
+    />;
+
+}
+
+
+export { Editor, SimpleEditor };

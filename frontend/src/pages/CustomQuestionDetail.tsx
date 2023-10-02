@@ -3,9 +3,11 @@ import { useParams, useLocation } from 'react-router-dom'
 import HeadTitle from '../components/layouts/HeadTitle'
 import { useAuth } from '../components/auth/Auth'
 import { getCustomQuestionDetail, addCustomQToFolder, deleteCustomQuestion } from '../components/api/CustomQuestions'
+import { getAnswers, createAnswer, updateAnswer, deleteAnswer } from '../components/api/CustomAnswers'
 import { addQuestionToFolder } from '../components/SearchQuestions/AddQustionToFolder'
 import { getFolderList } from '../components/api/Folder';
 import AnswerForm from '../components/AnswerForm';
+import AnswerList from '../components/AnswerList';
 import { Question, Answer, Folder } from '../types'
 
 import detailStyles from '../components/styles/QuestionDetail.module.css'
@@ -21,6 +23,8 @@ import trashIcon from '../images/icon/trash.svg'
 import checkMark from '../images/checked.png'
 import checkIcon from '../images/icon/check.svg'
 import errorIcon from '../images/icon/error.svg'
+import closeIcon from '../images/icon/close.svg'
+import openIcon from '../images/icon/open.svg'
 
 
 
@@ -131,7 +135,6 @@ const CustomQuestionDetail = () => {
     };
 
 
-
     // 質問の取得
     useEffect(() => {
         if (!accessToken || !userId || !questionId) {
@@ -189,59 +192,45 @@ const CustomQuestionDetail = () => {
 
     // 回答の送信
     const onSubmit = async (data: {
+        isDefault: boolean,
         title: string,
         text1: string,
         text2: string,
         text3: string,
-        user: number,
-        question: number,
+        user: string,
     }) => {
 
-        // <p>を取り除いた後、空白のみの文字列かどうかを判定
-        const stripHtmlTags = (str: string) => {
-            return str.replace(/<\/?[^>]+(>|$)/g, "");
-        };
-
-        if (!data.title.trim() || /^\s*$/.test(stripHtmlTags(data.title)) || !data.text1.trim() || /^\s*$/.test(stripHtmlTags(data.text1))) {
-            setErrorMessage('標語、ファクトは必須です');
-            return;
-        }
-
-
-
-
-        const url = `${BACKEND_URL}defaultquestions/${customQuestion?.id}/answers/`;
-        console.log('data:', data)
+        if (!accessToken || !userId || !questionId) return;
+        // 空白のみの回答は送信しない
         try {
-            const response = await fetch(url, {
-                method: 'POST',
-                body: JSON.stringify({ ...data, user: userId, question: customQuestion?.id }),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `JWT ${accessToken}`
-                }
-            });
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log(responseData)
-                if (errorMessage) setErrorMessage(null);
+            const stripHtmlTags = (str: string) => {
+                return str.replace(/<\/?[^>]+(>|$)/g, "");
+            };
+
+            if (!data.title.trim() || /^\s*$/.test(stripHtmlTags(data.title)) || !data.text1.trim() || /^\s*$/.test(stripHtmlTags(data.text1))) {
+                console.log(data.text3)
+                setErrorMessage('標語、ファクトは必須です');
+                return;
+            }
+
+            const res = await createAnswer({ accessToken, userId, questionId: parseInt(questionId), title: data.title, text1: data.text1, text2: data.text2, text3: data.text3, isDefault: false });
+            if (res) {
                 setSuccessMessage('回答を作成しました');
+                if (errorMessage) setErrorMessage(null);
                 // データを更新して再レンダリング
                 if (!accessToken || !userId || !questionId) return;
                 const res = await getCustomQuestionDetail({ accessToken, userId }, questionId);
                 if (res) {
                     setCustomQuestion(res);
                 }
-
             }
-
         } catch (error) {
             if (error instanceof Error) {
-                if (successMessage) setSuccessMessage(null);
                 setErrorMessage(error.message);
                 console.log(errorMessage);
             }
         }
+
     }
 
 
@@ -366,12 +355,15 @@ const CustomQuestionDetail = () => {
                                         {successMessage &&
                                             <Alert variant='primary' className={formStyles.alert}>
                                                 <span>
-                                                    <img alt="作成成功" src={checkIcon} width="40" height="40"></img>
+                                                    <img alt="作成成功" src={checkIcon} width="40" height="40" />
                                                 </span>
                                                 <div className={formStyles.msg}>
-                                                    <span style={{ fontWeight: 'bold' }}>
+                                                    <div style={{ fontWeight: 'bold' }}>
                                                         {successMessage}
-                                                    </span>
+                                                    </div>
+                                                    <div >
+                                                        <img alt="閉じる" src={closeIcon} width="18" height="18" onClick={() => setSuccessMessage(null)} />
+                                                    </div>
                                                 </div>
                                             </Alert>
                                         }
@@ -383,13 +375,52 @@ const CustomQuestionDetail = () => {
                                                     <img alt="エラー" src={errorIcon} width="40" height="40"></img>
                                                 </span>
                                                 <div className={formStyles.msg}>
-
-                                                    {errorMessage}
+                                                    <div >
+                                                        {errorMessage}
+                                                    </div>
+                                                    <div >
+                                                        <img alt="閉じる" src={closeIcon} width="18" height="18" onClick={() => setSuccessMessage(null)} />
+                                                    </div>
                                                 </div>
                                             </Alert>}
 
+                                        {/* 説明 */}
+                                        <div className={formStyles.descriptionBox} style={{ color: '#4b4b4b' }}>
+                                            <ul>
+                                                <li>
+                                                    「メモの魔力」p.136~p139を参考に
+                                                    <br />
+                                                    <span className={formStyles.highlighted}>「標語（ファクトをまとめたもの）」「ファクト」「抽象」「転用」</span>
+                                                    <br />
+                                                    を意識して回答してみましょう。
+                                                </li>
+                                                <li>
+                                                    １つの質問に対して複数回答することもできます。
+                                                </li>
+                                            </ul>
+                                            <div style={{ color: '#6B4423' }}>
+                                                &nbsp;使い方の例は
+                                                <a href='/help' className={formStyles.link}>
+                                                    こちら
+                                                    <span>
+                                                        <img alt="探す" src={openIcon} width="20" height="20"></img>
+                                                    </span>
+                                                </a>
+
+                                            </div>
+                                        </div>
+
+
+
                                         {/* 回答フォーム */}
-                                        <AnswerForm onSubmit={onSubmit} errorMessage={errorMessage} />
+                                        <AnswerForm onSubmit={onSubmit} errorMessage={errorMessage} isEditing={false} isDefault={false} />
+
+                                        {/* 回答リスト */}
+                                        <AnswerList
+                                            question={customQuestion}
+                                            accessToken={accessToken}
+                                            userId={userId}
+                                        />
 
                                     </>
                                 )}

@@ -12,7 +12,8 @@ import listStyles from '../../components/styles/List.module.css';
 import styles from '../../components/styles/Common.module.css';
 import detailStyles from '../../components/styles/QuestionDetail.module.css';
 import newFolder from '../../images/icon/newFolder.svg';
-import allowDown from '../../images/icon/allowDown.svg';
+import plus from '../../images/icon/plus.svg';
+import minus from '../../images/icon/minus.svg';
 import checkMark from '../../images/checked.png';
 import { Button } from 'react-bootstrap';
 
@@ -352,10 +353,16 @@ const DefaultQuestionsList = () => {
                                                             &nbsp;/&nbsp;
                                                             {ageCounts[question.age]}問回答済</span>
                                                     </div>
-                                                    <span>
-                                                        <img src={allowDown} className={detailStyles.openIcon} alt='開く' onClick={() => { }} />
+                                                    {openAge === question.age ? (
+                                                        <span>
+                                                            <img src={minus} className={detailStyles.openIcon} alt='閉じる' onClick={() => { }} />
+                                                        </span>
+                                                    ) : (
+                                                        <span>
+                                                            <img src={plus} className={detailStyles.openIcon} alt='開く' onClick={() => { }} />
+                                                        </span>)
 
-                                                    </span>
+                                                    }
                                                 </div>
                                             ) : null}
 
