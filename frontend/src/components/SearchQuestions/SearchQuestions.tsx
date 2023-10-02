@@ -76,7 +76,7 @@ const SearchQuestions = () => {
             <h4 className={style.title}>質問を検索</h4>
             <div className={searchStyle.contents}>
                 <div className={searchStyle.search}>
-                    <div className='mb-2'>フリーワードで選ぶ</div>
+                    <strong className='mb-2'>フリーワードで選ぶ</strong>
                     <div >
                         <form onSubmit={handleSubmit(onSubmitByWord)} className={searchStyle.formContainer}>
                             <input
@@ -93,7 +93,7 @@ const SearchQuestions = () => {
                 </div>
 
                 <div className={searchStyle.search}>
-                    <div className='mb-2'>年代で選ぶ</div>
+                    <strong className='mb-2'>年代で選ぶ</strong>
                     <Select
                         value={ageOptions.find(option => option.value === searchParamsByAge)}
                         onChange={handleAgeSelection}

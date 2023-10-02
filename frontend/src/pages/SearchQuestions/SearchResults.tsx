@@ -2,9 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Question } from '../../types';
 import { useLocation } from 'react-router-dom';
 import { getDefaultQuestions } from '../../components/api/DefaultQuestions';
+import { getCustomQuestions } from '../../components/api/CustomQuestions';
 import { useAuth } from '../../components/auth/Auth';
-import { Table } from 'react-bootstrap';
+import { Table, Alert } from 'react-bootstrap';
 import HeadTitle from '../../components/layouts/HeadTitle';
+
+import styles from '../../components/styles/Common.module.css';
+import loadStyles from '../../components/styles/Loading.module.css';
+import detailStyles from '../../components/styles/QuestionDetail.module.css';
+import formStyles from '../../components/styles/Form.module.css';
+
+import error from '../../images/icon/error.svg';
+
 
 const SearchResults = () => {
     const location = useLocation();
@@ -13,29 +22,36 @@ const SearchResults = () => {
     const searchParams = new URLSearchParams(location.search);
     const textContains = searchParams.get('text');
     const ageContains = searchParams.get('age');
-    const { accessToken } = useAuth();
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const { accessToken, userId } = useAuth();
+
 
 
     const fetchData = async () => {
-        if (!accessToken || (!textContains && !ageContains)) {
+        if (!accessToken || !userId || (!textContains && !ageContains)) {
             console.log('検索結果を取得できませんでした');
             return;
         }
 
         try {
-            let res;
-
+            let defaultResults: Question[] | null;
+            let customResults: Question[] | null;
+            let res: Question[] = [];
             if (textContains) {
-                res = await getDefaultQuestions({ accessToken, text: textContains });
+                defaultResults = await getDefaultQuestions({ accessToken, text: textContains });
+                customResults = await getCustomQuestions({ accessToken, text: textContains, userId });
             } else if (ageContains) {
-                res = await getDefaultQuestions({ accessToken, age: ageContains });
+                defaultResults = await getDefaultQuestions({ accessToken, age: ageContains });
+                customResults = await getCustomQuestions({ accessToken, age: ageContains, userId });
             }
-
-            if (res) {
+            res = defaultResults!.concat(customResults!);
+            if (res && res.length === 0) {
+                setErrorMessage('検索結果がありませんでした');
+            } else if (res) {
                 setQuestions(res);
                 console.log(res);
             }
+
+
         } catch (error: any) {
             setErrorMessage(error.message);
         }
@@ -45,87 +61,93 @@ const SearchResults = () => {
         fetchData();
     }, [accessToken, textContains, ageContains]);
 
-    //画面サイズが変更されたら再描画
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, []);
+
 
     return (
         <>
             <HeadTitle title='検索結果' />
 
-            <div>
+
+            <div className={styles.bg}>
+                {/* ローディング */}
+                {!accessToken && (
+                    <div className={loadStyles.loading}>
+                        <span className={loadStyles.text}>Loading...</span>
+                    </div>
+                )}
+
+
+
                 {(textContains || ageContains) && (
                     <div>
-                        <h1>検索結果</h1>
-                        {textContains && <div>検索ワード：{textContains}</div>}
-                        {ageContains && <div>年代：{ageContains}</div>}
+                        <div className={`${styles.menu} mb-4 `}>
+                            <a href='/review-questions' className={styles.link}>質問を検索 </a>
+                            <span> &#62; </span>
+                            <span style={{ fontWeight: 'bold' }}>
+                                {textContains && <span>フリーワードから選ぶ：{textContains}</span>}
+                                {ageContains && <span>年代から選ぶ：{ageContains}</span>}
+                            </span>
+                        </div>
 
-                        <Table striped bordered hover responsive className="m-4" >
-                            {windowWidth > 960 ? (
+                        <div className={detailStyles.contents}>
+
+                            {/* 検索結果なしの場合エラーメッセージ */}
+                            {!questions.length ? (
                                 <>
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>質問</th>
-                                            <th>カテゴリー</th>
-                                            <th>No.</th>
-                                            <th>質問</th>
-                                            <th>カテゴリー</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {questions.map((question, index) => {
-                                            // 横に2列ずつ表示
-                                            if (index % 2 === 0) {
-                                                return (
-                                                    <tr key={question.id}>
-                                                        <td>{question.id}. </td>
-                                                        <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.age})</a></td>
-                                                        <td>{question.category_name}</td>
-                                                        <td>{questions[index + 1]?.id}. </td>
-                                                        <td><a href={`/questions/default/${questions[index + 1]?.id}/`}>{questions[index + 1]?.text}({questions[index + 1]?.age})</a></td>
-                                                        <td>{questions[index + 1]?.category_name}</td>
-                                                    </tr>
-                                                )
-                                            };
-                                            return null;
-                                        })}
-                                    </tbody>
+                                    {errorMessage &&
+                                        <Alert className={formStyles.alert}>
+                                            <span>
+                                                <img alt="エラー" src={error} width="40" height="40"></img>
+                                            </span>
+                                            <div className={formStyles.msg}>
 
+                                                {errorMessage}
+                                            </div>
+                                        </Alert>}
                                 </>
-
-
-
                             ) : (
-                                <>
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>質問</th>
-                                            <th>カテゴリー</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {questions.map((question) => (
-                                            <tr key={question.id}>
-                                                <td>{question.id}. </td>
-                                                <td><a href={`/questions/default/${question.id}/`}>{question.text}({question.age})</a></td>
-                                                <td>{question.category_name}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </>
-                            )}
-                        </Table>
 
-                        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                                // 検索結果ありの場合
+                                <div>
+                                    {questions.map((question: Question, index: number) => (
+                                        <div key={question.id}>
+                                            {(question.category_name && index === 0) || (index > 0 && questions[index - 1] && question.category_name !== questions[index - 1].category_name) ? (
+                                                <div className={detailStyles.category}>{question.category_name}</div>
+                                            ) : null}
+
+                                            {/* [自分で作成した質問]も初回のみ表示 */}
+                                            {index > 0 && question.category_name == null && questions[index - 1].category_name !== null ? (
+                                                <div className={detailStyles.category}>自分で作成した質問</div>
+                                            ) : null}
+
+                                            {/* デフォルト質問なら質問の番号表示、カスタム質問ならメモアイコン追加 */}
+                                            <table className={detailStyles.questionGroup}>
+                                                <tbody >
+                                                    <tr>
+                                                        {question.category_name ? (
+                                                            <td className={detailStyles.id}>{question.id}.</td>
+                                                        ) : (
+                                                            <td className={detailStyles.id}>
+                                                                {/* <img src={noteIcon} alt='memo' className={detailStyles.icon} width="20" height="20" /> */}
+                                                                ・
+                                                            </td>
+                                                        )}
+                                                        <td className={detailStyles.text}>
+                                                            <a href={`/questions/detail/?id=${question.id}`} className={detailStyles.link}>{question.text}
+                                                                ({question.age})
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
+
+                        </div>
                     </div>
                 )}
             </div>
