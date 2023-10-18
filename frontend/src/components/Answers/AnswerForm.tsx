@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
-import { Question } from "../types";
-import { Editor, SimpleEditor } from './layouts/Editor';
-import styles from './styles/Common.module.css';
-import formStyles from './styles/Form.module.css';
+import { Question } from "../../types";
+import { Editor, SimpleEditor } from '../layouts/Editor';
+import styles from '../styles/Common.module.css';
+import formStyles from '../styles/Form.module.css';
 import openIcon from '../images/icon/open.svg';
 
 type Props = {
@@ -41,6 +41,7 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage, isEditing, isDefa
     const [text2Value, setText2Value] = useState<string>(initialData?.text2 || '');
     const [text3Value, setText3Value] = useState<string>(initialData?.text3 || '');
 
+
     return (
         <div>
 
@@ -48,7 +49,10 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage, isEditing, isDefa
 
             <Form className=' mx-auto' onSubmit={handleSubmit(onSubmit)}>
                 <div className={formStyles.formGroup}>
-                    <label htmlFor="">標語（ファクトをまとめたもの）</label>
+
+                    <label htmlFor="">標語（ファクトをまとめたもの）
+                        <span style={{ color: '#AC8D73' }}>*</span>
+                    </label>
                     {/* <Editor value={titleValue} onChange={setTitleValue} /> */}
                     <SimpleEditor value={titleValue} onChange={(value) => {
                         setTitleValue(value);
@@ -59,7 +63,9 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage, isEditing, isDefa
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="">ファクト</label>
+                    <label htmlFor="">ファクト
+                        <span style={{ color: '#AC8D73' }}>*</span>
+                    </label>
                     <Editor value={text1Value} onChange={(value) => {
                         setText1Value(value);
                         setValue('text1', value);

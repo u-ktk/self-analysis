@@ -34,7 +34,8 @@ const CreateCustomQuestions = () => {
             if (res) {
                 // console.log(res);
                 setCustomQuestions(res);
-                setSuccessMessage(`${text}(${age})`);
+                setSuccessMessage(`${text}(${age})を作成しました`);
+                window.scrollTo(0, 0);
                 if (errorMessage) {
                     setErrorMessage(null);
                 }
@@ -48,6 +49,7 @@ const CreateCustomQuestions = () => {
         } catch (error) {
             if (error instanceof Error) {
                 setErrorMessage(error.message);
+                window.scrollTo(0, 0)
                 if (successMessage) {
                     setSuccessMessage(null);
                 }

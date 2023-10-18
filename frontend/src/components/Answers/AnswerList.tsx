@@ -1,20 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Question, Answer } from "../types";
+import { Question, Answer } from "../../types";
 import { Modal, Button, Alert } from 'react-bootstrap';
-import { getAnswers, updateAnswer, deleteAnswer } from './api/CustomAnswers';
+import { getAnswers, updateAnswer, deleteAnswer } from '../api/CustomAnswers';
 import AnswerForm from './AnswerForm';
 
-import plus from '../images/icon/plus.svg';
-import minus from '../images/icon/minus.svg';
-import trashIcon from '../images/icon/trash.svg';
-import closeIcon from '../images/icon/close.svg';
-import editIcon from '../images/icon/edit.svg';
-import checkIcon from '../images/icon/check.svg';
+import plus from '../../images/icon/plus.svg';
+import minus from '../../images/icon/minus.svg';
+import trashIcon from '../../images/icon/trash.svg';
+import editIcon from '../../images/icon/edit.svg';
 
-import detailStyles from './styles/QuestionDetail.module.css';
-import styles from './styles/Common.module.css';
-import listStyles from './styles/List.module.css';
-import formStyles from './styles/Form.module.css';
+import detailStyles from '../styles/QuestionDetail.module.css';
+import styles from '../styles/Common.module.css';
+import listStyles from '../styles/List.module.css';
+import formStyles from '../styles/Form.module.css';
 import { isDeepStrictEqual } from 'util';
 
 
@@ -171,7 +169,7 @@ const AnswerList = (props: AnswerListProps) => {
             {/* {successMessage &&
                 <Alert variant='primary' className={formStyles.alert}>
                     <span>
-                        <img alt="プロセス成功" src={checkIcon} width="40" height="40" />
+                        <img alt="編集成功" src={checkIcon} width="40" height="40" />
                     </span>
                     <div className={formStyles.msg}>
                         <div style={{ fontWeight: 'bold' }}>

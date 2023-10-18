@@ -7,8 +7,7 @@ import { useAuth } from '../auth/Auth';
 import Select from 'react-select';
 import { getFolderList } from '../api/Folder';
 import style from '../styles/Common.module.css';
-import check from '../../images/icon/check.svg';
-import error from '../../images/icon/error.svg';
+import ShowMsg from '../layouts/ShowMsg';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -113,33 +112,17 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
                 <div className={formStyle.contents}>
 
                     <h4 className={formStyle.title}>質問を作る</h4>
-                    {/* エラーメッセージ表示 */}
-                    {errorMessage &&
-                        <Alert className={formStyle.alert}>
-                            <span>
-                                <img alt="エラー" src={error} width="40" height="40"></img>
-                            </span>
-                            <div className={formStyle.msg}>
 
-                                {errorMessage}
-                            </div>
-                        </Alert>}
-
-                    {/* 質問成功作成メッセージ */}
+                    {/* 作成成功メッセージ */}
                     {successMessage &&
-                        <Alert variant='primary' className={formStyle.alert}>
-                            <span>
-                                <img alt="作成成功" src={check} width="40" height="40"></img>
-                            </span>
-                            <div className={formStyle.msg}>
-                                <span style={{ fontWeight: 'bold' }}>
-                                    {successMessage}
-                                </span>
-                                を作成しました
-                            </div>
-
-                        </Alert>
+                        <ShowMsg message={successMessage} isSuccess={true} />
                     }
+
+                    {/* エラーメッセージ */}
+                    {errorMessage &&
+                        <ShowMsg message={errorMessage} isSuccess={false} />
+                    }
+
                     {/* 説明 */}
                     <div className={formStyle.description}>
 

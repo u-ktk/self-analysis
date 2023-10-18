@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../components/auth/Auth';
-import AnswerForm from '../../components/AnswerForm';
+import AnswerForm from '../../components/Answers/AnswerForm';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
