@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import AnswerForm from './AnswerForm';
-import formStyles from '../styles/Form.module.css';
 import openIcon from '../../images/icon/open.svg';
 import { getAnswers, createAnswer, updateAnswer, deleteAnswer } from '../api/CustomAnswers'
 import { getCustomQuestionDetail } from '../api/CustomQuestions'
 import { Question } from '../../types';
 import ShowMsg from '../layouts/ShowMsg';
+
+import formStyles from '../styles/Form.module.css';
+import detailStyles from '../styles/QuestionDetail.module.css';
+
+import plus from '../../images/icon/plus.svg';
+import minus from '../../images/icon/minus.svg';
 
 
 type CreateAnswerProps = {
@@ -18,6 +23,7 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [customQuestion, setCustomQuestion] = useState<Question | null>(null);
+    const [openAnswer, setOpenAnswer] = useState<boolean>(false);
 
 
     // 回答の送信
@@ -74,6 +80,11 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
         }
     }
 
+    // アコーディオンの開閉
+    const toggleAccordion = () => {
+        setOpenAnswer(!openAnswer);
+    };
+
 
     return (
         <>
@@ -88,34 +99,70 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
                 <ShowMsg message={errorMessage} isSuccess={false} />
             }
 
+            {/*   質問作成アコーディオン*/}
+            <div
+                className={detailStyles.accordion}
+                style={{ backgroundColor: '#d8894818' }}
+                onClick={() => toggleAccordion()}
+            >
 
-            {/* 説明 */}
-            <div className={formStyles.descriptionBox} style={{ color: '#4b4b4b' }}>
-                <ul>
-                    <li>
-                        「メモの魔力」p.136~p139を参考に
-                        <br />
-                        <span className={formStyles.highlighted}>「標語（ファクトをまとめたもの）」「ファクト」「抽象」「転用」</span>
-                        <br />
-                        を意識して回答してみましょう。
-                    </li>
-                    <li>
-                        １つの質問に対して複数回答することもできます。
-                    </li>
-                </ul>
-                <div style={{ color: '#6B4423' }}>
-                    &nbsp;使い方の例は
-                    <a href='/help' className={formStyles.link}>
-                        こちら
+                <strong style={{
+                    marginLeft: '10px',
+                    // color: '#fafafa'
+                }}>
+                    回答を作成
+                </strong>
+                <div>
+                    {openAnswer ? (
                         <span>
-                            <img alt="探す" src={openIcon} width="20" height="20"></img>
+                            <img src={minus} className={detailStyles.openIcon} alt='閉じる' onClick={() => { }} />
                         </span>
-                    </a>
-
+                    ) : (
+                        <span>
+                            <img src={plus} className={detailStyles.openIcon} alt='開く' onClick={() => { }} />
+                        </span>)
+                    }
                 </div>
+
             </div>
 
-            <AnswerForm onSubmit={onSubmit} errorMessage={errorMessage} isEditing={false} isDefault={false} />
+
+            {/* アコーディオンopenの場合 */}
+            {openAnswer &&
+                (
+                    <>
+                        <div className={formStyles.descriptionBox} style={{ color: '#4b4b4b' }}>
+                            <ul>
+                                <li>
+                                    「メモの魔力」p.136~p139を参考に
+                                    <br />
+                                    <span className={formStyles.highlighted}>「標語（ファクトをまとめたもの）」「ファクト」「抽象」「転用」</span>
+                                    <br />
+                                    を意識して回答してみましょう。
+                                </li>
+                                <li>
+                                    １つの質問に対して複数回答することもできます。
+                                </li>
+                            </ul>
+                            <div style={{ color: '#6B4423' }}>
+                                &nbsp;使い方の例は
+                                <a href='/help' className={formStyles.link}>
+                                    こちら
+                                    <span>
+                                        <img alt="探す" src={openIcon} width="20" height="20"></img>
+                                    </span>
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <AnswerForm onSubmit={onSubmit} errorMessage={errorMessage} isEditing={false} isDefault={false} />
+                    </>
+
+                )
+
+            }
+
 
 
 

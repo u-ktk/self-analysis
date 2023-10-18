@@ -74,7 +74,7 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage, isEditing, isDefa
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="">具体</label>
+                    <label htmlFor="">抽象</label>
                     <Editor value={text2Value} onChange={(value) => {
                         setText2Value(value);
                         setValue('text2', value);

@@ -76,7 +76,7 @@
     transition: 0.4s;
     /* border-left: 3px solid #AC8D73; */
     border-left: 3px solid #d88948a0;
-    margin: 30px 0 10px 0;
+    margin: 20px 0 20px 0;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -87,6 +87,8 @@
     /* background-color: #AC8D73; */
     background-color: #eeeeee;
 }
+
+
 
 .toast {
     position: absolute;

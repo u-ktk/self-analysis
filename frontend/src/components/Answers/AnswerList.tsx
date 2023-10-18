@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Question, Answer } from "../../types";
-import { Modal, Button, Alert } from 'react-bootstrap';
+import { Modal, Button, Card } from 'react-bootstrap';
 import { getAnswers, updateAnswer, deleteAnswer } from '../api/CustomAnswers';
 import AnswerForm from './AnswerForm';
 
@@ -45,7 +45,7 @@ const AnswerList = (props: AnswerListProps) => {
 
 
 
-    const toggleAccordion = (answerTitle: number) => {
+    const toggleAccordion = (answerTitle: number | null) => {
         if (openAnswer === answerTitle) {
             setOpenAnswer(null);
         } else {
@@ -183,6 +183,8 @@ const AnswerList = (props: AnswerListProps) => {
             } */}
 
 
+
+
             {answers.map((answer: Answer) => (
 
                 <div key={answer.id}>
@@ -287,6 +289,9 @@ const AnswerList = (props: AnswerListProps) => {
 
 
             ))}
+
+
+
 
         </>
     )

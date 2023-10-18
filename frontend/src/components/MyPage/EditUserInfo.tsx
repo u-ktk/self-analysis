@@ -5,8 +5,7 @@ import userInfoStyle from '../styles/UserInfo.module.css'
 import { changeUserInfo } from '../api/UserInfo';
 import { Button, Row, Col, Form, Alert } from 'react-bootstrap';
 import formStyle from '../styles/Form.module.css';
-import error from '../../images/icon/error.svg'
-import check from '../../images/icon/check.svg'
+import ShowMsg from '../layouts/ShowMsg';
 
 type authInfo = {
     accessToken: string | null;
@@ -50,7 +49,7 @@ const UserInfo = (props: authInfo) => {
                 setChangeName("")
                 setShowName(changeName)
                 setIsNameEditing(false)
-                setSuccessMessage("ユーザー名")
+                setSuccessMessage("ユーザー名を編集しました")
                 if (errorMessage) {
                     setErrorMessage(null);
                 }
@@ -78,7 +77,7 @@ const UserInfo = (props: authInfo) => {
                 setChangeEmail("")
                 setShowEmail(changeName)
                 setIsEmailEditing(false)
-                setSuccessMessage("メールアドレス")
+                setSuccessMessage("メールアドレスを編集しました")
                 if (errorMessage) {
                     setErrorMessage(null);
                 }
@@ -113,7 +112,7 @@ const UserInfo = (props: authInfo) => {
 
             {/* エラーメッセージ */}
             <div className={userInfoStyle.contents}>
-                {errorMessage &&
+                {/* {errorMessage &&
                     <Alert className={formStyle.alert}>
                         <span>
                             <img alt="エラー" src={error} width="40" height="40"></img>
@@ -122,10 +121,10 @@ const UserInfo = (props: authInfo) => {
 
                             {errorMessage}
                         </div>
-                    </Alert>}
+                    </Alert>} */}
 
                 {/* 編集成功 */}
-                {successMessage &&
+                {/* {successMessage &&
                     <Alert variant='primary' className={formStyle.alert}>
                         <span>
                             <img alt="編集成功" src={check} width="40" height="40"></img>
@@ -134,10 +133,19 @@ const UserInfo = (props: authInfo) => {
                             <span style={{ fontWeight: 'bold' }}>
                                 {successMessage}
                             </span>
-                            を編集しました
                         </div>
                     </Alert>
+                } */}
+                {/* 成功メッセージ */}
+                {successMessage &&
+                    <ShowMsg message={successMessage} isSuccess={true} />
                 }
+
+                {/* エラーメッセージ */}
+                {errorMessage &&
+                    <ShowMsg message={errorMessage} isSuccess={false} />
+                }
+
 
                 <Row>
 

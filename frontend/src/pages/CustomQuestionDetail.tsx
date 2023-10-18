@@ -390,10 +390,10 @@ const CustomQuestionDetail = () => {
 
 
                                         {/* 新規回答作成 */}
-                                        {/* <AnswerForm onSubmit={onSubmit} errorMessage={errorMessage} isEditing={false} isDefault={false} /> */}
                                         <CreateNewAnswer accessToken={accessToken} userId={userId} questionId={questionId} />
-
+                                        <hr></hr>
                                         {/* 回答リスト */}
+                                        <h5>これまでの回答</h5>
                                         <AnswerList
                                             question={customQuestion}
                                             accessToken={accessToken}

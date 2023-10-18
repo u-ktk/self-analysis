@@ -27,13 +27,6 @@ const ShowMsg = ({ message, isSuccess }: MsgProps) => {
         }
     }, [message]);
 
-    let icon;
-    if (isSuccess) {
-        icon = checkIcon;
-    } else {
-        icon = errorIcon;
-    }
-
 
     return (
         <>
