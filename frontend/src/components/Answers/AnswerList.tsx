@@ -8,12 +8,12 @@ import plus from '../../images/icon/plus.svg';
 import minus from '../../images/icon/minus.svg';
 import trashIcon from '../../images/icon/trash.svg';
 import editIcon from '../../images/icon/edit.svg';
+import allowDown from '../../images/icon/allowDown.svg';
 
 import detailStyles from '../styles/QuestionDetail.module.css';
 import styles from '../styles/Common.module.css';
 import listStyles from '../styles/List.module.css';
 import formStyles from '../styles/Form.module.css';
-import { isDeepStrictEqual } from 'util';
 
 
 
@@ -163,6 +163,8 @@ const AnswerList = (props: AnswerListProps) => {
 
 
 
+
+
     return (
         <>
             {/* 編集成功メッセージ */}
@@ -194,9 +196,20 @@ const AnswerList = (props: AnswerListProps) => {
                         onClick={() => toggleAccordion(answer.id)}
 
                     >
-                        <strong style={{ marginLeft: '10px' }}>
-                            {removeTag(answer.title)}
-                        </strong>
+                        <div style={{ marginLeft: '10px' }}>
+                            <span style={{ fontWeight: 'bold', marginRight: '20px' }}>
+                                {removeTag(answer.title)}
+                            </span>
+
+                            <span>
+                                (
+                                {new Date(answer.created_at).getFullYear() + '/' +
+                                    (new Date(answer.created_at).getMonth() + 1) + '/' +
+                                    new Date(answer.created_at).getDate()
+                                }</span>
+                            作成)
+                        </div>
+
                         <div >
                             {openAnswer === answer.id ? (
                                 <span>
@@ -215,7 +228,7 @@ const AnswerList = (props: AnswerListProps) => {
 
 
                     {openAnswer === answer.id && (
-                        <>
+                        <div className={detailStyles.answerBox}>
                             <div style={{ textAlign: 'right' }}>
                                 {/* 編集アイコン */}
                                 <span>
@@ -248,10 +261,47 @@ const AnswerList = (props: AnswerListProps) => {
 
                             ) : (
                                 //    isEditing=falseでは普通に表示 
-                                <div className={detailStyles.answerGroup}>
-                                    {renderHTML(answer.text1)}
-                                    {answer.text2 && renderHTML(answer.text2)}
-                                    {answer.text3 && renderHTML(answer.text3)}
+                                // <div>
+                                //     <span className={detailStyles.mark}>ファクト</span>
+                                //     <div className={detailStyles.answerText}>{renderHTML(answer.text1)}</div>
+
+                                //     {answer.text2 && (<>
+                                //         <div style={{ textAlign: 'center' }}>
+                                //             <img src={allowDown} style={{ width: '30px' }} alt='下向き矢印'
+                                //             />
+                                //         </div>
+                                //         <span className={detailStyles.mark2}>抽象</span>
+                                //         <div className={detailStyles.answerText}>{renderHTML(answer.text2)}</div>
+
+                                //     </>)}
+                                //     {answer.text3 && (<>
+                                //         <div style={{ textAlign: 'center' }}>
+                                //             <img src={allowDown} style={{ width: '30px' }} alt='下向き矢印'
+                                //             />
+                                //         </div>
+                                //         <span className={detailStyles.mark2}>転用</span>
+                                //         <div className={detailStyles.answerText}>{answer.text3 && renderHTML(answer.text3)}</div>
+                                //     </>)
+                                //     }
+                                // </div>
+                                <div>
+                                    <div className={detailStyles.mark4}>ファクト</div>
+                                    <div className={detailStyles.answerText}>{renderHTML(answer.text1)}</div>
+
+                                    {answer.text2 && (<>
+                                        <div style={{ textAlign: 'center' }}>
+                                        </div>
+                                        <div className={detailStyles.mark4}>抽象</div>
+                                        <div className={detailStyles.answerText}>{renderHTML(answer.text2)}</div>
+
+                                    </>)}
+                                    {answer.text3 && (<>
+                                        <div style={{ textAlign: 'center' }}>
+                                        </div>
+                                        <div className={detailStyles.mark4}>転用</div>
+                                        <div className={detailStyles.answerText}>{answer.text3 && renderHTML(answer.text3)}</div>
+                                    </>)
+                                    }
                                 </div>
 
                             )}
@@ -278,7 +328,7 @@ const AnswerList = (props: AnswerListProps) => {
                             </Modal>
 
 
-                        </>
+                        </div>
 
                     )}
 

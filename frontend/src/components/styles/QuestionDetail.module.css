@@ -65,6 +65,7 @@
     line-height: 30px;
 }
 
+
 .accordion {
     /* border: 1px solid #AC8D73; */
     border: 1px solid #cecece;
@@ -74,9 +75,8 @@
     text-align: left;
     outline: none;
     transition: 0.4s;
-    /* border-left: 3px solid #AC8D73; */
-    border-left: 3px solid #d88948a0;
-    margin: 20px 0 20px 0;
+    border-left: 3px solid #d8894870;
+    margin: 20px 0 5px 0;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -88,6 +88,45 @@
     background-color: #eeeeee;
 }
 
+.mark {
+    font-size: 12px;
+    border-radius: 13px;
+    padding: 5px 10px;
+    /* border: 1.5px solid #ac8d7337; */
+    border: 1.5px solid #AC8D73;
+    color: #9e816a;
+    font-weight: bold;
+}
+
+.mark4 {
+    font-size: 18px;
+    border-bottom: 1.5px solid #AC8D73;
+    color: #9e816a;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.answerBox {
+    padding: 5px 25px 30px 25px;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    /* background-color: #fafafa; */
+
+}
+
+/* 回答はpタグで出力されるのでこっちに行間指定 */
+.answerBox p {
+    margin: 0;
+    line-height: 170%;
+
+}
+
+.answerText {
+    /* margin-top: 15px;
+    margin-left: 10px; */
+    margin: 20px 0px 40px 10px;
+
+}
 
 
 .toast {

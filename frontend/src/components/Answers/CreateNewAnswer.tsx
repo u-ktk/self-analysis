@@ -102,16 +102,37 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
             {/*   質問作成アコーディオン*/}
             <div
                 className={detailStyles.accordion}
+                // style={{ backgroundColor: '#ac8d7321' }}
                 style={{ backgroundColor: '#d8894818' }}
                 onClick={() => toggleAccordion()}
             >
 
-                <strong style={{
+                <div style={{
                     marginLeft: '10px',
+
                     // color: '#fafafa'
                 }}>
-                    回答を作成
-                </strong>
+                    <span style={{
+                        fontWeight: 'bold',
+                        marginRight: '10px',
+
+                    }}>
+                        回答を作成
+                    </span>
+                    {/* <span >
+                        &nbsp;
+                        <a href='/help' className={formStyles.link}>
+                            詳しくはこちら
+                            <span>
+                                <img alt="探す" src={openIcon} width="20" height="20"></img>
+                            </span>
+                        </a>
+
+                    </span> */}
+                </div>
+
+
+
                 <div>
                     {openAnswer ? (
                         <span>
@@ -131,30 +152,6 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
             {openAnswer &&
                 (
                     <>
-                        <div className={formStyles.descriptionBox} style={{ color: '#4b4b4b' }}>
-                            <ul>
-                                <li>
-                                    「メモの魔力」p.136~p139を参考に
-                                    <br />
-                                    <span className={formStyles.highlighted}>「標語（ファクトをまとめたもの）」「ファクト」「抽象」「転用」</span>
-                                    <br />
-                                    を意識して回答してみましょう。
-                                </li>
-                                <li>
-                                    １つの質問に対して複数回答することもできます。
-                                </li>
-                            </ul>
-                            <div style={{ color: '#6B4423' }}>
-                                &nbsp;使い方の例は
-                                <a href='/help' className={formStyles.link}>
-                                    こちら
-                                    <span>
-                                        <img alt="探す" src={openIcon} width="20" height="20"></img>
-                                    </span>
-                                </a>
-
-                            </div>
-                        </div>
 
                         <AnswerForm onSubmit={onSubmit} errorMessage={errorMessage} isEditing={false} isDefault={false} />
                     </>

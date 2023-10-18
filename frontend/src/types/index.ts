@@ -22,7 +22,7 @@ export type Answer = {
     text1: string;
     text2: string;
     text3: string;
-    createdAt: Date;
+    created_at: Date;
 };
 
 // フォルダの型定義

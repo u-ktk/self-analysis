@@ -66,10 +66,11 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage, isEditing, isDefa
                     <label htmlFor="">ファクト
                         <span style={{ color: '#AC8D73' }}>*</span>
                     </label>
-                    <Editor value={text1Value} onChange={(value) => {
-                        setText1Value(value);
-                        setValue('text1', value);
-                    }} />
+                    <Editor value={text1Value}
+                        onChange={(value) => {
+                            setText1Value(value);
+                            setValue('text1', value);
+                        }} />
                     <input type="hidden" {...register("text1")} />
                 </div>
 

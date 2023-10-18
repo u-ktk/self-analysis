@@ -19,7 +19,7 @@ const Editor = ({ value, onChange }: editorProps) => {
 
         [{ 'header': [1, 2, 3, false] }],
         // 背景に薄い色だけを選択できるようにする
-        [{ 'background': ['#ffffff', '#FACBCB', '#FEEACC', '#FFFECC', '#CBE7CB', '#CCE0F6', '#EAD7FF'] }],
+        [{ 'background': ['#ffffff', '#ac8d7337', '#F299502a', '#FFFECC6d', '#CBE7CB6d', '#CCE0F66d', '#EAD7FF6d'] }],
 
         ['link'],
 
@@ -28,7 +28,9 @@ const Editor = ({ value, onChange }: editorProps) => {
 
 
     return <ReactQuill
-        style={{ height: '120px', marginBottom: '70px' }}
+        style={{
+            marginBottom: '20px', backgroundColor: '#ffffff',
+        }}
         className={editorStyles.editor}
         theme="snow"
         value={value}
@@ -40,7 +42,7 @@ const Editor = ({ value, onChange }: editorProps) => {
 const SimpleEditor = ({ value, onChange }: editorProps) => {
 
     return <ReactQuill
-        style={{ height: '50px', marginBottom: '10px' }}
+        style={{ height: '50px', marginBottom: '10px', backgroundColor: '#ffffff' }}
         theme="snow"
         value={value}
         onChange={(content) => onChange(content)}
