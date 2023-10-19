@@ -27,8 +27,10 @@ export default function Register() {
             if (loginResponse.ok) {
                 const responseData = await loginResponse.json();
                 const newAccessToken = responseData.access;
+                const refreshToken = responseData.refresh;
                 //localStorageにアクセストークンを格納
                 localStorage.setItem('accessToken', newAccessToken);
+                localStorage.setItem('refreshToken', refreshToken);
                 setAccessToken(newAccessToken);
                 navigate('/');
             } else {

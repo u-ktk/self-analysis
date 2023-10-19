@@ -97,7 +97,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # 本番以外の環境ではSQLiteを使用
         'NAME': BASE_DIR / 'db.sqlite3',
-        'CONN_MAX_AGE': 300, 
+        'CONN_MAX_AGE': 300,
     }
 }
 
@@ -131,9 +131,10 @@ REST_USE_JWT = True
 
 SIMPLE_JWT = {
     # アクセストークン(1時間)
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=3),
-    # リフレッシュトークン(3日)
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    # 'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=60),
+    # リフレッシュトークン(7日)
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     # 認証タイプ
     'AUTH_HEADER_TYPES': ('JWT', ),
     # 認証トークン

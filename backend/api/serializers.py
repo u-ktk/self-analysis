@@ -51,16 +51,6 @@ class UserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("パスワードは6文字以上にしてください。")
         return value
 
-    # def validate_username(self, value):
-    #     if value == '':
-    #         raise serializers.ValidationError("usernameは空にできません")
-    #     return value
-
-    # def validate_email(self, value):
-    #     if value == '':
-    #         raise serializers.ValidationError("emailは空にできません")
-    #     return value
-
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
 
@@ -76,7 +66,8 @@ class QuestionCategorySerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ['id', 'title','text1','text2', 'text3','created_at', 'question', 'user']
+        fields = ['id', 'title', 'text1', 'text2',
+                  'text3', 'created_at', 'question', 'user']
         extra_kwargs = {
             'title': {
                 'error_messages': {
@@ -88,10 +79,10 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 class AnswerListSerializer(serializers.ListSerializer):
     child = AnswerSerializer()
-    
-class QuestionCategoryListSerializer(serializers.ModelSerializer):
-    child  = QuestionCategorySerializer()
 
+
+class QuestionCategoryListSerializer(serializers.ModelSerializer):
+    child = QuestionCategorySerializer()
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -101,8 +92,8 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['id', 'text', 'user', 'category', 'category_name','created_at',
-                  'age', 'folders','folders_name', 'is_default', 'answers']
+        fields = ['id', 'text', 'user', 'category', 'category_name', 'created_at',
+                  'age', 'folders', 'folders_name', 'is_default', 'answers']
         # バリデーションメッセージの追加
         extra_kwargs = {
             'text': {
@@ -118,11 +109,11 @@ class QuestionSerializer(serializers.ModelSerializer):
             },
             # フォルダーnull許可
             'folders': {
-                'required': False 
+                'required': False
             },
             # カスタム質問ではカテゴリーを選択しない
             'category': {
-                'required': False 
+                'required': False
             }
         }
 
@@ -140,9 +131,12 @@ class QuestionSerializer(serializers.ModelSerializer):
 class QuestionListSerializer(serializers.ListSerializer):
     child = QuestionSerializer()
 
+
 class FolderSerializer(serializers.ModelSerializer):
-    
-    questions = QuestionListSerializer(required=False,  source='get_ordered_questions')
+
+    questions = QuestionListSerializer(
+        required=False,  source='get_ordered_questions')
+
     class Meta:
         model = Folder
         fields = ['id', 'name', 'user', 'questions']
@@ -156,4 +150,3 @@ class FolderSerializer(serializers.ModelSerializer):
                 'required': False
             }
         }
-        

@@ -28,7 +28,9 @@ export default function Login() {
             if (response.ok) {
                 const responseData = await response.json();
                 const newAccessToken = responseData.access;
-                //localStorageにアクセストークンを格納
+                const refreshToken = responseData.refresh;
+                //localStorageにアクセストークンとリフレッシュトークンを格納
+                localStorage.setItem('refreshToken', refreshToken);
                 localStorage.setItem('accessToken', newAccessToken);
                 setAccessToken(newAccessToken);
                 navigate('/questions-list');
