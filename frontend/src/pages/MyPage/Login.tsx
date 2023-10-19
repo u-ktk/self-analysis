@@ -3,11 +3,28 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../components/auth/Auth";
 import LoginForm from "../../components/auth/LoginForm";
 import HeadTitle from "../../components/layouts/HeadTitle";
-import FetchToken from "../../components/auth/FetchToken";
 import formStyle from "../../components/styles/Form.module.css";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL;
+
+// リフレッシュトークンをDBに保存
+const saveRefreshToken = async (accessToken: string, refreshToken: string) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}refresh-token-save/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `JWT ${accessToken}`,
+            },
+            body: JSON.stringify({ refresh: refreshToken }),
+        });
+        if (res.ok) {
+            return;
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export default function Login() {
     const navigate = useNavigate();
@@ -29,10 +46,10 @@ export default function Login() {
                 const responseData = await response.json();
                 const newAccessToken = responseData.access;
                 const refreshToken = responseData.refresh;
-                //localStorageにアクセストークンとリフレッシュトークンを格納
-                localStorage.setItem('refreshToken', refreshToken);
+                //localStorageにアクセストークンを格納
                 localStorage.setItem('accessToken', newAccessToken);
                 setAccessToken(newAccessToken);
+                await saveRefreshToken(newAccessToken, refreshToken);
                 navigate('/questions-list');
             } else {
                 const errorData = await response.json();

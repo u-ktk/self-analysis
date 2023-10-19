@@ -13,7 +13,7 @@ type AuthContextType = {
     userName: string | null;
     userEmail: string | null;
     setAccessToken: (token: string | null) => void;
-    setRefreshToken: (token: string | null) => void;
+    // setRefreshToken: (token: string | null) => void;
 };
 
 type DecodedAccessToken = {
@@ -28,7 +28,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [accessToken, setAccessTokenState] = useState<string | null>(null);
-    const [refreshToken, setRefreshTokenState] = useState<string | null>(null);
+    // const [refreshToken, setRefreshTokenState] = useState<string | null>(null);
     const [userId, setUserId] = useState<string | null>(null);
     const [userName, setUserName] = useState<string | null>(null);
     const [userEmail, setUserEmail] = useState<string | null>(null);
@@ -36,14 +36,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // アクセストークン取得してlocalStorageに保存
     useEffect(() => {
         const token = localStorage.getItem('accessToken');
-        const refresh = localStorage.getItem('refreshToken');
         if (token) {
             setAccessTokenState(token);
         }
-        if (refresh) {
-            setRefreshTokenState(refresh);
-        }
-    }, [accessToken, refreshToken]);
+        // if (refresh) {
+        //     setRefreshTokenState(refresh);
+        // }
+    }, [accessToken]);
 
 
 
@@ -71,10 +70,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     }
                 });
                 const data = await res.json();
+                console.log(data)
                 if (res.ok) {
                     setUserName(data.username);
                     setUserEmail(data.email);
-                } else if (res.status === 401 && refreshToken) {
+                    // } else if (res.status === 401 && refreshToken) {
+                    //     const refreshed = await refreshAccessToken(refreshToken);
+                } else if (res.status === 401) {
+                    console.log('アクセストークンを更新します')
+                    const refreshToken = await getRefreshToken();
+                    if (!refreshToken) return;
                     const refreshed = await refreshAccessToken(refreshToken);
                     if (refreshed) {
                         const newAccessToken = refreshed.access;
@@ -96,9 +101,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             }
         }
         fetchUserDetails();
-    }, [accessToken, refreshToken]);
+    }, [accessToken]);
 
 
+    // リフレッシュトークンを取得
+    async function getRefreshToken() {
+        try {
+            const userId = localStorage.getItem('userId');
+            const res = await fetch(`${BACKEND_URL}refresh-token-get/`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({ user: userId })
+            });
+
+            if (res.ok) {
+                const data = await res.text();
+                return data;
+            } else {
+                console.log(res);
+                return null;
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
 
     async function refreshAccessToken(refreshToken: string) {
         try {
@@ -130,14 +159,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setAccessTokenState(token);
     };
 
-    const setRefreshToken = (token: string | null) => {
-        setRefreshTokenState(token);
-    }
+    // const setRefreshToken = (token: string | null) => {
+    //     setRefreshTokenState(token);
+    // }
 
 
 
     return (
-        <AuthContext.Provider value={{ accessToken, userId, userName, userEmail, setAccessToken, setRefreshToken }}>
+        <AuthContext.Provider value={{ accessToken, userId, userName, userEmail, setAccessToken }}>
             {children}
         </AuthContext.Provider>
     );

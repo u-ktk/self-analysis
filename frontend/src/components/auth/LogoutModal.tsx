@@ -6,16 +6,15 @@ import style from '../styles/Common.module.css'
 
 const Logout = () => {
     const [showModal, setShowModal] = useState(false);
-    const { accessToken, setAccessToken, setRefreshToken, userName } = useAuth();
+    const { accessToken, setAccessToken, userName } = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = () => {
 
         if (accessToken) {
-            localStorage.removeItem('refreshToken')
             localStorage.removeItem('accessToken');
+            localStorage.removeItem('userId');
             setAccessToken(null);
-            setRefreshToken(null);
         }
         setShowModal(false);
         navigate('/')

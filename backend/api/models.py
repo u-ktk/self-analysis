@@ -50,6 +50,7 @@ class User(AbstractBaseUser,  PermissionsMixin):
     # 管理画面にアクセスする際必要
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    refresh_token = models.CharField(max_length=255, null=True, blank=True)
 
     # emailを用いて一意に識別
     USERNAME_FIELD = 'email'
@@ -60,28 +61,37 @@ class User(AbstractBaseUser,  PermissionsMixin):
         return self.username
 
 
+# # リフレッシュトークンを保存
+# class RefreshToken(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     refresh_token = models.CharField(max_length=255, null=True, blank=True)
+
+#     def __str__(self):
+#         return self.user.username
+
+
 class QuestionCategory(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
-    
+
+
 class Folder(models.Model):
     name = models.CharField(max_length=255)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="folders")
-  
+
     def __str__(self):
         return self.name
-    
+
     # ユーザーとフォルダー名の組み合わせは一意
     class Meta:
         unique_together = ('name', 'user')
-    
+
     # フォルダ内の質問をid順に並び替え
     def get_ordered_questions(self):
         return self.questions.order_by('id')
-
 
 
 class Question(models.Model):
@@ -91,15 +101,14 @@ class Question(models.Model):
     category = models.ForeignKey(
         QuestionCategory, on_delete=models.CASCADE, related_name="questions", null=True, blank=True)
     age = models.CharField(max_length=255)
-    folders = models.ManyToManyField(Folder, related_name="questions", blank=True)
-    
+    folders = models.ManyToManyField(
+        Folder, related_name="questions", blank=True)
 
     created_at = models.DateTimeField(default=timezone.now)
     is_default = models.BooleanField(default=False)
 
     def __str__(self):
         return self.text
-    
 
 
 class Answer(models.Model):
@@ -118,14 +127,12 @@ class Answer(models.Model):
         return self.title
 
 
-
-    
 # 新規ユーザー作成時にデフォルトのフォルダーを２つ用意
 @receiver(post_save, sender=User)
 def create_default_folder(sender, instance, created, **kwargs):
     if created:
         Folder.objects.create(name="お気に入り", user=instance)
         Folder.objects.create(name="あとで回答する", user=instance)
-        
-post_save.connect(create_default_folder, sender=User)
 
+
+post_save.connect(create_default_folder, sender=User)

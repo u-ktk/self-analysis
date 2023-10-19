@@ -32,6 +32,7 @@ const CategoryList = () => {
         , [accessToken]);
 
 
+
     return (
         <>
 
@@ -46,9 +47,9 @@ const CategoryList = () => {
 
                 <div className={styles.contents}>
                     {categoryList?.map((category, index) => (
-                        <table>
+                        <table key={index}>
                             <tbody>
-                                <tr key={index} >
+                                <tr key={category} >
                                     <td className={styles.id}>レベル{index + 1}. </td>
                                     <td><a href={`/questions-list/default/${index + 1}/`} className="text-dark">{category}</a></td>
                                 </tr>

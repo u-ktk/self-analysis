@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'password']
+        fields = ['id', 'username', 'email', 'password', 'refresh_token']
         # パスワードが表示されないようにする
         extra_kwargs = {
             'password': {
@@ -28,6 +28,9 @@ class UserSerializer(serializers.ModelSerializer):
                     "required": "パスワードは必須です",
                     'blank': 'パスワードは空にできません',
                 }
+            },
+            'refresh_token': {
+                'write_only': True,
             },
             'username': {
                 'error_messages': {

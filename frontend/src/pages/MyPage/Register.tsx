@@ -12,6 +12,26 @@ const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL;
 
 export default function Register() {
 
+    // リフレッシュトークンをDBに保存
+    const saveRefreshToken = async (accessToken: string, refreshToken: string) => {
+        try {
+            const res = await fetch(`${BACKEND_URL}refresh-token-save/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `JWT ${accessToken}`,
+                },
+                body: JSON.stringify({ refresh: refreshToken }),
+            });
+            if (res.ok) {
+                return;
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     const login = async (data: { email: string, password: string }) => {
         const { email, password } = data;
 
@@ -30,8 +50,8 @@ export default function Register() {
                 const refreshToken = responseData.refresh;
                 //localStorageにアクセストークンを格納
                 localStorage.setItem('accessToken', newAccessToken);
-                localStorage.setItem('refreshToken', refreshToken);
                 setAccessToken(newAccessToken);
+                await saveRefreshToken(newAccessToken, refreshToken);
                 navigate('/');
             } else {
                 const errorData = await loginResponse.json();

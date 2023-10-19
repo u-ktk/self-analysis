@@ -131,8 +131,7 @@ REST_USE_JWT = True
 
 SIMPLE_JWT = {
     # アクセストークン(1時間)
-    # 'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
-    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=60),
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=3),
     # リフレッシュトークン(7日)
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     # 認証タイプ
