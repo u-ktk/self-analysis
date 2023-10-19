@@ -392,14 +392,18 @@ const CustomQuestionDetail = () => {
                                         {/* 新規回答作成 */}
                                         <CreateNewAnswer accessToken={accessToken} userId={userId} questionId={questionId} />
 
-                                        <hr style={{ marginTop: '30px' }}></hr>
-                                        {/* 回答リスト */}
-                                        <h5>これまでの回答</h5>
-                                        <AnswerList
-                                            question={customQuestion}
-                                            accessToken={accessToken}
-                                            userId={userId}
-                                        />
+                                        {customQuestion.answers.length > 0 && (
+                                            <>
+                                                <hr style={{ marginTop: '30px' }}></hr>
+                                                {/* 回答リスト */}
+                                                <h5>これまでの回答</h5>
+                                                <AnswerList
+                                                    question={customQuestion}
+                                                    accessToken={accessToken}
+                                                    userId={userId}
+                                                />
+                                            </>
+                                        )}
 
                                     </>
                                 )}

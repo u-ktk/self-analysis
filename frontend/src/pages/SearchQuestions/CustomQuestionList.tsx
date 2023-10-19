@@ -37,7 +37,11 @@ const CustomQuestionList = () => {
 
 
 
-    // トーストメニューを開く (以降の処理はDefaultQuestionList.tsxと同じだからコンポーネントにまとめたい...)
+    /**
+      ここからhandleAddQuestionToFolder()まで、トーストメニューを開くための処理
+      DefaultQuestionList.tsxとほぼ同じだからあとでまとめたい...)
+     */
+    // トーストメニューを開く
     const toggleToast = (e: React.MouseEvent, questionId: number) => {
         const x = e.clientX;
         const y = e.clientY;

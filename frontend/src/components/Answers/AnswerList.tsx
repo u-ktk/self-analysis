@@ -49,6 +49,7 @@ const AnswerList = (props: AnswerListProps) => {
         if (openAnswer === answerTitle) {
             setOpenAnswer(null);
         } else {
+            isEditing && setIsEditing(false);
             setOpenAnswer(answerTitle);
         }
     };
@@ -78,16 +79,14 @@ const AnswerList = (props: AnswerListProps) => {
             setShowModal(false);
             setErrorMessage('削除に失敗しました');
         }
-
     }
 
     // 編集アイコンをクリックした後、エディタを表示
     const openEditor = (answerId: number) => {
-        setIsEditing(true);
+        setIsEditing(!isEditing);
         answerIdRef.current = answerId;
     }
 
-    console.log(answerIdRef.current)
 
     // 編集フォームを送信
     const onSubmit = async (data: {
@@ -149,7 +148,6 @@ const AnswerList = (props: AnswerListProps) => {
     useEffect(() => {
         if (openAnswer) {
             const answer = answers.find((answer) => answer.id === openAnswer);
-            console.log(answer)
             if (answer) {
                 setTitleValue(answer.title);
                 setText1Value(answer.text1);
@@ -167,25 +165,6 @@ const AnswerList = (props: AnswerListProps) => {
 
     return (
         <>
-            {/* 編集成功メッセージ */}
-            {/* {successMessage &&
-                <Alert variant='primary' className={formStyles.alert}>
-                    <span>
-                        <img alt="編集成功" src={checkIcon} width="40" height="40" />
-                    </span>
-                    <div className={formStyles.msg}>
-                        <div style={{ fontWeight: 'bold' }}>
-                            {successMessage}
-                        </div>
-                        <div >
-                            <img alt="閉じる" src={closeIcon} width="18" height="18" onClick={() => setSuccessMessage(null)} />
-                        </div>
-                    </div>
-                </Alert>
-            } */}
-
-
-
 
             {answers.map((answer: Answer) => (
 
@@ -231,11 +210,23 @@ const AnswerList = (props: AnswerListProps) => {
                         <div className={detailStyles.answerBox}>
                             <div style={{ textAlign: 'right' }}>
                                 {/* 編集アイコン */}
-                                <span>
-                                    <img src={editIcon} className={listStyles.trashIcon} style={{ width: '22px' }} alt='削除'
-                                        onClick={() => (openEditor(answer.id))}
-                                    />
-                                </span>
+                                {isEditing ? (
+                                    <span
+                                        className={listStyles.cancel}
+                                        onClick={() => setIsEditing(false)}
+                                    >
+                                        キャンセル</span>
+
+                                ) : (
+                                    <>
+                                        <span>
+
+                                            <img src={editIcon} className={listStyles.trashIcon} style={{ width: '22px' }} alt='編集'
+                                                onClick={() => (openEditor(answer.id))} />
+                                        </span>
+                                    </>
+                                )}
+
 
                                 {/* 削除アイコン */}
                                 <span>
@@ -260,30 +251,7 @@ const AnswerList = (props: AnswerListProps) => {
                                 </>
 
                             ) : (
-                                //    isEditing=falseでは普通に表示 
-                                // <div>
-                                //     <span className={detailStyles.mark}>ファクト</span>
-                                //     <div className={detailStyles.answerText}>{renderHTML(answer.text1)}</div>
 
-                                //     {answer.text2 && (<>
-                                //         <div style={{ textAlign: 'center' }}>
-                                //             <img src={allowDown} style={{ width: '30px' }} alt='下向き矢印'
-                                //             />
-                                //         </div>
-                                //         <span className={detailStyles.mark2}>抽象</span>
-                                //         <div className={detailStyles.answerText}>{renderHTML(answer.text2)}</div>
-
-                                //     </>)}
-                                //     {answer.text3 && (<>
-                                //         <div style={{ textAlign: 'center' }}>
-                                //             <img src={allowDown} style={{ width: '30px' }} alt='下向き矢印'
-                                //             />
-                                //         </div>
-                                //         <span className={detailStyles.mark2}>転用</span>
-                                //         <div className={detailStyles.answerText}>{answer.text3 && renderHTML(answer.text3)}</div>
-                                //     </>)
-                                //     }
-                                // </div>
                                 <div>
                                     <div className={detailStyles.mark4}>ファクト</div>
                                     <div className={detailStyles.answerText}>{renderHTML(answer.text1)}</div>
@@ -333,19 +301,9 @@ const AnswerList = (props: AnswerListProps) => {
                     )}
 
                 </div>
-
-
-
-
-
             ))}
-
-
-
-
         </>
     )
-
 }
 
 export default AnswerList;

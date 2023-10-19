@@ -1,5 +1,8 @@
 .lightButton {
     box-shadow: 0 2px 2px #E8DBD1;
+    background-color: white;
+    color: #6B4423;
+    flex-shrink: 0;
 }
 
 
@@ -70,12 +73,12 @@
     /* display: flex;
     flex-direction: column;
     align-items: center; */
-    margin: 40px 200px;
-    padding: 30px;
+    margin: 2rem 10rem;
+    padding: 2rem;
 }
 
 .contents {
-    padding-left: 60px;
+    padding-left: 2.5rem;
     line-height: 30px;
 }
 

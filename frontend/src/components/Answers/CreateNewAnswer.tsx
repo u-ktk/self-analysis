@@ -151,10 +151,9 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
             {/* アコーディオンopenの場合 */}
             {openAnswer &&
                 (
-                    <>
-
+                    <div className={detailStyles.answerBox}>
                         <AnswerForm onSubmit={onSubmit} errorMessage={errorMessage} isEditing={false} isDefault={false} />
-                    </>
+                    </div>
 
                 )
 
