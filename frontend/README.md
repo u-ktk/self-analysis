@@ -1,46 +1,70 @@
-# Getting Started with Create React App
+フロントエンドのディレクトリ構成図
+src配下
+```
+src
+├ components //機能に依存しないComponent
+├ features //機能に依存するComponentなど
+├ images
+├ pages　// URLに対応するComponent
+├ routes
+├ sass
+├ types
+├ App.tsx
+├ index.css
+└ index.tsx
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+features配下
+```
+features //機能に依存するComponentなど
+├ Auth（認証）
+│ ├ LoginForm.tsx
+│ ├ FetchToken.tsx
+│ ├ LogoutModal.tsx
+│ ├ NoLogin.tsx
+│ ├ RegisterForm.tsx
+│ └ Token.tsx
+├ Answer //回答の新規作成や一覧表示
+│ ├ AnswerForm.tsx
+│ ├ AnswerList.tsx
+│ └ CreateNewAnswer.tsx
+├ CreateQuestions //メニューバーの「質問を作る」に対応
+│ └ CreateQuestionForm.tsx 
+├ Help //メニューバーの「使い方ガイド」に対応
+├ MyPage //メニューバーの「マイページ」に対応　ユーザー情報更新、ログアウト
+│ └ EditUserInfo.tsx
+├ Folder //メニューバーの「フォルダ一覧」に対応
+│ └ FolderList.tsx
+└ SearchQuestions　//メニューバーの「質問を探す」に対応　
+　 ├ AddQuestionToFolder.tsx
+　 ├ CategoryList.tsx
+　 ├ CustomQuestionOverview.tsx
+　 ├ RemoveQuestionFromFolder.tsx
+　 └ SearchQuestionsByWords.tsx 
+```
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+pages配下
+```
+pages　
+├ BeforeLoginPage　//新規登録、ログイン
+│ ├ Login.tsx
+│ └ Register.tsx
+├ CreateQuestionsPage　//メニューバーの「質問を作る」に対応
+│ └ Top.tsx
+├ FolderPage　//メニューバーの「フォルダ一覧」に対応
+│ ├ AnsewrHistory.tsx　
+│ ├ FolderDetails.tsx
+│ └ Top.tsx
+├ HelpPage　//メニューバーの「使い方ガイド」に対応
+│ └ Top.tsx
+├ MyPage　//メニューバーの「マイページ」に対応
+│ └ Top.tsx
+├ QuestionDetailPage　//各質問の詳細ページ　メニューバーにはない
+│ ├ CustomQuestionDetails.tsx
+│ └ DefaultQuestionDetail.tsx
+└ SearchQuestionsPage　//メニューバーの「質問を探す」に対応　ログイン後はTop.tsxに遷移
+　 ├ CustomQuestionList.tsx
+　 ├ DefaultQuestionList.tsx
+　 ├ SearchResults.tsx
+　 └ Top.tsx
+```

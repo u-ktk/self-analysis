@@ -17,6 +17,7 @@ type CreateAnswerProps = {
     accessToken: string | null;
     userId: string | null;
     questionId: string | undefined;
+    fetchQuestion: () => void;
 }
 
 const CreateNewAnswer = (props: CreateAnswerProps) => {
@@ -26,6 +27,10 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
     const [openAnswer, setOpenAnswer] = useState<boolean>(false);
 
 
+    // 親コンポーネントの質問更新(fetchQuestion)を実行
+    const updateQuestion = async () => {
+        props.fetchQuestion();
+    }
     // 回答の送信
     const onSubmit = async (data: {
         isDefault: boolean,
@@ -63,11 +68,12 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
                 window.scrollTo(0, 0)
                 if (errorMessage) setErrorMessage(null);
                 // データを更新して再レンダリング
-                if (!accessToken || !userId || !questionId) return;
-                const newRes = await getCustomQuestionDetail({ accessToken, userId }, questionId);
-                if (newRes) {
-                    setCustomQuestion(newRes);
-                }
+                // if (!accessToken || !userId || !questionId) return;
+                // const newRes = await getCustomQuestionDetail({ accessToken, userId }, questionId);
+                // if (newRes) {
+                //     setCustomQuestion(newRes);
+                // }
+                updateQuestion();
 
             }
         } catch (error) {
@@ -101,9 +107,7 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
 
             {/*   質問作成アコーディオン*/}
             <div
-                className={detailStyles.accordion}
-                // style={{ backgroundColor: '#ac8d7321' }}
-                style={{ backgroundColor: '#d8894818' }}
+                className={detailStyles.orangeAccordion}
                 onClick={() => toggleAccordion()}
             >
 

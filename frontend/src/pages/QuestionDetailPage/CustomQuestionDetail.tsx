@@ -8,6 +8,7 @@ import { getFolderList } from '../../components/api/Folder';
 import AnswerList from '../../features/Answer/AnswerList';
 import CreateNewAnswer from '../../features/Answer/CreateNewAnswer'
 import { Question, Folder } from '../../types'
+import ShowMsg from '../../components/layouts/ShowMsg'
 
 import detailStyles from '../../components/styles/QuestionDetail.module.css'
 import styles from '../../components/styles/Common.module.css'
@@ -32,7 +33,8 @@ const CustomQuestionDetail = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
-    const [loading, setLoding] = useState(true);
+    const successMessageRef = React.useRef<string | null>(null);
+    const [loading, setLoading] = useState(true);
     const [toastPosition, setToastPosition] = useState({ x: 0, y: 0 });
 
     // console.log(accessToken, userId, questionId)
@@ -125,27 +127,33 @@ const CustomQuestionDetail = () => {
         setShowToast(false);
     };
 
+    // このメソッドは子コンポーネントからも呼び出される
+    const fetchQuestion = async () => {
+        if (!accessToken || !userId || !questionId) return;
+        const res = await getCustomQuestionDetail({ accessToken, userId }, questionId);
+        if (res) {
+            setCustomQuestion(res);
+            setLoading(false);
+        }
+        else {
+            setErrorMessage('質問がありません');
+            setLoading(false);
+        }
+    }
+
 
     // 質問の取得
     useEffect(() => {
         if (!accessToken || !userId || !questionId) {
             console.log('no accessToken or userId or questionId')
             return;
-
         }
-        const fetchQuestion = async () => {
-            try {
-                const res = await getCustomQuestionDetail({ accessToken, userId }, questionId);
-                if (res) {
-                    setCustomQuestion(res);
-                    setLoding(false)
-                }
-            } catch (error) {
-                console.log(error);
-            }
+        try {
+            fetchQuestion();
         }
-
-        fetchQuestion();
+        catch (error) {
+            console.log(error);
+        }
 
     }, [showToast, accessToken, userId, selectAddFolders]);
 
@@ -181,50 +189,6 @@ const CustomQuestionDetail = () => {
 
     }
 
-    // 回答の送信
-    // const onSubmit = async (data: {
-    //     isDefault: boolean,
-    //     title: string,
-    //     text1: string,
-    //     text2: string,
-    //     text3: string,
-    //     user: string,
-    // }) => {
-
-    //     if (!accessToken || !userId || !questionId) return;
-    //     // 空白のみの回答は送信しない
-    //     try {
-    //         const stripHtmlTags = (str: string) => {
-    //             return str.replace(/<\/?[^>]+(>|$)/g, "");
-    //         };
-
-    //         if (!data.title.trim() || /^\s*$/.test(stripHtmlTags(data.title)) || !data.text1.trim() || /^\s*$/.test(stripHtmlTags(data.text1))) {
-    //             console.log(data.text3)
-    //             setErrorMessage('標語、ファクトは必須です');
-    //             return;
-    //         }
-
-    //         const res = await createAnswer({ accessToken, userId, questionId: parseInt(questionId), title: data.title, text1: data.text1, text2: data.text2, text3: data.text3, isDefault: false });
-    //         if (res) {
-    //             setSuccessMessage('回答を作成しました');
-    //             if (errorMessage) setErrorMessage(null);
-    //             // データを更新して再レンダリング
-    //             if (!accessToken || !userId || !questionId) return;
-    //             const res = await getCustomQuestionDetail({ accessToken, userId }, questionId);
-    //             if (res) {
-    //                 setCustomQuestion(res);
-    //             }
-    //         }
-    //     } catch (error) {
-    //         if (error instanceof Error) {
-    //             setErrorMessage(error.message);
-    //             console.log(errorMessage);
-    //         }
-    //     }
-
-    // }
-
-
 
     return (
         <>
@@ -246,7 +210,7 @@ const CustomQuestionDetail = () => {
                                 {/* <span style={{ fontWeight: 'bold', fontSize: '120%' }}>{}</span> */}
                             </div>
 
-                            {/* トーストメニュー */}
+                            {/* フォルダのトーストメニュー */}
                             {showToast && (
                                 <div
                                     className={detailStyles.toast}
@@ -312,6 +276,17 @@ const CustomQuestionDetail = () => {
                                 </Modal.Footer>
                             </Modal>
 
+                            {/* 成功メッセージ */}
+                            {successMessage &&
+                                <ShowMsg message={successMessage} isSuccess={true} />
+                            }
+
+                            {/* エラーメッセージ */}
+                            {errorMessage &&
+                                <ShowMsg message={errorMessage} isSuccess={false} />
+                            }
+
+
                             <div className={detailStyles.contents}>
                                 {!customQuestion ? (
                                     <div>質問がありません</div>
@@ -342,45 +317,15 @@ const CustomQuestionDetail = () => {
                                             )}
                                         </div>
 
-                                        {/* 回答作成成功 */}
-                                        {/* {successMessage &&
-                                            <Alert variant='primary' className={formStyles.alert}>
-                                                <span>
-                                                    <img alt="作成成功" src={checkIcon} width="40" height="40" />
-                                                </span>
-                                                <div className={formStyles.msg}>
-                                                    <div style={{ fontWeight: 'bold' }}>
-                                                        {successMessage}
-                                                    </div>
-                                                    <div >
-                                                        <img alt="閉じる" src={closeIcon} width="18" height="18" onClick={() => setSuccessMessage(null)} />
-                                                    </div>
-                                                </div>
-                                            </Alert>
-                                        } */}
-
-                                        {/* エラーメッセージ */}
-                                        {/* {errorMessage &&
-                                            <Alert className={formStyles.alert}>
-                                                <span>
-                                                    <img alt="エラー" src={errorIcon} width="40" height="40"></img>
-                                                </span>
-                                                <div className={formStyles.msg}>
-                                                    <div >
-                                                        {errorMessage}
-                                                    </div>
-                                                    <div >
-                                                        <img alt="閉じる" src={closeIcon} width="18" height="18" onClick={() => setSuccessMessage(null)} />
-                                                    </div>
-                                                </div>
-                                            </Alert>} */}
-
-
-
 
 
                                         {/* 新規回答作成 */}
-                                        <CreateNewAnswer accessToken={accessToken} userId={userId} questionId={questionId} />
+                                        <CreateNewAnswer
+                                            accessToken={accessToken}
+                                            userId={userId}
+                                            questionId={questionId}
+                                            fetchQuestion={fetchQuestion}
+                                        />
 
                                         {customQuestion.answers.length > 0 && (
                                             <>
@@ -389,17 +334,17 @@ const CustomQuestionDetail = () => {
                                                 <h5>これまでの回答</h5>
                                                 <AnswerList
                                                     question={customQuestion}
+                                                    fetchQuestion={fetchQuestion}
                                                     accessToken={accessToken}
                                                     userId={userId}
                                                 />
+
                                             </>
                                         )}
 
                                     </>
                                 )}
                             </div>
-
-
 
                         </>
                     )}

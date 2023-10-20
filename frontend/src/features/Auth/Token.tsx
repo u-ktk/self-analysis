@@ -48,7 +48,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     useEffect(() => {
         if (accessToken) {
-            // localStorage.setItem('accessToken', accessToken);
             const decoded = jwtDecode<DecodedAccessToken>(accessToken);
             setUserId(decoded.user_id);
             localStorage.setItem('userId', decoded.user_id);
@@ -63,6 +62,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
         async function fetchUserDetails() {
             const userId = localStorage.getItem('userId');
+            const accessToken = localStorage.getItem('accessToken');
             try {
                 const res = await fetch(`${BACKEND_URL}users/${userId}/`, {
                     headers: {
@@ -70,7 +70,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     }
                 });
                 const data = await res.json();
-                console.log(data)
                 if (res.ok) {
                     setUserName(data.username);
                     setUserEmail(data.email);

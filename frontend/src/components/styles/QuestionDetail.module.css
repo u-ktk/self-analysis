@@ -64,11 +64,9 @@
     line-height: 30px;
 }
 
-
-.accordion {
-    /* border: 1px solid #AC8D73; */
+.accordion,
+.orangeAccordion {
     border: 1px solid #cecece;
-    background-color: #fafafa;
     cursor: pointer;
     padding: 10px 20px;
     text-align: left;
@@ -82,10 +80,22 @@
     align-items: center;
 }
 
+.accordion {
+    background-color: #fafafa;
+}
+
 .accordion:hover {
-    /* background-color: #AC8D73; */
     background-color: #eeeeee;
 }
+
+.orangeAccordion {
+    background-color: #d8894818;
+}
+
+.orangeAccordion:hover {
+    background-color: #d8894828;
+}
+
 
 
 

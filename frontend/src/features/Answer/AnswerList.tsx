@@ -3,6 +3,7 @@ import { Question, Answer } from "../../types";
 import { Modal, Button, Card } from 'react-bootstrap';
 import { getAnswers, updateAnswer, deleteAnswer } from '../../components/api/CustomAnswers';
 import AnswerForm from './AnswerForm';
+import ShowMsg from '../../components/layouts/ShowMsg';
 
 import plus from '../../images/icon/plus.svg';
 import minus from '../../images/icon/minus.svg';
@@ -12,7 +13,6 @@ import editIcon from '../../images/icon/edit.svg';
 import detailStyles from '../../components/styles/QuestionDetail.module.css';
 import styles from '../../components/styles/Common.module.css';
 import listStyles from '../../components/styles/List.module.css';
-import formStyles from '../../components/styles/Form.module.css';
 
 
 
@@ -21,6 +21,7 @@ type AnswerListProps = {
     accessToken: string | null;
     userId: string | null;
     question: Question;
+    fetchQuestion: () => void;
 }
 
 
@@ -42,6 +43,10 @@ const AnswerList = (props: AnswerListProps) => {
     const [text2Value, setText2Value] = useState<string>('');
     const [text3Value, setText3Value] = useState<string>('');
 
+    // 親コンポーネントの質問更新(fetchQuestion)を実行
+    const updateQuestion = async () => {
+        props.fetchQuestion();
+    }
 
 
     const toggleAccordion = (answerTitle: number | null) => {
@@ -96,7 +101,6 @@ const AnswerList = (props: AnswerListProps) => {
         text3: string,
         user: string,
     }) => {
-        console.log(data);
 
         if (!props.accessToken || !props.userId || !props.question) return;
 
@@ -131,7 +135,10 @@ const AnswerList = (props: AnswerListProps) => {
                 setSuccessMessage('編集しました');
                 setIsEditing(false);
                 console.log(res);
-                window.location.reload();
+                updateQuestion();
+
+                // window.location.reload();
+
             } else {
                 setErrorMessage('編集に失敗しました');
                 console.log(res);
@@ -164,6 +171,7 @@ const AnswerList = (props: AnswerListProps) => {
 
     return (
         <>
+
 
             {answers.map((answer: Answer) => (
 

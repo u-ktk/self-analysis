@@ -5,8 +5,6 @@ import searchActive from '../../images/icon/searchActive.svg';
 import searchInactive from '../../images/icon/searchInactive.svg';
 import createActive from '../../images/icon/createActive.svg';
 import createInactive from '../../images/icon/createInactive.svg';
-// import historyActive from '../../images/icon/historyActive.svg';
-// import historyInactive from '../../images/icon/historyInactive.svg';
 import folderActive from '../../images/icon/folderActive.svg';
 import folderInactive from '../../images/icon/folderInactive.svg';
 import helpActive from '../../images/icon/helpActive.svg';
@@ -89,7 +87,7 @@ const Header: React.FC = () => {
                     </a>
                 </div>
                 <div>
-                    <a href="/review-questions"
+                    <a href="/folder-list"
                         className={`m-3 ${folderLinkStyle} ${styles.content} ${styles.container}`}>
                         <img alt="フォルダ一覧" src={folderIcon} width="32" height="32"></img>
                         <div>フォルダ一覧</div>
