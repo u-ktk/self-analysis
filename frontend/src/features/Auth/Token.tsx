@@ -33,16 +33,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [userName, setUserName] = useState<string | null>(null);
     const [userEmail, setUserEmail] = useState<string | null>(null);
 
-    // アクセストークン取得してlocalStorageに保存
+    // レンダリング時に、ローカルストレージからアクセストークンとUserIdを取得
     useEffect(() => {
         const token = localStorage.getItem('accessToken');
+        const storedUserId = localStorage.getItem('userId');
         if (token) {
             setAccessTokenState(token);
         }
-        // if (refresh) {
-        //     setRefreshTokenState(refresh);
-        // }
-    }, [accessToken]);
+        if (storedUserId) {
+            setUserId(storedUserId);
+        }
+    }, []);
 
 
 
@@ -57,6 +58,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         //     localStorage.removeItem('accessToken');
         // }
     }, [userId, accessToken]);
+
+
 
     useEffect(() => {
 

@@ -6,6 +6,7 @@ import { getCustomQuestions } from '../../components/api/CustomQuestions';
 import { useAuth } from '../../features/Auth/Token';
 import { Table, Alert } from 'react-bootstrap';
 import HeadTitle from '../../components/layouts/HeadTitle';
+import { useNavigate } from 'react-router-dom';
 
 import styles from '../../components/styles/Common.module.css';
 import loadStyles from '../../components/styles/Loading.module.css';
@@ -23,10 +24,12 @@ const SearchResults = () => {
     const textContains = searchParams.get('text');
     const ageContains = searchParams.get('age');
     const { accessToken, userId } = useAuth();
+    const navigate = useNavigate();
 
 
 
     const fetchData = async () => {
+
         if (!accessToken || !userId || (!textContains && !ageContains)) {
             console.log('検索結果を取得できませんでした');
             return;
@@ -81,7 +84,7 @@ const SearchResults = () => {
                 {(textContains || ageContains) && (
                     <div>
                         <div className={`${styles.menu} mb-4 `}>
-                            <a href='/review-questions' className={styles.link}>質問を検索 </a>
+                            <a href='/questions-list' className={styles.link}>質問を検索 </a>
                             <span> &#62; </span>
                             <span style={{ fontWeight: 'bold' }}>
                                 {textContains && <span>フリーワードから選ぶ：{textContains}</span>}
@@ -133,9 +136,32 @@ const SearchResults = () => {
                                                             </td>
                                                         )}
                                                         <td className={detailStyles.text}>
-                                                            <a href={`/questions/detail/?id=${question.id}`} className={detailStyles.link}>{question.text}
+                                                            {/* <a href={`/questions/default/${question.id}`} className={detailStyles.link}>{question.text}
                                                                 ({question.age})
-                                                            </a>
+                                                            </a> */}
+                                                            {question.is_default ? (
+                                                                <span onClick={() => navigate(`/questions/default/${question.id}`,
+                                                                    {
+                                                                        state: {
+                                                                            previousTitle:
+                                                                                textContains ? `フリーワードから選ぶ：${textContains}` : `年代から選ぶ：${ageContains}`
+                                                                        }
+                                                                    }
+                                                                )} className={detailStyles.link}>{question.text}
+                                                                    ({question.age})</span>
+
+                                                            ) : (
+                                                                <span onClick={() => navigate(`/questions/custom/${userId}/${question.id}`,
+                                                                    {
+                                                                        state: {
+                                                                            previousTitle:
+                                                                                textContains ? `フリーワードから選ぶ：${textContains}` : `年代から選ぶ：${ageContains}`
+                                                                        }
+                                                                    }
+                                                                )} className={detailStyles.link}>{question.text}
+                                                                    ({question.age})</span>
+                                                            )
+                                                            }
                                                         </td>
                                                     </tr>
                                                 </tbody>

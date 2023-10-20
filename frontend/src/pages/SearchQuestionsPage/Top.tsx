@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SearchQuestions from '../../features/SearchQuestions/SearchQuestionsByWords';
+import SearchQuestionsByWords from '../../features/SearchQuestions/SearchQuestionsByWords';
 import { useAuth } from '../../features/Auth/Token';
 import HeadTitle from '../../components/layouts/HeadTitle';
 import NoLogin from '../../features/Auth/NoLogin';
@@ -14,7 +14,7 @@ const SearchQuestionsPage = () => {
             <HeadTitle title='質問一覧' />
             {accessToken ? (
                 <div>
-                    <SearchQuestions />
+                    <SearchQuestionsByWords />
                     <CategoryList />
                     <CustomQuestionOverview />
                 </div>

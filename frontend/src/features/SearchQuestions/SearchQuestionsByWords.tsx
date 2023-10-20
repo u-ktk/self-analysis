@@ -16,7 +16,7 @@ type Inputs = {
     age__icontains: string;
 };
 
-const SearchQuestions = () => {
+const SearchQuestionsByWords = () => {
     const { accessToken } = useAuth();
     const { register, handleSubmit } = useForm<Inputs>();
     const [searchParamsByWord, setSearchParamsByWord] = useState<string>("");
@@ -129,4 +129,4 @@ const SearchQuestions = () => {
     );
 };
 
-export default SearchQuestions;
+export default SearchQuestionsByWords;
