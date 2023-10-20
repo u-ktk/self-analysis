@@ -17,7 +17,7 @@ type Props = {
     userId: string | null;
     onSubmit: SubmitHandler<FormData>;
     errorMessage: string | null;
-    successMessage: string | null;
+    successMessage: string | React.ReactNode | null;
 };
 
 type FormData = {
@@ -252,12 +252,9 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
                             />
                         </div>
 
-                        <div className={formStyle.formGroup}>
-                            <label htmlFor="">回答</label>
-                            <textarea className="form-control border" {...register("answer")} rows={4} />
-                        </div>
 
-                        <Button type="submit" className={`mt-2 ${style.darkButton}`} variant="primary">作成</Button>
+
+                        <Button type="submit" className={`mt-4 ${style.darkButton}`} variant="primary">作成</Button>
                     </form>
                 </div>
             </div>

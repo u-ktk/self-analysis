@@ -22,6 +22,7 @@ const CustomQuestionDetail = () => {
         const res = await getCustomQuestionDetail({ accessToken, userId }, questionId);
         if (res) {
             setQuestion(res);
+            console.log(res)
         }
         else {
             setErrorMessage('質問読み込みエラー');
@@ -37,7 +38,7 @@ const CustomQuestionDetail = () => {
         try {
             fetchCustomQuestion();
         }
-        catch (error) {
+        catch (error: any) {
             console.log(error);
         }
 

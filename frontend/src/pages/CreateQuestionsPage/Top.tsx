@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../features/Auth/Token';
 import { Answer, Question } from "../../types";
+import { useNavigate } from 'react-router-dom';
 import CustomQuestionForm from '../../features/CreateQuestions/CreateQuestionForm';
 import HeadTitle from '../../components/layouts/HeadTitle';
 import NoLogin from '../../features/Auth/NoLogin';
@@ -21,7 +22,8 @@ const CreateQuestionsPage = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const { accessToken, userId } = useAuth();
     const [customQuestions, setCustomQuestions] = useState<Question | null>(null);
-    const [successMessage, setSuccessMessage] = useState<string | null>(null);
+    const [successMessage, setSuccessMessage] = useState<React.ReactNode | null>(null);
+    const navigate = useNavigate();
 
 
 
@@ -34,7 +36,15 @@ const CreateQuestionsPage = () => {
             if (res) {
                 // console.log(res);
                 setCustomQuestions(res);
-                setSuccessMessage(`${text}(${age})を作成しました`);
+                console.log(res)
+                // setSuccessMessage(
+                //     `${text}(${age})を作成しました`)
+                setSuccessMessage(
+                    <>
+                        <a href={`/questions/custom/${userId}/${res.id}`}>{text}({age})</a>を作成しました
+                    </>
+                );
+
                 window.scrollTo(0, 0);
                 if (errorMessage) {
                     setErrorMessage(null);
@@ -82,7 +92,12 @@ const CreateQuestionsPage = () => {
 
                     <HeadTitle title='質問を作る' />
 
-                    <CustomQuestionForm accessToken={accessToken} userId={userId} onSubmit={onSubmit} successMessage={successMessage} errorMessage={errorMessage} />
+                    <CustomQuestionForm
+                        accessToken={accessToken}
+                        userId={userId}
+                        onSubmit={onSubmit}
+                        successMessage={successMessage}
+                        errorMessage={errorMessage} />
                     {/* <CustomQuestionList  /> */}
                     {/* {responseData ? (
                         

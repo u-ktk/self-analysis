@@ -7,13 +7,14 @@ import errorIcon from '../../images/icon/error.svg';
 
 
 type MsgProps = {
-    message: string | null;
+    message: string | React.ReactNode | null;
     isSuccess: boolean;
 }
 
 const ShowMsg = ({ message, isSuccess }: MsgProps) => {
-    const [successMessage, setSuccessMessage] = useState<string | null>(null)
-    const [errorMessage, setErrorMessage] = useState<string | null>(null)
+    const [successMessage, setSuccessMessage] = useState<string | React.ReactNode | null>(null)
+    const [errorMessage, setErrorMessage] = useState<string | React.ReactNode | null>(null)
+
 
 
     useEffect(() => {
