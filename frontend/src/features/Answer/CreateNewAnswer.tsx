@@ -67,13 +67,8 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
                 setSuccessMessage('回答を作成しました');
                 window.scrollTo(0, 0)
                 if (errorMessage) setErrorMessage(null);
-                // データを更新して再レンダリング
-                // if (!accessToken || !userId || !questionId) return;
-                // const newRes = await getCustomQuestionDetail({ accessToken, userId }, questionId);
-                // if (newRes) {
-                //     setCustomQuestion(newRes);
-                // }
                 updateQuestion();
+                setOpenAnswer(false);
 
             }
         } catch (error) {
@@ -97,6 +92,7 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
 
             {/* 成功メッセージ */}
             {successMessage &&
+                // alert(successMessage)
                 <ShowMsg message={successMessage} isSuccess={true} />
             }
 

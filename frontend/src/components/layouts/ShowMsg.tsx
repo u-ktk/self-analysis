@@ -7,7 +7,7 @@ import errorIcon from '../../images/icon/error.svg';
 
 
 type MsgProps = {
-    message: string;
+    message: string | null;
     isSuccess: boolean;
 }
 

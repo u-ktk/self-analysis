@@ -8,7 +8,8 @@ from rest_framework_simplejwt import authentication
 from rest_framework import permissions, generics, viewsets, exceptions, status
 from rest_framework.pagination import LimitOffsetPagination
 from django_filters import rest_framework as filters
-from rest_framework.decorators import api_view, action
+from rest_framework.decorators import api_view
+from django.db.models import Subquery, OuterRef
 # エディターで入力されたHTMLをサニタイズする
 from .utils import sanitize_html
 
@@ -156,9 +157,8 @@ def update_folders_for_custom_question(request, question_id):
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
     return HttpResponse(status=status.HTTP_200_OK)
 
+
 # 質問からフォルダを１つずつ削除
-
-
 @api_view(['POST'])
 def remove_folder_from_custom_question(request, question_id):
     folder = request.data.get('folder')
@@ -184,17 +184,16 @@ class DefaultQuestionsFilter(filters.FilterSet):
         model = Question
         fields = {
             'text': ['icontains'],
-            'age': ['icontains']
+            'age': ['icontains'],
         }
 
+
 # デフォルト質問は回答以外作成、更新、削除不可能
-
-
 class DefaultQuestionViewSet(viewsets.ModelViewSet):
     # is_default == Trueの時
+    queryset = Question.objects.filter(is_default=True)
     permission_classes = (permissions.IsAuthenticated,)
     authentication_classes = (authentication.JWTAuthentication,)
-    queryset = Question.objects.filter(is_default=True)
     serializer_class = QuestionSerializer
     filter_backends = [filters.DjangoFilterBackend]
     filterset_class = DefaultQuestionsFilter
@@ -209,9 +208,8 @@ class DefaultQuestionViewSet(viewsets.ModelViewSet):
                 "PATCH", detail="あらかじめ用意された質問は更新できません")
         return super().update(request, *args, **kwargs)
 
+
 # 質問に複数のフォルダ追加
-
-
 @api_view(['PATCH'])
 def update_folders_for_default_question(request, question_id):
     folders = request.data.get('folders')

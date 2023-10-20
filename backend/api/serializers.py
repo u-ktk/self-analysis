@@ -89,12 +89,13 @@ class QuestionCategoryListSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    answers = AnswerListSerializer(required=False)
+    answers = serializers.SerializerMethodField(required=False)
     category_name = serializers.SerializerMethodField()
     folders_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Question
+        user_answer = serializers.CharField(read_only=True)
         fields = ['id', 'text', 'user', 'category', 'category_name', 'created_at',
                   'age', 'folders', 'folders_name', 'is_default', 'answers']
         # バリデーションメッセージの追加
@@ -129,6 +130,12 @@ class QuestionSerializer(serializers.ModelSerializer):
         if obj.folders is None:
             return None
         return obj.folders.name
+
+    # ユーザーが回答した回答のみを取得
+    def get_answers(self, obj):
+        user = self.context['request'].user
+        answers = Answer.objects.filter(question=obj, user=user)
+        return AnswerSerializer(answers, many=True).data
 
 
 class QuestionListSerializer(serializers.ListSerializer):

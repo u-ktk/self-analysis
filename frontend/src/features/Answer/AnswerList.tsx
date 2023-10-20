@@ -77,7 +77,8 @@ const AnswerList = (props: AnswerListProps) => {
         if (res === null) {
             setOpenAnswer(null);
             setShowModal(false);
-            window.location.reload();
+            // window.location.reload();
+            updateQuestion();
         }
         else {
             setShowModal(false);

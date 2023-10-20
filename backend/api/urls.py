@@ -45,12 +45,4 @@ urlpatterns = [
     path('refresh-token-save/', views.refresh_token_save, name='refresh_save'),
     path('refresh-token-get/', views.refresh_token_get, name='refresh_get'),
 
-    # path('defaultquestions/', views.DefaultQuestionListView.as_view(),
-    #      name='defaultquestions'),
-    # path('defaultquestions/<int:pk>/',
-    #      views.DefaultQuestionDetailView.as_view(), name='defaultquestion-detail'),
-    # path('defaultquestions/<question_pk>/answers/', views.DefaultQuestionAnswerListView.as_view(),
-    #      name='defaultquestions'),
-    # path('defaultquestions/<question_pk>/answers/<pk>',
-    #      views.DefaultQuestionAnswerDetailView.as_view(), name='defaultquestion-detail'),
 ]
