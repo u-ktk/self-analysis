@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import HeadTitle from '../../components/layouts/HeadTitle'
 import { Folder, Question, Answer } from '../../types'
-import { useLocation } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../features/Auth/Token'
 import { getFolderDetail } from '../../components/api/Folder'
 import { removeCustomQFromFolder } from '../../components/api/CustomQuestions'
@@ -9,8 +9,6 @@ import { removeDefaultQFromFolder } from '../../components/api/DefaultQuestions'
 import styles from '../../components/styles/Common.module.css'
 import loadStyles from '../../components/styles/Loading.module.css'
 import detailStyles from '../../components/styles/QuestionDetail.module.css'
-import noteIcon from '../../images/icon/note.svg'
-import { Table } from 'react-bootstrap'
 import checkMark from '../../images/checked.png'
 import listStyles from '../../components/styles/List.module.css'
 import trashIcon from '../../images/icon/trash.svg'
@@ -18,25 +16,23 @@ import trashIcon from '../../images/icon/trash.svg'
 
 
 const FolderDetail = () => {
-    const { accessToken } = useAuth()
-    const searchParams = new URLSearchParams(useLocation().search)
-    const userParams = searchParams.get('user')
-    const nameParams = searchParams.get('name')
+    const { accessToken, userId } = useAuth()
+    const { user } = useParams<{ user: string }>()
+    const { folderName } = useParams<{ folderName: string }>()
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
     const [folderDetail, setFolderDetail] = useState<Folder | null>(null)
 
+    const navigate = useNavigate()
+
     const fetchData = async () => {
-        if (!accessToken || !userParams || !nameParams) {
+        if (!accessToken || !user || !folderName) {
             console.log('フォルダの詳細を取得できませんでした')
             return
         }
         try {
-            let res;
-            if (userParams && nameParams) {
-                res = await getFolderDetail({ accessToken, userId: userParams }, nameParams)
-            }
+            const res = await getFolderDetail({ accessToken, userId: user }, folderName)
             if (res) {
                 setFolderDetail(res[0])
 
@@ -63,14 +59,14 @@ const FolderDetail = () => {
     // }
 
     const removeQuestionClick = async (removalFunction: Function, folder: number, questionId: number) => {
-        if (!accessToken || !userParams) {
+        if (!accessToken || !user) {
             console.log('質問を削除できませんでした');
             return;
         }
         try {
             if (removalFunction === removeCustomQFromFolder) {
 
-                const res = await removeCustomQFromFolder({ accessToken, userId: userParams, folder, questionId });
+                const res = await removeCustomQFromFolder({ accessToken, userId: user, folder, questionId });
                 // 質問を削除した後、フォルダーの詳細を再取得
                 if (res === null) {
                     fetchData();
@@ -96,11 +92,11 @@ const FolderDetail = () => {
 
     useEffect(() => {
         fetchData()
-    }, [accessToken, userParams, nameParams])
+    }, [accessToken, user, folderName])
 
     return (
         <>
-            <HeadTitle title={`${nameParams}`} />
+            <HeadTitle title={`${folderName}`} />
             <div className={styles.bg}>
                 {!folderDetail && (
                     <div className={loadStyles.loading}>
@@ -109,9 +105,9 @@ const FolderDetail = () => {
                 )}
 
                 <div className={`${styles.menu} mb-4 `}>
-                    <a href='/review-questions' className={styles.link}>フォルダ一覧 </a>
+                    <a href='/folder-list' className={styles.link}>フォルダ一覧 </a>
                     <span> &#62; </span>
-                    <span style={{ fontWeight: 'bold' }}>{nameParams}({folderDetail?.questions.length})</span>
+                    <span style={{ fontWeight: 'bold' }}>{folderName}({folderDetail?.questions.length})</span>
                 </div>
 
                 <div className={detailStyles.contents}>
@@ -143,9 +139,21 @@ const FolderDetail = () => {
                                                         </td>
                                                     )}
                                                     <td className={detailStyles.text}>
-                                                        <a href={`/questions/detail/?id=${question.id}`} className={detailStyles.link}>{question.text}
-                                                            ({question.age})
-                                                        </a>
+                                                        {/* デフォルト質問とカスタム質問でリンク違う */}
+                                                        {question.is_default ? (
+                                                            <span onClick={() => navigate(`/questions/default/${question.id}`,
+                                                                { state: { previousTitle: `${folderName}` } }
+                                                            )} className={detailStyles.link}>{question.text}
+                                                                ({question.age})</span>
+
+                                                        ) : (
+                                                            <span onClick={() => navigate(`/questions/custom/${user}/${question.id}`,
+                                                                { state: { previousTitle: `${folderName}` } }
+                                                            )} className={detailStyles.link}>{question.text}
+                                                                ({question.age})</span>
+                                                        )
+                                                        }
+
 
 
                                                         {question.category_name ? (

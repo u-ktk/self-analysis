@@ -4,6 +4,7 @@ import { getCustomQuestions, addCustomQToFolder, getCustomQuestionDetail } from 
 import { addQuestionToFolder } from '../../features/SearchQuestions/AddQustionToFolder';
 import { getFolderList } from '../../components/api/Folder';
 import { useAuth } from '../../features/Auth/Token';
+import { useNavigate } from 'react-router-dom';
 import styles from '../../components/styles/Common.module.css'
 import loadStyles from '../../components/styles/Loading.module.css'
 import listStyles from '../../components/styles/List.module.css'
@@ -33,6 +34,8 @@ const CustomQuestionList = () => {
     const selectQuestionRef = useRef<number>(0);
     const [selectAddFolders, setSelectAddFolders] = useState<number[]>([]);
     const [folderList, setFolderList] = useState<Folder[]>([]);
+
+    const navigate = useNavigate();
 
 
 
@@ -336,9 +339,14 @@ const CustomQuestionList = () => {
                                                     <tr>
                                                         <td className={detailStyles.id}>・</td>
                                                         <td className={detailStyles.text}>
-                                                            <a href={`/questions/custom/${userId}/${question.id}`} className={detailStyles.link}>
+                                                            {/* <a href={`/questions/custom/${userId}/${question.id}`} className={detailStyles.link}>
                                                                 {question.text} ({question.age})
-                                                            </a>
+                                                            </a> */}
+                                                            <span onClick={() => navigate(`/questions/custom/${userId}/${question.id}`,
+                                                                { state: { previousTitle: '作成した質問一覧' } }
+                                                            )} className={detailStyles.link}>{question.text}
+                                                                ({question.age})</span>
+
                                                             <span>
                                                                 <img src={newFolder} className={listStyles.trashIcon} alt='フォルダに追加'
                                                                     onClick={(e) => toggleToast(e, question.id)}

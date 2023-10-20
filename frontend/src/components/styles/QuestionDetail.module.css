@@ -37,6 +37,7 @@
     text-decoration: none;
     transition: color 0.3s, transform 0.3s;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .link:hover {

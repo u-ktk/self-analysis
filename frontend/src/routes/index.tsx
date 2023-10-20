@@ -29,7 +29,7 @@ function RoutesComponent() {
 
             {/* フォルダー一覧(FoldersPage) */}
             <Route path='/folder-list' element={<FolderPage />} />
-            <Route path='/folders/detail' element={<FolderDetail />} />
+            <Route path='/folders/detail/:user/:folderName/' element={<FolderDetail />} />
 
             {/* ヘルプ(HelpPage) */}
             <Route path='/help' element={<HelpPage />} />

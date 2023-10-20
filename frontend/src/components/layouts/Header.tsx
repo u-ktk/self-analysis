@@ -38,7 +38,7 @@ const Header: React.FC = () => {
     }
 
     const { icon: searchIcon, linkStyle: searchLinkStyle } = getIconAndLinkStyle({
-        path: currentPath.startsWith('/questions-list') || currentPath.startsWith('/search') || currentPath.startsWith('/questions/default/') ? currentPath : '',
+        path: currentPath.startsWith('/questions-list') || currentPath.startsWith('/search') ? currentPath : '',
         iconActive: searchActive,
         iconInactive: searchInactive,
     });

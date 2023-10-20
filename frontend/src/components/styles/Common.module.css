@@ -59,6 +59,7 @@
     color: #E6914C;
     text-decoration: none;
     transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
 }
 
 .link:hover {

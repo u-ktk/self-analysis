@@ -5,15 +5,19 @@ import { getCustomQuestionDetail } from '../../components/api/CustomQuestions';
 import { useAuth } from '../../features/Auth/Token';
 import { Question } from '../../types';
 import { useParams } from 'react-router-dom';
+import ShowMsg from '../../components/layouts/ShowMsg';
+
+import styles from '../../components/styles/Common.module.css';
 
 const CustomQuestionDetail = () => {
     const { accessToken, userId } = useAuth();
     const { questionId } = useParams<{ questionId: string }>();
+    const { user } = useParams<{ user: string }>();
     const [question, setQuestion] = useState<Question | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     // このメソッドは子コンポーネントからも呼び出される
-    const fetchQuestion = async () => {
+    const fetchCustomQuestion = async () => {
         if (!accessToken || !userId || !questionId) return;
         const res = await getCustomQuestionDetail({ accessToken, userId }, questionId);
         if (res) {
@@ -31,7 +35,7 @@ const CustomQuestionDetail = () => {
             return;
         }
         try {
-            fetchQuestion();
+            fetchCustomQuestion();
         }
         catch (error) {
             console.log(error);
@@ -41,20 +45,25 @@ const CustomQuestionDetail = () => {
 
     return (
         <>
-            <HeadTitle title="質問の詳細" />
-            {accessToken ? (
+            <HeadTitle title={question?.text ? question.text : '質問の詳細'} />
+            {(accessToken && user === userId) ? (
 
                 <>
                     {question && (
                         <QuestionDetail
                             isDefault={false}
                             question={question}
-                            fetchQuestion={fetchQuestion}
+                            fetchQuestion={fetchCustomQuestion}
                             errorMessage={errorMessage}
                         />
                     )}
                 </>
-            ) : null}
+            ) :
+                // 他のユーザーの質問詳細ページにアクセスした場合
+                <div className={styles.bg}>
+                    <ShowMsg message={'アクセス権がありません'} isSuccess={false} />
+                </div>
+            }
         </>
     );
 }

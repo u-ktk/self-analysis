@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import HeadTitle from '../../components/layouts/HeadTitle'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../features/Auth/Token'
 import { getCustomQuestionDetail, addCustomQToFolder, deleteCustomQuestion } from '../../components/api/CustomQuestions'
 import { getDefaultQuestionDetail, addDefaultQToFolder } from '../../components/api/DefaultQuestions'
@@ -29,7 +28,6 @@ type QuestionDetailProps = {
 }
 
 const CustomQuestionDetail = (props: QuestionDetailProps) => {
-    const { user } = useParams<{ user: string }>();
     const { accessToken, userId } = useAuth();
     const [folderList, setFolderList] = useState<Folder[]>([]);
     const [showToast, setShowToast] = useState(false);
@@ -41,6 +39,8 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
     const successMessageRef = React.useRef<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [toastPosition, setToastPosition] = useState({ x: 0, y: 0 });
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const questionId = props.question.id.toString();
 
@@ -192,10 +192,19 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
 
     }
 
+    const getLinkText = () => {
+        if (location.state?.previousTitle) {
+            return location.state?.previousTitle;
+        }
+        else {
+            return '前のページへ戻る';
+        }
+    }
+    const linkText = getLinkText();
+
 
     return (
         <>
-            <HeadTitle title="質問の詳細" />
 
 
             {accessToken ? (
@@ -208,9 +217,9 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
                         <>
                             {/* 見出し */}
                             <div className={`${styles.menu} mb-4 `}>
-                                <a href='/questions-list/custom/' className={styles.link}>作成した質問一覧 </a>
+                                {/* フォルダor 一覧からの遷移が考えられる */}
+                                <span onClick={() => navigate(-1)} className={styles.link}>{linkText}</span>
                                 <span> &#62; </span>
-                                {/* <span style={{ fontWeight: 'bold', fontSize: '120%' }}>{}</span> */}
                             </div>
 
                             {/* フォルダのトーストメニュー */}
@@ -310,11 +319,16 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
                                                     onClick={(e) => toggleToast(e)}
                                                 />
                                             </span>
-                                            <span>
-                                                <img src={trashIcon} className={listStyles.trashIcon} style={{ width: '22px' }} alt='削除'
-                                                    onClick={() => setShowModal(true)}
-                                                />
-                                            </span>
+                                            {/* カスタム質問のみ削除マーク */}
+                                            {props.isDefault ? null : (
+                                                <span>
+                                                    <img src={trashIcon} className={listStyles.trashIcon} style={{ width: '22px' }} alt='削除'
+                                                        onClick={() => setShowModal(true)}
+                                                    />
+                                                </span>
+                                            )
+                                            }
+
                                             {(props.question.answers[0]) && (
                                                 <img src={checkMark} alt='回答済' className={detailStyles.check} />
                                             )}

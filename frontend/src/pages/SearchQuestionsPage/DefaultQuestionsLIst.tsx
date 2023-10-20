@@ -5,7 +5,7 @@ import { getDefaultQuestions, getDefaultQuestionDetail } from '../../components/
 import { addDefaultQToFolder } from '../../components/api/DefaultQuestions';
 import { getFolderList } from '../../components/api/Folder';
 import { useAuth } from '../../features/Auth/Token';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import HeadTitle from '../../components/layouts/HeadTitle';
 import loadStyles from '../../components/styles/Loading.module.css';
 import listStyles from '../../components/styles/List.module.css';
@@ -41,6 +41,7 @@ const DefaultQuestionsList = () => {
 
 
     const currentPage = parseInt(page ? page : "1");
+    const navigate = useNavigate();
 
     const toggleAccordion = (age: string) => {
         if (openAge === age) {
@@ -382,9 +383,14 @@ const DefaultQuestionsList = () => {
                                                         <tr>
                                                             <td className={detailStyles.id}>{question.id}.</td>
                                                             <td>
-                                                                <a href={`/questions/default/${question.id}`} className={detailStyles.link}>
+                                                                {/* <a href={`/questions/default/${question.id}`} className={detailStyles.link}>
                                                                     {question.text}
-                                                                </a>
+                                                                </a> */}
+                                                                <span onClick={() => navigate(`/questions/default/${question.id}`,
+                                                                    { state: { previousTitle: `レベル${page}　${currentCategory}` } }
+                                                                )} className={detailStyles.link}>{question.text}
+                                                                </span>
+
                                                                 <span>
                                                                     <img src={newFolder} className={listStyles.trashIcon} alt='フォルダに追加' onClick={(e) => toggleToast(e, question.id)} />
 

@@ -7,6 +7,7 @@ export type Question = {
     text: string;
     answers: Answer[]
     created_at: Date
+    is_default: boolean;
 };
 
 export type Category = {

@@ -111,7 +111,7 @@ const FolderList = (props: authInfo) => {
                     {/* フォルダを表示 */}
                     {folders.map((folder) => (
                         <div key={folder.id} className={listStyles.row} >
-                            <a href={`/folders/detail/?user=${userId}&name=${folder.name}`}
+                            <a href={`/folders/detail/${userId}/${folder.name}`}
                                 className={listStyles.link}>
                                 {folder.name}
                                 ({folder.questions.length})

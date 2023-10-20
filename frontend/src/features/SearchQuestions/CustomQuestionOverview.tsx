@@ -3,6 +3,7 @@ import { Question } from "../../types";
 import { getCustomQuestions } from '../../components/api/CustomQuestions';
 import { useAuth } from '../Auth/Token';
 import { Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 import styles from '../../components/styles/Common.module.css';
 import detailStyles from '../../components/styles/QuestionDetail.module.css';
@@ -18,6 +19,7 @@ const CustomQuestionOverview = () => {
     const [reverseQuestions, setReverseQuestions] = useState<Question[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     // カスタム質問を取得
     useEffect(() => {
@@ -83,9 +85,14 @@ const CustomQuestionOverview = () => {
                                             <tr>
                                                 <td className={detailStyles.id}>・</td>
                                                 <td className={detailStyles.text}>
-                                                    <a href={`/questions/custom/${userId}/${question.id}`} className={detailStyles.link}>
+                                                    {/* <a href={`/questions/custom/${userId}/${question.id}`} className={detailStyles.link}>
                                                         {question.text} ({question.age})
-                                                    </a>
+                                                    </a> */}
+                                                    <span onClick={() => navigate(`/questions/custom/${userId}/${question.id}`,
+                                                        { state: { previousTitle: '作成した質問から選ぶ' } }
+                                                    )} className={detailStyles.link}>{question.text}
+                                                        ({question.age})</span>
+
                                                     {(question.answers[0]) && (
                                                         <img src={checkMark} alt='回答済' className={detailStyles.check} />
                                                     )}
