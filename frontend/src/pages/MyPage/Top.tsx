@@ -1,11 +1,9 @@
 import React from 'react'
 import HeadTitle from '../../components/layouts/HeadTitle'
-import { useAuth } from '../../components/auth/Auth';
-import UserInfo from '../../components/MyPage/EditUserInfo';
-import FolderList from '../../components/ReviewQuestions/FolderList';
-import Logout from '../../components/auth/LogoutModal';
-
-import NoLogin from '../../components/auth/NoLogin';
+import { useAuth } from '../../features/Auth/Token';
+import UserInfo from '../../features/MyPage/EditUserInfo';
+import Logout from '../../features/Auth/LogoutModal';
+import NoLogin from '../../features/Auth/NoLogin';
 
 const MyPage = () => {
 

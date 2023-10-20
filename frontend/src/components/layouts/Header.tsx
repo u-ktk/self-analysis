@@ -46,7 +46,7 @@ const Header: React.FC = () => {
     });
 
     const { icon: folderIcon, linkStyle: folderLinkStyle } = getIconAndLinkStyle({
-        path: currentPath.startsWith('/review-questions') || currentPath.startsWith('/folders') ? currentPath : '',
+        path: currentPath.startsWith('/folder-list') || currentPath.startsWith('/folders') ? currentPath : '',
         iconActive: folderActive,
         iconInactive: folderInactive,
     });

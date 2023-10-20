@@ -1,6 +1,6 @@
 .bg {
     background-color: white;
-    margin: 2rem 10rem;
+    margin: 2rem 15rem;
     padding: 30px;
 }
 
@@ -38,7 +38,7 @@
     }
 
     .bg {
-        margin: 40px 40px;
+        margin: 40px 20px;
     }
 
     .search {
