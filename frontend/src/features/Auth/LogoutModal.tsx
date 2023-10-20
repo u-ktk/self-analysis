@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { useAuth } from './Token';
 import { useNavigate } from 'react-router-dom';
-import style from '../styles/Common.module.css'
+import style from '../../components/styles/Common.module.css'
 
 const Logout = () => {
     const [showModal, setShowModal] = useState(false);

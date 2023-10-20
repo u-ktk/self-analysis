@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
 import { Question } from "../../types";
-import { Editor, SimpleEditor } from '../layouts/Editor';
-import styles from '../styles/Common.module.css';
-import formStyles from '../styles/Form.module.css';
+import { Editor, SimpleEditor } from '../../components/layouts/Editor';
+import styles from '../../components/styles/Common.module.css';
+import formStyles from '../../components/styles/Form.module.css';
 import openIcon from '../images/icon/open.svg';
 
 type Props = {

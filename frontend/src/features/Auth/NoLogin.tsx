@@ -1,5 +1,5 @@
 import React from 'react'
-import style from '../styles/Form.module.css';
+import style from '../../components/styles/Form.module.css';
 
 const NoLogin = () => {
     return (

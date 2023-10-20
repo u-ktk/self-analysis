@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { getFolderList, createFolder, deleteFolder } from '../../components/api/Folder';
 import { Folder } from '../../types';
-import loadStyles from '../styles/Loading.module.css';
-import styles from '../styles/Common.module.css';
-import listStyles from '../styles/List.module.css';
+import loadStyles from '../../components/styles/Loading.module.css';
+import styles from '../../components/styles/Common.module.css';
+import listStyles from '../../components/styles/List.module.css';
 import { Button, Modal } from 'react-bootstrap';
 
 import newFolderIcon from '../../images/icon/newFolder.svg'

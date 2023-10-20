@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import AnswerForm from './AnswerForm';
 import openIcon from '../../images/icon/open.svg';
-import { getAnswers, createAnswer, updateAnswer, deleteAnswer } from '../api/CustomAnswers'
-import { getCustomQuestionDetail } from '../api/CustomQuestions'
+import { getAnswers, createAnswer, updateAnswer, deleteAnswer } from '../../components/api/CustomAnswers'
+import { getCustomQuestionDetail } from '../../components/api/CustomQuestions'
 import { Question } from '../../types';
-import ShowMsg from '../layouts/ShowMsg';
+import ShowMsg from '../../components/layouts/ShowMsg';
 
-import formStyles from '../styles/Form.module.css';
-import detailStyles from '../styles/QuestionDetail.module.css';
+import formStyles from '../../components/styles/Form.module.css';
+import detailStyles from '../../components/styles/QuestionDetail.module.css';
 
 import plus from '../../images/icon/plus.svg';
 import minus from '../../images/icon/minus.svg';

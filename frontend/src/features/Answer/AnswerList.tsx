@@ -1,19 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Question, Answer } from "../../types";
 import { Modal, Button, Card } from 'react-bootstrap';
-import { getAnswers, updateAnswer, deleteAnswer } from '../api/CustomAnswers';
+import { getAnswers, updateAnswer, deleteAnswer } from '../../components/api/CustomAnswers';
 import AnswerForm from './AnswerForm';
 
 import plus from '../../images/icon/plus.svg';
 import minus from '../../images/icon/minus.svg';
 import trashIcon from '../../images/icon/trash.svg';
 import editIcon from '../../images/icon/edit.svg';
-import allowDown from '../../images/icon/allowDown.svg';
 
-import detailStyles from '../styles/QuestionDetail.module.css';
-import styles from '../styles/Common.module.css';
-import listStyles from '../styles/List.module.css';
-import formStyles from '../styles/Form.module.css';
+import detailStyles from '../../components/styles/QuestionDetail.module.css';
+import styles from '../../components/styles/Common.module.css';
+import listStyles from '../../components/styles/List.module.css';
+import formStyles from '../../components/styles/Form.module.css';
 
 
 

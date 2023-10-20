@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Form, Alert } from "react-bootstrap";
-import formStyle from '../styles/Form.module.css';
-import style from '../styles/Common.module.css';
+import formStyle from '../../components/styles/Form.module.css';
+import style from '../../components/styles/Common.module.css';
 import error from '../../images/icon/error.svg';
 
 type FormData = {

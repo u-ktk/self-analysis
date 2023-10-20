@@ -6,8 +6,8 @@ import { Button, Dropdown } from 'react-bootstrap';
 import Select from 'react-select';
 
 import { useNavigate } from 'react-router-dom';
-import style from '../styles/Common.module.css';
-import searchStyle from '../styles/Search.module.css';
+import style from '../../components/styles/Common.module.css';
+import searchStyle from '../../components/styles/Search.module.css';
 
 
 

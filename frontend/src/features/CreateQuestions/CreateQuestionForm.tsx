@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Question, Answer } from '../../types';
 import { Button, Form, Alert } from 'react-bootstrap';
 import open from '../../images/icon/open.svg';
-import formStyle from '../styles/Form.module.css';
 import { useAuth } from '../Auth/Token';
 import Select from 'react-select';
 import { getFolderList } from '../../components/api/Folder';
-import style from '../styles/Common.module.css';
+import style from '../../components/styles/Common.module.css';
+import formStyle from '../../components/styles/Form.module.css';
+
 import ShowMsg from '../../components/layouts/ShowMsg';
 
 import { useForm, SubmitHandler } from 'react-hook-form';

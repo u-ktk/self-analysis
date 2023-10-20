@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Question } from "../../types";
-import { getCustomQuestions } from '../api/CustomQuestions';
+import { getCustomQuestions } from '../../components/api/CustomQuestions';
 import { useAuth } from '../Auth/Token';
 import { Alert } from 'react-bootstrap';
 
-import styles from '../styles/Common.module.css';
-import detailStyles from '../styles/QuestionDetail.module.css';
-import formStyles from '../styles/Form.module.css';
+import styles from '../../components/styles/Common.module.css';
+import detailStyles from '../../components/styles/QuestionDetail.module.css';
+import formStyles from '../../components/styles/Form.module.css';
 
 import error from '../../images/icon/error.svg';
 import checkMark from '../../images/checked.png';

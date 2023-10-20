@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Table } from 'react-bootstrap'
 import { useAuth } from '../Auth/Token';
 import { getCategoryList } from '../../components/api/DefaultQuestions';
-import loadStyles from '../styles/Loading.module.css';
-import styles from '../styles/Common.module.css';
-import detailStyles from '../styles/QuestionDetail.module.css';
+import loadStyles from '../../components/styles/Loading.module.css';
+import styles from '../../components/styles/Common.module.css';
 
 const CategoryList = () => {
     const [categoryList, setCategoryList] = useState<string[] | null>([]);

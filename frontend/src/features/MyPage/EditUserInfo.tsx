@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useAuth } from '../Auth/Token';
-import style from '../styles/Common.module.css'
-import userInfoStyle from '../styles/UserInfo.module.css'
-import { changeUserInfo } from '../api/UserInfo';
+import style from '../../components/styles/Common.module.css'
+import userInfoStyle from '../../components/styles/UserInfo.module.css'
+import { changeUserInfo } from '../../components/api/UserInfo';
 import { Button, Row, Col, Form, Alert } from 'react-bootstrap';
-import formStyle from '../styles/Form.module.css';
-import ShowMsg from '../layouts/ShowMsg';
+import formStyle from '../../components/styles/Form.module.css';
+import ShowMsg from '../../components/layouts/ShowMsg';
 
 type authInfo = {
     accessToken: string | null;

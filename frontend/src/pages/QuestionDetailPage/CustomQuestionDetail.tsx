@@ -9,15 +9,15 @@ import AnswerList from '../../features/Answer/AnswerList';
 import CreateNewAnswer from '../../features/Answer/CreateNewAnswer'
 import { Question, Folder } from '../../types'
 
-import detailStyles from '../components/styles/QuestionDetail.module.css'
-import styles from '../components/styles/Common.module.css'
-import listStyles from '../components/styles/List.module.css'
-import loadStyles from '../components/styles/Loading.module.css'
+import detailStyles from '../../components/styles/QuestionDetail.module.css'
+import styles from '../../components/styles/Common.module.css'
+import listStyles from '../../components/styles/List.module.css'
+import loadStyles from '../../components/styles/Loading.module.css'
 import { Button, Modal } from 'react-bootstrap';
 
-import newFolder from '../images/icon/newFolder.svg';
-import trashIcon from '../images/icon/trash.svg'
-import checkMark from '../images/checked.png'
+import newFolder from '../../images/icon/newFolder.svg';
+import trashIcon from '../../images/icon/trash.svg'
+import checkMark from '../../images/checked.png'
 
 
 const CustomQuestionDetail = () => {
