@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Question, Folder } from "../../types";
 import { getCustomQuestions, addCustomQToFolder, getCustomQuestionDetail } from '../../components/api/CustomQuestions';
-import { addQuestionToFolder } from '../../features/SearchQuestions/AddQustionToFolder';
+// import { addQuestionToFolder } from '../../features/SearchQuestions/AddQustionToFolder';
 import { getFolderList } from '../../components/api/Folder';
 import { useAuth } from '../../features/Auth/Token';
 import { useNavigate } from 'react-router-dom';
@@ -128,7 +128,7 @@ const CustomQuestionList = () => {
         if (selectQuestionRef.current) {
             let selectQuestion = selectQuestionRef.current;
             let selectFolders = selectAddFolders;
-            await addQuestionToFolder({ selectQuestion, selectFolders, accessToken, userId, Addfunction: addCustomQToFolder });
+            // await addQuestionToFolder({ selectQuestion, selectFolders, accessToken, userId, Addfunction: addCustomQToFolder });
             // const result = await addQuestionToFolder({ selectQuestion, selectFolders, accessToken, userId, Addfunction: addCustomQToFolder });
 
             setQuestions(prevQuestions => {

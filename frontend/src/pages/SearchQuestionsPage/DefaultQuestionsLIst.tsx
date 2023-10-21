@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Question, Folder } from "../../types";
-import { addQuestionToFolder } from "../../features/SearchQuestions/AddQustionToFolder"
+// import { addQuestionToFolder } from "../../features/SearchQuestions/AddQustionToFolder"
 import { getDefaultQuestions, getDefaultQuestionDetail } from '../../components/api/DefaultQuestions';
 import { addDefaultQToFolder } from '../../components/api/DefaultQuestions';
 import { getFolderList } from '../../components/api/Folder';
@@ -51,7 +51,6 @@ const DefaultQuestionsList = () => {
         }
     };
 
-    const windowHeight = window.innerHeight;
 
 
     // トーストメニューを開く
@@ -67,7 +66,6 @@ const DefaultQuestionsList = () => {
         } else {
             setSelectAddFolders([]);
         }
-        console.log(selectAddFolders)
         setShowToast(true);
 
     }
@@ -125,7 +123,6 @@ const DefaultQuestionsList = () => {
     // チェックボックスの状態を返す
     const isFolderIncluded = (folderId: number): boolean => {
         const included = selectAddFolders.includes(folderId);
-        console.log(included)
         return included;
     };
 
@@ -137,7 +134,7 @@ const DefaultQuestionsList = () => {
         if (selectQuestionRef.current) {
             let selectQuestion = selectQuestionRef.current;
             let selectFolders = selectAddFolders;
-            await addQuestionToFolder({ selectQuestion, selectFolders, accessToken, userId, Addfunction: addDefaultQToFolder });
+            // await addQuestionToFolder({ selectQuestion, selectFolders, accessToken, userId, Addfunction: addDefaultQToFolder });
             setShowToast(false);
 
         }
@@ -202,7 +199,7 @@ const DefaultQuestionsList = () => {
     // トーストメニューを開いた時、特定の質問だけを取得（フォルダ更新時に際レンダリングするため）
     useEffect(() => {
         const fetchData = async () => {
-            if (!accessToken) {
+            if (!accessToken || selectQuestionRef.current === 0) {
                 return;
             }
             try {
@@ -235,8 +232,8 @@ const DefaultQuestionsList = () => {
             return accum;
         }, {} as AgeCount);
 
-
-    console.log(countAnsweredQuestions(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99)))
+    // 回答した質問の総数
+    // console.log(countAnsweredQuestions(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99)))
 
 
     const ageCounts: { [key: string]: number } = groupQuestionsByAge(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99));
@@ -422,9 +419,7 @@ const DefaultQuestionsList = () => {
             ) : null}
         </>
     );
-
-
-
 }
+
 
 export default DefaultQuestionsList;

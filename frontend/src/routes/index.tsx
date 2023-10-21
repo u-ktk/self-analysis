@@ -11,7 +11,7 @@ import CustomQuestionList from '../pages/SearchQuestionsPage/CustomQuestionList'
 import MyPage from '../pages/MyPage/Top';
 import HelpPage from '../pages/HelpPage/Top';
 import FolderDetail from '../pages/FolderPage/FolderDetail';
-import DefaultQuestionsList from '../pages/SearchQuestionsPage/DefaultQuestionsLIst';
+import DefaultQuestionsList from '../pages/SearchQuestionsPage/DefaultQuestionsList';
 import SearchQuestionsPage from '../pages/SearchQuestionsPage/Top';
 import SearchQuestionsByWords from '../features/SearchQuestions/SearchQuestionsByWords';
 import Logout from '../features/Auth/LogoutModal';

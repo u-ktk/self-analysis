@@ -1,7 +1,6 @@
 import React from 'react'
 import { Question } from "../../types";
 
-type DefaultQuestionDetail = Question
 type DefaultQuestions = Question[]
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -39,8 +38,6 @@ const fetchDefaultQuestions = async (method: string, endpoint: string, props: fe
             },
             body: body,
         });
-        // console.log(body)
-        // console.log("res:" + res.status, res.headers.get("content-length"))
         if (res.headers.get("content-length") === "0" || res.status === 204) {
             return null;
         }
