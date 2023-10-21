@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../features/Auth/Token'
-import { getCustomQuestionDetail, addCustomQToFolder, deleteCustomQuestion } from '../../components/api/CustomQuestions'
-import { getDefaultQuestionDetail, addDefaultQToFolder } from '../../components/api/DefaultQuestions'
+import { addCustomQToFolder, deleteCustomQuestion } from '../../components/api/CustomQuestions'
+import { addDefaultQToFolder } from '../../components/api/DefaultQuestions'
 import AddQuestionToFolder from '../../features/SearchQuestions/AddQustionToFolder';
-import { getFolderList } from '../../components/api/Folder';
 import AnswerList from '../../features/Answer/AnswerList';
 import CreateNewAnswer from '../../features/Answer/CreateNewAnswer'
-import { Question, Folder } from '../../types'
+import { Question } from '../../types'
 import ShowMsg from '../../components/layouts/ShowMsg'
 
 import detailStyles from '../../components/styles/QuestionDetail.module.css'
@@ -136,7 +135,7 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
                                         accessToken={accessToken}
                                         userId={userId}
                                         Addfunction={props.isDefault ? addDefaultQToFolder : addCustomQToFolder}
-                                        fetchQuestion={props.fetchQuestion}
+                                        fetchQuestionDetail={props.fetchQuestion}
                                         showToast={showToast}
                                         setShowToast={setShowToast}
 

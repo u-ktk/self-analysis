@@ -15,7 +15,8 @@ type addFolderProps = {
     accessToken: string | null
     userId: string | null
     Addfunction: Function
-    fetchQuestion: () => void
+    fetchQuestion?: () => void
+    fetchQuestionDetail: (questionId?: number) => void | Promise<void>
     showToast: boolean
     setShowToast: React.Dispatch<React.SetStateAction<boolean>>
 
@@ -23,22 +24,24 @@ type addFolderProps = {
 
 
 const AddQuestionToFolder = (props: addFolderProps) => {
+    console.log(props.selectQuestion)
 
     const [folderList, setFolderList] = useState<Folder[] | null>(null);
     const [selectAddFolders, setSelectAddFolders] = useState<number[]>([]);
+    let selectQuestion = props.selectQuestion;
 
-    // 質問の取得（フォルダ変更するたびに更新）
+    // 特定の質問の取得（フォルダ変更するたびに更新）
     useEffect(() => {
+        if (props.fetchQuestionDetail === undefined) return;
         try {
-            console.log('fetchQuestion')
-            props.fetchQuestion();
+            console.log('fetchQuestionDetail')
+            props.fetchQuestionDetail(selectQuestion.id);
         }
         catch (error) {
             console.log(error);
         }
     }
         , [props.accessToken, selectAddFolders]);
-
 
     // フォルダの取得
     const fetchFolders = async () => {
@@ -63,12 +66,12 @@ const AddQuestionToFolder = (props: addFolderProps) => {
 
     // トーストメニュー開いてるとき、フォルダの選択できるように
     const selectFolders = () => {
-        if (props.selectQuestion && props.selectQuestion.folders) {
-            setSelectAddFolders(props.selectQuestion.folders);
+        if (selectQuestion && selectQuestion.folders) {
+            setSelectAddFolders(selectQuestion.folders);
         } else {
             setSelectAddFolders([]);
         }
-        console.log(props.selectQuestion.folders)
+        console.log(selectQuestion.folders)
         console.log(selectAddFolders)
     }
 
@@ -104,7 +107,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
 
     // チェックボックスをクリック
     const handleCheckboxChange = (folderId: number) => {
-        const isOriginallyIncluded = props.selectQuestion?.folders?.includes(folderId) ?? false;
+        const isOriginallyIncluded = selectQuestion?.folders?.includes(folderId) ?? false;
 
         // チェックされていない部分をクリックしたら
         setSelectAddFolders(prevFolders => {
@@ -142,7 +145,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
         }
         try {
             if (props.Addfunction === addDefaultQToFolder) {
-                const res = await addDefaultQToFolder({ accessToken: props.accessToken, questionId: props.selectQuestion.id, folders: selectAddFolders });
+                const res = await addDefaultQToFolder({ accessToken: props.accessToken, questionId: selectQuestion.id, folders: selectAddFolders });
                 if (res === null) {
                     return `${selectAddFolders}に追加しました`;
                 }
@@ -152,7 +155,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
                 }
             }
             else if (props.Addfunction === addCustomQToFolder) {
-                const res = await addCustomQToFolder({ accessToken: props.accessToken, userId: props.userId, questionId: props.selectQuestion.id, folders: selectAddFolders });
+                const res = await addCustomQToFolder({ accessToken: props.accessToken, userId: props.userId, questionId: selectQuestion.id, folders: selectAddFolders });
                 if (res === null) {
                     console.log(`${selectAddFolders}に追加しました`)
                     return `${selectAddFolders}に追加しました`;
@@ -171,8 +174,11 @@ const AddQuestionToFolder = (props: addFolderProps) => {
     const handleAddQuestionToFolder = async () => {
         const res = await fetchData();
         if (res) {
-            props.fetchQuestion();
             props.setShowToast(false);
+            selectQuestion.folders = selectAddFolders;
+        }
+        else {
+            console.log('質問を追加できませんでした');
         }
     }
 
