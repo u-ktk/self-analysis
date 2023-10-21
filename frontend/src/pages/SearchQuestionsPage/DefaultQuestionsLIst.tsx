@@ -29,7 +29,7 @@ const DefaultQuestionsList = () => {
     let { page } = useParams<string>();
 
     const [showToast, setShowToast] = useState(false);
-    const [toastPosition, setToastPosition] = useState({ x: 0, y: 0 });
+    const [position, setPosition] = useState({ x: 0, y: 0 });
 
     const [selectQuestion, setSelectQuestion] = useState<Question>();
 
@@ -54,19 +54,38 @@ const DefaultQuestionsList = () => {
     const toggleToast = (e: React.MouseEvent, questionId: number) => {
         const x = e.clientX;
         const y = e.clientY;
-        setToastPosition({ x, y });
+        setPosition({ x, y });
         setSelectQuestion(questions.find(q => q.id === questionId));
-        // selectQuestionRef.current = questionId;
-        // const currentQuestion = defaultQuestions[questionId - 1];
-        // // console.log(currentQuestion)
-        // if (currentQuestions && currentQuestion.folders) {
-        //     setSelectAddFolders(currentQuestion.folders);
-        // } else {
-        //     setSelectAddFolders([]);
-        // }
         setShowToast(true);
 
     }
+
+    const getToastPostion = (x: number, y: number) => {
+        const scrollY = window.scrollY
+        const adjustedY = scrollY + y;
+
+        const leftStyle = window.innerWidth < 980 ? `${x - 150}px` : `${x + 50}px`;
+
+        let topStyle;
+        if (adjustedY - 100 < 0) {
+            topStyle = `${adjustedY + 100}px`;
+        } else if (adjustedY - 100 >= 0 && adjustedY + 100 < window.innerHeight) {
+            topStyle = `${adjustedY - 100}px`;
+        } else {
+            topStyle = `${adjustedY - 100}px`;
+        }
+
+        return {
+            left: leftStyle,
+            top: topStyle,
+            transform: 'none'
+        };
+    };
+
+
+    const toastStyle = getToastPostion(position.x, position.y);
+
+
 
 
     // デフォルト質問を取得
@@ -167,6 +186,7 @@ const DefaultQuestionsList = () => {
     const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
     const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
 
+
     return (
         <>
             <HeadTitle title={currentCategory} />
@@ -192,18 +212,7 @@ const DefaultQuestionsList = () => {
                             {showToast && (
                                 <div
                                     className={detailStyles.toast}
-                                    style={
-                                        {
-                                            // クリックした位置によって表示場所を変更
-                                            left: windowWidth < 960
-                                                ? `${toastPosition?.x - 50}px`
-                                                : `${toastPosition?.x + 50}px`,
-                                            top: toastPosition?.y - 200 < 0
-                                                ? `${toastPosition?.y}px`
-                                                : `${toastPosition?.y - 100}px`,
-                                            transform: 'none'
-                                        }
-                                    }
+                                    style={toastStyle}
                                 >
                                     {selectQuestion && (
                                         <AddQuestionToFolder
@@ -295,10 +304,6 @@ const DefaultQuestionsList = () => {
                                         </div>
                                     ))}
                                 </>
-
-
-
-
                             </div>
                         </>
                     )}
@@ -307,6 +312,5 @@ const DefaultQuestionsList = () => {
         </>
     );
 }
-
 
 export default DefaultQuestionsList;

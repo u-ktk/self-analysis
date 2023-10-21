@@ -92,6 +92,17 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
     }
     const linkText = getLinkText();
 
+    // 画面サイズが変更されたら再レンダリング
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
 
     return (
         <>
@@ -119,9 +130,8 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
                                     style={
                                         {
                                             // クリックした位置によって表示場所を変更
-                                            left: windowWidth < 960
-                                                ? `${toastPosition?.x - 50}px`
-                                                : `${toastPosition?.x + 50}px`,
+                                            left:
+                                                `${toastPosition?.x - 150}px`,
                                             top: toastPosition?.y - 200 < 0
                                                 ? `${toastPosition?.y}px`
                                                 : `${toastPosition?.y - 100}px`,
@@ -179,7 +189,15 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
                                 ) : (
                                     <>
                                         <div>
-                                            <h5 className={styles.title}>{props.question.text}({props.question.age})
+
+
+                                            <h5 className={styles.title}>
+                                                {props.isDefault ? (
+                                                    <span>{props.question.id}.　</span>
+                                                ) : (
+                                                    null
+                                                )}
+                                                {props.question.text}({props.question.age})
                                             </h5>
                                         </div>
                                         <div style={{ textAlign: 'right' }}>

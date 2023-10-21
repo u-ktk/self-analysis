@@ -33,7 +33,6 @@ const AddQuestionToFolder = (props: addFolderProps) => {
     useEffect(() => {
         if (props.fetchQuestionDetail === undefined) return;
         try {
-            console.log('fetchQuestionDetail')
             props.fetchQuestionDetail(selectQuestion.id);
         }
         catch (error) {
@@ -70,8 +69,8 @@ const AddQuestionToFolder = (props: addFolderProps) => {
         } else {
             setSelectAddFolders([]);
         }
-        console.log(selectQuestion.folders)
-        console.log(selectAddFolders)
+        // console.log(selectQuestion.folders)
+        // console.log(selectAddFolders)
     }
 
     useEffect(() => {
@@ -176,8 +175,8 @@ const AddQuestionToFolder = (props: addFolderProps) => {
         if (res) {
             props.setShowToast(false);
             selectQuestion.folders = selectAddFolders;
-            console.log(selectAddFolders)
-            console.log(selectQuestion.folders)
+            // console.log(selectAddFolders)
+            // console.log(selectQuestion.folders)
         }
         else {
             console.log('質問を追加できませんでした');

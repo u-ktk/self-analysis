@@ -30,7 +30,7 @@ const CustomQuestionList = () => {
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [showToast, setShowToast] = useState<boolean>(false);
-    const [toastPosition, setToastPosition] = useState({ x: 0, y: 0 });
+    const [position, setPosition] = useState({ x: 0, y: 0 });
     const [selectQuestion, setSelectQuestion] = useState<Question>();
 
     const navigate = useNavigate();
@@ -41,12 +41,36 @@ const CustomQuestionList = () => {
     const toggleToast = (e: React.MouseEvent, questionId: number) => {
         const x = e.clientX;
         const y = e.clientY;
-        setToastPosition({ x, y });
+        setPosition({ x, y });
         // selectQuestionRef.current = questionId;
         setSelectQuestion(questions.find(q => q.id === questionId));
 
         setShowToast(true);
     }
+
+    const getToastPostion = (x: number, y: number) => {
+        const scrollY = window.scrollY
+        const adjustedY = scrollY + y;
+
+        const leftStyle = window.innerWidth < 980 ? `${x - 150}px` : `${x + 50}px`;
+
+        let topStyle;
+        if (adjustedY - 100 < 0) {
+            topStyle = `${adjustedY + 100}px`;
+        } else if (adjustedY - 100 >= 0 && adjustedY + 100 < window.innerHeight) {
+            topStyle = `${adjustedY - 100}px`;
+        } else {
+            topStyle = `${adjustedY - 100}px`;
+        }
+
+        return {
+            left: leftStyle,
+            top: topStyle,
+            transform: 'none'
+        };
+    };
+
+    const toastStyle = getToastPostion(position.x, position.y);
 
 
     // カスタム質問を取得
@@ -134,18 +158,7 @@ const CustomQuestionList = () => {
                             {showToast && (
                                 <div
                                     className={detailStyles.toast}
-                                    style={
-                                        {
-                                            // クリックした位置によって表示場所を変更
-                                            left: windowWidth < 960
-                                                ? `${toastPosition?.x - 50}px`
-                                                : `${toastPosition?.x + 50}px`,
-                                            top: toastPosition?.y - 200 < 0
-                                                ? `${toastPosition?.y}px`
-                                                : `${toastPosition?.y - 100}px`,
-                                            transform: 'none'
-                                        }
-                                    }
+                                    style={toastStyle}
                                 >
 
                                     {selectQuestion && (

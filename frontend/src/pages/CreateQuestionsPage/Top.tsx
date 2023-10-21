@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../features/Auth/Token';
 import { Answer, Question } from "../../types";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, } from 'react-router-dom';
 import CustomQuestionForm from '../../features/CreateQuestions/CreateQuestionForm';
 import HeadTitle from '../../components/layouts/HeadTitle';
 import NoLogin from '../../features/Auth/NoLogin';
 import { addCustomQToFolder, createCustomQuestions } from '../../components/api/CustomQuestions';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 
 type FormData = {
