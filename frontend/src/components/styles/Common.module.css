@@ -43,7 +43,7 @@
 
 
 .title {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-weight: bold;
     margin-left: 30px;
 }
@@ -104,6 +104,7 @@
     color: #656565;
     text-decoration: underline;
     text-decoration-color: #2c2b2b;
+    cursor: pointer;
 }
 
 .onClickText:hover {

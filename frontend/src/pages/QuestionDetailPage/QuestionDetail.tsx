@@ -132,6 +132,7 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
 
                                     <AddQuestionToFolder
                                         selectQuestion={props.question}
+                                        isDefault={props.isDefault}
                                         accessToken={accessToken}
                                         userId={userId}
                                         Addfunction={props.isDefault ? addDefaultQToFolder : addCustomQToFolder}
@@ -182,11 +183,14 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
                                             </h5>
                                         </div>
                                         <div style={{ textAlign: 'right' }}>
-                                            <span>{
-                                                new Date(props.question.created_at).getFullYear() + '/' +
-                                                (new Date(props.question.created_at).getMonth() + 1) + '/' +
-                                                new Date(props.question.created_at).getDate()
-                                            }作成</span>
+                                            {props.isDefault ? null : (
+                                                <span>{
+                                                    new Date(props.question.created_at).getFullYear() + '/' +
+                                                    (new Date(props.question.created_at).getMonth() + 1) + '/' +
+                                                    new Date(props.question.created_at).getDate()
+                                                }作成</span>
+                                            )}
+
                                             <span>
                                                 <img src={newFolder} className={listStyles.folderIcon} alt='フォルダを更新'
                                                     onClick={(e) => toggleToast(e)}

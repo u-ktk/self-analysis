@@ -11,7 +11,7 @@ import detailStyles from '../../components/styles/QuestionDetail.module.css';
 
 type addFolderProps = {
     selectQuestion: Question
-    // selectFolders: number[]
+    isDefault: boolean
     accessToken: string | null
     userId: string | null
     Addfunction: Function
@@ -24,7 +24,6 @@ type addFolderProps = {
 
 
 const AddQuestionToFolder = (props: addFolderProps) => {
-    console.log(props.selectQuestion)
 
     const [folderList, setFolderList] = useState<Folder[] | null>(null);
     const [selectAddFolders, setSelectAddFolders] = useState<number[]>([]);
@@ -147,6 +146,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
             if (props.Addfunction === addDefaultQToFolder) {
                 const res = await addDefaultQToFolder({ accessToken: props.accessToken, questionId: selectQuestion.id, folders: selectAddFolders });
                 if (res === null) {
+                    console.log(`${selectAddFolders}に追加しました`)
                     return `${selectAddFolders}に追加しました`;
                 }
                 else {
@@ -176,6 +176,8 @@ const AddQuestionToFolder = (props: addFolderProps) => {
         if (res) {
             props.setShowToast(false);
             selectQuestion.folders = selectAddFolders;
+            console.log(selectAddFolders)
+            console.log(selectQuestion.folders)
         }
         else {
             console.log('質問を追加できませんでした');
@@ -215,7 +217,10 @@ const AddQuestionToFolder = (props: addFolderProps) => {
                 ) : (
                     <>
                         <div style={{ fontWeight: 'bold', marginBottom: '5px', color: "#4b4b4b" }}>
-                            質問をフォルダに追加
+                            {props.isDefault ?
+                                `質問${selectQuestion.id}をフォルダに追加` :
+                                `質問をフォルダに追加`
+                            }
                         </div>
                         {folderList.map(folder => (
                             <div key={folder.name}>

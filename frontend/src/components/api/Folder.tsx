@@ -27,7 +27,6 @@ const fetchData = async (method: string, endpoint: string, props: ApiProps, body
         }
         if (res.ok) {
             const responseData = await res.json();
-            console.log(responseData);
             return responseData;
         } else {
             throw new Error(`Failed to fetch data from ${endpoint}`);

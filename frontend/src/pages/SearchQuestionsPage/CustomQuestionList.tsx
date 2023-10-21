@@ -59,7 +59,7 @@ const CustomQuestionList = () => {
         try {
             const res = await getCustomQuestions({ accessToken, userId });
             if (res) {
-                console.log(res)
+                // console.log(res)
                 setQuestions(res);
                 setReverseQuestions(res.slice().reverse());
                 setLoading(false);
@@ -151,6 +151,7 @@ const CustomQuestionList = () => {
                                     {selectQuestion && (
                                         <AddQuestionToFolder
                                             selectQuestion={selectQuestion}
+                                            isDefault={false}
                                             accessToken={accessToken}
                                             userId={userId}
                                             Addfunction={addCustomQToFolder}

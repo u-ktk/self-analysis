@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Question, Folder } from "../../types";
 // import { addQuestionToFolder } from "../../features/SearchQuestions/AddQustionToFolder"
-import { getDefaultQuestions, getDefaultQuestionDetail } from '../../components/api/DefaultQuestions';
-import { addDefaultQToFolder } from '../../components/api/DefaultQuestions';
+import { getDefaultQuestions, getDefaultQuestionDetail, addDefaultQToFolder } from '../../components/api/DefaultQuestions';
+import AddQuestionToFolder from '../../features/SearchQuestions/AddQustionToFolder';
 import { getFolderList } from '../../components/api/Folder';
 import { useAuth } from '../../features/Auth/Token';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ import { Button } from 'react-bootstrap';
 
 const DefaultQuestionsList = () => {
     const { accessToken, userId } = useAuth();
-    const [defaultQuestions, setDefaultQuestions] = useState<Question[]>([]);
+    const [questions, setQuestions] = useState<Question[]>([]);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [currentCategory, setCurrentCategory] = useState<string>("");
@@ -31,10 +31,7 @@ const DefaultQuestionsList = () => {
     const [showToast, setShowToast] = useState(false);
     const [toastPosition, setToastPosition] = useState({ x: 0, y: 0 });
 
-    const [selectAddFolders, setSelectAddFolders] = useState<number[]>([]);
-    const [folderList, setFolderList] = useState<Folder[]>([]);
-
-    const selectQuestionRef = useRef<number>(0);
+    const [selectQuestion, setSelectQuestion] = useState<Question>();
 
     // アコーディオンメニューの開閉
     const [openAge, setOpenAge] = useState<string | null>(null);
@@ -58,167 +55,71 @@ const DefaultQuestionsList = () => {
         const x = e.clientX;
         const y = e.clientY;
         setToastPosition({ x, y });
-        selectQuestionRef.current = questionId;
-        const currentQuestion = defaultQuestions[questionId - 1];
-        // console.log(currentQuestion)
-        if (currentQuestions && currentQuestion.folders) {
-            setSelectAddFolders(currentQuestion.folders);
-        } else {
-            setSelectAddFolders([]);
-        }
+        setSelectQuestion(questions.find(q => q.id === questionId));
+        // selectQuestionRef.current = questionId;
+        // const currentQuestion = defaultQuestions[questionId - 1];
+        // // console.log(currentQuestion)
+        // if (currentQuestions && currentQuestion.folders) {
+        //     setSelectAddFolders(currentQuestion.folders);
+        // } else {
+        //     setSelectAddFolders([]);
+        // }
         setShowToast(true);
 
     }
 
-    // トーストメニュー閉じる
-    useEffect(() => {
-        // Escapeキーを押した場合
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') {
-                setShowToast(false);
-            }
-        };
-        // トースト以外の部分をクリックした場合
-        const handleClickOutside = (event: MouseEvent) => {
-            const toastElement = document.querySelector(`.${detailStyles.toast}`);
-            if (showToast && toastElement && !toastElement.contains(event.target as Node)) {
-                setShowToast(false);
-            }
-        };
-        document.addEventListener('keydown', handleKeyDown);
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [showToast, detailStyles.toast]);
 
-    // チェックボックスをクリック
-    const handleCheckboxChange = (folderId: number) => {
-
-        const currentQuestion = defaultQuestions[selectQuestionRef.current - 1];
-        const isOriginallyIncluded = currentQuestion?.folders?.includes(folderId) ?? false;
-
-        setSelectAddFolders(prevFolders => {
-            // もともと含まれているフォルダをクリックした場合
-            if (isOriginallyIncluded) {
-                // もし現在選択されているフォルダに含まれていれば削除、そうでなければ追加
-                if (prevFolders.includes(folderId)) {
-                    return prevFolders.filter(id => id !== folderId);
-                } else {
-                    return [...prevFolders, folderId];
+    // デフォルト質問を取得
+    const fetchDefaultQuestionsAll = async () => {
+        setLoading(true);
+        if (!accessToken) return;
+        try {
+            const res = await getDefaultQuestions({ accessToken });
+            if (res) {
+                setQuestions(res);
+                if (res[0])
+                    setCurrentCategory(res[currentPage * 100 - 1].category_name);
+                else {
+                    setCurrentCategory("No category");
                 }
-            } else {
-                // もともと含まれていないフォルダをクリックした場合
-                if (prevFolders.includes(folderId)) {
-                    return prevFolders.filter(id => id !== folderId);
-                } else {
-                    return [...prevFolders, folderId];
-                }
-            }
-        });
-
-    };
-
-    // チェックボックスの状態を返す
-    const isFolderIncluded = (folderId: number): boolean => {
-        const included = selectAddFolders.includes(folderId);
-        return included;
-    };
-
-
-    // 完了ボタンをクリック後、選択したフォルダに質問を追加
-    const handleAddQuestionToFolder = async () => {
-        // console.log(selectAddFolders)
-
-        if (selectQuestionRef.current) {
-            let selectQuestion = selectQuestionRef.current;
-            let selectFolders = selectAddFolders;
-            // await addQuestionToFolder({ selectQuestion, selectFolders, accessToken, userId, Addfunction: addDefaultQToFolder });
-            setShowToast(false);
-
-        }
-    };
-
-
-    // フォルダー一覧を取得
-    useEffect(() => {
-        const fetchData = async () => {
-            if (!accessToken || !userId) {
-                return;
-            }
-            try {
-                const res = await getFolderList({ accessToken, userId });
-                if (res) {
-                    setFolderList(res);
-                    setLoading(false);
-                }
-            }
-            catch (err: any) {
-                console.log(err.message);
-                setErrorMessage(err.message);
                 setLoading(false);
             }
+        } catch
+        (err: any) {
+            console.log(err.message)
+            setErrorMessage(err.message)
+            setLoading(false)
         }
-        fetchData();
     }
-        , [accessToken, userId]);
 
-
-
-
-    // アクセストークンを使って質問一覧を取得
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            if (!accessToken) {
-                return;
-            }
-            try {
-                const res = await getDefaultQuestions({ accessToken });
-                if (res) {
-                    setDefaultQuestions(res);
-                    // カテゴリー名を取得
-                    if (res[0])
-                        setCurrentCategory(res[currentPage * 100 - 1].category_name);
-                    else {
-                        setCurrentCategory("No category");
-                    }
-                    setLoading(false);
-                }
-            } catch (err: any) {
-                console.log(err.message)
-                setErrorMessage(err.message)
-                setLoading(false)
+        fetchDefaultQuestionsAll();
+    }
+        , [accessToken, page]);
+
+
+    // 特定の質問だけを取得（フォルダ更新時に再レンダリングするため）
+    const fetchDefaultQuestionDetail = async (questionId: number) => {
+        if (!accessToken || !questionId) return;
+        try {
+            const res = await getDefaultQuestionDetail({ accessToken }, questionId.toString());
+            if (res) {
+                setQuestions(prevQuestions => {
+                    const newQuestions = [...prevQuestions];
+                    newQuestions[questionId - 1] = res;
+                    // 質問に紐づくフォルダがすぐに更新されないので、ここで更新
+                    setSelectQuestion(res);
+                    return newQuestions;
+                });
             }
         }
-        fetchData();
+        catch (err: any) {
+            console.log(err.message);
+            setErrorMessage(err.message);
+        }
+    }
 
-    }, [accessToken, page]);
 
-    // トーストメニューを開いた時、特定の質問だけを取得（フォルダ更新時に際レンダリングするため）
-    useEffect(() => {
-        const fetchData = async () => {
-            if (!accessToken || selectQuestionRef.current === 0) {
-                return;
-            }
-            try {
-                const res = await getDefaultQuestionDetail({ accessToken }, selectQuestionRef.current.toString());
-                if (res) {
-                    setDefaultQuestions(prevQuestions => {
-                        const newQuestions = [...prevQuestions];
-                        newQuestions[selectQuestionRef.current - 1] = res;
-                        return newQuestions;
-                    });
-                }
-            } catch (err: any) {
-                console.log(err.message);
-                setErrorMessage(err.message);
-            }
-        };
-        fetchData();
-
-    }, [showToast, accessToken, selectAddFolders]);
 
     type AgeCount = { [key: string]: number };
 
@@ -236,11 +137,11 @@ const DefaultQuestionsList = () => {
     // console.log(countAnsweredQuestions(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99)))
 
 
-    const ageCounts: { [key: string]: number } = groupQuestionsByAge(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99));
+    const ageCounts: { [key: string]: number } = groupQuestionsByAge(questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99));
 
     // 回答済みの質問数を取得
     const answerdAgeCounts: { [key: string]: number } = groupQuestionsByAge(
-        defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99).filter((question) => question.answers[0]));
+        questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99).filter((question) => question.answers[0]));
 
 
     // 画面サイズが変更されたら再描画
@@ -264,7 +165,7 @@ const DefaultQuestionsList = () => {
     //ページに表示する質問を指定（例えば１ページ目なら1-100問目まで）
     const indexOfLastQuestion = currentPage * questionsPerPage;
     const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
-    const currentQuestions = defaultQuestions.slice(indexOfFirstQuestion, indexOfLastQuestion);
+    const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
 
     return (
         <>
@@ -284,7 +185,7 @@ const DefaultQuestionsList = () => {
                                 <span> &#62; </span>
                                 <span style={{ fontSize: '120%' }}>レベル{currentPage}&nbsp;&nbsp;</span>
                                 <span style={{ fontWeight: 'bold', fontSize: '120%' }}>{currentCategory}
-                                    ({countAnsweredQuestions(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99))}/100問回答済)</span>
+                                    ({countAnsweredQuestions(questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99))}/100問回答済)</span>
                             </div>
 
                             {/* トーストメニュー */}
@@ -304,33 +205,19 @@ const DefaultQuestionsList = () => {
                                         }
                                     }
                                 >
-                                    {(folderList === null || folderList.length === 0) ? (
-                                        <div className="toast-header">
-                                            <strong className="me-auto">フォルダがありません</strong>
-                                            <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close" onClick={() => setShowToast(false)}></button>
-                                        </div>
-                                    ) : (
-                                        <>
-                                            <div style={{ fontWeight: 'bold', marginBottom: '5px', color: "#4b4b4b" }}>
-                                                質問{selectQuestionRef.current}をフォルダに追加</div>
-                                            {folderList.map(folder => (
-                                                <div key={folder.name}>
-                                                    <input
-                                                        type="checkbox"
-                                                        key={`${folder.id}-${isFolderIncluded(folder.id)}`}
-                                                        style={{ accentColor: '#AC8D73' }}
-                                                        checked={isFolderIncluded(folder.id)}
-                                                        // {defaultQuestions[selectQuestionRef.current - 1].folders?.includes(folder.id)}
-                                                        onChange={() => handleCheckboxChange(folder.id)}
-                                                    />
-                                                    {folder.name}
-                                                </div>
-                                            ))}
-                                            <Button size="sm" className={`mt-2 ${styles.darkButton}`} onClick={handleAddQuestionToFolder}>完了</Button>
+                                    {selectQuestion && (
+                                        <AddQuestionToFolder
+                                            selectQuestion={selectQuestion}
+                                            isDefault={true}
+                                            accessToken={accessToken}
+                                            userId={userId}
+                                            Addfunction={addDefaultQToFolder}
+                                            fetchQuestionDetail={() => fetchDefaultQuestionDetail(selectQuestion.id)}
+                                            showToast={showToast}
+                                            setShowToast={setShowToast}
 
+                                        />
 
-
-                                        </>
                                     )}
                                 </div>
                             )}
