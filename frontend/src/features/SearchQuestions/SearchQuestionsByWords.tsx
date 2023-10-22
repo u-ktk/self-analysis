@@ -66,7 +66,7 @@ const SearchQuestionsByWords = () => {
     }, [accessToken, searchParamsByWord, searchParamsByAge]);
 
     return (
-        <div className={searchStyle.bg}>
+        <div className={style.bg}>
             <h4 className={style.title}>質問を検索</h4>
             <div className={searchStyle.contents}>
                 <div className={searchStyle.search}>

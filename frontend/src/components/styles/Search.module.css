@@ -30,7 +30,6 @@
     margin: 15px 0;
 }
 
-/* 画面サイズが960px以上のときのスタイル */
 @media screen and (max-width: 960px) {
     .contents {
         flex-direction: column;
@@ -42,6 +41,6 @@
     }
 
     .search {
-        width: 100%;
+        width: 80%;
     }
 }

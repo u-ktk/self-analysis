@@ -4,9 +4,13 @@ import { useAuth } from '../Auth/Token';
 import { getCategoryList } from '../../components/api/DefaultQuestions';
 import loadStyles from '../../components/styles/Loading.module.css';
 import styles from '../../components/styles/Common.module.css';
+import listStyles from '../../components/styles/List.module.css';
+
+import { ProgressBar } from 'react-bootstrap';
 
 const CategoryList = () => {
     const [categoryList, setCategoryList] = useState<string[] | null>([]);
+    const [counts, setCounts] = useState<number[] | null>([]);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -17,11 +21,14 @@ const CategoryList = () => {
         if (!accessToken) {
             return;
         }
+
         getCategoryList(accessToken)
             .then((data) => {
-                setCategoryList(data);
+                if (data) {
+                    setCategoryList(data.categories);
+                    setCounts(data.counts);
+                }
                 setLoading(false);
-
             })
             .catch((err) => {
                 setErrorMessage(err.message);
@@ -31,6 +38,7 @@ const CategoryList = () => {
         , [accessToken]);
 
 
+    console.log(counts)
 
     return (
         <>
@@ -45,16 +53,51 @@ const CategoryList = () => {
                 <h4 className={styles.title}>用意された質問から選ぶ</h4>
 
                 <div className={styles.contents}>
-                    {categoryList?.map((category, index) => (
-                        <table key={index}>
-                            <tbody>
-                                <tr key={category} >
+                    <table className={listStyles.categoryList}>
+                        <tbody>
+                            {categoryList?.map((category, index) => (
+                                <tr key={category}>
                                     <td className={styles.id}>レベル{index + 1}. </td>
                                     <td><a href={`/questions-list/default/${index + 1}/`} className="text-dark">{category}</a></td>
+                                    <td>
+                                        <span className={listStyles.progressBarWrapper}>
+                                            <ProgressBar now={counts ? counts[index] : 0}
+                                                className={listStyles.progress}
+                                                variant='secondary'
+                                                style={{ width: '100%' }}
+                                            />
+                                            <span className={listStyles.progressBarLabel}>{`${counts ? counts[index] : 0}%`}</span>
+                                        </span>
+                                    </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    ))}
+                            ))}
+                        </tbody>
+                    </table>
+
+
+
+
+
+                    {/* <div className={listStyles.categoryList}>
+                        {categoryList?.map((category, index) => (
+                            <div key={`category-${index}`}>
+                                <span className={styles.id}>レベル{index + 1}. </span>
+                                <span>
+                                    <a href={`/questions-list/default/${index + 1}/`} className="text-dark">{category}</a>
+                                </span>
+                                <span className={listStyles.progressBarWrapper}>
+                                    <ProgressBar now={counts ? counts[index] : 0}
+                                        className={listStyles.progress}
+                                        variant='secondary'
+                                        style={{ width: '100%' }}
+                                    />
+                                    <span className={listStyles.progressBarLabel}>{`${counts ? counts[index] : 0}%`}</span>
+                                </span>
+                            </div>
+                        ))}
+                    </div> */}
+
+
 
                 </div>
 

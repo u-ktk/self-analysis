@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Question, Folder } from "../../types";
-// import { addQuestionToFolder } from "../../features/SearchQuestions/AddQustionToFolder"
 import { getDefaultQuestions, getDefaultQuestionDetail, addDefaultQToFolder } from '../../components/api/DefaultQuestions';
 import AddQuestionToFolder from '../../features/SearchQuestions/AddQustionToFolder';
-import { getFolderList } from '../../components/api/Folder';
+import { allCount } from '../../components/function/CountAnswer';
 import { useAuth } from '../../features/Auth/Token';
 import { useParams, useNavigate } from 'react-router-dom';
 import HeadTitle from '../../components/layouts/HeadTitle';
+
 import loadStyles from '../../components/styles/Loading.module.css';
 import listStyles from '../../components/styles/List.module.css';
 import styles from '../../components/styles/Common.module.css';
 import detailStyles from '../../components/styles/QuestionDetail.module.css';
+
 import newFolder from '../../images/icon/newFolder.svg';
 import plus from '../../images/icon/plus.svg';
 import minus from '../../images/icon/minus.svg';
@@ -80,8 +81,6 @@ const DefaultQuestionsList = () => {
             transform: 'none'
         };
     };
-
-
     const toastStyle = getToastPostion(position.x, position.y);
 
 
@@ -140,10 +139,10 @@ const DefaultQuestionsList = () => {
 
 
 
-    const countAnsweredQuestions = (questions: Question[]): number =>
-        questions.filter(question => question.answers[0]).length;
+    // const countAnsweredQuestions = (questions: Question[]): number =>
+    //     questions.filter(question => question.answers[0]).length;
 
-    const allCount = countAnsweredQuestions(questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99))
+    // const allCount = countAnsweredQuestions(questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99))
 
     // 年代ごとのカウント
     const groupQuestionsByAge = (questions: Question[]): AgeCount =>
@@ -152,9 +151,6 @@ const DefaultQuestionsList = () => {
             return accum;
         }, {} as AgeCount);
 
-
-    // 回答した質問の総数
-    // console.log(countAnsweredQuestions(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99)))
 
     const ageCounts: { [key: string]: number } = groupQuestionsByAge(questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99));
 
@@ -224,11 +220,11 @@ const DefaultQuestionsList = () => {
                                 </div>
                             </div>
                             <div className={listStyles.progressBarWrapper}>
-                                <ProgressBar now={allCount}
+                                <ProgressBar now={allCount(questions, currentPage)}
                                     className={listStyles.progress}
                                     variant='secondary'
                                 />
-                                <span className={listStyles.progressBarLabel}>{`${allCount}%`}</span>
+                                <span className={listStyles.progressBarLabel}>{`${allCount(questions, currentPage)}%`}</span>
                             </div>
                             {/* トーストメニュー */}
                             {showToast && (

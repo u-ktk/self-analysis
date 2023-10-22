@@ -113,6 +113,23 @@
 
 }
 
+.categoryList {
+    margin-left: 30px;
+}
+
+.categoryList td:nth-child(1) {
+    width: 15%;
+}
+
+.categoryList td:nth-child(2) {
+    width: 40%;
+}
+
+.categoryList td:nth-child(3) {
+    width: 35%;
+}
+
+
 .ageAccordion {
     display: flex;
     align-items: center;
@@ -130,5 +147,17 @@
 
     .age {
         width: 40%;
+    }
+
+    .categoryList {
+        margin-left: 0;
+    }
+
+    .categoryList td:nth-child(2) {
+        width: 30%;
+    }
+
+    .categoryList td:nth-child(3) {
+        width: 30%;
     }
 }
