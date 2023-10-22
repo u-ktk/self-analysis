@@ -38,7 +38,7 @@ const CategoryList = () => {
         , [accessToken]);
 
 
-    console.log(counts)
+    // console.log(counts)
 
     return (
         <>

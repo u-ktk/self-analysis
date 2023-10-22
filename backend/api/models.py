@@ -61,15 +61,6 @@ class User(AbstractBaseUser,  PermissionsMixin):
         return self.username
 
 
-# # リフレッシュトークンを保存
-# class RefreshToken(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     refresh_token = models.CharField(max_length=255, null=True, blank=True)
-
-#     def __str__(self):
-#         return self.user.username
-
-
 class QuestionCategory(models.Model):
     name = models.CharField(max_length=255)
 

@@ -31,7 +31,6 @@ const CustomQuestionOverview = () => {
             try {
                 const res = await getCustomQuestions({ accessToken, userId });
                 if (res) {
-                    console.log(res)
                     setCustomQuestions(res);
                     setReverseQuestions(res.reverse().slice(0, 5));
                     setLoading(false);
@@ -70,15 +69,6 @@ const CustomQuestionOverview = () => {
                         <>
                             {reverseQuestions.map((question, index) => (
                                 <div key={question.id}>
-                                    {/* {(index === 0
-                                        || new Date(question.created_at).getMonth() !== new Date(reverseQuestions[index - 1].created_at).getMonth()
-                                        || new Date(question.created_at).getFullYear() !== new Date(reverseQuestions[index - 1].created_at).getFullYear()) &&
-                                        <div className={detailStyles.category}>
-                                            {new Date(question.created_at).getFullYear()}年{new Date(question.created_at).getMonth() + 1}月
-
-                                            (question.created_at)
-                                        </div>
-                                    } */}
 
                                     <table>
                                         <tbody>

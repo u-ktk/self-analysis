@@ -37,6 +37,9 @@ function RoutesComponent() {
             {/* マイページ */}
             <Route path='/myPage' element={<MyPage />} />
 
+            {/* ログアウト */}
+            <Route path='/logout' element={<Logout />} />
+
             {/* 質問の詳細（メニューにはない) (QuestionDetailPage) */}
             <Route path='/questions/default/:id' element={<DefaultQuestionDetail />} />
             <Route path='/questions/custom/:user/:questionId' element={<CustomQuestionDetail />} />

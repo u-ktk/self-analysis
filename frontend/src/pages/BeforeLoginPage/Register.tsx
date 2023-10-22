@@ -51,7 +51,7 @@ export default function Register() {
                 localStorage.setItem('accessToken', newAccessToken);
                 setAccessToken(newAccessToken);
                 await saveRefreshToken(newAccessToken, refreshToken);
-                navigate('/');
+                navigate('/questions-list');
             } else {
                 const errorData = await loginResponse.json();
                 setLoginErrorMessage(errorData.detail);

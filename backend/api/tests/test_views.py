@@ -10,7 +10,7 @@ class BaseTest(APITestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(
             username="user1", email="sample1@example.com",
-            password="password"  
+            password="password"
         )
         token = str(RefreshToken.for_user(self.user).access_token)
         self.client.credentials(HTTP_AUTHORIZATION=("JWT " + token))
@@ -23,10 +23,9 @@ class BaseTest(APITestCase):
         # ユーザーが作成したカスタム質問（更新、削除可）
         self.custom_question = Question.objects.create(
             text="question2", user=self.user, category=self.question_category, age="20代", is_default=False,)
-        self.folder1 = Folder.objects.create(name = "就活", user = self.user)
-        self.folder2 = Folder.objects.create(name = "あとでみる", user = self.user)
-        self.custom_question.folders.set([self.folder1, self.folder2]) 
-        
+        self.folder1 = Folder.objects.create(name="就活", user=self.user)
+        self.folder2 = Folder.objects.create(name="あとでみる", user=self.user)
+        self.custom_question.folders.set([self.folder1, self.folder2])
 
 
 # カスタム質問の新規作成(question3)
@@ -35,7 +34,7 @@ class TestCreateQuestion(BaseTest):
 
     def test_custom_question_create_success(self):
         params = {"text": "question3", "user": self.user.id,
-                  "category": self.question_category.id, "subcategory": "sub"}
+                  "age": "30代", "is_default": False}
         response = self.client.post(
             self.TARGET_CREATE_URL, params, format="json")
         self.assertEqual(response.status_code, 201)
@@ -50,7 +49,7 @@ class TestCreateAnswer(BaseTest):
     def setUp(self):
         super().setUp()
         self.answer = Answer.objects.create(
-            text="answer1", user=self.user, question=self.custom_question)
+            title="answer1", user=self.user, question=self.custom_question)
 
     def test_custom_question_create_answers(self):
         # 回答をカスタム質問に紐付けて入力
@@ -80,14 +79,14 @@ class TestQuestionOperations(BaseTest):
         super().setUp()
         self.question = Question.objects.create(
             text="Initial question", user=self.user,
-            category=self.question_category, subcategory="Initial subcategory"
+            category=self.question_category
         )
         self.answer1 = Answer.objects.create(
-            text="first answer", question=self.custom_question,
+            title="first answer", question=self.custom_question,
             user=self.user
         )
         self.answer2 = Answer.objects.create(
-            text="second answer", question=self.custom_question,
+            title="second answer", question=self.custom_question,
             user=self.user
         )
         self.custom_question.answers.add(self.answer1, self.answer2)
@@ -101,7 +100,7 @@ class TestQuestionOperations(BaseTest):
         self.assertIn('answers', response.data)
         self.assertEqual(len(response.data['answers']), 2)
         self.assertEqual(response.data['answers']
-                         [0]['text'], self.answer1.text)
+                         [0]['title'], self.answer1.title)
 
     def test_question_update_success(self):
         update_params = {"text": "Updated question"}
@@ -120,8 +119,6 @@ class TestQuestionOperations(BaseTest):
         self.assertEqual(response.status_code, 204)
         self.assertFalse(Question.objects.filter(
             id=self.question.id).exists())
-    
-    
 
 
 # カスタム質問のフィルタリング
@@ -206,7 +203,7 @@ class TestCreateAnswer(BaseTest):
     def setUp(self):
         super().setUp()
         self.answer = Answer.objects.create(
-            text="answer1", user=self.user, question=self.default_question)
+            title="answer1", user=self.user, question=self.default_question)
 
     def test_default_question_create_answers(self):
         # 回答をカスタム質問に紐付けて入力
@@ -229,13 +226,15 @@ class TestCreateAnswer(BaseTest):
         self.assertEqual(self.default_question.answers.count(), 0)
 
 # カスタム質問に新しくフォルダを追加
+
+
 class TestAddFolder(BaseTest):
     TARGET_CREATE_URL = "/api/customquestions/{}/"
-    
+
     def setUp(self):
         super().setUp()
-        self.folder3 = Folder.objects.create(name = "面接", user = self.user)
-        
+        self.folder3 = Folder.objects.create(name="面接", user=self.user)
+
     def test_add_folder(self):
         existing_folders = self.custom_question.folders.all()
         folder_ids = list(existing_folders.values_list('id', flat=True))
@@ -248,25 +247,23 @@ class TestAddFolder(BaseTest):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(self.custom_question.folders.count(), 3)
         self.assertEqual(self.custom_question.folders.all()[2].name, "面接")
-        
 
-    
-        
+
 # カスタム質問のフォルダを削除
 class TestRemoveFolder(BaseTest):
     TARGET_URL = "/api/customquestions/{}/"
-    
+
     def setUp(self):
         super().setUp()
-    
+
     def test_remove_folder(self):
         existing_folders = self.custom_question.folders.all()
         folder_ids = list(existing_folders.values_list('id', flat=True))
         # print(folder_ids)
         folder_ids.remove(self.folder1.id)
         folder_ids.remove(self.folder2.id)
-        
-        params = {"folders":folder_ids}
+
+        params = {"folders": folder_ids}
         self.assertEqual(self.custom_question.folders.count(), 2)
         # print(self.custom_question.folders.all())
         response = self.client.delete(
@@ -274,13 +271,15 @@ class TestRemoveFolder(BaseTest):
         self.assertEqual(response.status_code, 204)
         # print(self.custom_question.folders.all())
         self.assertEqual(self.custom_question.folders.count(), 0)
-        
+
 # フォルダを新規作成
+
+
 class TestCreateFolder(BaseTest):
-    
+
     def setUp(self):
         super().setUp()
-        
+
     def test_create_folder(self):
         params = {"name": "面接", "user": self.user.id}
         response = self.client.post(
@@ -289,13 +288,15 @@ class TestCreateFolder(BaseTest):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(Folder.objects.count(), 5)
         self.assertEqual(Folder.objects.get(id=5).name, "面接")
-        
+
 # フォルダの一覧取得
+
+
 class TestGetFolder(BaseTest):
-    
+
     def setUp(self):
         super().setUp()
-        
+
     def test_get_folder(self):
         response = self.client.get("/api/folders/")
         self.assertEqual(response.status_code, 200)
@@ -304,26 +305,25 @@ class TestGetFolder(BaseTest):
         self.assertEqual(response.data[1]["name"], "あとで回答する")
         self.assertEqual(response.data[2]["name"], "就活")
         self.assertEqual(response.data[3]["name"], "あとでみる")
-      
+
 
 class TestUpdateUser(BaseTest):
     TARGET_URL = "/api/users/{}/update/"
-    
+
     def setUp(self):
         super().setUp()
-        
+
     def test_change_name(self):
         params = {"username": "newname"}
         response = self.client.patch(
             self.TARGET_URL.format(self.user.id), params, format="json")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(User.objects.get(id=self.user.id).username, "newname")
-    
+
     def test_change_email(self):
         params = {"email": "new@example.com"}
         response = self.client.patch(
             self.TARGET_URL.format(self.user.id), params, format="json")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(User.objects.get(id=self.user.id).email, "new@example.com")
-                  
-        
+        self.assertEqual(User.objects.get(
+            id=self.user.id).email, "new@example.com")

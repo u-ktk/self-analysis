@@ -51,7 +51,7 @@ const SearchResults = () => {
                 setErrorMessage('検索結果がありませんでした');
             } else if (res) {
                 setQuestions(res);
-                console.log(res);
+                // console.log(res);
             }
 
 

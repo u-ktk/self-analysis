@@ -5,6 +5,7 @@ import { changeUserInfo } from '../../components/api/UserInfo';
 import { Button, Row, Col, Form, Alert } from 'react-bootstrap';
 import formStyle from '../../components/styles/Form.module.css';
 import ShowMsg from '../../components/layouts/ShowMsg';
+import loadStyle from '../../components/styles/Loading.module.css';
 
 type authInfo = {
     accessToken: string | null;
@@ -109,7 +110,6 @@ const UserInfo = (props: authInfo) => {
         <div className={style.bg}>
             <h4 className={style.title}>プロフィール編集</h4>
 
-            {/* エラーメッセージ */}
             <div className={userInfoStyle.contents}>
 
                 {/* 成功メッセージ */}
@@ -121,6 +121,7 @@ const UserInfo = (props: authInfo) => {
                 {errorMessage &&
                     <ShowMsg message={errorMessage} isSuccess={false} />
                 }
+
 
 
 

@@ -26,11 +26,11 @@ class TestQuestionSerializer(BaseTest):
         input_data = {
             'text': 'question100',
             'user': self.user.id,
-            'category': self.question_category.id,
+            'age': '20代',
+
             # 複数の回答を質問に紐付けて入力
-            'answers': [{'text': 'answer1', 'user': self.user.id, 'question': self.question.id, 'created_at': '2021-01-01T00:00:00Z'},
-                        {'text': 'answer2', 'user': self.user.id, 'question': self.question.id, 'created_at': timezone.now()}],
-            'subcategory': 'subcategory1',
+            'answers': [{'title': 'answer1', 'text1': 'aaa', 'text2': 'aa', 'text3': 'a', 'user': self.user.id, 'question': self.question.id},
+                        {'title': 'answer2', 'text1': 'bbb', 'text2': 'bb', 'text3': 'b', 'user': self.user.id, 'question': self.question.id}]
         }
         serilizer = QuestionSerializer(data=input_data)
         self.assertEqual(serilizer.is_valid(), True)
@@ -41,8 +41,6 @@ class TestQuestionSerializer(BaseTest):
         input_data = {
             'text': '',
             'user': self.user.id,
-            'category': self.question_category.id,
-            'subcategory': 'subcategory1',
         }
         serilizer = QuestionSerializer(data=input_data)
 
@@ -62,16 +60,3 @@ class TestQuestionSerializer(BaseTest):
         # 設定したエラーメッセージが出力される
         self.assertEqual(
             serilizer.errors['text'][0], '質問は255文字以下にしてください')
-
-    # questionインスタンスを作成した際、Json出力を確認
-    def test_output(self):
-        question = Question.objects.create(
-            text="今日の朝ごはんは？", user=self.user, category=self.question_category, subcategory="ご飯")
-        serilizer = QuestionSerializer(question)
-
-        self.assertEqual(serilizer.data['text'], '今日の朝ごはんは？')
-        self.assertEqual(serilizer.data['user'], self.user.id)
-        self.assertEqual(serilizer.data['category'], self.question_category.id)
-        self.assertEqual(serilizer.data['subcategory'], 'ご飯')
-
-# 回答シリアライザーのテスト

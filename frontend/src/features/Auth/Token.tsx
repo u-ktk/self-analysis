@@ -79,7 +79,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     // } else if (res.status === 401 && refreshToken) {
                     //     const refreshed = await refreshAccessToken(refreshToken);
                 } else if (res.status === 401) {
-                    console.log('アクセストークンを更新します')
+                    // console.log('アクセストークンを更新します')
                     const refreshToken = await getRefreshToken();
                     if (!refreshToken) return;
                     const refreshed = await refreshAccessToken(refreshToken);
@@ -99,7 +99,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     }
                 }
             } catch (error) {
-                console.log(error)
+                // console.log(error)
             }
         }
         fetchUserDetails();
@@ -144,7 +144,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             if (res.ok) {
                 localStorage.setItem('accessToken', data.access);
                 setAccessTokenState(data.access);
-                console.log('アクセストークンを更新しました')
+                // console.log('アクセストークンを更新しました')
                 return data;
             } else {
                 console.log(data);
