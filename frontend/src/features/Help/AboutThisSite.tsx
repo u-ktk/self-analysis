@@ -13,7 +13,7 @@ const AboutThisSite = () => {
             </h4>
             <div className={helpStyles.contents}>
                 <ul >
-                    <li className={helpStyles.list}>このサイトは、前田祐二氏著「メモの魔力」の内容を実践するために作成しました。</li>
+                    <li className={helpStyles.list}>このサイトは、前田裕二氏著「メモの魔力」の内容を実践するために作成しました。</li>
                     巻末の1000問の自己分析をより
                     <span style={{ color: '#E6914C' }}>簡単に記録</span>
                     し、

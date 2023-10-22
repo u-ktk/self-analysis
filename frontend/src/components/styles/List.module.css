@@ -12,6 +12,8 @@
     text-decoration: underline;
 }
 
+
+
 .trashIcon {
     width: 17px;
     margin-top: -2px;
@@ -71,4 +73,62 @@
     height: 80%;
     width: 30%;
     margin-right: 20px;
+}
+
+
+.menu {
+    margin-top: 15px;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+
+.progress {
+    margin-left: auto;
+    border-radius: 3px;
+    width: 30%;
+    height: 20px;
+    opacity: 0.9;
+
+
+}
+
+.progressDetail {
+    border-radius: 3px;
+    width: 20%;
+    height: 10px;
+    opacity: 0.9;
+}
+
+
+.progressBarLabel {
+    margin-left: 15px;
+}
+
+.progressBarWrapper {
+    margin-right: 3rem;
+    display: flex;
+    align-items: center;
+
+}
+
+.ageAccordion {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.age {
+    width: 25%;
+}
+
+@media (max-width: 1250px) {
+    .menu {
+        display: flex;
+    }
+
+    .age {
+        width: 40%;
+    }
 }

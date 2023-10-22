@@ -15,7 +15,7 @@ import newFolder from '../../images/icon/newFolder.svg';
 import plus from '../../images/icon/plus.svg';
 import minus from '../../images/icon/minus.svg';
 import checkMark from '../../images/checked.png';
-import { Button } from 'react-bootstrap';
+import { ProgressBar } from 'react-bootstrap';
 
 
 
@@ -30,15 +30,14 @@ const DefaultQuestionsList = () => {
 
     const [showToast, setShowToast] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
-
     const [selectQuestion, setSelectQuestion] = useState<Question>();
-
     // アコーディオンメニューの開閉
     const [openAge, setOpenAge] = useState<string | null>(null);
-
-
     const currentPage = parseInt(page ? page : "1");
     const navigate = useNavigate();
+
+    type AgeCount = { [key: string]: number };
+
 
     const toggleAccordion = (age: string) => {
         if (openAge === age) {
@@ -140,10 +139,11 @@ const DefaultQuestionsList = () => {
 
 
 
-    type AgeCount = { [key: string]: number };
 
     const countAnsweredQuestions = (questions: Question[]): number =>
         questions.filter(question => question.answers[0]).length;
+
+    const allCount = countAnsweredQuestions(questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99))
 
     // 年代ごとのカウント
     const groupQuestionsByAge = (questions: Question[]): AgeCount =>
@@ -152,15 +152,30 @@ const DefaultQuestionsList = () => {
             return accum;
         }, {} as AgeCount);
 
+
     // 回答した質問の総数
     // console.log(countAnsweredQuestions(defaultQuestions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99)))
 
-
     const ageCounts: { [key: string]: number } = groupQuestionsByAge(questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99));
 
+
     // 回答済みの質問数を取得
-    const answerdAgeCounts: { [key: string]: number } = groupQuestionsByAge(
-        questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99).filter((question) => question.answers[0]));
+    const answerdAgeCounts = (question: Question) => {
+        const getAnsweredAgeCounts: { [key: string]: number } = groupQuestionsByAge(
+            questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99).filter((question) => question.answers[0])
+        );
+        const questionAge = question.age;
+        const count = getAnsweredAgeCounts[questionAge] ? getAnsweredAgeCounts[questionAge] : 0;
+        return count;
+    };
+
+    // 回答済質問の割合を取得
+    const getAnsweredAgeRatio = (question: Question) => {
+        const answeredAgeCounts = answerdAgeCounts(question);
+        const ageCount = ageCounts[question.age];
+        const ratio = answeredAgeCounts / ageCount * 100;
+        return Math.round(ratio);
+    }
 
 
     // 画面サイズが変更されたら再描画
@@ -200,14 +215,21 @@ const DefaultQuestionsList = () => {
                     ) : (
                         <>
                             {/* 見出し */}
-                            <div className={`${styles.menu} mb-4 `}>
-                                <a href='/questions-list' className={styles.link}>用意された質問から選ぶ </a>
-                                <span> &#62; </span>
-                                <span style={{ fontSize: '120%' }}>レベル{currentPage}&nbsp;&nbsp;</span>
-                                <span style={{ fontWeight: 'bold', fontSize: '120%' }}>{currentCategory}
-                                    ({countAnsweredQuestions(questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99))}/100問回答済)</span>
+                            <div className={`${listStyles.menu} mb-4 `}>
+                                <div>
+                                    <a href='/questions-list' className={styles.link}>用意された質問から選ぶ </a>
+                                    <span> &#62; </span>
+                                    <span style={{ fontSize: '120%' }}>レベル{currentPage}&nbsp;&nbsp;</span>
+                                    <span style={{ fontWeight: 'bold', fontSize: '120%' }}>{currentCategory}</span>
+                                </div>
                             </div>
-
+                            <div className={listStyles.progressBarWrapper}>
+                                <ProgressBar now={allCount}
+                                    className={listStyles.progress}
+                                    variant='secondary'
+                                />
+                                <span className={listStyles.progressBarLabel}>{`${allCount}%`}</span>
+                            </div>
                             {/* トーストメニュー */}
                             {showToast && (
                                 <div
@@ -246,15 +268,16 @@ const DefaultQuestionsList = () => {
                                                     // アコーディオンメニュー
                                                     onClick={() => toggleAccordion(question.age)}
                                                 >
-                                                    <div >
-                                                        <span
-                                                        // style={{ fontWeight: 'bold' }}
-                                                        >{question.age}&nbsp;&nbsp;</span>
-                                                        <span>
-                                                            {answerdAgeCounts[question.age] ? (
-                                                                answerdAgeCounts[question.age]) : 0}
-                                                            &nbsp;/&nbsp;
-                                                            {ageCounts[question.age]}問回答済</span>
+                                                    <div className={listStyles.ageAccordion}>
+                                                        <span className={listStyles.age}>{question.age}&nbsp;&nbsp;</span>
+                                                        <span className={listStyles.progressBarWrapper} style={{ width: '100%' }}>
+                                                            <ProgressBar
+                                                                now={answerdAgeCounts(question) / ageCounts[question.age] * 100}
+                                                                className={listStyles.progressDetail}
+                                                                variant='secondary'
+                                                            />
+                                                            <span className={listStyles.progressBarLabel}>{`${getAnsweredAgeRatio(question)} %`}</span>
+                                                        </span>
                                                     </div>
                                                     {openAge === question.age ? (
                                                         <span>
