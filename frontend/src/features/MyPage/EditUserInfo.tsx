@@ -111,30 +111,7 @@ const UserInfo = (props: authInfo) => {
 
             {/* エラーメッセージ */}
             <div className={userInfoStyle.contents}>
-                {/* {errorMessage &&
-                    <Alert className={formStyle.alert}>
-                        <span>
-                            <img alt="エラー" src={error} width="40" height="40"></img>
-                        </span>
-                        <div className={formStyle.msg}>
 
-                            {errorMessage}
-                        </div>
-                    </Alert>} */}
-
-                {/* 編集成功 */}
-                {/* {successMessage &&
-                    <Alert variant='primary' className={formStyle.alert}>
-                        <span>
-                            <img alt="編集成功" src={check} width="40" height="40"></img>
-                        </span>
-                        <div className={formStyle.msg}>
-                            <span style={{ fontWeight: 'bold' }}>
-                                {successMessage}
-                            </span>
-                        </div>
-                    </Alert>
-                } */}
                 {/* 成功メッセージ */}
                 {successMessage &&
                     <ShowMsg message={successMessage} isSuccess={true} />
@@ -146,69 +123,52 @@ const UserInfo = (props: authInfo) => {
                 }
 
 
-                <Row>
 
-                    {windowWidth < 600 ? (
-                        <>
-                            <div className={userInfoStyle.key}>ユーザー名：</div>
 
-                            {!isNameEditing ? (
-                                <div className={userInfoStyle.value}>{showName || userName}</div>
+                <Row className={userInfoStyle.subContainer}>
+                    <Col md={4} xs={5}>
+                        <span className={userInfoStyle.key}>ユーザー名：</span>
+                    </Col>
+                    <Col md={4} sm={7}>
+                        {!isNameEditing ? (
+                            <span className={userInfoStyle.value} > {showName || userName}</span>
+                        ) : (
+                            <span className={userInfoStyle.form}>
+                                <input
+                                    type="text"
+                                    value={changeName || ""}
+                                    onChange={(e) => setChangeName(e.target.value)}
+                                />
+                            </span>
+                        )}
+                    </Col>
 
-                            ) : (
-                                <Form
-                                    className={userInfoStyle.form}
-                                >
-                                    <input
-                                        type="text"
-                                        value={changeName || ""}
-                                        onChange={(e) => setChangeName(e.target.value)}
-                                    />
-                                </Form>
 
-                                // </div>
-                            )}
-                        </>
-                    ) : (
-                        <>
-                            <Col className={userInfoStyle.subContainer}>
-                                <span className={userInfoStyle.key}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ユーザー名：</span>
-                                {!isNameEditing ? (
-                                    <span className={userInfoStyle.value}>{showName || userName}</span>
-
-                                ) : (
-                                    <span className={userInfoStyle.form}>
-                                        <input
-                                            type="text"
-                                            value={changeName || ""}
-                                            onChange={(e) => setChangeName(e.target.value)}
-                                        />
-
-                                    </span>
-                                )}
-                            </Col>
-
-                        </>
-                    )
-                    }
-
-                    <Col xs={3}>
+                    <Col md={4} sm={9} className='mt-2'>
                         {!isNameEditing ? (
                             <div className={userInfoStyle.editButton}>
-                                <Button onClick={nameChangeClick} className={style.lightButton} size="sm" variant="outline-primary">編集する</Button>
-                            </div>
-                        ) : (
-                            <div className={userInfoStyle.editButton}>
-                                <Button className={style.darkButton} size="sm" onClick={() => nameSaveClick(changeName ?? "")} variant="primary" >保存</Button>
-                                <Button className={style.lightButton} size="sm" onClick={nameChangeClick} variant="outline-primary">キャンセル</Button>
+                                <Button onClick={nameChangeClick} className={style.lightButton} size="sm" >編集する</Button>
                             </div>
                         )
-                        }
+                            : (
+                                <div className={userInfoStyle.editButton}>
+                                    <Button className={style.darkButton} size="sm" onClick={() => nameSaveClick(changeName ?? "")}>保存</Button>
+                                    <Button className={style.lightButton} size="sm" onClick={nameChangeClick} >キャンセル</Button>
+                                </div>
+                            )}
                     </Col>
+
                 </Row>
-                <Row>
-                    <Col className={userInfoStyle.subContainer}>
+
+
+
+
+
+                <Row className={userInfoStyle.subContainer}>
+                    <Col md={4} xs={5}>
                         <span className={userInfoStyle.key}>メールアドレス：</span>
+                    </Col>
+                    <Col md={4} xs={7}>
                         {!isEmailEditing ? (
                             <span className={userInfoStyle.value} > {showEmail || userEmail}</span>
                         ) : (
@@ -220,6 +180,8 @@ const UserInfo = (props: authInfo) => {
                                 />
                             </span>
                         )}
+                    </Col>
+                    <Col md={4} sm={9} >
 
                         {!isEmailEditing ? (
                             <div className={userInfoStyle.editButton}>

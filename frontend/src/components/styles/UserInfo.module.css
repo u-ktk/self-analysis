@@ -6,10 +6,9 @@
 }
 
 .editButton {
-    position: absolute;
-    right: 400px;
     margin-top: -2px;
 }
+
 
 .subContainer {
     display: flex;
@@ -52,25 +51,8 @@
 
 }
 
-
-
-@media (max-width: 960px) {
-    .bg {
-        margin: 40px 40px;
-    }
-
+@media (max-width: 1250px) {
     .contents {
         width: 100%;
-        margin-left: 0px;
     }
-
-
-    .editButton {
-        position: absolute;
-        right: 100px;
-    }
-
-    .form {}
-
-
 }

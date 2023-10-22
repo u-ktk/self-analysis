@@ -73,32 +73,6 @@ const CategoryList = () => {
                             ))}
                         </tbody>
                     </table>
-
-
-
-
-
-                    {/* <div className={listStyles.categoryList}>
-                        {categoryList?.map((category, index) => (
-                            <div key={`category-${index}`}>
-                                <span className={styles.id}>レベル{index + 1}. </span>
-                                <span>
-                                    <a href={`/questions-list/default/${index + 1}/`} className="text-dark">{category}</a>
-                                </span>
-                                <span className={listStyles.progressBarWrapper}>
-                                    <ProgressBar now={counts ? counts[index] : 0}
-                                        className={listStyles.progress}
-                                        variant='secondary'
-                                        style={{ width: '100%' }}
-                                    />
-                                    <span className={listStyles.progressBarLabel}>{`${counts ? counts[index] : 0}%`}</span>
-                                </span>
-                            </div>
-                        ))}
-                    </div> */}
-
-
-
                 </div>
 
             </div>

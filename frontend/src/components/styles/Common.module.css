@@ -2,20 +2,21 @@
     box-shadow: 0 2px 2px #E8DBD1;
     background-color: white;
     color: #6B4423;
+    opacity: 0.8;
     flex-shrink: 0;
 }
 
 
 .lightButton:hover {
     transform: translateY(-1px);
-    opacity: 0.8;
+    opacity: 0.6;
     background-color: white;
     color: #6B4423;
 }
 
 .lightButton:active:focus {
     transform: translateY(-1px);
-    opacity: 0.8;
+    opacity: 0.6;
     background-color: white;
     color: #6B4423;
 }
@@ -24,18 +25,20 @@
 .darkButton {
     box-shadow: 0 2px 2px #E8DBD1;
     flex-shrink: 0;
+    opacity: 0.8;
+
 }
 
 .darkButton:hover {
     transform: translateY(-1px);
-    opacity: 0.8;
+    opacity: 0.6;
     background-color: #6B4423;
     color: white;
 }
 
 .darkButton:active:focus {
     transform: translateY(-1px);
-    opacity: 0.8;
+    opacity: 0.6;
     background-color: #6B4423;
     color: white;
 }

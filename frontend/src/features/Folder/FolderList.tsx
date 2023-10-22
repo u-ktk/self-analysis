@@ -145,8 +145,8 @@ const FolderList = (props: authInfo) => {
                                     placeholder="フォルダ名を入力"
                                     className={`form-control border ${listStyles.form}`}
                                 />
-                                <Button onClick={() => addFolderAndUpdateList(newFolder)} className={styles.miniButton} size="sm" variant="danger">追加</Button>
-                                <Button onClick={folderAddClick} className={styles.miniButton} size="sm" variant="warning">キャンセル</Button>
+                                <Button onClick={() => addFolderAndUpdateList(newFolder)} className={styles.darkButton} size="sm" >追加</Button>
+                                <Button onClick={folderAddClick} className={styles.lightButton} size="sm" >キャンセル</Button>
 
                             </div>
 
