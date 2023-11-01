@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
+import environ
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,8 +27,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w5r#^7($nr$kz&pyw0x*dtvrgb(#skfzs=cc$e$1)3p)e@r7^i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.getenv('DEBUG', 'false') != 'true'
-DEBUG = False
+env = environ.Env()
+READ_ENV_FILE = env.bool('DJANGO_READ_ENV_FILE', default=True)
+if READ_ENV_FILE:
+    env_file = str(BASE_DIR / '.env')
+    env.read_env(env_file)
+
+DEBUG = env.bool('DJANGO_DEBUG', True)
+print(DEBUG)
 
 # ALLOWED_HOSTS = ['52.199.23.236', 'localhost']
 ALLOWED_HOSTS = ['*']
@@ -59,7 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # オリジン間リソース共有
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -92,18 +99,11 @@ WSGI_APPLICATION = 'backend_django.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'os.environ.get("DB_NAME")',
-        'USER': 'os.environ.get("DB_USER")',
-        'PASSWORD': 'os.environ.get("DB_PASSWORD")',
-        'HOST': 'os.environ.get("DB_HOST")',
-        'PORT': '5432',
-    }
+    'default': env.db()
 }
 
 
-if not DEBUG:
+if DEBUG:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
