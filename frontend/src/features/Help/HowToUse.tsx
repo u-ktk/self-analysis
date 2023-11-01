@@ -13,9 +13,9 @@ import newFolder from '../../images/icon/newFolder.svg';
 const HowToUse = () => {
     return (
         <div>
-            <div className={styles.bg}>
+            <div className={helpStyles.bg}>
                 <h4 className={styles.title}>
-                    使い方
+                    使い方の流れ
                 </h4>
                 <div className={helpStyles.contents}>
                     <div className={helpStyles.index}>
@@ -65,9 +65,32 @@ const HowToUse = () => {
                     <div className={helpStyles.description}>
                         <ul>
                             <li className={helpStyles.list}>質問をクリックすると、回答を作成することができます。</li>
-                            「メモの魔力」p.136~p139を参考に
-                            <strong>「標語（ファクトをまとめたもの）」「ファクト」「抽象」「転用」</strong>を意識して回答してみましょう。
-                            （標語、ファクトは必須です）
+                            「ファクト」「抽象」「転用」を意識して、質問に回答してみましょう。
+                            <div>※詳しい解説は
+                                <strong>
+                                    「メモの魔力」p.136~p139
+                                </strong>
+                                に譲ります。</div>
+
+
+                            <div className={helpStyles.descriptionBox2} >
+                                <div>
+                                    <strong>◎ファクト（エピソード）</strong>
+                                    <div style={{ marginLeft: '10px', marginBottom: '10px' }}>質問に対する「事実」を具体的に書いていく</div>
+                                </div>
+                                <div>
+                                    <strong>◎抽象</strong>
+                                    <div style={{ marginLeft: '10px' }}>「ファクト」をもとに特徴、共通点などを抽象化して記入する</div>
+                                    <div style={{ marginLeft: '15px', marginBottom: '10px' }}>※ファクトに対して、なぜ？を繰り返すことがポイント！</div>
+                                </div>
+                                <div>
+                                    <strong>◎転用</strong>
+                                    <div style={{ marginLeft: '10px' }}>抽象化したことを、自分の日常生活などでどう活かすか考えて記入する</div>
+                                </div>
+
+
+                            </div>
+
                             <li className={helpStyles.list}>
                                 １つの質問に対して複数回答することもできます。
                             </li>

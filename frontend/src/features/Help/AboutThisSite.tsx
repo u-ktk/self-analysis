@@ -7,7 +7,7 @@ import openIcon from '../../images/icon/openBrown.svg'
 
 const AboutThisSite = () => {
     return (
-        <div className={styles.bg}>
+        <div className={helpStyles.bg}>
             <h4 className={styles.title}>
                 このサイトについて
             </h4>

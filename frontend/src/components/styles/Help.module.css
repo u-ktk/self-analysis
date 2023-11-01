@@ -1,3 +1,12 @@
+.bg {
+    background-color: white;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    margin: 3rem 15rem;
+    padding: 2rem;
+}
+
 .link {
     color: #947861;
     /* color: #AC8D73; */
@@ -37,6 +46,19 @@
     /* color: #6B4423; */
 }
 
+.descriptionBox2 {
+    background-color: #FAFAFA;
+    /* flex-direction: column; */
+    line-height: 30px;
+    margin: 30px 0px;
+    border: none;
+    border-radius: 5px;
+    padding: 20px 40px;
+    box-shadow: #E8DBD1 0 2px 2px;
+    color: #6B4423;
+}
+
+
 
 .list::marker {
     font-size: 0.8rem;
@@ -48,6 +70,19 @@
     border: 1px solid #C7C6C6;
     border-radius: 1px;
     width: 350px;
+}
+
+.outline {
+    margin: 30px 20px 0px 20px;
+    padding: 20px 20px;
+    border: 1px solid #C7C6C6;
+    border-radius: 1px;
+    width: 350px;
+}
+
+.outlineText {
+    margin: 5px 0;
+    font-size: 1.1rem;
 }
 
 .indexNumber {
@@ -75,6 +110,11 @@
     margin-left: 10px;
 }
 
+.exampleQuestion {
+    margin: 30px 0px -10px 0px;
+
+}
+
 .img {
     box-shadow: #AC8D73 0 2px 4px;
     width: 100%;
@@ -91,6 +131,8 @@
     width: 80%;
     margin: 10px 60px;
 }
+
+
 
 
 @media (max-width: 960px) {
@@ -124,4 +166,12 @@
     .img4 {
         width: 40rem;
     }
+
+}
+
+@media (max-width: 1250px) {
+    .bg {
+        margin: 40px 20px;
+    }
+
 }

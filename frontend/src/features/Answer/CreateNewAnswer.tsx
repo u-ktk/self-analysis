@@ -11,6 +11,7 @@ import detailStyles from '../../components/styles/QuestionDetail.module.css';
 
 import plus from '../../images/icon/plus.svg';
 import minus from '../../images/icon/minus.svg';
+import open from '../../images/icon/open.svg';
 
 
 type CreateAnswerProps = {
@@ -119,6 +120,7 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
                     }}>
                         回答を作成
                     </span>
+
                     {/* <span >
                         &nbsp;
                         <a href='/help' className={formStyles.link}>

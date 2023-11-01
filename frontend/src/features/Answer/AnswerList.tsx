@@ -268,7 +268,7 @@ const AnswerList = (props: AnswerListProps) => {
                                         <div style={{ textAlign: 'center' }}>
                                         </div>
                                         <div className={detailStyles.mark4}>抽象</div>
-                                        <div className={detailStyles.answerText}>{renderHTML(answer.text2)}</div>
+                                        <div className={detailStyles.answerText}>{answer.text2 && renderHTML(answer.text2)}</div>
 
                                     </>)}
                                     {answer.text3 && (<>

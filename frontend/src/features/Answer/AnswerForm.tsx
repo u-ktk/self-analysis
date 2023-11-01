@@ -5,7 +5,7 @@ import { Question } from "../../types";
 import { Editor, SimpleEditor } from '../../components/layouts/Editor';
 import styles from '../../components/styles/Common.module.css';
 import formStyles from '../../components/styles/Form.module.css';
-import openIcon from '../images/icon/open.svg';
+import open from '../../images/icon/open.svg';
 
 type Props = {
     onSubmit: SubmitHandler<FormData>;
@@ -48,9 +48,10 @@ const AnswerForm: React.FC<Props> = ({ onSubmit, errorMessage, isEditing, isDefa
 
 
             <Form className=' mx-auto' onSubmit={handleSubmit(onSubmit)}>
+
                 <div className={formStyles.formGroup}>
 
-                    <label htmlFor="">標語（ファクトをまとめたもの）
+                    <label htmlFor="">ファクトをまとめたもの
                         <span style={{ color: '#AC8D73' }}>*</span>
                     </label>
                     {/* <Editor value={titleValue} onChange={setTitleValue} /> */}

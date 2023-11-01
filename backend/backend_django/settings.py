@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,12 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w5r#^7($nr$kz&pyw0x*dtvrgb(#skfzs=cc$e$1)3p)e@r7^i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get("DEBUG") == "True"
-DEBUG = os.environ.get('DJANGO_PRODUCTION', 'false') != 'true'
+# DEBUG = os.getenv('DEBUG', 'false') != 'true'
+DEBUG = False
 
-# 本番用のドメインが決まったら指定する
+# ALLOWED_HOSTS = ['52.199.23.236', 'localhost']
 ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
 
 
 # Application definition
@@ -62,11 +62,12 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # オリジン間リソース共有
 ]
 
-# 後で修正
-CORS_ALLOWED_ALL_ORIGINS = True
-
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # フロントエンドのURL
+    "http://selfanalysis-memo.com",
+    "https://www.selfanalysis-memo.com",
+    "http://localhost:3000",
+
+
 ]
 
 ROOT_URLCONF = 'backend_django.urls'
@@ -90,26 +91,33 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend_django.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # 本番以外の環境ではSQLiteを使用
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'CONN_MAX_AGE': 300,
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydb',
+        'USER': 'postgres',
+        'PASSWORD': 'bjmq9997',
+        'HOST': 'self-analysis-psgl2.clqeggco5rkp.ap-northeast-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
-if os.environ.get('DJANGO_PRODUCTION', False):
+
+if not DEBUG:
     DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        'CONN_MAX_AGE': 300,
     }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'CONN_MAX_AGE': 300,
+#     }
+# }
+
 
 # APIリクエストを受け取る時、JWTトークンを必要とするようにする
 REST_FRAMEWORK = {
@@ -185,3 +193,22 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Logging settings
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'app.log'),
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'DEBUG',
+
+    },
+}

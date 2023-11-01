@@ -35,17 +35,24 @@ create_json()
 
 
 # 以下、jsonファイルのインポート方法
-# for item in data['questions']:
-#     question = Question(
-#         category = QuestionCategory.objects.get(pk=item['categoryId']),
-#         text=item['text'],
-#         age=item['subcategory'],
-#         is_default=item['isDefault']
-#     )
-#     question.save()
-    
-# with open('path', 'r') as file:
-#     categories = json.load(file)
-    
-# with open('path', 'r') as file:
-#     data = json.load(file)
+path = '/Users/mizut/Desktop/original_app/self-analysis/backend/api/fixtures/questions.json'
+for item in data['questions']:
+    question = Question(
+        category=QuestionCategory.objects.get(pk=item['categoryId']),
+        text=item['text'],
+        age=item['subcategory'],
+        is_default=item['isDefault']
+    )
+    question.save()
+
+for item in categories:
+    category = QuestionCategory(
+        name=item['name'],
+    )
+    category.save()
+
+with open(path, 'r') as file:
+    categories = json.load(file)
+
+with open(path, 'r') as file:
+    data = json.load(file)

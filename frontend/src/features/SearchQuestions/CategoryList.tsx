@@ -58,7 +58,7 @@ const CategoryList = () => {
                             {categoryList?.map((category, index) => (
                                 <tr key={category}>
                                     <td className={styles.id}>レベル{index + 1}. </td>
-                                    <td><a href={`/questions-list/default/${index + 1}/`} className="text-dark">{category}</a></td>
+                                    <td><a href={`/questions-list/default/${index + 1}/`} className={listStyles.link}>{category}</a></td>
                                     <td>
                                         <span className={listStyles.progressBarWrapper}>
                                             <ProgressBar now={counts ? counts[index] : 0}
