@@ -91,18 +91,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend_django.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'postgres',
-        'PASSWORD': 'bjmq9997',
-        'HOST': 'self-analysis-psgl2.clqeggco5rkp.ap-northeast-1.rds.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
-
 if not DEBUG:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
