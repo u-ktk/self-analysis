@@ -66,33 +66,6 @@ class CustomQuestionsFilter(filters.FilterSet):
         }
 
 
-# リフレッシュトークンを保存
-
-# class RefreshTokenViewSet(viewsets.ModelViewSet):
-#     permission_classes = (permissions.IsAuthenticated,)
-#     authentication_classes = (authentication.JWTAuthentication,)
-#     queryset = RefreshToken.objects.all()
-
-#     @action(detail=False, methods=['POST'])
-#     def refresh_token_save(request):
-#         if request.method == 'POST':
-#             refresh_token = request.data.get('refresh')
-#             if refresh_token:
-#                 request.user.refresh_token = refresh_token
-#                 request.user.save()
-#                 return HttpResponse(status=status.HTTP_200_OK)
-#             else:
-#                 return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
-
-#     @action(detail=False, methods=['GET'])
-#     def refresh_token_get(request):
-#         if request.method == 'GET':
-#             refresh_token = request.user.refresh_token
-#             if refresh_token:
-#                 return HttpResponse(refresh_token, status=status.HTTP_200_OK)
-#             else:
-#                 return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
-
 @api_view(['POST'])
 def refresh_token_save(request):
     if request.method == 'POST':

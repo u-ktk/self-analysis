@@ -4,6 +4,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    user = serializers.SerializerMethodField()
     default_error_messages = {
         'no_active_account': 'emailもしくはパスワードが間違っています。',
     }

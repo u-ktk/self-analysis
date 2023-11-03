@@ -32,3 +32,702 @@ Not Found: /static/rest_framework/js/default.js
 /Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
 Watching for file changes with StatReloader
 /Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 114, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+AttributeError: 'User' object has no attribute 'refresh_token'
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 114, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+AttributeError: 'User' object has no attribute 'refresh_token'
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 114, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+AttributeError: 'User' object has no attribute 'refresh_token'
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 114, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+AttributeError: 'User' object has no attribute 'refresh_token'
+Not Found: /api/users/null/
+Not Found: /api/users/null/
+Unauthorized: /api/token/
+Internal Server Error: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `refresh_token` is not valid for model `User`.
+Internal Server Error: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `refresh_token` is not valid for model `User`.
+Internal Server Error: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `refresh_token` is not valid for model `User`.
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /api/users/null/
+Not Found: /api/users/null/
+Unauthorized: /api/token/
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/refresh-token-get/
+Method Not Allowed: /api/refresh-token-get/
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+AttributeError: 'User' object has no attribute 'refresh_token'
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+AttributeError: 'User' object has no attribute 'refresh_token'
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+AttributeError: 'User' object has no attribute 'refresh_token'
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Method Not Allowed: /api/refresh-token-get/
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/models.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /api/users/null/
+Not Found: /api/users/null/
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/customquestions/
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Unauthorized: /api/users/1674159d-3cc4-4c95-8d50-ef5d446add0f/
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+Internal Server Error: /api/refresh-token-get/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 87, in refresh_token_get
+    refresh_token = User.objects.get(id=user_id).refresh_token
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+api.models.User.DoesNotExist: User matching query does not exist.
+Not Found: /api/users/null/
+Not Found: /api/users/null/
+Unauthorized: /api/token/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/defaultquestions/20/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/20/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/customquestions/
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/defaultquestions/20/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/20/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/

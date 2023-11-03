@@ -53,10 +53,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
-    'dj_rest_auth',
+    # 'dj_rest_auth',
     'django_filters',
     'corsheaders',
 ]
+
+TOKEN_MODEL = None
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,11 +72,15 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://selfanalysis-memo.com",
+    "https://selfanalysis-memo.com",
     "https://www.selfanalysis-memo.com",
     "http://localhost:3000",
 
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://selfanalysis-memo-api.net',
+    'http://localhost:8000',
 ]
 
 ROOT_URLCONF = 'backend_django.urls'
@@ -103,12 +109,12 @@ DATABASES = {
 }
 
 
-if DEBUG:
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'CONN_MAX_AGE': 300,
-    }
+# if DEBUG:
+#     DATABASES['default'] = {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'CONN_MAX_AGE': 300,
+#     }
 
 # DATABASES = {
 #     'default': {
@@ -123,7 +129,7 @@ if DEBUG:
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+        # 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
@@ -134,6 +140,7 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
     'DATETIME_INPUT_FORMATS': ["%Y-%m-%d %H:%M:%S", "%Y/%m/%d %H:%M:%S"],
 }
+
 
 REST_USE_JWT = True
 
@@ -148,7 +155,8 @@ SIMPLE_JWT = {
     'AUTH_TOKEN_CLASSES': (
         'rest_framework_simplejwt.tokens.AccessToken',
         'rest_framework_simplejwt.tokens.RefreshToken',
-    )
+    ),
+    'TOKEN_OBTAIN_SERIALIZER': 'api.serializers.CustomTokenObtainPairSerializer',
 }
 
 

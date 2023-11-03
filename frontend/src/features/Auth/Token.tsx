@@ -79,7 +79,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     // } else if (res.status === 401 && refreshToken) {
                     //     const refreshed = await refreshAccessToken(refreshToken);
                 } else if (res.status === 401) {
-                    // console.log('アクセストークンを更新します')
                     const refreshToken = await getRefreshToken();
                     if (!refreshToken) return;
                     const refreshed = await refreshAccessToken(refreshToken);
