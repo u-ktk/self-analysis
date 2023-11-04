@@ -109,12 +109,12 @@ DATABASES = {
 }
 
 
-# if DEBUG:
-#     DATABASES['default'] = {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#         'CONN_MAX_AGE': 300,
-#     }
+if DEBUG:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        'CONN_MAX_AGE': 300,
+    }
 
 # DATABASES = {
 #     'default': {
@@ -147,6 +147,7 @@ REST_USE_JWT = True
 SIMPLE_JWT = {
     # アクセストークン(3時間)
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=3),
+    # 'ACCESS_TOKEN_LIFETIME': timedelta(seconds=3),
     # リフレッシュトークン(7日)
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     # 認証タイプ

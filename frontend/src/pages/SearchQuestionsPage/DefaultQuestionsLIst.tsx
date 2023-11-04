@@ -91,11 +91,12 @@ const DefaultQuestionsList = () => {
         setLoading(true);
         if (!accessToken) return;
         try {
-            const res = await getDefaultQuestions({ accessToken });
+            const res = await getDefaultQuestions({ accessToken, limit: '100', offset: ((currentPage - 1) * 100).toString() });
             if (res) {
                 setQuestions(res);
+                console.log(res)
                 if (res[0])
-                    setCurrentCategory(res[currentPage * 100 - 1].category_name);
+                    setCurrentCategory(res[0].category_name);
                 else {
                     setCurrentCategory("No category");
                 }
@@ -136,14 +137,6 @@ const DefaultQuestionsList = () => {
         }
     }
 
-
-
-
-    // const countAnsweredQuestions = (questions: Question[]): number =>
-    //     questions.filter(question => question.answers[0]).length;
-
-    // const allCount = countAnsweredQuestions(questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99))
-
     // 年代ごとのカウント
     const groupQuestionsByAge = (questions: Question[]): AgeCount =>
         questions.reduce((accum, question) => {
@@ -152,13 +145,13 @@ const DefaultQuestionsList = () => {
         }, {} as AgeCount);
 
 
-    const ageCounts: { [key: string]: number } = groupQuestionsByAge(questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99));
+    const ageCounts: { [key: string]: number } = groupQuestionsByAge(questions);
 
 
     // 回答済みの質問数を取得
     const answerdAgeCounts = (question: Question) => {
         const getAnsweredAgeCounts: { [key: string]: number } = groupQuestionsByAge(
-            questions.slice((currentPage - 1) * 100, (currentPage - 1) * 100 + 99).filter((question) => question.answers[0])
+            questions.filter((question) => question.answers[0])
         );
         const questionAge = question.age;
         const count = getAnsweredAgeCounts[questionAge] ? getAnsweredAgeCounts[questionAge] : 0;
@@ -185,17 +178,6 @@ const DefaultQuestionsList = () => {
         }
     }, []);
 
-
-    const questionsPerPage = 100;
-    //無効なページ番号の場合はエラーを表示
-    if (!currentPage || currentPage < 1 || currentPage > 10) {
-        return <div>ページが存在しません。</div>;
-    }
-
-    //ページに表示する質問を指定（例えば１ページ目なら1-100問目まで）
-    const indexOfLastQuestion = currentPage * questionsPerPage;
-    const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
-    const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
 
 
     return (
@@ -255,10 +237,10 @@ const DefaultQuestionsList = () => {
                             <div className={detailStyles.contents}>
 
                                 <>
-                                    {currentQuestions.map((question: Question, index: number) => (
+                                    {questions.map((question: Question, index: number) => (
                                         <div key={question.id}>
                                             {/* 最初の質問 or カテゴリー名が前回と異なるときに表示 */}
-                                            {(index === 0 || question.age !== currentQuestions[index - 1].age) ? (
+                                            {(index === 0 || question.age !== questions[index - 1].age) ? (
                                                 <div
                                                     className={detailStyles.accordion}
                                                     // アコーディオンメニュー

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Question, User, Answer, Folder, QuestionCategory
-from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, FolderSerializer, CustomTokenObtainPairSerializer, QuestionCategorySerializer
+from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, FolderSerializer, CustomTokenObtainPairSerializer, QuestionCategorySerializer, CategoryOverViewSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
@@ -12,6 +12,7 @@ from rest_framework.decorators import api_view
 from django.db.models import Subquery, OuterRef
 # エディターで入力されたHTMLをサニタイズする
 from .utils import sanitize_html
+from django.db.models import Count, Q
 
 # from django.db.models import Q
 
@@ -301,3 +302,9 @@ class QuestionCategoryListView(generics.ListAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = QuestionCategory.objects.all()
     serializer_class = QuestionCategorySerializer
+
+
+class CategoryOverView(generics.ListAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = QuestionCategory.objects.all()
+    serializer_class = CategoryOverViewSerializer

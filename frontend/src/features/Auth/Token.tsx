@@ -143,7 +143,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             if (res.ok) {
                 localStorage.setItem('accessToken', data.access);
                 setAccessTokenState(data.access);
-                // console.log('アクセストークンを更新しました')
+                console.log('アクセストークンを更新しました')
                 return data;
             } else {
                 console.log(data);

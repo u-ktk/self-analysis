@@ -731,3 +731,1415 @@ Unauthorized: /api/defaultquestions/20/
 Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
 Unauthorized: /api/defaultquestions/20/
 Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Watching for file changes with StatReloader
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/customquestions/
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/token/
+Unauthorized: /api/token/
+Unauthorized: /api/token/
+Unauthorized: /api/token/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/defaultquestions/3/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/3/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/3/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/4/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/4/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/4/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/4/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/defaultquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/questioncategories/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 72, in to_representation
+    self).to_representation(data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1032, in get_fields
+    assert hasattr(self.Meta, 'model'), (
+AssertionError: Class QuestionCategorySerializer missing "Meta.model" attribute
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/questioncategories/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 72, in to_representation
+    self).to_representation(data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `category_name` is not valid for model `Question`.
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /api/categoryoverview/
+Not Found: /api/categoryoverview/
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 76, in to_representation
+    result = super().to_representation(data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `category_name` is not valid for model `Question`.
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 76, in to_representation
+    result = super().to_representation(data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/fields.py", line 1837, in to_representation
+    method = getattr(self.parent, self.method_name)
+AttributeError: 'CategoryOverViewSerializer' object has no attribute 'get_category_name'
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 76, in to_representation
+    result = super().to_representation(data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/fields.py", line 1837, in to_representation
+    method = getattr(self.parent, self.method_name)
+AttributeError: 'CategoryOverViewSerializer' object has no attribute 'get_category_name'
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 76, in to_representation
+    result = super().to_representation(data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/fields.py", line 1837, in to_representation
+    method = getattr(self.parent, self.method_name)
+AttributeError: 'CategoryOverViewSerializer' object has no attribute 'get_category_name'
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 77, in to_representation
+    has_answer_list = [self.get_has_answers(item) for item in data]
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 77, in <listcomp>
+    has_answer_list = [self.get_has_answers(item) for item in data]
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 84, in get_has_answers
+    answers = Answer.objects.filter(question__category=obj, user=user)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1464, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1275, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1252, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "なぜ自己分析をするのか、その目的は？": Must be "QuestionCategory" instance.
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 77, in to_representation
+    has_answer_list = [self.get_has_answers(item) for item in data]
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 77, in <listcomp>
+    has_answer_list = [self.get_has_answers(item) for item in data]
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 85, in get_has_answers
+    answers = Answer.objects.filter(question__category=obj, user=user)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1464, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1275, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1252, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "なぜ自己分析をするのか、その目的は？": Must be "QuestionCategory" instance.
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 77, in to_representation
+    has_answer_list = [self.get_has_answers(item) for item in data]
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 77, in <listcomp>
+    has_answer_list = [self.get_has_answers(item) for item in data]
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 84, in get_has_answers
+    answers = Answer.objects.filter(question__category=obj, user=user)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1464, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1275, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1252, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "なぜ自己分析をするのか、その目的は？": Must be "QuestionCategory" instance.
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 93, in to_representation
+    result = super().to_representation(data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/fields.py", line 1837, in to_representation
+    method = getattr(self.parent, self.method_name)
+AttributeError: 'CategoryOverViewSerializer' object has no attribute 'get_category_name'
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 97, in to_representation
+    category = item['category']
+TypeError: string indices must be integers
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 97, in to_representation
+    category = item[category]
+UnboundLocalError: local variable 'category' referenced before assignment
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 97, in to_representation
+    category = item['category']
+TypeError: string indices must be integers
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 97, in to_representation
+    category = int(item['category'])
+TypeError: string indices must be integers
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 97, in to_representation
+    category = item['category']
+TypeError: string indices must be integers
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 98, in to_representation
+    category = item['category']
+TypeError: string indices must be integers
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 95, in to_representation
+    print(item['category'])
+UnboundLocalError: local variable 'item' referenced before assignment
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 97, in to_representation
+    category = item['category']
+TypeError: string indices must be integers
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 98, in to_representation
+    category = item['category']
+TypeError: string indices must be integers
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 100, in to_representation
+    category = item['category']
+TypeError: string indices must be integers
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 99, in to_representation
+    'category_name': self.get_category_name(category),
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 128, in get_category_name
+    if obj.category is None:
+AttributeError: 'QuestionCategory' object has no attribute 'category'
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 93, in to_representation
+    categories = set([item.category for item in data])
+TypeError: 'Question' object is not iterable
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 93, in to_representation
+    categories = QuestionCategory['id'].objects.all()
+TypeError: 'ModelBase' object is not subscriptable
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 99, in to_representation
+    'category_name': self.get_category_name(category),
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 128, in get_category_name
+    if obj.category is None:
+AttributeError: 'QuestionCategory' object has no attribute 'category'
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 128, in to_representation
+    for category in data:
+TypeError: 'Question' object is not iterable
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/fields.py", line 446, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/fields.py", line 96, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Question' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/fields.py", line 479, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `category_name` on serializer `CategoryOverViewSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Question` instance.
+Original exception text was: 'Question' object has no attribute 'name'.
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 96, in to_representation
+    for category in categories:
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 537, in __iter__
+    for field in self.fields.values():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1027, in get_fields
+    assert hasattr(self, 'Meta'), (
+AssertionError: Class QuestionCategoryListSerializer missing "Meta" attribute
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py", line 98, in to_representation
+    'category': category.id,
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/utils/serializer_helpers.py", line 84, in __getattr__
+    return getattr(self._field, attr_name)
+AttributeError: 'IntegerField' object has no attribute 'id'
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 398, in __iter__
+    self._fetch_all()
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/compiler.py", line 785, in as_sql
+    distinct_result, distinct_params = self.connection.ops.distinct_sql(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/backends/base/operations.py", line 202, in distinct_sql
+    raise NotSupportedError(
+django.db.utils.NotSupportedError: DISTINCT ON fields is not supported by this database backend
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py", line 319, in get_queryset
+    categories = QuestionCategory.objects.annotate(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1590, in annotate
+    return self._annotate(args, kwargs, select=True)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/query.py", line 1638, in _annotate
+    clone.query.add_annotation(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1133, in add_annotation
+    annotation = annotation.resolve_expression(self, allow_joins=True, reuse=None)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/aggregates.py", line 64, in resolve_expression
+    c = super().resolve_expression(query, allow_joins, reuse, summarize)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/expressions.py", line 942, in resolve_expression
+    c.source_expressions[pos] = arg.resolve_expression(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/expressions.py", line 822, in resolve_expression
+    return query.resolve_ref(self.name, allow_joins, reuse, summarize)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1976, in resolve_ref
+    join_info = self.setup_joins(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1823, in setup_joins
+    path, final_field, targets, rest = self.names_to_path(
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/db/models/sql/query.py", line 1724, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'question' into field. Choices are: id, name, questions
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/categoryoverview/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'category_name' was declared on serializer CategoryOverViewSerializer, but has not been included in the 'fields' option.
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/customquestions/
+Unauthorized: /api/defaultquestions/categoryoverview/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Not Found: /api/defaultquestions/categoryoverview/
+Not Found: /api/defaultquestions/categoryoverview/
+Not Found: /api/defaultquestions/categoryoverview/
+Not Found: /api//categoryoverview/

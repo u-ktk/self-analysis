@@ -32,6 +32,9 @@ urlpatterns = [
 
     path('questioncategories/', views.QuestionCategoryListView.as_view(),
          name='questioncategories'),
+    path('categoryoverview/', views.CategoryOverView.as_view(),
+         name='categoryoverview'),
+
     path('customquestions/<int:question_id>/add_folder/', views.update_folders_for_custom_question,
          name='add_folder_custom'),
     path('customquestions/<int:question_id>/remove_folder/', views.remove_folder_from_custom_question,

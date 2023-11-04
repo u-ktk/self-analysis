@@ -64,7 +64,6 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
             setLoading(false);
 
         }
-
     }, [showToast, accessToken, userId]);
 
 

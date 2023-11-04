@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from rest_framework import serializers
 from .models import Question, Answer, Folder, QuestionCategory, User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -67,6 +68,28 @@ class QuestionCategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 
+class QuestionCategoryListSerializer(serializers.ModelSerializer):
+    child = QuestionCategorySerializer()
+
+
+# カテゴリーごとの回答数を取得する
+class CategoryOverViewSerializer(serializers.ModelSerializer):
+    answer_counts = serializers.SerializerMethodField()
+
+    class Meta:
+        model = QuestionCategory
+        fields = ['id', 'name', 'answer_counts']
+
+    def get_answer_counts(self, obj):
+        user = self.context['request'].user
+        # categoryから全ての質問を取得し、それに紐づくユーザーの回答数をカウント
+        answer_count = Answer.objects.filter(
+            question__category=obj,
+            user=user
+        ).count()
+        return answer_count
+
+
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
@@ -83,10 +106,6 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 class AnswerListSerializer(serializers.ListSerializer):
     child = AnswerSerializer()
-
-
-class QuestionCategoryListSerializer(serializers.ModelSerializer):
-    child = QuestionCategorySerializer()
 
 
 class QuestionSerializer(serializers.ModelSerializer):

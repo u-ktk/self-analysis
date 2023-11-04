@@ -1,41 +1,42 @@
 import React, { useState, useEffect } from 'react'
-import { Table } from 'react-bootstrap'
 import { useAuth } from '../Auth/Token';
-import { getCategoryList } from '../../components/api/DefaultQuestions';
+import { getCategoryOverView } from '../../components/api/DefaultQuestions';
 import loadStyles from '../../components/styles/Loading.module.css';
 import styles from '../../components/styles/Common.module.css';
 import listStyles from '../../components/styles/List.module.css';
+import { Category } from '../../types';
 
 import { ProgressBar } from 'react-bootstrap';
 
 const CategoryList = () => {
-    const [categoryList, setCategoryList] = useState<string[] | null>([]);
-    const [counts, setCounts] = useState<number[] | null>([]);
+    const [categoryList, setCategoryList] = useState<Category[] | null>([]);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
     const { accessToken } = useAuth();
 
-
     useEffect(() => {
         if (!accessToken) {
             return;
         }
-
-        getCategoryList(accessToken)
-            .then((data) => {
-                if (data) {
-                    setCategoryList(data.categories);
-                    setCounts(data.counts);
+        const fetchCategoryList = async () => {
+            try {
+                const res = await getCategoryOverView(accessToken);
+                if (!res) {
+                    throw new Error("Failed to get category list");
                 }
+                setCategoryList(res);
                 setLoading(false);
-            })
-            .catch((err) => {
-                setErrorMessage(err.message);
-                setLoading(false);
-            });
+                console.log(res)
+            } catch (error: any) {
+                console.log(error);
+                setErrorMessage(error.message);
+            }
+        }
+        fetchCategoryList();
     }
         , [accessToken]);
+
 
 
     // console.log(counts)
@@ -56,17 +57,18 @@ const CategoryList = () => {
                     <table className={listStyles.categoryList}>
                         <tbody>
                             {categoryList?.map((category, index) => (
-                                <tr key={category}>
+                                <tr key={category.id}>
                                     <td className={styles.id}>レベル{index + 1}. </td>
-                                    <td><a href={`/questions-list/default/${index + 1}/`} className={listStyles.link}>{category}</a></td>
+                                    <td><a href={`/questions-list/default/${index + 1}/`} className={listStyles.link}>{category.name}</a></td>
                                     <td>
                                         <span className={listStyles.progressBarWrapper}>
-                                            <ProgressBar now={counts ? counts[index] : 0}
+                                            <ProgressBar
+                                                now={category.answer_counts ? category.answer_counts : 0}
                                                 className={listStyles.progress}
                                                 variant='secondary'
                                                 style={{ width: '100%' }}
                                             />
-                                            <span className={listStyles.progressBarLabel}>{`${counts ? counts[index] : 0}%`}</span>
+                                            <span className={listStyles.progressBarLabel}>{`${category.answer_counts ? category.answer_counts : 0}%`}</span>
                                         </span>
                                     </td>
                                 </tr>

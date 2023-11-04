@@ -13,6 +13,7 @@ export type Question = {
 export type Category = {
     id: number;
     name: string;
+    answer_counts: number;
 }
 
 // 回答の型定義
