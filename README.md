@@ -42,14 +42,10 @@
 - **ログイン、新規登録**
 <table>
   <tr>
-     <td>
-    </td>
-    <td>ログイン前</td>
+   <td>ログイン前</td>
     <td>新規登録</td>
   </tr>
     <tr>
-       <td>
-    </td>
     <td>
       <img src="./images/README/beforeLogin.png" alt="ログイン前" width="500"/>
     </td>
@@ -62,9 +58,7 @@
 - **メニュー一覧**
 <table>
   <tr>
-    <td>
-    </td>
-    <td>
+  <td>
       <img src="./images/README/selfanalysisMenu.png" alt="メニュー一覧" width="300"/>
     </td>
   </tr>
@@ -73,15 +67,11 @@
  - **「質問を探す」メニュー**
 <table>
   <tr>
-     <td>
-    </td>
     <td>質問をフリーワードで検索</td>
     <td>用意された質問・作成した質問から選ぶ</td>
   </tr>
     <tr>
-       <td>
-    </td>
-    <td>
+   <td>
       <img src="./images/README/searchQuestions.png" alt="質問検索" width="500"/>
     </td>
     <td>
@@ -94,14 +84,10 @@
  - **質問の詳細(メニューバーにはありません)**
 <table>
   <tr>
-     <td>
-    </td>
     <td>「用意された質問」の質問選択画面</td>
     <td>質問をフォルダに追加</td>
   </tr>
     <tr>
-       <td>
-    </td>
     <td>
       <img src="./images/README/defaultQuestionList.png" alt="「用意された質問」の質問選択" width="500"/>
     </td>
@@ -110,14 +96,11 @@
     </td>
   </tr>
    <tr>
-     <td>
     </td>
     <td>質問に回答する</td>
     <td>これまでの回答を見る</td>
   </tr>
     <tr>
-       <td>
-    </td>
     <td>
       <img src="./images/README/createAnswer.png" alt="質問に回答する" width="500"/>
     </td>
@@ -132,16 +115,9 @@
  - **「フォルダ一覧」メニュー**
 <table>
   <tr>
-     <td>
-    </td>
-    <td></td>
     <td>フォルダ一覧</td>
   </tr>
     <tr>
-       <td>
-    </td>
-    <td>
-    </td>
     <td>
       <img src="./images/README/folderList.png" alt="フォルダ一覧" width="500"/>
     </td>
@@ -152,16 +128,9 @@
  - **「質問を作る」メニュー**
 <table>
   <tr>
-     <td>
-    </td>
-    <td></td>
-    <td>オリジナルの質問を作る</td>
+     <td>オリジナルの質問を作る</td>
   </tr>
     <tr>
-       <td>
-    </td>
-    <td>
-    </td>
     <td>
       <img src="./images/README/createAnswer.png" alt="質問を作る" width="500"/>
     </td>
@@ -171,17 +140,10 @@
  - **「質問を作る」メニュー**
 <table>
   <tr>
-     <td>
-    </td>
-    <td></td>
     <td>オリジナルの質問を作る</td>
   </tr>
     <tr>
-       <td>
-    </td>
-    <td>
-    </td>
-    <td>
+     <td>
       <img src="./images/README/createAnswer.png" alt="質問を作る" width="500"/>
     </td>
   </tr>
@@ -190,17 +152,10 @@
  - **「使い方ガイド」メニュー**
 <table>
   <tr>
-     <td>
-    </td>
-    <td></td>
     <td>使い方ガイド（このアプリの使い方、自己分析の方法など）</td>
   </tr>
     <tr>
-       <td>
-    </td>
-    <td>
-    </td>
-    <td>
+     <td>
       <img src="./images/README/helpPage.png" alt="使い方ガイド" width="500"/>
     </td>
   </tr>
@@ -209,16 +164,9 @@
  - **「マイページ」メニュー**
 <table>
   <tr>
-     <td>
-    </td>
-    <td></td>
     <td>マイページ</td>
   </tr>
     <tr>
-       <td>
-    </td>
-    <td>
-    </td>
     <td>
       <img src="./images/README/myPage.png" alt="マイページ" width="500"/>
     </td>
