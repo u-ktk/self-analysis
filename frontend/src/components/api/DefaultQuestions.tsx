@@ -129,7 +129,7 @@ const getCategoryOverView = async (accessToken: string): Promise<Categories | nu
 
 const addDefaultQToFolder = async (props: addFolderProps) => {
     const endpoint = `defaultquestions/${props.questionId}/add_folder/`;
-    console.log(props.folders)
+    // console.log(props.folders)
     return fetchDefaultQuestions('PATCH', endpoint, props, JSON.stringify({ folders: props.folders }));
 }
 

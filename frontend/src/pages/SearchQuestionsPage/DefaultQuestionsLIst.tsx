@@ -94,7 +94,7 @@ const DefaultQuestionsList = () => {
             const res = await getDefaultQuestions({ accessToken, limit: '100', offset: ((currentPage - 1) * 100).toString() });
             if (res) {
                 setQuestions(res);
-                console.log(res)
+                // console.log(res)
                 if (res[0])
                     setCurrentCategory(res[0].category_name);
                 else {

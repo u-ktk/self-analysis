@@ -2143,3 +2143,13 @@ Not Found: /api/defaultquestions/categoryoverview/
 Not Found: /api/defaultquestions/categoryoverview/
 Not Found: /api/defaultquestions/categoryoverview/
 Not Found: /api//categoryoverview/
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/categoryoverview/
+Unauthorized: /api/customquestions/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/

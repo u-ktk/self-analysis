@@ -38,6 +38,7 @@ create_json()
 # path='/backend/api/fixtures/questions.json'
 # for item in data['questions']:
 #     question = Question(
+#         id = item['id'],
 #         category=QuestionCategory.objects.get(pk=item['categoryId']),
 #         text=item['text'],
 #         age=item['subcategory'],
@@ -50,6 +51,26 @@ create_json()
 #         name=item['name'],
 #     )
 #     category.save()
+
+# for item in data['questions']:
+#     question_obj, created = Question.objects.get_or_create(
+#         id=item['id'],
+#         defaults={
+#             'category': QuestionCategory.objects.get(pk=item['categoryId']),
+#             'text': item['text'],
+#             'age': item['subcategory'],
+#             'is_default': item['isDefault']
+#         }
+#     )
+
+#     if not created:
+#         question_obj.category = QuestionCategory.objects.get(pk=item['categoryId'])
+#         question_obj.text = item['text']
+#         question_obj.age = item['subcategory']
+#         question_obj.is_default = item['isDefault']
+#         question_obj.save()
+#     question.save()
+
 
 # with open(path, 'r') as file:
 #     categories = json.load(file)

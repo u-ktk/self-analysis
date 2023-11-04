@@ -145,7 +145,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
             if (props.Addfunction === addDefaultQToFolder) {
                 const res = await addDefaultQToFolder({ accessToken: props.accessToken, questionId: selectQuestion.id, folders: selectAddFolders });
                 if (res === null) {
-                    console.log(`${selectAddFolders}に追加しました`)
+                    // console.log(`${selectAddFolders}に追加しました`)
                     return `${selectAddFolders}に追加しました`;
                 }
                 else {

@@ -27,7 +27,7 @@ const CategoryList = () => {
                 }
                 setCategoryList(res);
                 setLoading(false);
-                console.log(res)
+                // console.log(res)
             } catch (error: any) {
                 console.log(error);
                 setErrorMessage(error.message);
