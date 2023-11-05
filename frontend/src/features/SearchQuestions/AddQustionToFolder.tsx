@@ -3,10 +3,13 @@ import { Question } from "../../types";
 import { addDefaultQToFolder } from '../../components/api/DefaultQuestions';
 import { addCustomQToFolder } from '../../components/api/CustomQuestions';
 import { Folder } from '../../types';
-import { getFolderList } from '../../components/api/Folder';
+import { getFolderList, createFolder } from '../../components/api/Folder';
 import { Button } from 'react-bootstrap';
 import styles from '../../components/styles/Common.module.css';
+import listStyles from '../../components/styles/List.module.css';
 import detailStyles from '../../components/styles/QuestionDetail.module.css';
+
+import newFolderIcon from '../../images/icon/newFolder.svg'
 
 
 type addFolderProps = {
@@ -27,6 +30,11 @@ const AddQuestionToFolder = (props: addFolderProps) => {
 
     const [folderList, setFolderList] = useState<Folder[] | null>(null);
     const [selectAddFolders, setSelectAddFolders] = useState<number[]>([]);
+    const [newFolder, setNewFolder] = useState<string>("");
+    const [isFolderAdding, setIsFolderAdding] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+
     let selectQuestion = props.selectQuestion;
 
 
@@ -185,6 +193,35 @@ const AddQuestionToFolder = (props: addFolderProps) => {
         }
     }
 
+    // フォルダー追加
+    const folderAddClick = () => {
+        setIsFolderAdding(!isFolderAdding);
+    };
+
+
+    // フォルダー追加後、getFolderListを再度実行してフォルダー一覧を更新
+    const addFolderAndUpdateList = async (newFolderName: string) => {
+        if (!props.accessToken || !props.userId) {
+            return;
+        }
+        const accessToken = props.accessToken;
+        const userId = props.userId;
+        try {
+            const response = await createFolder({ accessToken, userId }, newFolderName);
+            if (response) {
+                const updatedFolders = await getFolderList({ userId, accessToken });
+                if (updatedFolders) {
+                    setFolderList(updatedFolders);
+                    setNewFolder("");
+                    setIsFolderAdding(false);
+                }
+            }
+        } catch (error: any) {
+            console.log(error.message);
+            setErrorMessage(error.message);
+        }
+    };
+
 
 
 
@@ -231,16 +268,54 @@ const AddQuestionToFolder = (props: addFolderProps) => {
                                     checked={isFolderIncluded(folder.id)}
                                     onChange={() => handleCheckboxChange(folder.id)}
                                 />
-                                {folder.name}
+                                {/* {folder.name} */}
+                                <a href={`/folders/detail/${props.userId}/${folder.name}`}
+                                    className={detailStyles.link}
+                                    style={{ marginLeft: '5px' }}
+                                >{folder.name}</a>
                             </div>
                         ))}
-                        <Button
-                            size="sm"
-                            className={`mt-2 ${styles.darkButton}`}
-                            onClick={handleAddQuestionToFolder}
-                        >
-                            完了
-                        </Button>
+                        <div>
+                            {!isFolderAdding ? (
+                                <div className={`mt-1 mb-1  ${listStyles.row}`}>
+                                    <img src={newFolderIcon} alt='フォルダ作成' width="19px" />
+                                    <span
+                                        onClick={folderAddClick} className={styles.onClickText}>新規作成
+                                    </span>
+                                </div>
+                            ) : (
+                                // <div className={`mt-1 mb-1 ${listStyles.row}`}
+                                //     style={{ width: '100%' }}
+                                // >
+                                <div className='mt-1 mb-1' >
+                                    <input
+                                        type="text"
+                                        value={newFolder || ""}
+                                        onChange={(e) => setNewFolder(e.target.value)}
+                                        placeholder="フォルダ名を入力"
+                                        className={`form-control border ${listStyles.formInToast}`}
+                                    />
+                                    <Button onClick={() => addFolderAndUpdateList(newFolder)} className={`mt-2 ${styles.darkButton}`} size="sm" >追加</Button>
+                                    <Button onClick={folderAddClick} className={`mt-2 ${styles.lightButton}`} size="sm" >キャンセル</Button>
+
+
+                                </div>
+
+                            )}
+                        </div>
+
+                        {!isFolderAdding &&
+                            <Button
+                                size="sm"
+                                className={`mt-2 ${styles.darkButton}`}
+                                onClick={handleAddQuestionToFolder}
+                            >
+                                完了
+                            </Button>
+                        }
+
+
+
                     </>
                 )
             )}
