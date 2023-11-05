@@ -37,12 +37,10 @@ urlpatterns = [
 
     path('customquestions/<int:question_id>/add_folder/', views.update_folders_for_custom_question,
          name='add_folder_custom'),
-    path('customquestions/<int:question_id>/remove_folder/', views.remove_folder_from_custom_question,
-         name='remove_folder_custom'),
+
     path('defaultquestions/<int:question_id>/add_folder/', views.update_folders_for_default_question,
          name='add_folder_default'),
-    path('defaultquestions/<int:question_id>/remove_folder/', views.remove_folder_from_default_question,
-         name='remove_folder_default'),
+
     path('token/', views.CustomTokenObtainPairView.as_view(),
          name='token_obtain_pair'),
     path('refresh-token-save/', views.refresh_token_save, name='refresh_save'),

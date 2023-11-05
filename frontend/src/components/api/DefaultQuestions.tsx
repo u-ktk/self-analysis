@@ -83,6 +83,7 @@ const getDefaultQuestionDetail = async (props: DefaultQuestionDetailListProps, q
     try {
         const endpoint = `defaultquestions/${questionId}/`;
         const res = await fetchDefaultQuestions('GET', endpoint, props);
+        console.log(res)
         return res;
     } catch (error) {
         console.log(error);

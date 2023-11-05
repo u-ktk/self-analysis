@@ -29,6 +29,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
     const [selectAddFolders, setSelectAddFolders] = useState<number[]>([]);
     let selectQuestion = props.selectQuestion;
 
+
     // 特定の質問の取得（フォルダ変更するたびに更新）
     useEffect(() => {
         if (props.fetchQuestionDetail === undefined) return;
@@ -145,7 +146,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
             if (props.Addfunction === addDefaultQToFolder) {
                 const res = await addDefaultQToFolder({ accessToken: props.accessToken, questionId: selectQuestion.id, folders: selectAddFolders });
                 if (res === null) {
-                    // console.log(`${selectAddFolders}に追加しました`)
+                    console.log(`${selectAddFolders}に追加しました`)
                     return `${selectAddFolders}に追加しました`;
                 }
                 else {
@@ -166,6 +167,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
             }
         } catch (error: any) {
             console.log(error.message);
+            console.log(selectAddFolders)
             return error.message;
         }
     }

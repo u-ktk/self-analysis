@@ -2153,3 +2153,137 @@ Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
 Unauthorized: /api/categoryoverview/
 Unauthorized: /api/customquestions/
 Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Watching for file changes with StatReloader
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Unauthorized: /api/users/36c22e51-9c57-4e5b-b31a-1b2dca308a9d/
+Bad Request: /api/defaultquestions/501/add_folder/
+Bad Request: /api/defaultquestions/501/add_folder/
+Bad Request: /api/defaultquestions/501/add_folder/
+Bad Request: /api/defaultquestions/501/add_folder/
+Not Found: /api/users/null/
+Not Found: /api/users/null/
+Unauthorized: /api/token/
+Unauthorized: /api/token/
+Bad Request: /api/defaultquestions/501/add_folder/
+Bad Request: /api/defaultquestions/103/add_folder/
+Bad Request: /api/defaultquestions/103/add_folder/
+Bad Request: /api/defaultquestions/103/add_folder/
+Bad Request: /api/defaultquestions/103/add_folder/
+Bad Request: /api/defaultquestions/103/add_folder/
+Bad Request: /api/defaultquestions/103/add_folder/
+Bad Request: /api/defaultquestions/101/add_folder/
+Bad Request: /api/defaultquestions/101/add_folder/
+Bad Request: /api/defaultquestions/101/add_folder/
+Bad Request: /api/defaultquestions/101/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/503/add_folder/
+Bad Request: /api/defaultquestions/501/add_folder/
+Bad Request: /api/defaultquestions/501/add_folder/
+Bad Request: /api/defaultquestions/501/add_folder/
+Bad Request: /api/defaultquestions/502/add_folder/
+Bad Request: /api/defaultquestions/502/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/5/add_folder/
+Bad Request: /api/defaultquestions/4/add_folder/
+Bad Request: /api/defaultquestions/1/add_folder/
+Bad Request: /api/defaultquestions/1/add_folder/
+Bad Request: /api/defaultquestions/401/add_folder/
+Bad Request: /api/defaultquestions/401/add_folder/
+Internal Server Error: /api/defaultquestions/401/add_folder
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/utils/deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/middleware/common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/middleware/common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PATCH, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PATCH data. Change your form to point to 127.0.0.1:8000/api/defaultquestions/401/add_folder/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+Bad Request: /api/defaultquestions/401/add_folder/
+Bad Request: /api/defaultquestions/401/add_folder/
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/defaultquestions/401/add_folder/
+Bad Request: /api/defaultquestions/401/add_folder/
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/defaultquestions/401/add_folder/
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/defaultquestions/401/add_folder/
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/defaultquestions/401/add_folder/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 423, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/defaultquestions/401/add_folder/
+Traceback (most recent call last):
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "/Users/mizut/Library/Python/3.10/lib/python/site-packages/rest_framework/views.py", line 423, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/mizut/Desktop/original_app/self-analysis/backend/api/views.py changed, reloading.
+Watching for file changes with StatReloader

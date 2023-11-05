@@ -56,9 +56,12 @@ const DefaultQuestionsList = () => {
         const y = e.clientY;
         setPosition({ x, y });
         setSelectQuestion(questions.find(q => q.id === questionId));
+        // setSelectQuestion(questions[(questionId - ((currentPage - 1) * 100)) - 1])
         setShowToast(true);
 
     }
+
+
 
     const getToastPostion = (x: number, y: number) => {
         const scrollY = window.scrollY
@@ -94,7 +97,6 @@ const DefaultQuestionsList = () => {
             const res = await getDefaultQuestions({ accessToken, limit: '100', offset: ((currentPage - 1) * 100).toString() });
             if (res) {
                 setQuestions(res);
-                // console.log(res)
                 if (res[0])
                     setCurrentCategory(res[0].category_name);
                 else {
@@ -122,10 +124,11 @@ const DefaultQuestionsList = () => {
         try {
             const res = await getDefaultQuestionDetail({ accessToken }, questionId.toString());
             if (res) {
-                setQuestions(prevQuestions => {
+                setQuestions((prevQuestions) => {
+                    const indexInPage = questionId - 1 - ((currentPage - 1) * 100);
                     const newQuestions = [...prevQuestions];
-                    newQuestions[questionId - 1] = res;
-                    // 質問に紐づくフォルダがすぐに更新されないので、ここで更新
+                    console.log(newQuestions)
+                    newQuestions[indexInPage] = res;
                     setSelectQuestion(res);
                     return newQuestions;
                 });

@@ -107,44 +107,35 @@ class CustomQuestionViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-# 質問に複数のフォルダ追加(ただのPATCHだと１つずつしかできない？)
-@api_view(['PATCH'])
-def update_folders_for_custom_question(request, question_id):
+def update_folders(request, question_id):
+
     folders = request.data.get('folders')
+    print(folders)
+
     # JSON文字列のリストをPythonのリストに変換
     if isinstance(folders, str):
+        import json
         try:
-            import json
             folders = json.loads(folders)
         except json.JSONDecodeError:
             return HttpResponse({"error": "Invalid format for folders"}, status=status.HTTP_400_BAD_REQUEST)
-    # if not folders:
-    #   return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
     if folders is None:
         return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
+
     try:
         question = Question.objects.get(pk=question_id)
-        # current_folders = list(question.folders.values_list('id', flat=True))
-        # combined_folders = list(set(current_folders + folders))
         question.folders.set(folders)
+        question.save()
     except Question.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
     return HttpResponse(status=status.HTTP_200_OK)
 
 
-# 質問からフォルダを１つずつ削除
-@api_view(['POST'])
-def remove_folder_from_custom_question(request, question_id):
-    folder = request.data.get('folder')
-    if not folder:
-        return HttpResponse({"error": "folder_id is required"}, status=status.HTTP_400_BAD_REQUEST)
-    try:
-        question = Question.objects.get(pk=question_id)
-        folder = Folder.objects.get(pk=folder)
-        question.folders.remove(folder)
-    except (Question.DoesNotExist, Folder.DoesNotExist):
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-    return HttpResponse(status=status.HTTP_200_OK)
+# 質問に複数のフォルダ追加
+@api_view(['PATCH'])
+def update_folders_for_custom_question(request, question_id):
+    return update_folders(request, question_id)
 
 
 """
@@ -183,59 +174,10 @@ class DefaultQuestionViewSet(viewsets.ModelViewSet):
         return super().update(request, *args, **kwargs)
 
 
-# 質問に複数のフォルダ追加
+# 質問に複数のフォルダ追加(ただのPATCHだと１つずつしかできない？)
 @api_view(['PATCH'])
 def update_folders_for_default_question(request, question_id):
-    folders = request.data.get('folders')
-    # JSON文字列のリストをPythonのリストに変換
-    if isinstance(folders, str):
-        try:
-            import json
-            folders = json.loads(folders)
-        except json.JSONDecodeError:
-            return HttpResponse({"error": "Invalid format for folders"}, status=status.HTTP_400_BAD_REQUEST)
-    if not folders:
-        return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
-    try:
-        question = Question.objects.get(pk=question_id)
-        # current_folders = list(question.folders.values_list('id', flat=True))
-        # combined_folders = list(set(current_folders + folders))
-        question.folders.set(folders)
-    except Question.DoesNotExist:
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-    return HttpResponse(status=status.HTTP_200_OK)
-
-# 質問にフォルダを１つずつ追加
-
-
-@api_view(['POST'])
-def add_folder_to_default_question(request, question_id):
-    folder = request.data.get('folder')
-    if not folder:
-        return HttpResponse({"error": "folder_id is required"}, status=status.HTTP_400_BAD_REQUEST)
-    try:
-        question = Question.objects.get(pk=question_id)
-        folder = Folder.objects.get(pk=folder)
-        question.folders.add(folder)
-    except (Question.DoesNotExist, Folder.DoesNotExist):
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-    return HttpResponse(status=status.HTTP_200_OK)
-
-# 質問からフォルダを１つずつ削除
-
-
-@api_view(['POST'])
-def remove_folder_from_default_question(request, question_id):
-    folder = request.data.get('folder')
-    if not folder:
-        return HttpResponse({"error": "folder_id is required"}, status=status.HTTP_400_BAD_REQUEST)
-    try:
-        question = Question.objects.get(pk=question_id)
-        folder = Folder.objects.get(pk=folder)
-        question.folders.remove(folder)
-    except (Question.DoesNotExist, Folder.DoesNotExist):
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-    return HttpResponse(status=status.HTTP_200_OK)
+    return update_folders(request, question_id)
 
     # 質問自体の削除不可能にしたい。回答の削除は可能
     # def destroy(self, request, *args, **kwargs):
