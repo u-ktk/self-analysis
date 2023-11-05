@@ -83,7 +83,6 @@ const getDefaultQuestionDetail = async (props: DefaultQuestionDetailListProps, q
     try {
         const endpoint = `defaultquestions/${questionId}/`;
         const res = await fetchDefaultQuestions('GET', endpoint, props);
-        console.log(res)
         return res;
     } catch (error) {
         console.log(error);
@@ -91,29 +90,6 @@ const getDefaultQuestionDetail = async (props: DefaultQuestionDetailListProps, q
     }
 }
 
-
-// const getCategoryList = async (accessToken: string): Promise<{ categories: string[], counts: number[] } | null> => {
-//     try {
-//         const endopoint = `defaultquestions/`;
-//         const defaultQuestions: DefaultQuestions = await fetchDefaultQuestions('GET', endopoint, { accessToken });
-//         if (!defaultQuestions) {
-//             throw new Error("Failed to get default questions");
-//         }
-//         console.log(defaultQuestions)
-//         const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
-//         const countAnswerSet = numbers.map(num =>
-//             allCount(defaultQuestions, num))
-//         const categorySet = new Set(defaultQuestions.map((question: Question) => question.category_name));
-//         // return Array.from(categorySet);
-//         return {
-//             categories: Array.from(categorySet),
-//             counts: countAnswerSet
-//         };
-//     } catch (error) {
-//         console.error(error);
-//         return null;
-//     }
-// }
 
 const getCategoryOverView = async (accessToken: string): Promise<Categories | null> => {
     try {

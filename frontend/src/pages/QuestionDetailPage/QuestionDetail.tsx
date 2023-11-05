@@ -85,8 +85,11 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
         if (location.state?.previousTitle) {
             return location.state?.previousTitle;
         }
-        else {
+        else if (location.state?.previousUrl) {
             return '前のページへ戻る';
+        }
+        else {
+            return 'レベル' + props.question.category + '.' + props.question.category_name;
         }
     }
     const linkText = getLinkText();
@@ -118,8 +121,14 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
                             {/* 見出し */}
                             <div className={`${styles.menu} mb-4 `}>
                                 {/* フォルダor 一覧からの遷移が考えられる */}
-                                <span onClick={() => navigate(-1)} className={styles.link}>{linkText}</span>
+                                {linkText.includes('レベル') ? (
+                                    <a href={`/questions-list/default/${props.question.category}`} className={styles.link}>{linkText}</a>
+                                ) : (
+                                    <span onClick={() => navigate(-1)} className={styles.link}>{linkText}</span>
+                                )}
                                 <span> &#62; </span>
+
+
                             </div>
 
                             {/* フォルダのトーストメニュー */}
@@ -226,6 +235,7 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
                                             {(props.question.answers[0]) && (
                                                 <img src={checkMark} alt='回答済' className={detailStyles.check} />
                                             )}
+
                                         </div>
 
 
@@ -237,6 +247,7 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
                                             questionId={questionId}
                                             fetchQuestion={props.fetchQuestion}
                                         />
+
 
                                         {props.question.answers.length > 0 && (
                                             <>
@@ -252,6 +263,46 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
 
                                             </>
                                         )}
+
+
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}
+                                            className='mt-4'>
+
+                                            {props.isDefault && props.question.id > 1 ? (
+                                                <>
+                                                    <a
+                                                        href={`/questions/default/${props.question.id - 1}`}
+                                                        className={listStyles.link}
+                                                        style={{ 'color': '#6f6e6e' }}
+                                                    // >&#60;&#60; 前の質問</a>
+                                                    >← 前の質問</a>
+                                                    {/* <span onClick={() => navigate(`/questions/default/${props.question.id - 1}`,
+                                                        { state: { previousUrl: `${props.question.text}` } }
+                                                    )} className={listStyles.link}
+                                                        style={{ 'color': '#6f6e6e' }}
+
+                                                    >← 前の質問
+                                                    </span> */}
+
+
+                                                </>
+                                            ) : (
+                                                <span></span>
+                                            )}
+
+                                            {props.isDefault && props.question.id < 1000 ? (
+                                                <a
+                                                    href={`/questions/default/${props.question.id + 1}`}
+                                                    className={listStyles.link}
+                                                    style={{ 'color': '#6f6e6e' }}
+
+                                                // >次の質問 &#62;&#62; </a>
+                                                >次の質問 → </a>
+
+                                            ) : (
+                                                <span></span>
+                                            )}
+                                        </div>
 
                                     </>
                                 )}
