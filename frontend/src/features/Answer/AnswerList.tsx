@@ -3,7 +3,6 @@ import { Question, Answer } from "../../types";
 import { Modal, Button, Card } from 'react-bootstrap';
 import { getAnswers, updateAnswer, deleteAnswer } from '../../components/api/CustomAnswers';
 import AnswerForm from './AnswerForm';
-import ShowMsg from '../../components/layouts/ShowMsg';
 
 import plus from '../../images/icon/plus.svg';
 import minus from '../../images/icon/minus.svg';

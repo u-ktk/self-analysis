@@ -6,7 +6,7 @@ import CustomQuestionForm from '../../features/CreateQuestions/CreateQuestionFor
 import HeadTitle from '../../components/layouts/HeadTitle';
 import NoLogin from '../../features/Auth/NoLogin';
 import { addCustomQToFolder, createCustomQuestions } from '../../components/api/CustomQuestions';
-
+import formStyles from '../../components/styles/Form.module.css';
 
 
 type FormData = {
@@ -35,12 +35,16 @@ const CreateQuestionsPage = () => {
             if (res) {
                 // console.log(res);
                 setCustomQuestions(res);
-                console.log(res)
-                // setSuccessMessage(
-                //     `${text}(${age})を作成しました`)
+                // console.log(res)
                 setSuccessMessage(
                     <>
-                        <a href={`/questions/custom/${userId}/${res.id}`}>{text}({age})</a>を作成しました
+                        {/* <a href={`/questions/custom/${userId}/${res.id}`}>{text}({age})</a>を作成しました */}
+                        <span
+                            className={formStyles.link}
+                            onClick={() => navigate(`/questions/custom/${userId}/${res.id}`,
+                                { state: { previousTitle: '質問を作る' } }
+                            )}
+                        >{text}({age})</span>を作成しました
                     </>
                 );
 

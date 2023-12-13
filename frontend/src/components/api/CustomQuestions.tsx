@@ -84,7 +84,7 @@ const getCustomQuestionDetail = async (props: CustomQuestionDetailProps, questio
     try {
         const endpoint = `customquestions/${questionId}/`;
         const res = await fetchCustomQuestions('GET', endpoint, props);
-        console.log(res)
+        // console.log(res)
         return res;
     } catch (error) {
         console.log(error);

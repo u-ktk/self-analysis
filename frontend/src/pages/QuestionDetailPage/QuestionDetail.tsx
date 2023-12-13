@@ -120,7 +120,7 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
                         <>
                             {/* 見出し */}
                             <div className={`${styles.menu} mb-4 `}>
-                                {/* フォルダor 一覧からの遷移が考えられる */}
+                                {/* フォルダからの遷移or 質問一覧からの遷移 or 質問作成後が考えられる */}
                                 {linkText.includes('レベル') ? (
                                     <a href={`/questions-list/default/${props.question.category}`} className={styles.link}>{linkText}</a>
                                 ) : (

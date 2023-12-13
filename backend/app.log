@@ -3561,3 +3561,7 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 /Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Bad Request: /api/customquestions/
+/Users/mizut/Desktop/original_app/self-analysis/backend/backend_django/settings.py changed, reloading.
+Watching for file changes with StatReloader
