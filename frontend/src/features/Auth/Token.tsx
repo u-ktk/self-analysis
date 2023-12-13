@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 // import userDetails from './UserDetail';
 import jwtDecode from 'jwt-decode';
-import { User } from "../../types";
-
+import { useNavigate } from 'react-router-dom';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -32,6 +31,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [userId, setUserId] = useState<string | null>(null);
     const [userName, setUserName] = useState<string | null>(null);
     const [userEmail, setUserEmail] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     // レンダリング時に、ローカルストレージからアクセストークンとUserIdを取得
     useEffect(() => {
@@ -79,8 +79,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     // } else if (res.status === 401 && refreshToken) {
                     //     const refreshed = await refreshAccessToken(refreshToken);
                 } else if (res.status === 401) {
+                    console.log('アクセストークンを更新します')
                     const refreshToken = await getRefreshToken();
-                    if (!refreshToken) return;
+                    if (!refreshToken) {
+                        localStorage.removeItem('accessToken');
+                        localStorage.removeItem('userId');
+                        navigate(`/login`);
+                        return
+                    }
                     const refreshed = await refreshAccessToken(refreshToken);
                     if (refreshed) {
                         const newAccessToken = refreshed.access;
@@ -98,7 +104,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     }
                 }
             } catch (error) {
-                // console.log(error)
+                console.log(error)
             }
         }
         fetchUserDetails();

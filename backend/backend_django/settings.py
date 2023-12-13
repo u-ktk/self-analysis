@@ -34,13 +34,10 @@ if READ_ENV_FILE:
     env.read_env(env_file)
 
 DEBUG = env.bool('DJANGO_DEBUG', True)
-print(DEBUG)
 
-# ALLOWED_HOSTS = ['52.199.23.236', 'localhost']
+# ALLOWED_HOSTS = ['selfanalysis-memo.com', 'localhost']
 ALLOWED_HOSTS = ['*']
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -104,25 +101,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend_django.wsgi.application'
 
 
+# DATABASES = {
+#     'default': env.db()
+# }
+
+
 DATABASES = {
-    'default': env.db()
-}
-
-
-if DEBUG:
-    DATABASES['default'] = {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
         'CONN_MAX_AGE': 300,
     }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#         'CONN_MAX_AGE': 300,
-#     }
-# }
+}
 
 
 # APIリクエストを受け取る時、JWTトークンを必要とするようにする
