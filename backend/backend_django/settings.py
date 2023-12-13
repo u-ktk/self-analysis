@@ -35,8 +35,8 @@ if READ_ENV_FILE:
 
 DEBUG = env.bool('DJANGO_DEBUG', True)
 
-# ALLOWED_HOSTS = ['selfanalysis-memo.com', 'localhost']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['selfanalysis-memo.com', 'localhost']
+# ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -101,18 +101,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend_django.wsgi.application'
 
 
-# DATABASES = {
-#     'default': env.db()
-# }
-
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR / 'db.sqlite3'),
-        'CONN_MAX_AGE': 300,
-    }
+    'default': env.db()
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': str(BASE_DIR / 'db.sqlite3'),
+#         'CONN_MAX_AGE': 300,
+#     }
+# }
 
 
 # APIリクエストを受け取る時、JWTトークンを必要とするようにする
@@ -137,9 +137,9 @@ REST_USE_JWT = True
 SIMPLE_JWT = {
     # アクセストークン(3時間)
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=3),
-    # 'ACCESS_TOKEN_LIFETIME': timedelta(seconds=3),
-    # リフレッシュトークン(7日)
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    # リフレッシュトークン(14日)
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
+
     # 認証タイプ
     'AUTH_HEADER_TYPES': ('JWT', ),
     # 認証トークン
