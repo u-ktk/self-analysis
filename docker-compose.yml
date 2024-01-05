@@ -1,0 +1,79 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./backend
+      target: development
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/backend:cached
+    networks:
+      - self-analysis
+    environment:
+      - DJANGO_SETTINGS_MODULE=backend_django.settings
+
+  frontend:
+    build:
+      context: ./frontend
+      target: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/frontend:cached
+    networks:
+      - self-analysis
+    depends_on:
+      - backend
+
+networks:
+  self-analysis:
+    driver: bridge
+  # version: '3'
+  # services:
+  #   backend:
+  #     build:
+  #       context: ./backend
+  #       target: development
+  #     ports:
+  #       - "8000:8000"
+  #     working_dir: /workspace
+  #     volumes:
+  #       - ./backend:/backend
+  #     networks:
+  #       - self-analysis
+  #     environment:
+  #       - DJANGO_SETTINGS_MODULE=backend_django.settings
+  #     # depends_on:
+  #     #   - db
+
+  #   frontend:
+  #     build:
+  #       context: ./frontend
+  #       target: development
+  #     ports:
+  #       - "3000:3000"
+  #     working_dir: /workspace
+  #     volumes:
+  #       - ./frontend:/frontend
+  #     networks:
+  #       - self-analysis
+  #     depends_on:
+  #       - backend
+  # db:
+  #   image: postgres:13
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data/
+  #   networks:
+  #     - self-analysis
+  #   env_file:
+  #     - .env.prod
+
+  # networks:
+  #   self-analysis:
+  #     driver: bridge
+
+  # volumes:
+  #   postgres_data:

@@ -1,0 +1,170 @@
+.link {
+    color: #947861;
+    /* color: #AC8D73; */
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.link:hover {
+    color: #AC8D73;
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+
+
+.trashIcon {
+    width: 17px;
+    margin-top: -2px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.trashIcon:hover {
+    transform: translateY(-1px);
+    opacity: 0.8;
+}
+
+.cancel {
+    color: #947861;
+    cursor: pointer;
+}
+
+.cancel:hover {
+    color: #AC8D73;
+    opacity: 0.8;
+    transform: translateY(-1px);
+
+}
+
+.newfFolderIcon {
+    margin-right: 5px;
+    width: 20px;
+    cursor: pointer;
+
+}
+
+.folderIcon {
+    width: 22px;
+    margin-top: -2px;
+    margin-left: 5px;
+    cursor: pointer;
+
+}
+
+.folderIcon:hover {
+    transform: translateY(-1px);
+    opacity: 0.8;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.contents {
+    padding-left: 60px;
+    line-height: 35px;
+
+}
+
+.form {
+    height: 80%;
+    width: 30%;
+    margin-right: 20px;
+}
+
+.formInToast {
+    height: 80%;
+    width: 100%;
+    margin-right: 20px;
+}
+
+
+.menu {
+    margin-top: 15px;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+
+.progress {
+    margin-left: auto;
+    border-radius: 3px;
+    width: 30%;
+    height: 20px;
+    opacity: 0.9;
+
+
+}
+
+.progressDetail {
+    border-radius: 3px;
+    width: 20%;
+    height: 10px;
+    opacity: 0.9;
+}
+
+
+.progressBarLabel {
+    margin-left: 15px;
+}
+
+.progressBarWrapper {
+    margin-right: 3rem;
+    display: flex;
+    align-items: center;
+
+}
+
+.categoryList {
+    margin-left: 30px;
+}
+
+.categoryList td:nth-child(1) {
+    width: 15%;
+}
+
+.categoryList td:nth-child(2) {
+    width: 40%;
+}
+
+.categoryList td:nth-child(3) {
+    width: 35%;
+}
+
+
+.ageAccordion {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.age {
+    width: 25%;
+}
+
+@media (max-width: 1250px) {
+    .menu {
+        display: flex;
+    }
+
+    .age {
+        width: 40%;
+    }
+
+    .categoryList {
+        margin-left: 0;
+    }
+
+    .categoryList td:nth-child(2) {
+        width: 30%;
+    }
+
+    .categoryList td:nth-child(3) {
+        width: 30%;
+    }
+}

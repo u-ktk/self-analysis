@@ -1,0 +1,135 @@
+.lightButton {
+    box-shadow: 0 2px 2px #E8DBD1;
+    background-color: white;
+    color: #6B4423;
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+
+
+.lightButton:hover {
+    transform: translateY(-1px);
+    opacity: 0.6;
+    background-color: white;
+    color: #6B4423;
+}
+
+.lightButton:active:focus {
+    transform: translateY(-1px);
+    opacity: 0.6;
+    background-color: white;
+    color: #6B4423;
+}
+
+
+.darkButton {
+    box-shadow: 0 2px 2px #E8DBD1;
+    flex-shrink: 0;
+    opacity: 0.8;
+
+}
+
+.darkButton:hover {
+    transform: translateY(-1px);
+    opacity: 0.6;
+    background-color: #6B4423;
+    color: white;
+}
+
+.darkButton:active:focus {
+    transform: translateY(-1px);
+    opacity: 0.6;
+    background-color: #6B4423;
+    color: white;
+}
+
+
+
+.title {
+    margin-bottom: 20px;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+.id {
+    color: #4b4b4b;
+    width: 80px;
+    vertical-align: top;
+
+}
+
+.link {
+    color: #E6914C;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.link:hover {
+    color: #F29950;
+    transform: translateY(-2px);
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.bg {
+    background-color: white;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    margin: 2rem 15rem;
+    padding: 2rem;
+}
+
+.contents {
+    padding-left: 2.5rem;
+    line-height: 30px;
+}
+
+
+.menu {
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+.errorMsg {
+    color: #6B4423;
+    margin-top: 30px;
+}
+
+
+.description {
+    width: 80%;
+    line-height: 30px;
+}
+
+
+
+
+.onClickText {
+    color: #656565;
+    text-decoration: underline;
+    text-decoration-color: #2c2b2b;
+    cursor: pointer;
+}
+
+.onClickText:hover {
+    color: #363636;
+    transform: translateY(-1px);
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+@media (max-width: 1250px) {
+    .bg {
+        margin: 40px 20px;
+    }
+
+    .contents {
+        width: 100%;
+    }
+
+    .title {
+        margin-left: 10px;
+    }
+}

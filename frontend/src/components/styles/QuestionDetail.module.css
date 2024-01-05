@@ -1,0 +1,157 @@
+.category {
+    border-left: 3px solid #d88948a0;
+    padding-left: 10px;
+    margin: 30px 0 5px 0;
+
+}
+
+.icon {
+    margin-top: -2px;
+    width: 40px;
+    text-align: center;
+}
+
+.openIcon {
+    margin-top: -2px;
+    width: 20px;
+}
+
+.check {
+    margin-top: -3px;
+    width: 60px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.id {
+    color: #4b4b4b;
+    width: 40px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.link {
+    /* color: #AC8D73; */
+    color: #78614e;
+    /* font-weight: bold; */
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.link:hover {
+    color: #AC8D73;
+    transform: translateY(-2px);
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.text {
+    width: 600px;
+    vertical-align: top;
+
+
+}
+
+.questionGroup {
+    margin-left: 20px;
+    text-align: left;
+    /* background-color: #FAFAFA; */
+}
+
+.contents {
+    padding: 0 3rem;
+    line-height: 30px;
+}
+
+.accordion,
+.orangeAccordion {
+    border: 1px solid #cecece;
+    cursor: pointer;
+    padding: 10px 20px;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+    border-left: 3px solid #d8894870;
+    margin: 20px 0 5px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion {
+    background-color: #fafafa;
+}
+
+.accordion:hover {
+    background-color: #eeeeee;
+}
+
+.orangeAccordion {
+    background-color: #d8894818;
+}
+
+.orangeAccordion:hover {
+    background-color: #d8894828;
+}
+
+
+
+
+.mark4 {
+    font-size: 18px;
+    border-bottom: 1.5px solid #AC8D73;
+    color: #9e816a;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.answerBox {
+    padding: 5px 25px 30px 25px;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    /* background-color: #fafafa; */
+
+}
+
+/* 回答はpタグで出力されるのでこっちに行間指定 */
+.answerBox p {
+    margin: 0;
+    line-height: 170%;
+
+}
+
+.answerText {
+    /* margin-top: 15px;
+    margin-left: 10px; */
+    margin: 20px 0px 40px 10px;
+
+}
+
+
+.toast {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #AC8D73;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+@media (max-width: 1250px) {
+    .contents {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .toast {
+        left: 30%;
+    }
+
+}

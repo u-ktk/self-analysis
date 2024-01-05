@@ -1,0 +1,19 @@
+{
+    "name": "frontend-container",
+    "service": "frontend",
+    // "workspaceFolder": "/frontend",
+    "workspaceFolder": "/workspace/frontend",
+    "dockerComposeFile": "../../docker-compose.yml",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "firsttris.vscode-jest-runner",
+                "coenraads.bracket-pair-colorizer-2",
+                "oderwat.indent-rainbow",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "github.copilot"
+            ]
+        }
+    }
+}

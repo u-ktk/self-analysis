@@ -1,0 +1,72 @@
+[
+    {
+        "model": "api.questioncategory",
+        "id": 1,
+        "fields": {
+            "name": "夢についての100問"
+        }
+    },
+    {
+        "model": "api.questioncategory",
+        "id": 2,
+        "fields": {
+            "name": "性格についての100問①"
+        }
+    },
+    {
+        "model": "api.questioncategory",
+        "id": 3,
+        "fields": {
+            "name": "性格についての100問②"
+        }
+    },
+    {
+        "model": "api.questioncategory",
+        "id": 4,
+        "fields": {
+            "name": "経験についての100問①"
+        }
+    },
+    {
+        "model": "api.questioncategory",
+        "id": 5,
+        "fields": {
+            "name": "経験についての100問②"
+        }
+    },
+    {
+        "model": "api.questioncategory",
+        "id": 6,
+        "fields": {
+            "name": "家族・親戚についての100問"
+        }
+    },
+    {
+        "model": "api.questioncategory",
+        "id": 7,
+        "fields": {
+            "name": "知人・友人についての100問"
+        }
+    },
+    {
+        "model": "api.questioncategory",
+        "id": 8,
+        "fields": {
+            "name": "勉強・仕事についての100問①"
+        }
+    },
+    {
+        "model": "api.questioncategory",
+        "id": 9,
+        "fields": {
+            "name": "勉強・仕事についての100問②"
+        }
+    },
+    {
+        "model": "api.questioncategory",
+        "id": 10,
+        "fields": {
+            "name": "趣味・嗜好についての100問"
+        }
+    }
+]

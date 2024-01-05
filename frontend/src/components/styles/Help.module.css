@@ -1,0 +1,177 @@
+.bg {
+    background-color: white;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    margin: 3rem 15rem;
+    padding: 2rem;
+}
+
+.link {
+    color: #947861;
+    /* color: #AC8D73; */
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+    margin: 0 1rem;
+}
+
+.link:hover {
+    color: #AC8D73;
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+
+.contents {
+    padding-left: 60px;
+    padding-right: 60px;
+    line-height: 30px;
+}
+
+.descriptionBox {
+    display: flex;
+    align-items: center;
+    background-color: #FAFAFA;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+    text-align: left;
+    line-height: 30px;
+    margin: 30px 0px;
+    border: none;
+    border-radius: 5px;
+    padding: 20px 40px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    box-shadow: #E8DBD1 0 2px 2px;
+    /* color: #6B4423; */
+}
+
+.descriptionBox2 {
+    background-color: #FAFAFA;
+    /* flex-direction: column; */
+    line-height: 30px;
+    margin: 30px 0px;
+    border: none;
+    border-radius: 5px;
+    padding: 20px 40px;
+    box-shadow: #E8DBD1 0 2px 2px;
+    color: #6B4423;
+}
+
+
+
+.list::marker {
+    font-size: 0.8rem;
+}
+
+.index {
+    margin: 30px 20px 0px 20px;
+    padding: 15px 30px;
+    border: 1px solid #C7C6C6;
+    border-radius: 1px;
+    width: 350px;
+}
+
+.outline {
+    margin: 30px 20px 0px 20px;
+    padding: 20px 20px;
+    border: 1px solid #C7C6C6;
+    border-radius: 1px;
+    width: 350px;
+}
+
+.outlineText {
+    margin: 5px 0;
+    font-size: 1.1rem;
+}
+
+.indexNumber {
+    color: #947861;
+    font-size: 1.4rem;
+    margin-right: 1rem;
+    vertical-align: -2px;
+}
+
+.verticalLine {
+    font-size: 70%;
+    color: #C7C6C6;
+    margin: -12px 0px -10px 8.5px;
+}
+
+
+.mark {
+    font-size: 18px;
+    border-bottom: 1.5px solid #AC8D73;
+    margin: 60px 10px 15px 10px;
+}
+
+.description {
+    line-height: 30px;
+    margin-left: 10px;
+}
+
+.exampleQuestion {
+    margin: 30px 0px -10px 0px;
+
+}
+
+.img {
+    box-shadow: #AC8D73 0 2px 4px;
+    width: 100%;
+}
+
+.img3 {
+    box-shadow: #AC8D73 0 2px 4px;
+    width: 70%;
+    margin: 10px 60px;
+}
+
+.img4 {
+    box-shadow: #AC8D73 0 2px 4px;
+    width: 80%;
+    margin: 10px 60px;
+}
+
+
+
+
+@media (max-width: 960px) {
+
+    .contents {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .descriptionBox {
+        display: block;
+        margin: 30px;
+    }
+
+    .descriptionBox>span {
+        display: block;
+    }
+
+}
+
+@media (min-width: 1536px) {
+    .img {
+        margin-left: 60px;
+        width: 50rem;
+    }
+
+    .img3 {
+        width: 35rem;
+    }
+
+    .img4 {
+        width: 40rem;
+    }
+
+}
+
+@media (max-width: 1250px) {
+    .bg {
+        margin: 40px 20px;
+    }
+
+}
