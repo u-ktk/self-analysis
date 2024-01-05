@@ -71,7 +71,7 @@ const CreateNewAnswer = (props: CreateAnswerProps) => {
             if (error instanceof Error) {
                 setErrorMessage(error.message);
 
-                
+                console.log(errorMessage);
 
             }
         }

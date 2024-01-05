@@ -31,7 +31,7 @@ const SearchResults = () => {
     const fetchData = async () => {
 
         if (!accessToken || !userId || (!textContains && !ageContains)) {
-            
+            console.log('検索結果を取得できませんでした');
             return;
         }
 
@@ -51,7 +51,7 @@ const SearchResults = () => {
                 setErrorMessage('検索結果がありませんでした');
             } else if (res) {
                 setQuestions(res);
-                // 
+                // console.log(res);
             }
 
 

@@ -10,11 +10,11 @@ import { removeDefaultQFromFolder } from '../../components/api/DefaultQuestions'
 //     try {
 //         const res = await removeDefaultQFromFolder({ accessToken, questionId, folder });
 //         if (res === null) {
-//             
+//             console.log(res);
 //         }
 //     }
 //     catch (err: any) {
-//         
+//         console.log(err.message);
 //         setErrorMessage(err.message);
 //     }
 // }
@@ -38,7 +38,7 @@ const RemoveQuestionFromFolder = async (props: removeFolderProps) => {
         }
     }
     catch (error: any) {
-        
+        console.log(error.message);
         return error.message;
     }
 

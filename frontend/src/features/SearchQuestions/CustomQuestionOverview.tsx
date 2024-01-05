@@ -36,7 +36,7 @@ const CustomQuestionOverview = () => {
                     setLoading(false);
                 }
             } catch (err: any) {
-                
+                console.log(err.message);
                 setErrorMessage(err.message);
                 setLoading(false);
             }

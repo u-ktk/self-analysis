@@ -36,7 +36,7 @@ const FolderList = (props: authInfo) => {
                     setLoading(false);
                 }
             } catch (err: any) {
-                
+                console.log(err.message);
                 setErrorMessage(err.message);
                 setLoading(false);
             }
@@ -60,7 +60,7 @@ const FolderList = (props: authInfo) => {
                 }
             }
         } catch (error: any) {
-            
+            console.log(error.message);
             setErrorMessage(error.message);
         }
     };
@@ -89,7 +89,7 @@ const FolderList = (props: authInfo) => {
                 }
             }
         } catch (error: any) {
-            
+            console.log(error.message);
             setErrorMessage(error.message);
         }
 

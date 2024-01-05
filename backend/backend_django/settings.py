@@ -35,7 +35,8 @@ if READ_ENV_FILE:
 
 DEBUG = env.bool('DJANGO_DEBUG', True)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['selfanalysis-memo.com', 'localhost']
+# ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -136,8 +137,8 @@ REST_USE_JWT = True
 SIMPLE_JWT = {
     # アクセストークン(3時間)
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=3),
-    # リフレッシュトークン(30日)
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    # リフレッシュトークン(14日)
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
 
     # 認証タイプ
     'AUTH_HEADER_TYPES': ('JWT', ),

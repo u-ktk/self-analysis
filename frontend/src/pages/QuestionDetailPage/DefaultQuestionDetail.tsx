@@ -30,14 +30,14 @@ const DefaultQuestionDetail = () => {
     // 質問の取得
     useEffect(() => {
         if (!accessToken || !id) {
-            
+            console.log('no accessToken or questionId')
             return;
         }
         try {
             fetchDefaultQuestion();
         }
         catch (error) {
-            
+            console.log(error);
         }
     }, [accessToken]);
 

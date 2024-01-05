@@ -48,7 +48,7 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
         }
         const selectedFolderValues = selectedOption.map((option: any) => option.value.toString());
         setSelectFolders(selectedFolderValues);
-        // 
+        // console.log(selectedFolderValues)
     };
 
     // フォームの送信時の処理
@@ -95,7 +95,7 @@ const CustomQuestionForm: React.FC<Props> = ({ accessToken, userId, onSubmit: on
                     setFolderOptions(folderOptions);
                 }
             } catch (err: any) {
-                
+                console.log(err.message);
             }
         };
         fetchData();

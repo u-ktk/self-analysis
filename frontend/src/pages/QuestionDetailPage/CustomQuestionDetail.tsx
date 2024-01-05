@@ -22,7 +22,7 @@ const CustomQuestionDetail = () => {
         const res = await getCustomQuestionDetail({ accessToken, userId }, questionId);
         if (res) {
             setQuestion(res);
-            // 
+            // console.log(res)
         }
         else {
             setErrorMessage('質問読み込みエラー');
@@ -32,14 +32,14 @@ const CustomQuestionDetail = () => {
     // 質問の取得
     useEffect(() => {
         if (!accessToken || !userId || !questionId) {
-            
+            console.log('no accessToken or userId or questionId')
             return;
         }
         try {
             fetchCustomQuestion();
         }
         catch (error: any) {
-            
+            console.log(error);
         }
 
     }, [accessToken, userId]);
