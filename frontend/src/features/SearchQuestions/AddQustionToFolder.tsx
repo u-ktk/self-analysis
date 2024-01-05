@@ -45,7 +45,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
             props.fetchQuestionDetail(selectQuestion.id);
         }
         catch (error) {
-            console.log(error);
+            
         }
     }
         , [props.accessToken, selectAddFolders]);
@@ -61,7 +61,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
                 setFolderList(res);
             }
         } catch (error) {
-            console.log(error);
+            
         }
     }
 
@@ -78,8 +78,8 @@ const AddQuestionToFolder = (props: addFolderProps) => {
         } else {
             setSelectAddFolders([]);
         }
-        // console.log(selectQuestion.folders)
-        // console.log(selectAddFolders)
+        // 
+        // 
     }
 
     useEffect(() => {
@@ -154,28 +154,28 @@ const AddQuestionToFolder = (props: addFolderProps) => {
             if (props.Addfunction === addDefaultQToFolder) {
                 const res = await addDefaultQToFolder({ accessToken: props.accessToken, questionId: selectQuestion.id, folders: selectAddFolders });
                 if (res === null) {
-                    console.log(`${selectAddFolders}に追加しました`)
+                    
                     return `${selectAddFolders}に追加しました`;
                 }
                 else {
-                    console.log(res)
+                    
                     return res
                 }
             }
             else if (props.Addfunction === addCustomQToFolder) {
                 const res = await addCustomQToFolder({ accessToken: props.accessToken, userId: props.userId, questionId: selectQuestion.id, folders: selectAddFolders });
                 if (res === null) {
-                    console.log(`${selectAddFolders}に追加しました`)
+                    
                     return `${selectAddFolders}に追加しました`;
                 }
                 else {
-                    console.log(res)
+                    
                     return res
                 }
             }
         } catch (error: any) {
-            console.log(error.message);
-            console.log(selectAddFolders)
+            
+            
             return error.message;
         }
     }
@@ -185,11 +185,11 @@ const AddQuestionToFolder = (props: addFolderProps) => {
         if (res) {
             props.setShowToast(false);
             selectQuestion.folders = selectAddFolders;
-            // console.log(selectAddFolders)
-            // console.log(selectQuestion.folders)
+            // 
+            // 
         }
         else {
-            console.log('質問を追加できませんでした');
+            
         }
     }
 
@@ -217,7 +217,7 @@ const AddQuestionToFolder = (props: addFolderProps) => {
                 }
             }
         } catch (error: any) {
-            console.log(error.message);
+            
             setErrorMessage(error.message);
         }
     };

@@ -46,11 +46,11 @@ const fetchCustomQuestions = async (method: string, endpoint: string, props: fet
         }
         if (res.ok) {
             const responseData = await res.json();
-            // console.log(responseData);
+            // 
             return responseData;
         } else {
             const errorData = await res.json();
-            console.error("Server Response:", errorData);
+            
             if (errorData.text && errorData.age) throw new Error(`${errorData.text}, ${errorData.age}`)
             if (errorData.text) throw new Error(errorData.text);
             if (errorData.age) throw new Error(errorData.age);
@@ -84,10 +84,10 @@ const getCustomQuestionDetail = async (props: CustomQuestionDetailProps, questio
     try {
         const endpoint = `customquestions/${questionId}/`;
         const res = await fetchCustomQuestions('GET', endpoint, props);
-        // console.log(res)
+        // 
         return res;
     } catch (error) {
-        console.log(error);
+        
         throw error;
     }
 }

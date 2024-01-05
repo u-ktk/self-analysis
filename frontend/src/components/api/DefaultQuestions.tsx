@@ -49,11 +49,11 @@ const fetchDefaultQuestions = async (method: string, endpoint: string, props: fe
         }
         if (res.ok) {
             const responseData = await res.json();
-            // console.log(responseData);
+            // 
             return responseData;
         } else {
             const errorData = await res.json();
-            console.error("Server Response:", errorData);
+            
             // エラーハンドリング後で詳しく
         }
     } catch (error) {
@@ -74,7 +74,7 @@ const getDefaultQuestions = async (props: DefaultQuestionDetailListProps): Promi
         const res = await fetchDefaultQuestions('GET', endpoint, props);
         return res.results;
     } catch (error) {
-        console.log(error);
+        
         throw error;
     }
 }
@@ -85,7 +85,7 @@ const getDefaultQuestionDetail = async (props: DefaultQuestionDetailListProps, q
         const res = await fetchDefaultQuestions('GET', endpoint, props);
         return res;
     } catch (error) {
-        console.log(error);
+        
         throw error;
     }
 }
@@ -98,7 +98,7 @@ const getCategoryOverView = async (accessToken: string): Promise<Categories | nu
         return res;
     }
     catch (error) {
-        console.log(error);
+        
         throw error;
     }
 
@@ -106,7 +106,7 @@ const getCategoryOverView = async (accessToken: string): Promise<Categories | nu
 
 const addDefaultQToFolder = async (props: addFolderProps) => {
     const endpoint = `defaultquestions/${props.questionId}/add_folder/`;
-    // console.log(props.folders)
+    // 
     return fetchDefaultQuestions('PATCH', endpoint, props, JSON.stringify({ folders: props.folders }));
 }
 

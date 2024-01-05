@@ -26,7 +26,7 @@ export default function Register() {
                 return;
             }
         } catch (error) {
-            console.log(error)
+            
         }
     }
 
@@ -55,12 +55,12 @@ export default function Register() {
             } else {
                 const errorData = await loginResponse.json();
                 setLoginErrorMessage(errorData.detail);
-                console.log(errorData);
+                
             }
         } catch (error) {
             if (error instanceof Error) {
                 setLoginErrorMessage([error.message]);
-                console.log(error.message);
+                
             }
         }
     }
@@ -97,7 +97,7 @@ export default function Register() {
                 if (errorData.password) {
                     setErrorMessage(errorData.password);
                 }
-                console.log(errorData)
+                
             }
 
         } catch (error) {

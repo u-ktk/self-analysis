@@ -106,7 +106,7 @@ const DefaultQuestionsList = () => {
             }
         } catch
         (err: any) {
-            console.log(err.message)
+            
             setErrorMessage(err.message)
             setLoading(false)
         }
@@ -127,7 +127,7 @@ const DefaultQuestionsList = () => {
                 setQuestions((prevQuestions) => {
                     const indexInPage = questionId - 1 - ((currentPage - 1) * 100);
                     const newQuestions = [...prevQuestions];
-                    console.log(newQuestions)
+                    
                     newQuestions[indexInPage] = res;
                     setSelectQuestion(res);
                     return newQuestions;
@@ -135,7 +135,7 @@ const DefaultQuestionsList = () => {
             }
         }
         catch (err: any) {
-            console.log(err.message);
+            
             setErrorMessage(err.message);
         }
     }

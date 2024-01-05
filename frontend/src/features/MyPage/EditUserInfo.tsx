@@ -58,7 +58,7 @@ const UserInfo = (props: authInfo) => {
                 // }, 5000);
             }
         } catch (error: any) {
-            // console.log(error.message)
+            // 
             if (error instanceof Error) {
                 setErrorMessage(error.message);
             }
@@ -83,7 +83,7 @@ const UserInfo = (props: authInfo) => {
                 }
             }
         } catch (error: any) {
-            // console.log(error.message)
+            // 
             if (error instanceof Error) {
                 setErrorMessage(error.message);
                 if (successMessage) {

@@ -83,13 +83,13 @@ const CustomQuestionList = () => {
         try {
             const res = await getCustomQuestions({ accessToken, userId });
             if (res) {
-                // console.log(res)
+                // 
                 setQuestions(res);
                 setReverseQuestions(res.slice().reverse());
                 setLoading(false);
             }
         } catch (err: any) {
-            console.log(err.message);
+            
             setErrorMessage(err.message);
             setLoading(false);
         }
@@ -120,7 +120,7 @@ const CustomQuestionList = () => {
             })
         }
         else {
-            console.log('質問読み込みエラー')
+            
         }
     }
 

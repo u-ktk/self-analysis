@@ -101,18 +101,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend_django.wsgi.application'
 
 
-DATABASES = {
-    'default': env.db()
-}
-
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': str(BASE_DIR / 'db.sqlite3'),
-#         'CONN_MAX_AGE': 300,
-#     }
+#     'default': env.db()
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
+        'CONN_MAX_AGE': 300,
+    }
+}
 
 
 # APIリクエストを受け取る時、JWTトークンを必要とするようにする

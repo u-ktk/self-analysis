@@ -111,13 +111,13 @@ const AnswerList = (props: AnswerListProps) => {
             };
 
             if (!data.title.trim() || /^\s*$/.test(stripHtmlTags(data.title)) || !data.text1.trim() || /^\s*$/.test(stripHtmlTags(data.text1))) {
-                console.log(data.text3);
+                
                 setErrorMessage('標語、ファクトは必須です');
                 return;
             }
 
-            console.log(data.title);
-            console.log(data.text3);
+            
+            
 
             let res;
             res = await updateAnswer({
@@ -134,17 +134,17 @@ const AnswerList = (props: AnswerListProps) => {
             if (res) {
                 setSuccessMessage('編集しました');
                 setIsEditing(false);
-                console.log(res);
+                
                 updateQuestion();
 
                 // window.location.reload();
 
             } else {
                 setErrorMessage('編集に失敗しました');
-                console.log(res);
+                
             }
         } catch (error) {
-            console.log(error);
+            
         }
     }
 

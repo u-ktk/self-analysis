@@ -25,8 +25,8 @@ const changeUserInfo = async (props: ChangeUserInfoProps): Promise<User | null> 
 
         if (res.ok) {
             const responseData = await res.json();
-            console.log(newName)
-            console.log(responseData);
+            
+            
             return responseData;
         } else {
             const errorData = await res.json();

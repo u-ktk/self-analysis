@@ -52,7 +52,7 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
     // 質問の取得
     useEffect(() => {
         if (!accessToken || !userId || !questionId) {
-            console.log('no accessToken or userId or questionId')
+            
             return;
         }
         try {
@@ -60,7 +60,7 @@ const CustomQuestionDetail = (props: QuestionDetailProps) => {
             setLoading(false);
         }
         catch (error) {
-            console.log(error);
+            
             setLoading(false);
 
         }

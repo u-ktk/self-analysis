@@ -22,7 +22,7 @@ const saveRefreshToken = async (accessToken: string, refreshToken: string) => {
             return;
         }
     } catch (error) {
-        console.log(error)
+        
     }
 }
 
@@ -56,7 +56,7 @@ export default function Login() {
                 if (errorData.email) setErrorMessage(errorData.email);
                 if (errorData.password) setErrorMessage(errorData.password);
                 if (errorData.detail) setErrorMessage(errorData.detail);
-                console.log(errorData);
+                
             }
         } catch (error) {
             if (error instanceof Error) {

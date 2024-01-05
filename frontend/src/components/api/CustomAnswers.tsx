@@ -22,7 +22,7 @@ type fetchProps = AnswerProps;
 const fetchAnswers = async (method: string, endpoint: string, props: fetchProps, body?: any) => {
 
     try {
-        console.log(props.questionId)
+        
         const res = await fetch(`${BACKEND_URL}${endpoint}`, {
             method: method,
             headers: {
@@ -39,7 +39,7 @@ const fetchAnswers = async (method: string, endpoint: string, props: fetchProps,
             return responseData;
         } else {
             const errorData = await res.json();
-            console.error("Server Response:", errorData);
+            
         }
 
     } catch (error) {

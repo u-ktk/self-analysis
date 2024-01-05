@@ -28,7 +28,7 @@ const FolderDetail = () => {
 
     const fetchData = async () => {
         if (!accessToken || !user || !folderName) {
-            console.log('フォルダの詳細を取得できませんでした')
+            
             return
         }
         try {
@@ -38,13 +38,13 @@ const FolderDetail = () => {
 
             }
         } catch (err: any) {
-            console.log(err.message)
+            
         }
     }
 
     // const removeDefaultQClick = async (folderDetail: number, questionId: number) => {
     //     if (!accessToken || !userParams) {
-    //         console.log('質問を削除できませんでした')
+    //         
     //         return
     //     }
     //     try {
@@ -53,14 +53,14 @@ const FolderDetail = () => {
     //             fetchData()
     //         }
     //     } catch (err: any) {
-    //         console.log(err.message)
+    //         
     //         setErrorMessage(err.message)
     //     }
     // }
 
     const removeQuestionClick = async (removalFunction: Function, folder: number, questionId: number) => {
         if (!accessToken || !user) {
-            console.log('質問を削除できませんでした');
+            
             return;
         }
         try {
@@ -81,7 +81,7 @@ const FolderDetail = () => {
 
 
         } catch (err: any) {
-            console.log(err.message);
+            
             setErrorMessage(err.message);
         }
     }
