@@ -3,7 +3,7 @@
 <div align="center">
 <img src="./images/serviceOverview.png" alt="サービス画像" width="400">
 </div>
-
+※インフラ費用の問題で現在非公開にしています。2024年4月~再開予定です
 
 ### URL
 [https://selfanalysis-memo.com](http://selfanalysis-memo.com/)<br>
