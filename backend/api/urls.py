@@ -11,8 +11,7 @@ router.register('defaultquestions', views.DefaultQuestionViewSet)
 router.register('folders', views.FolderViewSet)
 # router.register('refresh-token', views.RefreshTokenViewSet)
 
-custom_questions_router = routers.NestedSimpleRouter(
-    router, 'customquestions')
+custom_questions_router = routers.NestedSimpleRouter(router, 'customquestions')
 custom_questions_router.register('answers', views.AnswerViewSet)
 default_questions_router = routers.NestedSimpleRouter(
     router, 'defaultquestions')

@@ -129,6 +129,7 @@ REST_FRAMEWORK = {
     'DATE_INPUT_FORMATS': ["%Y-%m-%d", "%Y/%m/%d"],
     'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
     'DATETIME_INPUT_FORMATS': ["%Y-%m-%d %H:%M:%S", "%Y/%m/%d %H:%M:%S"],
+    "EXCEPTION_HANDLER": "api.views.custom_exception_handler",
 }
 
 

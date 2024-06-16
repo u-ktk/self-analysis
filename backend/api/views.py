@@ -1,26 +1,58 @@
-from django.shortcuts import render
 from .models import Question, User, Answer, Folder, QuestionCategory
 from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, FolderSerializer, CustomTokenObtainPairSerializer, QuestionCategorySerializer, CategoryOverViewSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
-from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import JsonResponse
 from rest_framework_simplejwt import authentication
 from rest_framework import permissions, generics, viewsets, exceptions, status
+from rest_framework.views import exception_handler
 from rest_framework.pagination import LimitOffsetPagination
 from django_filters import rest_framework as filters
-from rest_framework.decorators import api_view
-from django.db.models import Subquery, OuterRef
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 # エディターで入力されたHTMLをサニタイズする
 from .utils import sanitize_html
-from django.db.models import Count, Q
 
-# from django.db.models import Q
+status_detail = {
+    400: "400 Bad request",
+    401: "401 Unauthorized",
+    403: "403 Forbidden",
+    404: "404 Not found",
+    405: "405 Method not allowed",
+    429: "429 Too many requests",
+    503: "503 Internal server error",
+}
+
+
+def custom_exception_handler(exc, context):
+    res = exception_handler(exc, context)
+    if res is not None and res.status_code == 401:
+        status = res.status_code
+        res.data = {
+            "error": status_detail[status],
+            "message": "Authentication credentials were not provided.",
+            "path": context['request'].path
+
+        }
+    return res
+
+
+def error_message(message, status, request):
+    res = JsonResponse({
+        "error": status_detail[status],
+        "message": message,
+        "path": request.path
+    },
+        status=status)
+    return res
+
+
+def success_message(message, status):
+    return JsonResponse({"success": message}, status=status)
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
-    # エラーメッセージをカスタマイズ
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         return response
@@ -74,10 +106,10 @@ def refresh_token_save(request):
         if refresh_token:
             request.user.refresh_token = refresh_token
             request.user.save()
-            print(request.user.refresh_token)
-            return HttpResponse(status=status.HTTP_200_OK)
+            # Jsonレスポンス
+            return success_message("Successfully saved refresh token", status.HTTP_200_OK)
         else:
-            return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+            return error_message("Refresh token is required", 400, request)
 
 
 @api_view(['POST'])
@@ -86,9 +118,9 @@ def refresh_token_get(request):
         user_id = request.data.get('user')
         if user_id:
             refresh_token = User.objects.get(id=user_id).refresh_token
-            return HttpResponse(refresh_token, status=status.HTTP_200_OK)
+            return success_message(refresh_token, status.HTTP_200_OK)
         else:
-            return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+            return error_message("User ID is required", 400, request)
 
 
 class CustomQuestionViewSet(viewsets.ModelViewSet):
@@ -110,7 +142,7 @@ class CustomQuestionViewSet(viewsets.ModelViewSet):
 def update_folders(request, question_id):
 
     folders = request.data.get('folders')
-    print(folders)
+    print("data:", request.data)
 
     # JSON文字列のリストをPythonのリストに変換
     if isinstance(folders, str):
@@ -118,22 +150,24 @@ def update_folders(request, question_id):
         try:
             folders = json.loads(folders)
         except json.JSONDecodeError:
-            return HttpResponse({"error": "Invalid format for folders"}, status=status.HTTP_400_BAD_REQUEST)
+            return error_message("Invalid format for folders", 400, request)
     if folders is None:
-        return HttpResponse({"error": "folder_ids are required"}, status=status.HTTP_400_BAD_REQUEST)
+        return error_message("Folder ids are required", 400, request)
 
     try:
         question = Question.objects.get(pk=question_id)
         question.folders.set(folders)
         question.save()
     except Question.DoesNotExist:
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-
-    return HttpResponse(status=status.HTTP_200_OK)
+        # return JsonResponse(status=404)
+        return error_message("Question not found", 404, request)
+    # 更新後のフォルダを出力
+    return success_message(f"Folders updated:{folders}", status.HTTP_200_OK)
 
 
 # 質問に複数のフォルダ追加
 @api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
 def update_folders_for_custom_question(request, question_id):
     return update_folders(request, question_id)
 
@@ -176,6 +210,7 @@ class DefaultQuestionViewSet(viewsets.ModelViewSet):
 
 # 質問に複数のフォルダ追加(ただのPATCHだと１つずつしかできない？)
 @api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
 def update_folders_for_default_question(request, question_id):
     return update_folders(request, question_id)
 
